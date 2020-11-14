@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Creating Your Own Processors &mdash; Chiron 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Dictionary Model Classes" href="data_dict_models.html" />
+    <link rel="prev" title="Built-In Processors" href="built_in_processors.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Chiron
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dict_example.html">Data Dictionary Setup Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Creating Your Own Processors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-make-a-custom-processor-class">How to make a custom processor class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#abstract-processors">Abstract Processors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sourcecollectionprocessor-abstract">SourceCollectionProcessor (abstract)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etlprocessor-abstract">EtlProcessor (abstract)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cohortdefprocessor-abstract">CohortDefProcessor (abstract)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#displayprocessor-abstract">DisplayProcessor (abstract)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_dict_models.html">Data Dictionary Model Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API - Viewsets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">API - Transforming Cohort Def</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Chiron</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Creating Your Own Processors</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/making_custom_processor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creating-your-own-processors">
+<h1>Creating Your Own Processors<a class="headerlink" href="#creating-your-own-processors" title="Permalink to this headline">¶</a></h1>
+<p>Chiron has a variety of built-in <strong>processor classes</strong> that enable you to set up a Chiron instance
+without writing any code. However, when you need custom functionality, you can create your
+own processors.</p>
+<div class="section" id="how-to-make-a-custom-processor-class">
+<h2>How to make a custom processor class<a class="headerlink" href="#how-to-make-a-custom-processor-class" title="Permalink to this headline">¶</a></h2>
+<p>The code for your processor class can go anywhere, but we recommend creating a root-level package
+in your project called <code class="docutils literal notranslate"><span class="pre">chiron_config</span></code> and create an additional package inside that called
+<code class="docutils literal notranslate"><span class="pre">processors</span></code> to store your custom processors. <strong>Do not</strong> put them directly inside the chiron app,
+as that will make it harder to update chiron in the future.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">myproject</span>
+<span class="n">mkdir</span> <span class="n">chiron_config</span>
+<span class="n">cd</span> <span class="n">chiron_config</span>
+<span class="n">touch</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+<span class="n">mkdir</span> <span class="n">processors</span>
+<span class="n">cd</span> <span class="n">processors</span>
+<span class="n">touch</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Your processors can extend any of the chiron abstract processors in
+<code class="docutils literal notranslate"><span class="pre">chiron.processors.abstract</span></code> or built-in processors in <code class="docutils literal notranslate"><span class="pre">chiron.processors</span></code>.</p>
+<p>Once your processor code is ready, use the Processor model to include your processor in the
+data dictionary. Once added, you can set any processors in your SourceCollection or Concept
+models to use your custom processor.</p>
+</div>
+<div class="section" id="abstract-processors">
+<h2>Abstract Processors<a class="headerlink" href="#abstract-processors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sourcecollectionprocessor-abstract">
+<h3>SourceCollectionProcessor (abstract)<a class="headerlink" href="#sourcecollectionprocessor-abstract" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="etlprocessor-abstract">
+<h3>EtlProcessor (abstract)<a class="headerlink" href="#etlprocessor-abstract" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="cohortdefprocessor-abstract">
+<h3>CohortDefProcessor (abstract)<a class="headerlink" href="#cohortdefprocessor-abstract" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="displayprocessor-abstract">
+<h3>DisplayProcessor (abstract)<a class="headerlink" href="#displayprocessor-abstract" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="data_dict_models.html" class="btn btn-neutral float-right" title="Data Dictionary Model Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="built_in_processors.html" class="btn btn-neutral float-left" title="Built-In Processors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

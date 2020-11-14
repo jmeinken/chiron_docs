@@ -1,0 +1,48 @@
+
+
+API - Transforming Cohort Def
+=========================================
+
+Endpoints related to the transformation of the cohort def often have different request/response
+parameters based on the CohortDef processor associated with the concept.
+
+transform_cohort_def_form
+-------------------------
+
+.. automodule:: chiron.api.views
+   :show-inheritance:
+   :members: transform_cohort_def_form
+   :undoc-members:
+   
+The ``form_data`` returned from ``transform_cohort_def_form`` will depend on the 
+processor type. Here are the built-in processor types:
+
+form_data for CategoryFieldProcessor
+""""""""""""""""""""""""""""""""""""
+
+.. automethod:: chiron.processors.CategoryFieldProcessor.get_concept_form_data
+
+form_data for TextFieldProcessor
+""""""""""""""""""""""""""""""""
+
+.. automethod:: chiron.processors.TextFieldProcessor.get_concept_form_data
+
+form_data for BooleanFieldProcessor
+"""""""""""""""""""""""""""""""""""
+
+.. automethod:: chiron.processors.BooleanFieldProcessor.get_concept_form_data
+
+form_data for DateFieldProcessor
+""""""""""""""""""""""""""""""""
+
+.. automethod:: chiron.processors.DateFieldProcessor.get_concept_form_data
+
+form_data for DateFieldProcessorDeidentified
+""""""""""""""""""""""""""""""""""""""""""""
+
+.. automethod:: chiron.processors.DateFieldProcessorDeidentified.get_concept_form_data
+
+form_data for NumberFieldProcessor
+""""""""""""""""""""""""""""""""""
+
+.. automethod:: chiron.processors.NumberFieldProcessor.get_concept_form_data

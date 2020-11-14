@@ -1,0 +1,142 @@
+
+Built-In Processors
+===================
+
+The **processor classes** control how data is imported into MongoDB, how data is presented in the UI,
+how data is filtered in queries, and how data is displayed in data exports. There are a variety
+of built-in processors that are ready to use. They can typically be customized in various ways
+by passing arguments when instantiating. These arguments can be defined in the data dictionary.
+
+
+SourceCollection Processors
+---------------------------
+
+
+SourceCollectionProcessorForDjangoModel
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.SourceCollectionProcessorForDjangoModel
+   :show-inheritance:
+   
+SourceCollectionProcessorSelf
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.SourceCollectionProcessorSelf
+   :show-inheritance:
+   
+   
+SourceCollectionProcessorSubdoc
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.SourceCollectionProcessorSubdoc
+   :show-inheritance:
+   
+   
+ETL Processors
+--------------
+
+
+EtlProcessorForDjangoField
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.EtlProcessorForDjangoField
+   :show-inheritance:
+
+EtlProcessorForDjangoMultifieldMerge
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.EtlProcessorForDjangoMultifieldMerge
+   :show-inheritance:
+   
+EtlProcessorForDict
+^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.EtlProcessorForDict
+   :show-inheritance:
+   
+EtlProcessorForDictGetCount
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.EtlProcessorForDictGetCount
+   :show-inheritance:
+   
+EtlProcessorCounter
+^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.EtlProcessorCounter
+   :show-inheritance:
+   
+
+CohortDef & Display Processors
+------------------------------
+
+CohortDef processors manage how a concept is applied to queries. Display Processors manage
+how a concept is applied to results output. These built-in processors can be used as either
+unless otherwise stated.
+
+CategoryFieldProcessor
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.CategoryFieldProcessor
+   :show-inheritance:
+
+BooleanFieldProcessor
+^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.BooleanFieldProcessor
+   :show-inheritance:
+   
+NumberFieldProcessor
+^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.NumberFieldProcessor
+   :show-inheritance:
+   
+TextFieldProcessor
+^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.TextFieldProcessor
+   :show-inheritance:
+   
+TextFieldProcessorCustomSort
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.TextFieldProcessorCustomSort
+   :show-inheritance:
+   
+DateFieldProcessor
+^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.DateFieldProcessor
+   :show-inheritance:
+   
+DateFieldProcessorDeidentified
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.DateFieldProcessorDeidentified
+   :show-inheritance:
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

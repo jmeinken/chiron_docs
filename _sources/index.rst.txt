@@ -1,0 +1,48 @@
+.. Chiron documentation master file, created by
+   sphinx-quickstart on Wed Oct 14 13:49:02 2020.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to Chiron's documentation!
+==================================
+
+Chiron is a web application for patient or research-subject data. It can be configured to
+consume and merge data from multiple sources. It gives a lot of control over how the data is
+organized and presented to the user - including calculated fields and permission settings for
+restricting what patients and fields a user can see.
+
+Chiron has an interface for browsing the entire data collection. Users can also build ad-hoc 
+queries to identify specific patient cohorts and build/share reports based on those cohorts.
+The query system has good support for longitudinal data.
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+   
+   system_overview
+   demo
+   getting_started
+   data_dict_example
+   built_in_processors
+   making_custom_processor
+   data_dict_models
+   api_viewsets
+   api_transforming_cohort_def
+   
+   
+
+   
+   
+
+   
+   
+   
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

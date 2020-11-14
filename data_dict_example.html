@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data Dictionary Setup Tutorial &mdash; Chiron 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Built-In Processors" href="built_in_processors.html" />
+    <link rel="prev" title="Installing Chiron" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Chiron
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing Chiron</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Dictionary Setup Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#manual-configuration-example">Manual Configuration Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-roots">Setting up Roots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-source-collections">Setting up Source Collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-concepts">Setting up Concepts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#automated-configuration-example">Automated Configuration Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dict_models.html">Data Dictionary Model Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API - Viewsets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">API - Transforming Cohort Def</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Chiron</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Data Dictionary Setup Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/data_dict_example.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-dictionary-setup-tutorial">
+<h1>Data Dictionary Setup Tutorial<a class="headerlink" href="#data-dictionary-setup-tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="manual-configuration-example">
+<h2>Manual Configuration Example<a class="headerlink" href="#manual-configuration-example" title="Permalink to this headline">¶</a></h2>
+<p>This example will be importing from the following dataset in a Django app named <code class="docutils literal notranslate"><span class="pre">my_study</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Subject</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">subject_uid</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">dob</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Race</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">subject</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">&#39;Subject&#39;</span><span class="p">)</span>
+    <span class="n">race_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Survey</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">subject</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Subject&#39;</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+    <span class="n">survey_name</span> <span class="o">=</span>  <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">survey_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>
+    <span class="n">has_fever</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
+    <span class="n">bmi</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="setting-up-roots">
+<h3>Setting up Roots<a class="headerlink" href="#setting-up-roots" title="Permalink to this headline">¶</a></h3>
+<p>The first decision we need to make is how to set up our Roots to structure the database. We have
+a <code class="docutils literal notranslate"><span class="pre">Subject</span></code> table that has a many:many relationship to <code class="docutils literal notranslate"><span class="pre">Race</span></code> and a 1:many relationship to <code class="docutils literal notranslate"><span class="pre">Survey</span></code>.</p>
+<p>For data about research participants or patients, you will almost always want the person to be
+the project root. So we will use <code class="docutils literal notranslate"><span class="pre">Subject</span></code> as the project root. <code class="docutils literal notranslate"><span class="pre">Survey</span></code> is longitudinal data
+(one subject can have multiple surveys over time), so we will create a second root to hold
+the survey data.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Race</span></code> is a little trickier. The model allows a single subject to specify multiple races. However,
+the data is not longitudinal, and it is not a collection of related fields but simply a single
+field <code class="docutils literal notranslate"><span class="pre">race_name</span></code>. For those reasons, this is a good candidate for an overloaded field. Instead
+of creating a separate <code class="docutils literal notranslate"><span class="pre">Race</span></code> root, we will put the <code class="docutils literal notranslate"><span class="pre">race_name</span></code> concept in the <code class="docutils literal notranslate"><span class="pre">Subject</span></code> root and
+store an array of strings whenever a subject has multiple races.</p>
+<p>So in total we will have two roots:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="n">subject_root</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Root</span><span class="p">(</span>
+    <span class="n">permanent_id</span><span class="o">=</span><span class="s2">&quot;subject&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;study subject&quot;</span><span class="p">,</span>
+    <span class="n">is_project_root</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">subject_root</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">survey_root</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Root</span><span class="p">(</span>
+    <span class="n">permanent_id</span><span class="o">=</span><span class="s2">&quot;survey&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;survey&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">survey_root</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-up-source-collections">
+<h3>Setting up Source Collections<a class="headerlink" href="#setting-up-source-collections" title="Permalink to this headline">¶</a></h3>
+<p>Next we need to define our source collections and set up source collection processors.
+Recall that a source collection processor needs to return a dataset as an iterable.
+To populate our Subject root, we will need an iterable of subjects, and to populate our
+Survey root we will need an iterable of surveys.</p>
+<p>Chiron has a built-in source collection processor for getting data from the Django ORM. We will
+configure two source collections - one associated with the Subject model and one with the Survey model.
+Let’s start with the Subject:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the subject source collection</span>
+<span class="n">sc_processor</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Processor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Source Collection Processor for Django Model&quot;</span><span class="p">)</span>
+<span class="n">subject_sc</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SourceCollection</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;subjects&quot;</span><span class="p">,</span>
+    <span class="n">root</span><span class="o">=</span><span class="n">subject_root</span><span class="p">,</span>
+    <span class="n">processor</span><span class="o">=</span><span class="n">sc_processor</span><span class="p">,</span>
+    <span class="n">execution_order</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">subject_sc</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We’re not finished with our subject source collection yet. The built-in Django source collection
+processor class requires some
+arguments when initialized. At a minimum we need to tell it which app and model to iterate.</p>
+<p>There is a model <code class="docutils literal notranslate"><span class="pre">SourceCollectionProcessorArgument</span></code> to set these values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># provide arguments to configure the subject source collection processor</span>
+<span class="n">arg_app</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SourceCollectionProcessorArgument</span><span class="p">(</span>
+    <span class="n">source_collection</span><span class="o">=</span><span class="n">subject_sc</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;app&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;my_study&quot;</span>
+<span class="p">)</span>
+<span class="n">arg_app</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="n">arg_model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SourceCollectionProcessorArgument</span><span class="p">(</span>
+    <span class="n">source_collection</span><span class="o">=</span><span class="n">subject_sc</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;model&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;Subject&quot;</span>
+<span class="p">)</span>
+<span class="n">arg_model</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Our source collection processor is also responsible for setting an <code class="docutils literal notranslate"><span class="pre">_id</span></code> value. By default, the
+processor will use the model primary key. In the <code class="docutils literal notranslate"><span class="pre">Subject</span></code> model, the primary key is an
+<code class="docutils literal notranslate"><span class="pre">id</span></code> field implicitly created by Django. However, we also have a unique <code class="docutils literal notranslate"><span class="pre">subject_uid</span></code> field
+that we could use.</p>
+<p>Let’s use the <code class="docutils literal notranslate"><span class="pre">subject_id</span></code> field:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arg_root_id</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SourceCollectionProcessorArgument</span><span class="p">(</span>
+    <span class="n">source_collection</span><span class="o">=</span><span class="n">subject_sc</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;root_id&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;subject_uid&quot;</span>
+<span class="p">)</span>
+<span class="n">arg_root_id</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Subject</span></code> source collection is now complete. Next we will set up the <code class="docutils literal notranslate"><span class="pre">Survey</span></code> source collection the
+same way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the survey source collection</span>
+<span class="n">survey_sc</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SourceCollection</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;surveys&quot;</span><span class="p">,</span>
+    <span class="n">root</span><span class="o">=</span><span class="n">survey_root</span><span class="p">,</span>
+    <span class="n">processor</span><span class="o">=</span><span class="n">sc_processor</span><span class="p">,</span>
+    <span class="n">execution_order</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+<span class="n">survey_sc</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="c1"># provide arguments to configure the survey source collection processor</span>
+<span class="n">arg_app</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SourceCollectionProcessorArgument</span><span class="p">(</span>
+    <span class="n">source_collection</span><span class="o">=</span><span class="n">survey_sc</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;app&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;my_study&quot;</span>
+<span class="p">)</span>
+<span class="n">arg_app</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="n">arg_model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SourceCollectionProcessorArgument</span><span class="p">(</span>
+    <span class="n">source_collection</span><span class="o">=</span><span class="n">survey_sc</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;model&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;Survey&quot;</span>
+<span class="p">)</span>
+<span class="n">arg_model</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For surveys, we have two <code class="docutils literal notranslate"><span class="pre">_id</span></code> fields to worry about. First, we need a <code class="docutils literal notranslate"><span class="pre">root_id</span></code> which will be
+a unique identifier for each survey. Then, in order to associate surveys with the appropriate subject,
+we need a <code class="docutils literal notranslate"><span class="pre">project_root_id</span></code>. This will be a unique identifier for the project_root, which is the
+<code class="docutils literal notranslate"><span class="pre">Subject</span></code> root.</p>
+<p>For the survey ID, we can just leave it undefined and let Django use the <code class="docutils literal notranslate"><span class="pre">Survey</span></code> model primary key field.
+However, the subject ID needs to match what we set previously - the <code class="docutils literal notranslate"><span class="pre">subject_uid</span></code> field in
+the <code class="docutils literal notranslate"><span class="pre">Subject</span></code> model.</p>
+<p>Since we’re iterating over the <code class="docutils literal notranslate"><span class="pre">Survey</span></code> model for surveys, we need to “follow” the foreign-key relationship
+from Survey to Subject. The processor allows Django’s built-in double underscore syntax to do that:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arg_project_root_id</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SourceCollectionProcessorArgument</span><span class="p">(</span>
+    <span class="n">source_collection</span><span class="o">=</span><span class="n">survey_sc</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;project_root_id&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;subject__subject_uid&quot;</span>
+<span class="p">)</span>
+<span class="n">arg_root_id</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now that both our Subject and Survey source collection are returning <code class="docutils literal notranslate"><span class="pre">Subject.subject_uid</span></code> as
+the subject ID, they will be merged in MongoDB appropriately.</p>
+</div>
+<div class="section" id="setting-up-concepts">
+<h3>Setting up Concepts<a class="headerlink" href="#setting-up-concepts" title="Permalink to this headline">¶</a></h3>
+<p>Now that our Roots and SourceCollections are all in place, we can begin defining the concepts we
+want to import. For subjects we have <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">race</span></code>, and <code class="docutils literal notranslate"><span class="pre">DOB</span></code>. For Surveys, we have
+<code class="docutils literal notranslate"><span class="pre">survey_name</span></code>, <code class="docutils literal notranslate"><span class="pre">survey_date</span></code>, <code class="docutils literal notranslate"><span class="pre">has_fever</span></code> and <code class="docutils literal notranslate"><span class="pre">bmi</span></code>.</p>
+<p>Concepts have three required processor classes:</p>
+<ul class="simple">
+<li><p><strong>ETL Processor</strong>: retrieves values for this concept to put in MongoDB</p></li>
+<li><p><strong>Cohort Def Processor</strong>: Manages how the concept works in queries</p></li>
+<li><p><strong>Display Processor</strong>: Manages how the concept works in output datasets</p></li>
+</ul>
+<p>The concept ETL processor works in close coordination with the source collection processor. Recall the main
+function of the source collection processor is to return an iterable of records. The main function
+of the ETL processor is to grab a specific value out of each of those record. Since we used the built-in
+<code class="docutils literal notranslate"><span class="pre">Source</span> <span class="pre">Collection</span> <span class="pre">Processor</span> <span class="pre">for</span> <span class="pre">Django</span> <span class="pre">Model</span></code>, we will use the
+corresponding <code class="docutils literal notranslate"><span class="pre">ETL</span> <span class="pre">Processor</span> <span class="pre">for</span> <span class="pre">Django</span> <span class="pre">Field</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">etl_processor</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Processor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ETL Processor for Django Field&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The cohort def and display processors depend on the concept data type. For gender, <code class="docutils literal notranslate"><span class="pre">category</span> <span class="pre">field</span></code>
+will be a good type. We have a single built-in class that can be used for both processor roles:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">category_processor</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Processor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Category Field Processor&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we have all the references in place to build our <code class="docutils literal notranslate"><span class="pre">gender</span></code> concept:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Concept</span><span class="p">(</span>
+    <span class="n">permanent_id</span><span class="o">=</span><span class="s2">&quot;subject_gender&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span>
+    <span class="n">root</span><span class="o">=</span><span class="n">subject_root</span><span class="p">,</span>
+    <span class="n">source_collection</span><span class="o">=</span><span class="n">subject_sc</span><span class="p">,</span>
+    <span class="n">etl_processor</span><span class="o">=</span><span class="n">etl_processor</span><span class="p">,</span>
+    <span class="n">cohort_def_processor</span><span class="o">=</span><span class="n">category_processor</span><span class="p">,</span>
+    <span class="n">display_processor</span><span class="o">=</span><span class="n">category_processor</span>
+<span class="p">)</span>
+<span class="n">gender</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The ETL processor requires the argument <code class="docutils literal notranslate"><span class="pre">django_field</span></code> in order to know which model field to pull:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arg_gender_django_field</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ConceptProcessorArgument</span><span class="p">(</span>
+    <span class="n">concept</span><span class="o">=</span><span class="n">gender</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;django_field&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span>
+    <span class="n">send_to_etl_processor</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">arg_gender_django_field</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">race</span></code> concept is also a category and can use the same processors as gender:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">race</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Concept</span><span class="p">(</span>
+    <span class="n">permanent_id</span><span class="o">=</span><span class="s2">&quot;subject_race&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;race&quot;</span><span class="p">,</span>
+    <span class="n">root</span><span class="o">=</span><span class="n">subject_root</span><span class="p">,</span>
+    <span class="n">source_collection</span><span class="o">=</span><span class="n">subject_sc</span><span class="p">,</span>
+    <span class="n">etl_processor</span><span class="o">=</span><span class="n">etl_processor</span><span class="p">,</span>
+    <span class="n">cohort_def_processor</span><span class="o">=</span><span class="n">category_processor</span><span class="p">,</span>
+    <span class="n">display_processor</span><span class="o">=</span><span class="n">category_processor</span>
+<span class="p">)</span>
+<span class="n">race</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The ETL processor also requires the argument <code class="docutils literal notranslate"><span class="pre">django_field</span></code>, but this time we need to use
+Django’s double-underscore syntax to get from the <code class="docutils literal notranslate"><span class="pre">Subject</span></code> model to the <code class="docutils literal notranslate"><span class="pre">Race</span></code> model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arg_race_django_field</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ConceptProcessorArgument</span><span class="p">(</span>
+    <span class="n">concept</span><span class="o">=</span><span class="n">race</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;django_field&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;race_set__race_name&quot;</span><span class="p">,</span>
+    <span class="n">send_to_etl_processor</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">arg_race_django_field</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Let’s look at an example from the <code class="docutils literal notranslate"><span class="pre">Survey</span></code> model. We can set up a concept <code class="docutils literal notranslate"><span class="pre">Survey.survey_date</span></code>
+using a similar approach to our other concepts:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">survey_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Concept</span><span class="p">(</span>
+    <span class="n">permanent_id</span><span class="o">=</span><span class="s2">&quot;survey_date&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;survey date&quot;</span><span class="p">,</span>
+    <span class="n">root</span><span class="o">=</span><span class="n">survey_root</span><span class="p">,</span>
+    <span class="n">source_collection</span><span class="o">=</span><span class="n">survey_sc</span><span class="p">,</span>
+    <span class="n">etl_processor</span><span class="o">=</span><span class="n">etl_processor</span><span class="p">,</span>
+    <span class="n">cohort_def_processor</span><span class="o">=</span><span class="n">category_processor</span><span class="p">,</span>
+    <span class="n">display_processor</span><span class="o">=</span><span class="n">category_processor</span>
+<span class="p">)</span>
+<span class="n">survey_date</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">arg_survey_date_django_field</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ConceptProcessorArgument</span><span class="p">(</span>
+    <span class="n">concept</span><span class="o">=</span><span class="n">survey_date</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;django_field&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;survey_date&quot;</span><span class="p">,</span>
+    <span class="n">send_to_etl_processor</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">arg_survey_date_django_field</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="automated-configuration-example">
+<h2>Automated Configuration Example<a class="headerlink" href="#automated-configuration-example" title="Permalink to this headline">¶</a></h2>
+<p>Chiron has a built-in management command for auto-generating a data dictionary from a set of
+Django models. The tool only works on Django models, not other types of data sources, and the
+final output will still usually have problems and need to be further modified. However, it still
+can be a useful time saver, particularly when importing a large number of fields.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="built_in_processors.html" class="btn btn-neutral float-right" title="Built-In Processors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Installing Chiron" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

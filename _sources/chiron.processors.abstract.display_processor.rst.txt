@@ -1,0 +1,7 @@
+chiron.processors.abstract.display\_processor module
+----------------------------------------------------
+
+.. automodule:: chiron.processors.abstract.display_processor
+   :members:
+   :undoc-members:
+   :show-inheritance:

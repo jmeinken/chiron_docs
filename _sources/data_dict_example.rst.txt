@@ -1,0 +1,277 @@
+
+
+Data Dictionary Setup Tutorial
+==============================
+
+
+Manual Configuration Example
+----------------------------
+
+This example will be importing from the following dataset in a Django app named ``my_study``:
+::
+    class Subject(models.Model):
+    	subject_uid = models.CharField(max_length=255, unique=True)
+    	gender = models.CharField(max_length=6, blank=True, null=True)
+    	dob = models.DateField(blank=True, null=True)
+    	
+    class Race(models.Model):
+        subject = models.ManyToManyField('Subject')
+        race_name = models.CharField(max_length=30)
+        
+    class Survey(models.Model):
+        subject = models.ForeignKey('Subject', on_delete=models.CASCADE)
+        survey_name =  models.CharField(max_length=6)
+        survey_date = models.DateField()
+        has_fever = models.BooleanField()
+        bmi = models.FloatField()
+        
+        
+Setting up Roots
+^^^^^^^^^^^^^^^^
+
+The first decision we need to make is how to set up our Roots to structure the database. We have
+a ``Subject`` table that has a many:many relationship to ``Race`` and a 1:many relationship to ``Survey``.
+
+For data about research participants or patients, you will almost always want the person to be
+the project root. So we will use ``Subject`` as the project root. ``Survey`` is longitudinal data
+(one subject can have multiple surveys over time), so we will create a second root to hold 
+the survey data.
+
+``Race`` is a little trickier. The model allows a single subject to specify multiple races. However,
+the data is not longitudinal, and it is not a collection of related fields but simply a single
+field ``race_name``. For those reasons, this is a good candidate for an overloaded field. Instead
+of creating a separate ``Race`` root, we will put the ``race_name`` concept in the ``Subject`` root and 
+store an array of strings whenever a subject has multiple races.
+
+So in total we will have two roots:
+::
+    from chiron import models
+    
+    subject_root = models.Root(
+    	permanent_id="subject",
+    	name="study subject",
+    	is_project_root=True
+    )
+    subject_root.save()
+    
+    survey_root = models.Root(
+    	permanent_id="survey",
+    	name="survey",
+    )
+    survey_root.save()
+    
+
+Setting up Source Collections
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Next we need to define our source collections and set up source collection processors. 
+Recall that a source collection processor needs to return a dataset as an iterable. 
+To populate our Subject root, we will need an iterable of subjects, and to populate our
+Survey root we will need an iterable of surveys.
+
+Chiron has a built-in source collection processor for getting data from the Django ORM. We will
+configure two source collections - one associated with the Subject model and one with the Survey model.
+Let's start with the Subject:
+::
+    # create the subject source collection
+    sc_processor = models.Processor.get(name="Source Collection Processor for Django Model")
+    subject_sc = models.SourceCollection(
+    	name="subjects",
+    	root=subject_root,
+    	processor=sc_processor,
+    	execution_order=1
+    )
+    subject_sc.save()   
+    
+We're not finished with our subject source collection yet. The built-in Django source collection
+processor class requires some
+arguments when initialized. At a minimum we need to tell it which app and model to iterate.
+
+There is a model ``SourceCollectionProcessorArgument`` to set these values:
+::
+    # provide arguments to configure the subject source collection processor
+    arg_app = models.SourceCollectionProcessorArgument(
+    	source_collection=subject_sc,
+    	name="app",
+    	value="my_study"
+    )
+    arg_app.save()
+    arg_model = models.SourceCollectionProcessorArgument(
+    	source_collection=subject_sc,
+    	name="model",
+    	value="Subject"
+    )
+    arg_model.save()
+    
+Our source collection processor is also responsible for setting an ``_id`` value. By default, the
+processor will use the model primary key. In the ``Subject`` model, the primary key is an 
+``id`` field implicitly created by Django. However, we also have a unique ``subject_uid`` field
+that we could use.
+    
+Let's use the ``subject_id`` field:
+::
+    arg_root_id = models.SourceCollectionProcessorArgument(
+    	source_collection=subject_sc,
+    	name="root_id",
+    	value="subject_uid"
+    )
+    arg_root_id.save()
+    
+The ``Subject`` source collection is now complete. Next we will set up the ``Survey`` source collection the
+same way:
+::
+    # create the survey source collection
+    survey_sc = models.SourceCollection(
+    	name="surveys",
+    	root=survey_root,
+    	processor=sc_processor,
+    	execution_order=2
+    )
+    survey_sc.save()
+    
+    # provide arguments to configure the survey source collection processor
+    arg_app = models.SourceCollectionProcessorArgument(
+    	source_collection=survey_sc,
+    	name="app",
+    	value="my_study"
+    )
+    arg_app.save()
+    arg_model = models.SourceCollectionProcessorArgument(
+    	source_collection=survey_sc,
+    	name="model",
+    	value="Survey"
+    )
+    arg_model.save()
+    
+For surveys, we have two ``_id`` fields to worry about. First, we need a ``root_id`` which will be
+a unique identifier for each survey. Then, in order to associate surveys with the appropriate subject,
+we need a ``project_root_id``. This will be a unique identifier for the project_root, which is the
+``Subject`` root.
+
+For the survey ID, we can just leave it undefined and let Django use the ``Survey`` model primary key field.
+However, the subject ID needs to match what we set previously - the ``subject_uid`` field in 
+the ``Subject`` model.
+
+Since we're iterating over the ``Survey`` model for surveys, we need to "follow" the foreign-key relationship
+from Survey to Subject. The processor allows Django's built-in double underscore syntax to do that:
+::
+    arg_project_root_id = models.SourceCollectionProcessorArgument(
+    	source_collection=survey_sc,
+    	name="project_root_id",
+    	value="subject__subject_uid"
+    )
+    arg_root_id.save()
+
+Now that both our Subject and Survey source collection are returning ``Subject.subject_uid`` as
+the subject ID, they will be merged in MongoDB appropriately.  
+
+
+Setting up Concepts
+^^^^^^^^^^^^^^^^^^^
+
+Now that our Roots and SourceCollections are all in place, we can begin defining the concepts we 
+want to import. For subjects we have ``gender``, ``race``, and ``DOB``. For Surveys, we have 
+``survey_name``, ``survey_date``, ``has_fever`` and ``bmi``.
+
+Concepts have three required processor classes:
+
+* **ETL Processor**: retrieves values for this concept to put in MongoDB
+* **Cohort Def Processor**: Manages how the concept works in queries
+* **Display Processor**: Manages how the concept works in output datasets
+
+The concept ETL processor works in close coordination with the source collection processor. Recall the main
+function of the source collection processor is to return an iterable of records. The main function
+of the ETL processor is to grab a specific value out of each of those record. Since we used the built-in
+``Source Collection Processor for Django Model``, we will use the 
+corresponding ``ETL Processor for Django Field``.
+::
+    etl_processor = models.Processor.get(name="ETL Processor for Django Field")
+
+The cohort def and display processors depend on the concept data type. For gender, ``category field``
+will be a good type. We have a single built-in class that can be used for both processor roles:
+::
+    category_processor = models.Processor.get(name="Category Field Processor")
+    
+Now we have all the references in place to build our ``gender`` concept:
+::
+    gender = models.Concept(
+        permanent_id="subject_gender",
+        name="gender",
+        root=subject_root,
+        source_collection=subject_sc,
+        etl_processor=etl_processor,
+        cohort_def_processor=category_processor,
+        display_processor=category_processor
+    )
+    gender.save()
+    
+The ETL processor requires the argument ``django_field`` in order to know which model field to pull:
+::
+    arg_gender_django_field = models.ConceptProcessorArgument(
+    	concept=gender,
+    	name="django_field",
+    	value="gender",
+    	send_to_etl_processor=True
+    )
+    arg_gender_django_field.save()
+    
+The ``race`` concept is also a category and can use the same processors as gender:
+::
+    race = models.Concept(
+        permanent_id="subject_race",
+        name="race",
+        root=subject_root,
+        source_collection=subject_sc,
+        etl_processor=etl_processor,
+        cohort_def_processor=category_processor,
+        display_processor=category_processor
+    )
+    race.save()
+
+The ETL processor also requires the argument ``django_field``, but this time we need to use
+Django's double-underscore syntax to get from the ``Subject`` model to the ``Race`` model:
+::
+    arg_race_django_field = models.ConceptProcessorArgument(
+    	concept=race,
+    	name="django_field",
+    	value="race_set__race_name",
+    	send_to_etl_processor=True
+    )
+    arg_race_django_field.save()    
+    
+Let's look at an example from the ``Survey`` model. We can set up a concept ``Survey.survey_date`` 
+using a similar approach to our other concepts:
+::
+    survey_date = models.Concept(
+        permanent_id="survey_date",
+        name="survey date",
+        root=survey_root,
+        source_collection=survey_sc,
+        etl_processor=etl_processor,
+        cohort_def_processor=category_processor,
+        display_processor=category_processor
+    )
+    survey_date.save()
+    
+    arg_survey_date_django_field = models.ConceptProcessorArgument(
+    	concept=survey_date,
+    	name="django_field",
+    	value="survey_date",
+    	send_to_etl_processor=True
+    )
+    arg_survey_date_django_field.save()  
+
+
+
+
+
+
+
+Automated Configuration Example
+-------------------------------
+
+Chiron has a built-in management command for auto-generating a data dictionary from a set of
+Django models. The tool only works on Django models, not other types of data sources, and the 
+final output will still usually have problems and need to be further modified. However, it still 
+can be a useful time saver, particularly when importing a large number of fields.
+

@@ -1,0 +1,69 @@
+Creating Your Own Processors
+============================
+
+Chiron has a variety of built-in **processor classes** that enable you to set up a Chiron instance
+without writing any code. However, when you need custom functionality, you can create your
+own processors.
+
+How to make a custom processor class
+------------------------------------
+
+The code for your processor class can go anywhere, but we recommend creating a root-level package
+in your project called ``chiron_config`` and create an additional package inside that called
+``processors`` to store your custom processors. **Do not** put them directly inside the chiron app,
+as that will make it harder to update chiron in the future.
+::
+    cd myproject
+    mkdir chiron_config
+    cd chiron_config
+    touch __init__.py
+    mkdir processors
+    cd processors
+    touch __init__.py
+    
+Your processors can extend any of the chiron abstract processors in 
+``chiron.processors.abstract`` or built-in processors in ``chiron.processors``.
+
+Once your processor code is ready, use the Processor model to include your processor in the
+data dictionary. Once added, you can set any processors in your SourceCollection or Concept
+models to use your custom processor.
+
+Abstract Processors
+-------------------
+
+SourceCollectionProcessor (abstract)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.abstract.SourceCollectionProcessor
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+   
+EtlProcessor (abstract)
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.abstract.EtlProcessor
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+   
+CohortDefProcessor (abstract)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.abstract.CohortDefProcessor
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:   
+
+DisplayProcessor (abstract)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.abstract.DisplayProcessor
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+

@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installing Chiron &mdash; Chiron 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Dictionary Setup Tutorial" href="data_dict_example.html" />
+    <link rel="prev" title="Demo Version" href="demo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Chiron
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing Chiron</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-create-or-use-an-existing-django-project">Step 1: Create or use an existing Django project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-install-the-chiron-app-into-your-django-project">Step 2: Install the chiron app into your Django project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-add-your-chiron-tables-to-the-database">Step 3: Add your Chiron tables to the database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-set-up-authentication">Step 4: Set up authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_dict_example.html">Data Dictionary Setup Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dict_models.html">Data Dictionary Model Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API - Viewsets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">API - Transforming Cohort Def</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Chiron</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Installing Chiron</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installing-chiron">
+<h1>Installing Chiron<a class="headerlink" href="#installing-chiron" title="Permalink to this headline">¶</a></h1>
+<p>Chiron is built as a Django app. You must have a basic familiarity with Python and the Django
+framework. Chiron stores patient data in MongoDB. You don’t need to be proficient with MongoDB
+to get started, but you do need access to a running Mongo installation.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>You must have Python 3.</p></li>
+<li><p>You must have pip (and recommend using a virtual environment).</p></li>
+<li><p>You must have a relational database that Django can use (or use built-in sqlite3 database).</p></li>
+<li><p>You must have MongoDB.</p></li>
+</ul>
+</div>
+<div class="section" id="step-1-create-or-use-an-existing-django-project">
+<h2>Step 1: Create or use an existing Django project<a class="headerlink" href="#step-1-create-or-use-an-existing-django-project" title="Permalink to this headline">¶</a></h2>
+<p>To create a new Django project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">django</span>
+<span class="n">django</span><span class="o">-</span><span class="n">admin</span> <span class="n">startproject</span> <span class="n">myproject</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-install-the-chiron-app-into-your-django-project">
+<h2>Step 2: Install the chiron app into your Django project<a class="headerlink" href="#step-2-install-the-chiron-app-into-your-django-project" title="Permalink to this headline">¶</a></h2>
+<p>Install Chiron and its dependencies using pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cchmc</span><span class="o">-</span><span class="n">bmi</span><span class="o">-</span><span class="n">os</span><span class="o">/</span><span class="n">chiron</span><span class="o">.</span><span class="n">git</span><span class="nd">@develop</span><span class="c1">#egg=chiron</span>
+</pre></div>
+</div>
+<p>In your settings.py file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># add chiron and crispy_forms to installed apps:</span>
+
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;crispy_forms&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;chiron&#39;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+
+<span class="c1"># add chiron context processors</span>
+<span class="n">TEMPLATES</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;OPTIONS&#39;</span><span class="p">][</span><span class="s1">&#39;context_processors&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;chiron.context_processors.chiron_globals&#39;</span><span class="p">)</span>
+
+<span class="c1"># add info for connecting to the Mongo database</span>
+<span class="n">CHIRON_MONGO_DATABASE_NAME</span> <span class="o">=</span> <span class="s1">&#39;myprojectname&#39;</span>
+
+<span class="c1"># for unsecured install on localhost:</span>
+<span class="n">CHIRON_MONGO_CONNECTION_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;host&#39;</span> <span class="p">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># more complex example:</span>
+<span class="n">CHIRON_MONGO_CONNECTION_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;host&#39;</span> <span class="p">:</span> <span class="s1">&#39;129.137.7.27&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;username&#39;</span> <span class="p">:</span> <span class="s1">&#39;meinkejf&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;password&#39;</span> <span class="p">:</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;authSource&#39;</span> <span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># (optional) Add chiron site title and Subject ID label</span>
+<span class="n">CHIRON_SITE_TITLE</span> <span class="o">=</span> <span class="s1">&#39;Chiron Development&#39;</span>
+<span class="n">CHIRON_SUBJECT_ID_LABEL</span> <span class="o">=</span> <span class="s1">&#39;Patient ID&#39;</span>
+</pre></div>
+</div>
+<p>In your urls.py:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure you&#39;re importing &#39;include&#39;</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+
+<span class="c1"># add chiron to path list.</span>
+<span class="c1"># example 1: put the chiron views inside a subdirectory &#39;chiron&#39;</span>
+<span class="n">path</span><span class="p">(</span><span class="s1">&#39;chiron/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">((</span><span class="s1">&#39;chiron.urls&#39;</span><span class="p">,</span> <span class="s1">&#39;chiron&#39;</span><span class="p">),</span> <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;chiron&#39;</span><span class="p">)),</span>
+
+<span class="c1"># example 2: put the chiron views directly at the root URL</span>
+<span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">((</span><span class="s1">&#39;chiron.urls&#39;</span><span class="p">,</span> <span class="s1">&#39;chiron&#39;</span><span class="p">),</span> <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;chiron&#39;</span><span class="p">)),</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-add-your-chiron-tables-to-the-database">
+<h2>Step 3: Add your Chiron tables to the database<a class="headerlink" href="#step-3-add-your-chiron-tables-to-the-database" title="Permalink to this headline">¶</a></h2>
+<p>Although Chiron uses MongoDB to store your patient/research data, all other data related to
+Chiron configuration go into whichever relational database you’re using for Django.</p>
+<p>create Chiron database tables and set initial values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_initialize_database</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-4-set-up-authentication">
+<h2>Step 4: Set up authentication<a class="headerlink" href="#step-4-set-up-authentication" title="Permalink to this headline">¶</a></h2>
+<p>All Chiron views require the user to be logged into Django. Django comes with a wide variety of
+authentication tools. However, a login view is not set up by default.</p>
+<p>You should consider how you want to manage user login (local, LDAP, federated login, etc.) and
+set up a custom login system for your specific needs. However, I will provide instructions here
+for a quick, basic local login system for those who just want to get started.</p>
+<p>First you need to make a login view template. Templates go inside apps, so we will create an app,
+set up a template directory, and create our template as registration/login.html (the Django default)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">startapp</span> <span class="n">main</span>
+<span class="n">cd</span> <span class="n">main</span>
+<span class="n">mkdir</span> <span class="n">templates</span>
+<span class="n">cd</span> <span class="n">templates</span>
+<span class="n">mkdir</span> <span class="n">registration</span>
+</pre></div>
+</div>
+<p>inside the registration folder, add a file <code class="docutils literal notranslate"><span class="pre">login.html</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">extends</span> <span class="s1">&#39;chiron/core/base.html&#39;</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="p">{</span><span class="o">%</span> <span class="n">block</span> <span class="n">title</span> <span class="o">%</span><span class="p">}</span><span class="n">Login</span><span class="p">{</span><span class="o">%</span> <span class="n">endblock</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="p">{</span><span class="o">%</span> <span class="n">block</span> <span class="n">content</span> <span class="o">%</span><span class="p">}</span>
+  <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Login</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">form</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="o">&gt;</span>
+    <span class="p">{</span><span class="o">%</span> <span class="n">csrf_token</span> <span class="o">%</span><span class="p">}</span>
+    <span class="p">{{</span> <span class="n">form</span><span class="o">.</span><span class="n">as_p</span> <span class="p">}}</span>
+    <span class="o">&lt;</span><span class="n">button</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="o">&gt;</span><span class="n">Login</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endblock</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Edit your urls.py file again to include the built-in Django authentication views:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">path</span><span class="p">(</span><span class="s1">&#39;accounts/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;django.contrib.auth.urls&#39;</span><span class="p">)),</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Create a superuser account:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
+</pre></div>
+</div>
+<p>Now you should be able to log in:</p>
+<ul class="simple">
+<li><p>Start the Django dev server:</p></li>
+</ul>
+<dl class="simple">
+<dt>::</dt><dd><p>python manage.py runserver</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Go to the URL you set up for chiron in step 2 (ex: <code class="docutils literal notranslate"><span class="pre">http://localhost:8000/chiron</span></code>)</p></li>
+<li><p>Enter your user credentials</p></li>
+<li><p>You should now see a working version of Chiron with no data.</p></li>
+</ul>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>Now you have all the pieces in place, but you still need to configure the Chiron data dictionary
+and populate your MongoDB database with patient data. Continue to the next section to learn about
+the data dictionary.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="data_dict_example.html" class="btn btn-neutral float-right" title="Data Dictionary Setup Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="demo.html" class="btn btn-neutral float-left" title="Demo Version" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
