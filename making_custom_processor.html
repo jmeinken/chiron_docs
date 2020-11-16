@@ -198,15 +198,564 @@ models to use your custom processor.</p>
 <h2>Abstract Processors<a class="headerlink" href="#abstract-processors" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="sourcecollectionprocessor-abstract">
 <h3>SourceCollectionProcessor (abstract)<a class="headerlink" href="#sourcecollectionprocessor-abstract" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="chiron.processors.abstract.SourceCollectionProcessor">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.</code><code class="sig-name descname">SourceCollectionProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oSourceCollection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generates an iterable of data to import into MongoDB.</p>
+<p>It is associated with a SourceCollection in the data dictionary using the
+<code class="docutils literal notranslate"><span class="pre">SourceCollection.processor</span></code> field.</p>
+<dl class="py method">
+<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_source_data_collection">
+<em class="property">abstract </em><code class="sig-name descname">get_source_data_collection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_source_data_collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterable of data from an external source that corresponds to the associated
+<code class="docutils literal notranslate"><span class="pre">Root</span></code>.</p>
+<p>For example, a source data collection associated with a “sample” root should return an
+iterable of samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>an iterable dataset</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>various</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_distinct_subject_records">
+<code class="sig-name descname">get_distinct_subject_records</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_distinct_subject_records" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_project_root_id">
+<em class="property">abstract </em><code class="sig-name descname">get_project_root_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_project_root_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads one record from the source data collection and returns a unique ID corresponding to
+the project root. This will become the document “_id” field in Mongo.</p>
+<p>For example, if the project root is “Patients”, this should fetch an MRN or similar
+patient ID. This ID field will be used to match patient data from this source collection
+with patient data from other source collections.</p>
+<ul class="simple">
+<li><p>If the ID matches an existing document in Mongo, data will be appended to that document.</p></li>
+<li><p>If no match, a new document with the provided ID will be created.</p></li>
+<li><p>If <strong>None</strong> is returned, a new document with an auto ID will be created.</p></li>
+<li><p>If <strong>False</strong> is returned, the data will not be added to Mongo at all.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the project root ID</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str, integer, None, or False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_root_id">
+<em class="property">abstract </em><code class="sig-name descname">get_root_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_root_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads one record from the source data collection and returns a unique ID corresponding to
+this root. This will become the subdocument “_id” field in Mongo.</p>
+<p>For example, if the associated root is “Samples”, this should fetch a sample ID.
+This ID field will be used to match sample data from this source collection
+with sample data from other source collections.</p>
+<ul class="simple">
+<li><p>If the ID matches an existing subdocument in Mongo, data will be appended to that
+subdocument.</p></li>
+<li><p>If no match, a new subdocument with the provided ID will be created.</p></li>
+<li><p>If <strong>None</strong> is returned, a new subdocument with an auto ID will be created.</p></li>
+<li><p>If <strong>False</strong> is returned, the data will not be added to Mongo at all.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the root ID</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str, integer, None, or False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.SourceCollectionProcessor._lookup_existing_subject_id">
+<code class="sig-name descname">_lookup_existing_subject_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">match_def</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor._lookup_existing_subject_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method:
+In order to append data to an existing subject, the response from method
+get_project_root_id()
+needs to match the _id field in Mongo. In situations where you’re source
+data doesn’t have the _id field and you are matching using different field(s),
+the get_project_root_id() method will have to query the Mongo database and
+find the _id field. This utility method can be used to do that.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>match_def</strong> (<em>dict</em>) – a Mongo match definition (should return one unique document)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the <code class="docutils literal notranslate"><span class="pre">_id</span></code> field of the document</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str, integer or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="etlprocessor-abstract">
 <h3>EtlProcessor (abstract)<a class="headerlink" href="#etlprocessor-abstract" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="chiron.processors.abstract.EtlProcessor">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.</code><code class="sig-name descname">EtlProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Retrieves or calculates the value to store in MongoDB from a source collection record.</p>
+<p>It is associated with a Concept in the data dictionary using the <code class="docutils literal notranslate"><span class="pre">Concept.etl_processor</span></code>
+field.</p>
+<dl class="py method">
+<dt id="chiron.processors.abstract.EtlProcessor.pull_record_data_from_source">
+<em class="property">abstract </em><code class="sig-name descname">pull_record_data_from_source</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.pull_record_data_from_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves or calculates the value to store in MongoDB from a source collection record.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>record</strong> (<em>various</em>) – a single entry returned by <code class="docutils literal notranslate"><span class="pre">SourceCollection.get_source_data_collection()</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the value to store in MongoDB</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>various</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.EtlProcessor.convert_data_list_to_set">
+<code class="sig-name descname">convert_data_list_to_set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.convert_data_list_to_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>UTILITY FUNCTION
+Returns only unique, non-null values from provided data_list.</p>
+<p>Chiron allows multiple values to be stored in a single concept entry as a list.
+This is useful when you have multiple values for a concept, but don’t want
+to create a whole new Root for that one concept. Typically it’s better to store the
+unique set of values rather than a repetitive
+list.</p>
+<p>IN: [‘Hispanic’, ‘Caucasian’, ‘Caucasian’, None, ‘Caucasian’, None]
+OUT: [‘Hispanic’, ‘Caucasian’]</p>
+<p>IN: [‘Caucasian’, None]
+OUT: ‘Caucasian’</p>
+<p>IN: [‘Caucasian’, ‘Caucasian’, ‘Caucasian’]
+OUT: ‘Caucasian’</p>
+<p>IN: []
+OUT: None</p>
+<p>IN: [None, None, None, None]
+OUT: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.EtlProcessor.cast">
+<code class="sig-name descname">cast</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.cast" title="Permalink to this definition">¶</a></dt>
+<dd><p>UTILITY FUNCTION
+Useful for converting data types of input values when necessary.</p>
+<p>There are two relevant object properties:
+self.cast_to_type - string that specifies the desired type
+self.ignore_casting_errors - If True, errors in casting will be ignored and the method
+will return None</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="cohortdefprocessor-abstract">
 <h3>CohortDefProcessor (abstract)<a class="headerlink" href="#cohortdefprocessor-abstract" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="chiron.processors.abstract.CohortDefProcessor">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.</code><code class="sig-name descname">CohortDefProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Handles how the query form looks for a concept and how user selections for that concept get
+applied in queries.</p>
+<p>It is associated with a concept in the data dictionary using the
+<code class="docutils literal notranslate"><span class="pre">Concept.cohort_def_processor</span></code> field.</p>
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.get_concept_form_data">
+<em class="property">abstract </em><code class="sig-name descname">get_concept_form_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">query_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_concept_form_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a data dict of values needed to render the concept form/visualization. Typically,
+this will merge together data from self._get_preprocessed_data() with any data from
+the provided existing_cd_entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition (typically visualizations will be specific for provided
+cohort def)</p></li>
+<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) – cohort def entry if editing existing</p></li>
+<li><p><strong>query_type</strong> (<em>string</em>) – some concepts might have multiple forms for multiple types of queries</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data needed to render form</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.get_concept_form">
+<em class="property">abstract </em><code class="sig-name descname">get_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">query_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_concept_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the entire entry form as an html string, along with corresponding javascript code</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition (typically visualizations will be specific for provided
+cohort def)</p></li>
+<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) – cohort def entry if editing existing</p></li>
+<li><p><strong>query_type</strong> (<em>string</em>) – some concepts might have multiple forms for multiple types of queries</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the html form and javascript code as strings</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict with ‘html’ value and optional ‘js_code’ value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.concept_form_callback">
+<code class="sig-name descname">concept_form_callback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">get_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.concept_form_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used when the form needs to collect data by AJAX in order to work properly.
+Data returned by this will be passed to the form as JSON data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>get_data</strong> (<em>dict</em>) – the HTTP GET arguments from the client</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the response to be returned to the client</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.validate_concept_form">
+<code class="sig-name descname">validate_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.validate_concept_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>If provided form validates, returns True and populates self.cleaned dict with any data
+needed to generate a cohort def entry. If validation fails, returns False and adds
+error message strings to self.errors list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) – the HTTP POST arguments from the client</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>whether form validated</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.generate_cohort_def_entry">
+<em class="property">abstract </em><code class="sig-name descname">generate_cohort_def_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.generate_cohort_def_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a cohort def entry dict that can be added to the cohort definition.
+NOTE: This should only be run after validate_concept_form has successfully run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to add this entry to</p></li>
+<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) – cohort def entry if editing existing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the cohort def entry</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.display_cd_entry_as_string">
+<code class="sig-name descname">display_cd_entry_as_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.display_cd_entry_as_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts cd_entry dict into a human-readable string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the human-readable string (<strong>cannot</strong> contain HTML formatting tags)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.display_cd_entry_as_html">
+<code class="sig-name descname">display_cd_entry_as_html</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.display_cd_entry_as_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts cd_entry dict into a human-readable HTML-formatted string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the human-readable string (<strong>can</strong> contain HTML formatting tags)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def">
+<em class="property">abstract </em><code class="sig-name descname">get_mongo_match_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts this CD entry into something that can be embedded in a Mongo ‘$match’ definition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the match definition</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.get_mongo_filter_def">
+<em class="property">abstract </em><code class="sig-name descname">get_mongo_filter_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_mongo_filter_def" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts this CD entry into something that can be embedded in a Mongo ‘$filter’ definition.
+($filter definitions need to be boolean expressions have a different structure from
+$match definitions)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the filter definition</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor._preprocess_concept_form">
+<code class="sig-name descname">_preprocess_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor._preprocess_concept_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>If there is data needed to render the cohort def form, it can be retrieved/calculated here.
+NOTE: Don’t access directly! Instead, use <code class="docutils literal notranslate"><span class="pre">self._get_preprocessed_data()</span></code> which will
+manage caching of this data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>key value pairs of data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor._get_preprocessed_data">
+<code class="sig-name descname">_get_preprocessed_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor._get_preprocessed_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will decide when to use cache vs when to run _preprocess_concept_form() method.
+There shouldn’t be any need to override this method.
+note: There is no cache implemented yet, so just returns _preprocess_concept_form()
+results directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>key value pairs of data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor._generate_cd_entry_template">
+<code class="sig-name descname">_generate_cd_entry_template</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">additional_args</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor._generate_cd_entry_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a universal base that can be used by self.generate_cohort_def_entry()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>additional_args</strong> (<em>dict</em>) – concept-specific values to include in cd_entry</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a cd_entry with concept_id and entry_id set</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor._generate_entry_id">
+<code class="sig-name descname">_generate_entry_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor._generate_entry_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>CD Entries are assigned a random ID in order to uniquely identify them
+later for editing and deleting.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor._count_null_and_missing">
+<code class="sig-name descname">_count_null_and_missing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor._count_null_and_missing" title="Permalink to this definition">¶</a></dt>
+<dd><p>UTILITY FUNCTION
+Regardless of data type, cohort def forms usually include how many null or missing
+values there are for the concept. These calculations are stored here in the abstract
+class to prevent duplicated code.</p>
+<p>This method should be called in self._preprocess_concept_form().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Data about null and mising values for this concept</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="displayprocessor-abstract">
 <h3>DisplayProcessor (abstract)<a class="headerlink" href="#displayprocessor-abstract" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="chiron.processors.abstract.DisplayProcessor">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.</code><code class="sig-name descname">DisplayProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manages how a concept is incorporated into output datasets.</p>
+<p>It is associated with a concept in the data dictionary using the
+<code class="docutils literal notranslate"><span class="pre">Concept.display_processor</span></code> field.</p>
+<dl class="py method">
+<dt id="chiron.processors.abstract.DisplayProcessor.get_header_display_value">
+<code class="sig-name descname">get_header_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_header_display_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.DisplayProcessor.get_mongo_aggregate_def">
+<code class="sig-name descname">get_mongo_aggregate_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em>, <em class="sig-param"><span class="n">field_machine_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_mongo_aggregate_def" title="Permalink to this definition">¶</a></dt>
+<dd><p>For flattened (aggregated) fields, returns the $group rule and the $project rule
+that will handle the flattening.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.DisplayProcessor.get_individual_display_value">
+<code class="sig-name descname">get_individual_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">output_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_individual_display_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a value stored in the Mongo database to a display value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>various</em>) – the raw value coming from the Mongo database for this concept</p></li>
+<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>optional</em>) – the type of output being generated (html, csv, etc.)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a displayable representation of the value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.DisplayProcessor.get_display_value">
+<code class="sig-name descname">get_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">output_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_display_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The get_individual_display_value() method looks at a single value coming from the 
+Mongo database and converts it into the final display value. However, with aggregate
+queries things can get more complicated. For example, a count aggregate will return a
+number regardless of the concept data type. A list aggregate must get multiple values
+and merge them into a single string. This method looks at the aggregation rules and 
+returns the appropriate final value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>td_entry</strong> (<em>dict</em>) – the table def entry for this field</p></li>
+<li><p><strong>value</strong> (<em>various</em>) – the raw value coming from the Mongo database for this concept</p></li>
+<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>optional</em>) – the type of output being generated (html, csv, etc.)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a displayable representation of the value or aggregate value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.DisplayProcessor.get_sort_field">
+<code class="sig-name descname">get_sort_field</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entry_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_sort_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the mongo field name to use for sorting by this concept. Often that will simply be
+the concept permanent ID itself, but could be different for more complex data structures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>mongo field name</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.DisplayProcessor.get_table_form">
+<code class="sig-name descname">get_table_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">existing_td_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_table_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an HTML form for customizing this field.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.DisplayProcessor.validate_table_form">
+<code class="sig-name descname">validate_table_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.validate_table_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>If provided form validates, returns True and populates self.cleaned dict with any data
+needed to generate a table def entry. If validation fails, returns False and adds
+error message strings to self.errors list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) – the HTTP POST arguments from the client</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>whether form validated</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.DisplayProcessor.modify_table_def_entry">
+<em class="property">abstract </em><code class="sig-name descname">modify_table_def_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">existing_td_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.modify_table_def_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifies a table def entry dict in place (no return value).
+NOTE: This should only be run after validate_table_form has successfully run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>existing_td_entry</strong> (<em>dict</em>) – the current table def entry</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 </div>

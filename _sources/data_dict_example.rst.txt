@@ -271,7 +271,184 @@ Automated Configuration Example
 -------------------------------
 
 Chiron has a built-in management command for auto-generating a data dictionary from a set of
-Django models. The tool only works on Django models, not other types of data sources, and the 
-final output will still usually have problems and need to be further modified. However, it still 
-can be a useful time saver, particularly when importing a large number of fields.
+Django models. The final output will usually need to be further tweaked. However, it can be 
+a major time-saver for a large number of fields. 
+
+Your source data must satisfy these rules for the auto-generator
+
+1. Your data must be stored in Django models.
+2. You must have a model representing the project root.
+3. All models must be connected through Django model relationships.
+
+Step 1. Create a model tree file
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You need to create a text file that shows how your Django model relationships are set up. This
+file can go anywhere, but a good place to store it is 
+`[YOUR PROJECT DIR]/chiron_config/autocreate/modeltree_[dataset name].txt`. The first entry in this file will 
+be the app and model name of the model that corresponds to your project root.
+::
+    # example for chiron_config/autocreate/modeltree_myapp.txt
+    
+    # note: the reader will ignore blank lines and lines starting with #
+    
+    myapp.Subjects
+    
+    
+
+    
+Step 2. Add child models of your project root model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A child model is any model that has a direct relationship to the project root model. 
+The type of relationship (1:1, 1:many, many:1, many:many) doesn't matter. Use a dash to indicate
+one step down in the hierarchy. You don't need to specify a model's app name unless it's different
+from the parent. 
+
+In the following example, demographics are stored in a separate 1:1 model, surveys and specimen are
+stored in 1:many models. Specimen are in their own separate Django app, so we must specify the app
+name.
+::
+    # example for chiron_config/autocreate/modeltree_myapp.txt
+    
+    myapp.Subjects
+    -Demographics
+    -specimen_app.Specimen
+    -Surveys
+    
+    
+Step 3. Continue to add children of children until you have listed all the models you want to import
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use multiple dashes to indicate position in the hierarchy.
+::
+    # example for chiron_config/autocreate/modeltree_myapp.txt
+    
+    myapp.Subjects
+    -Demographics
+    --Race
+    -specimen_app.Specimen
+    --Freezer
+    -surveys
+    
+Step 4: Mark models that should be made into roots
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The auto-creator will use a separate root for any entries followed by an asterisk. The first model
+in the list corresponds to your project root and should always have an asterisk. For all other models,
+the asterisk is optional based on your data. Models without an asterisk will be associated with the
+closest parent containing an asterisk.
+
+In the example, 
+
+Let's consider each model in our example:
+
+- **Demographics** - Demographics is 1:1 with Subjects, so we will leave the asterisk off and associate demographic
+  fields directly with the Subject root.
+
+- **Race** - is 1:many with demographics (one person is allowed to have multiple races). However, assuming
+  the Race table only has 1 field race_name, this will be a good option for an overloaded field. We 
+  will leave off the asterisk, leaving Race field(s) associated with the Subject root. If any
+  subjects have multiple races listed, they will be stored as arrays with the distinct set of values found.
+
+- **Specimen** - It is likely that subjects can have multiple specimen, and that specimen have 
+  multiple values such as collection date, specimen type, amount, etc. For this reason, specimen
+  can be considered longitudinal data and should get their own root.
+
+- **Freezer** - Let's assume that the freezer is many:1 with Specimen, i.e. a freezer
+  has multiple specimen, but each specimen only has 1 freezer. Since there is only 1 freezer per
+  specimen, we should leave off the asterisk and associate freezer fields directly with the Specimen root.
+
+- **Surveys** - If subjects complete multiple surveys, this is longitudinal data and should get its
+  own root. If subjects only complete a survey once, it would be better to leave off the asterisk and
+  associate all survey fields directly with a subject. Let's assume the former and include an asterisk.
+
+So the model with roots defined will look like this:
+::
+    # example forchiron_config/autocreate/modeltree_myapp.txt
+    
+    myapp.Subjects*
+    -Demographics
+    --Race
+    -specimen_app.Specimen*
+    --Freezer
+    -surveys*
+    
+Step 5: Mark models that don't need their own Category
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Concepts are grouped into a hierarchy using the Category model. Keep in mind that the Category hierarchy
+is completely separate from the Root hierarchy. The category only affects how the concepts are 
+displayed in  the UI, and has no impact on how concepts are stored or queried in MongoDB.
+
+The auto-importer will create a category hierarchy that mirrors your defined model hierarchy. 
+Every model will get its own category. However, if you don't want a model to get its own category, 
+you can put an @ after it. For any models marked in this way, Django will not create a separate
+category but instead will associate all of its corresponding concepts with its parent model.
+
+In our example, let's add Race fields to the Demographics category and Freezer fields to the
+Specimen category.
+::
+    # example for modeltree_myapp.txt
+    
+    myapp.Subjects*
+    -Demographics
+    --Race@
+    -specimen_app.Specimen*
+    --Freezer@
+    -surveys*
+    
+Step 6: Create an `autocreate_dd_config` list of modeltree file locations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The `autocreate_dd_config` list tells Chiron where all your modeltree text files are. By default,
+Chiron will look for this list in `chiron_config/autocreate/autocreate.py`. 
+::
+    # file location chiron_config/autocreate/autocreate.py
+
+    autocreate_dd_config = [
+        {
+            'source_id' : 'myapp',		# this can be any unique ID you want
+            'modeltree_path' : 'chiron_config/autocreate/modeltree_myapp.txt',
+        },
+    ]
+    
+Now you can run the autocreate management command. If your `autocreate_dd_config` file isn't in the
+standard location, you can specify the Python module in Django settings using `CHIRON_AUTOCREATE_DD_MODULE_PATH`,
+or you can pass it as an argument using `--module`.
+::
+    python manage.py chiron_autocreate_dd
+    
+Step 7: Cleanup
+^^^^^^^^^^^^^^^
+
+Your autocreated code may require additional editing. The autocreate tool creates a separate 
+SourceCollection for each Root it creates. It assumes that the root_id is the primary key of the
+associated model, and that the project_root_id is the primary key of that model. If you are using
+different IDs in your project, you need to manually edit the processor arguments passed to
+the SourceCollection.
+
+There are also performance tweaks you can make with processor arguments such as 
+select_related, prefetch_related, and max_batch_size.
+
+Rerunning Autocreate After Changes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There is a dedicated model `AutoImportedField` to keep track of all fields that have been loaded
+through autocreate. Any fields that have been imported are tracked in this model and will not be
+imported again, even if the associated Concepts have been modified or deleted. So it is safe 
+to rerun `chiron_autocreate_dd` after adding new modeltrees, models, or fields. 
+
+If you actually want to reload previously loaded concepts (for example, if you deleted something by accident),
+you can remove the fields you wish to re-import from `AutoImportedField`, then run `chiron_autocreate_dd`
+again.
+
+
+
+
+    
+
+
+    
+    
 

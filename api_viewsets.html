@@ -170,21 +170,263 @@
 <h1>API - Viewsets<a class="headerlink" href="#api-viewsets" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="chironuserviewset">
 <h2>ChironUserViewSet<a class="headerlink" href="#chironuserviewset" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chiron.api.viewsets.ChironUserViewSet">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">ChironUserViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.ReadOnlyModelViewSet</span></code></p>
+<p>API endpoint that allows users to be viewed or edited.</p>
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.ChironUserViewSet.queryset">
+<code class="sig-name descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;ChironUser: meinkejf&gt;, &lt;ChironUser: admin&gt;, &lt;ChironUser: demo&gt;]&gt;</em><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.ChironUserViewSet.serializer_class">
+<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.serializers.ChironUserSerializer</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.ChironUserViewSet.permission_classes">
+<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chiron.api.viewsets.ChironUserViewSet.get_queryset">
+<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="meviewset">
 <h2>MeViewSet<a class="headerlink" href="#meviewset" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chiron.api.viewsets.MeViewSet">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">MeViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.MeViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.GenericViewSet</span></code></p>
+<p>API endpoint that shows the logged in users’ information</p>
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.MeViewSet.permission_classes">
+<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.MeViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chiron.api.viewsets.MeViewSet.list">
+<code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.MeViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="conceptviewset">
 <h2>ConceptViewSet<a class="headerlink" href="#conceptviewset" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chiron.api.viewsets.ConceptViewSet">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">ConceptViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.ReadOnlyModelViewSet</span></code></p>
+<p>API endpoint that allows Concepts to be viewed.
+Note that this endpoint is read-only and does not allow PUT or POST.
+Query String Parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>root: permanent_id for a root</p></li>
+<li><p>category: id for a category</p></li>
+<li><p>search: search Concepts by name, name plural, and description</p></li>
+<li><p>show_unpublished: set this to “true” to return concepts that are not published</p></li>
+</ul>
+</div></blockquote>
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.ConceptViewSet.permission_classes">
+<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.ConceptViewSet.serializer_class">
+<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.serializers.ConceptSerializer</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.ConceptViewSet.lookup_field">
+<code class="sig-name descname">lookup_field</code><em class="property"> = 'permanent_id'</em><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.lookup_field" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chiron.api.viewsets.ConceptViewSet.get_queryset">
+<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Queryset
+Sets queryset for Concept ViewSet.
+This is where query string parameters are applied.
+Note: Be sure to add any new query string parameters to the ConceptViewSet class docstring!
+:return: Queryset to use for API call
+:rtype: class: django.db.models.query.QuerySet</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="rootviewset">
 <h2>RootViewSet<a class="headerlink" href="#rootviewset" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chiron.api.viewsets.RootViewSet">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">RootViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.RootViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.ReadOnlyModelViewSet</span></code></p>
+<p>API endpoint that returns Roots.
+Note that this endpoint is read-only and does not allow PUT or POST.
+TODO: Rename the “root” query string parameter
+Query String Parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>root: permanent_id for a root</p></li>
+</ul>
+</div></blockquote>
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.RootViewSet.permission_classes">
+<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.RootViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.RootViewSet.serializer_class">
+<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#chiron.api.viewsets.RootViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.serializers.RootSerializer</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.api.viewsets.RootViewSet.get_queryset">
+<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.RootViewSet.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Queryset
+Sets queryset for Concept ViewSet.
+This is where query string parameters are applied.
+:return: Queryset to use for API call
+:rtype: class: django.db.models.query.QuerySet</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="categoryviewset">
 <h2>CategoryViewSet<a class="headerlink" href="#categoryviewset" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chiron.api.viewsets.CategoryViewSet">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">CategoryViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CategoryViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.ReadOnlyModelViewSet</span></code></p>
+<p>API endpoint that returns Category.
+Note that this endpoint is read-only and does not allow PUT or POST.
+Query String Parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>name: search Categories by name</p></li>
+<li><p>show_concepts: set this to “true” to include concepts into the response</p></li>
+<li><p>show_subcategories: set this to “true” to include subcategories into the response</p></li>
+</ul>
+</div></blockquote>
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.CategoryViewSet.permission_classes">
+<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.CategoryViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.CategoryViewSet.serializer_class">
+<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#chiron.api.viewsets.CategoryViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.serializers.CategorySerializer</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.api.viewsets.CategoryViewSet.get_queryset">
+<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CategoryViewSet.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Queryset
+Sets queryset for Category ViewSet.
+This is where query string parameters are applied.
+Note that any query string parameters added here should be added to the Category Viewset
+class docstring.
+:return: Queryset to use for API call
+:rtype: class: django.db.models.query.QuerySet</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="usercreatedcontentviewset">
 <h2>UserCreatedContentViewSet<a class="headerlink" href="#usercreatedcontentviewset" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chiron.api.viewsets.UserCreatedContentViewSet">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">UserCreatedContentViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.ModelViewSet</span></code></p>
+<p>API endpoint for User Created Content.
+Query String Parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>type: Type for User Created Content. Can be cohort, cohort_auto, or table.</p></li>
+<li><dl class="simple">
+<dt>state: Filter mode to use. Can be set to “shared_only”, “public_only”, or “mine”.</dt><dd><ul>
+<li><p>shared_only: Return entries that are shared with the current user.</p></li>
+<li><p>public_only: Return entries that are marked as public.</p></li>
+<li><p>mine: Return entries that have the current user as the creator.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>my_items_only: Filter for entries created by the current user.</p></li>
+<li><p>search: Search for User Created Content by name.</p></li>
+<li><p>page_size: Page size for response. Default 1000, Maximum 10000.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.UserCreatedContentViewSet.permission_classes">
+<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'chiron.api.permissions.UserCreatedContentPermission'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.UserCreatedContentViewSet.serializer_class">
+<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.serializers.UserCreatedContentSerializer</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.UserCreatedContentViewSet.pagination_class">
+<code class="sig-name descname">pagination_class</code><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.pagination_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.utils.pagination.LargeResultsSetPagination</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chiron.api.viewsets.UserCreatedContentViewSet.authentication_classes">
+<code class="sig-name descname">authentication_classes</code><em class="property"> = [&lt;class 'chiron.api.utils.authentication.CsrfExemptSessionAuthentication'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.authentication_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chiron.api.viewsets.UserCreatedContentViewSet.get_serializer_context">
+<code class="sig-name descname">get_serializer_context</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.get_serializer_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Serializer Context
+Sets context for serializer.
+Values that need to be passed into the serializer can be added here.
+:return: Serializer context
+:rtype: dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.api.viewsets.UserCreatedContentViewSet.get_queryset">
+<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Queryset
+Sets queryset for User Created Content.
+This is where query string parameters are applied.
+Note that any query string parameters added here should be added to the
+User Created Content Viewset class docstring.
+:return: Queryset to use for API call
+:rtype: class: django.db.models.query.QuerySet</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 

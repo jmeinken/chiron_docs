@@ -94,7 +94,17 @@
 <li class="toctree-l3"><a class="reference internal" href="#setting-up-concepts">Setting up Concepts</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#automated-configuration-example">Automated Configuration Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automated-configuration-example">Automated Configuration Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-create-a-model-tree-file">Step 1. Create a model tree file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-add-child-models-of-your-project-root-model">Step 2. Add child models of your project root model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-continue-to-add-children-of-children-until-you-have-listed-all-the-models-you-want-to-import">Step 3. Continue to add children of children until you have listed all the models you want to import</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4-mark-models-that-should-be-made-into-roots">Step 4: Mark models that should be made into roots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-5-mark-models-that-don-t-need-their-own-category">Step 5: Mark models that don’t need their own Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-6-create-an-autocreate-dd-config-list-of-modeltree-file-locations">Step 6: Create an <cite>autocreate_dd_config</cite> list of modeltree file locations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-7-cleanup">Step 7: Cleanup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rerunning-autocreate-after-changes">Rerunning Autocreate After Changes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
@@ -416,9 +426,160 @@ using a similar approach to our other concepts:</p>
 <div class="section" id="automated-configuration-example">
 <h2>Automated Configuration Example<a class="headerlink" href="#automated-configuration-example" title="Permalink to this headline">¶</a></h2>
 <p>Chiron has a built-in management command for auto-generating a data dictionary from a set of
-Django models. The tool only works on Django models, not other types of data sources, and the
-final output will still usually have problems and need to be further modified. However, it still
-can be a useful time saver, particularly when importing a large number of fields.</p>
+Django models. The final output will usually need to be further tweaked. However, it can be
+a major time-saver for a large number of fields.</p>
+<p>Your source data must satisfy these rules for the auto-generator</p>
+<ol class="arabic simple">
+<li><p>Your data must be stored in Django models.</p></li>
+<li><p>You must have a model representing the project root.</p></li>
+<li><p>All models must be connected through Django model relationships.</p></li>
+</ol>
+<div class="section" id="step-1-create-a-model-tree-file">
+<h3>Step 1. Create a model tree file<a class="headerlink" href="#step-1-create-a-model-tree-file" title="Permalink to this headline">¶</a></h3>
+<p>You need to create a text file that shows how your Django model relationships are set up. This
+file can go anywhere, but a good place to store it is
+<cite>[YOUR PROJECT DIR]/chiron_config/autocreate/modeltree_[dataset name].txt</cite>. The first entry in this file will
+be the app and model name of the model that corresponds to your project root.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example for chiron_config/autocreate/modeltree_myapp.txt</span>
+
+<span class="c1"># note: the reader will ignore blank lines and lines starting with #</span>
+
+<span class="n">myapp</span><span class="o">.</span><span class="n">Subjects</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-add-child-models-of-your-project-root-model">
+<h3>Step 2. Add child models of your project root model<a class="headerlink" href="#step-2-add-child-models-of-your-project-root-model" title="Permalink to this headline">¶</a></h3>
+<p>A child model is any model that has a direct relationship to the project root model.
+The type of relationship (1:1, 1:many, many:1, many:many) doesn’t matter. Use a dash to indicate
+one step down in the hierarchy. You don’t need to specify a model’s app name unless it’s different
+from the parent.</p>
+<p>In the following example, demographics are stored in a separate 1:1 model, surveys and specimen are
+stored in 1:many models. Specimen are in their own separate Django app, so we must specify the app
+name.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example for chiron_config/autocreate/modeltree_myapp.txt</span>
+
+<span class="n">myapp</span><span class="o">.</span><span class="n">Subjects</span>
+<span class="o">-</span><span class="n">Demographics</span>
+<span class="o">-</span><span class="n">specimen_app</span><span class="o">.</span><span class="n">Specimen</span>
+<span class="o">-</span><span class="n">Surveys</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-continue-to-add-children-of-children-until-you-have-listed-all-the-models-you-want-to-import">
+<h3>Step 3. Continue to add children of children until you have listed all the models you want to import<a class="headerlink" href="#step-3-continue-to-add-children-of-children-until-you-have-listed-all-the-models-you-want-to-import" title="Permalink to this headline">¶</a></h3>
+<p>Use multiple dashes to indicate position in the hierarchy.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example for chiron_config/autocreate/modeltree_myapp.txt</span>
+
+<span class="n">myapp</span><span class="o">.</span><span class="n">Subjects</span>
+<span class="o">-</span><span class="n">Demographics</span>
+<span class="o">--</span><span class="n">Race</span>
+<span class="o">-</span><span class="n">specimen_app</span><span class="o">.</span><span class="n">Specimen</span>
+<span class="o">--</span><span class="n">Freezer</span>
+<span class="o">-</span><span class="n">surveys</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-4-mark-models-that-should-be-made-into-roots">
+<h3>Step 4: Mark models that should be made into roots<a class="headerlink" href="#step-4-mark-models-that-should-be-made-into-roots" title="Permalink to this headline">¶</a></h3>
+<p>The auto-creator will use a separate root for any entries followed by an asterisk. The first model
+in the list corresponds to your project root and should always have an asterisk. For all other models,
+the asterisk is optional based on your data. Models without an asterisk will be associated with the
+closest parent containing an asterisk.</p>
+<p>In the example,</p>
+<p>Let’s consider each model in our example:</p>
+<ul class="simple">
+<li><p><strong>Demographics</strong> - Demographics is 1:1 with Subjects, so we will leave the asterisk off and associate demographic
+fields directly with the Subject root.</p></li>
+<li><p><strong>Race</strong> - is 1:many with demographics (one person is allowed to have multiple races). However, assuming
+the Race table only has 1 field race_name, this will be a good option for an overloaded field. We
+will leave off the asterisk, leaving Race field(s) associated with the Subject root. If any
+subjects have multiple races listed, they will be stored as arrays with the distinct set of values found.</p></li>
+<li><p><strong>Specimen</strong> - It is likely that subjects can have multiple specimen, and that specimen have
+multiple values such as collection date, specimen type, amount, etc. For this reason, specimen
+can be considered longitudinal data and should get their own root.</p></li>
+<li><p><strong>Freezer</strong> - Let’s assume that the freezer is many:1 with Specimen, i.e. a freezer
+has multiple specimen, but each specimen only has 1 freezer. Since there is only 1 freezer per
+specimen, we should leave off the asterisk and associate freezer fields directly with the Specimen root.</p></li>
+<li><p><strong>Surveys</strong> - If subjects complete multiple surveys, this is longitudinal data and should get its
+own root. If subjects only complete a survey once, it would be better to leave off the asterisk and
+associate all survey fields directly with a subject. Let’s assume the former and include an asterisk.</p></li>
+</ul>
+<p>So the model with roots defined will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example forchiron_config/autocreate/modeltree_myapp.txt</span>
+
+<span class="n">myapp</span><span class="o">.</span><span class="n">Subjects</span><span class="o">*</span>
+<span class="o">-</span><span class="n">Demographics</span>
+<span class="o">--</span><span class="n">Race</span>
+<span class="o">-</span><span class="n">specimen_app</span><span class="o">.</span><span class="n">Specimen</span><span class="o">*</span>
+<span class="o">--</span><span class="n">Freezer</span>
+<span class="o">-</span><span class="n">surveys</span><span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-5-mark-models-that-don-t-need-their-own-category">
+<h3>Step 5: Mark models that don’t need their own Category<a class="headerlink" href="#step-5-mark-models-that-don-t-need-their-own-category" title="Permalink to this headline">¶</a></h3>
+<p>Concepts are grouped into a hierarchy using the Category model. Keep in mind that the Category hierarchy
+is completely separate from the Root hierarchy. The category only affects how the concepts are
+displayed in  the UI, and has no impact on how concepts are stored or queried in MongoDB.</p>
+<p>The auto-importer will create a category hierarchy that mirrors your defined model hierarchy.
+Every model will get its own category. However, if you don’t want a model to get its own category,
+you can put an &#64; after it. For any models marked in this way, Django will not create a separate
+category but instead will associate all of its corresponding concepts with its parent model.</p>
+<p>In our example, let’s add Race fields to the Demographics category and Freezer fields to the
+Specimen category.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example for modeltree_myapp.txt</span>
+
+<span class="n">myapp</span><span class="o">.</span><span class="n">Subjects</span><span class="o">*</span>
+<span class="o">-</span><span class="n">Demographics</span>
+<span class="o">--</span><span class="n">Race</span><span class="o">@</span>
+<span class="o">-</span><span class="n">specimen_app</span><span class="o">.</span><span class="n">Specimen</span><span class="o">*</span>
+<span class="o">--</span><span class="n">Freezer</span><span class="o">@</span>
+<span class="o">-</span><span class="n">surveys</span><span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-6-create-an-autocreate-dd-config-list-of-modeltree-file-locations">
+<h3>Step 6: Create an <cite>autocreate_dd_config</cite> list of modeltree file locations<a class="headerlink" href="#step-6-create-an-autocreate-dd-config-list-of-modeltree-file-locations" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>autocreate_dd_config</cite> list tells Chiron where all your modeltree text files are. By default,
+Chiron will look for this list in <cite>chiron_config/autocreate/autocreate.py</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># file location chiron_config/autocreate/autocreate.py</span>
+
+<span class="n">autocreate_dd_config</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;source_id&#39;</span> <span class="p">:</span> <span class="s1">&#39;myapp&#39;</span><span class="p">,</span>              <span class="c1"># this can be any unique ID you want</span>
+        <span class="s1">&#39;modeltree_path&#39;</span> <span class="p">:</span> <span class="s1">&#39;chiron_config/autocreate/modeltree_myapp.txt&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Now you can run the autocreate management command. If your <cite>autocreate_dd_config</cite> file isn’t in the
+standard location, you can specify the Python module in Django settings using <cite>CHIRON_AUTOCREATE_DD_MODULE_PATH</cite>,
+or you can pass it as an argument using <cite>–module</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_autocreate_dd</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-7-cleanup">
+<h3>Step 7: Cleanup<a class="headerlink" href="#step-7-cleanup" title="Permalink to this headline">¶</a></h3>
+<p>Your autocreated code may require additional editing. The autocreate tool creates a separate
+SourceCollection for each Root it creates. It assumes that the root_id is the primary key of the
+associated model, and that the project_root_id is the primary key of that model. If you are using
+different IDs in your project, you need to manually edit the processor arguments passed to
+the SourceCollection.</p>
+<p>There are also performance tweaks you can make with processor arguments such as
+select_related, prefetch_related, and max_batch_size.</p>
+</div>
+<div class="section" id="rerunning-autocreate-after-changes">
+<h3>Rerunning Autocreate After Changes<a class="headerlink" href="#rerunning-autocreate-after-changes" title="Permalink to this headline">¶</a></h3>
+<p>There is a dedicated model <cite>AutoImportedField</cite> to keep track of all fields that have been loaded
+through autocreate. Any fields that have been imported are tracked in this model and will not be
+imported again, even if the associated Concepts have been modified or deleted. So it is safe
+to rerun <cite>chiron_autocreate_dd</cite> after adding new modeltrees, models, or fields.</p>
+<p>If you actually want to reload previously loaded concepts (for example, if you deleted something by accident),
+you can remove the fields you wish to re-import from <cite>AutoImportedField</cite>, then run <cite>chiron_autocreate_dd</cite>
+again.</p>
+</div>
 </div>
 </div>
 
