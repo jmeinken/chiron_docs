@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API - Viewsets &mdash; Chiron 1.0 documentation</title>
+  <title>API Endpoints &mdash; Chiron 1.0 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API - Transforming Cohort Def" href="api_transforming_cohort_def.html" />
+    <link rel="next" title="Transforming Cohort Definitions" href="api_transforming_cohort_def.html" />
     <link rel="prev" title="Data Dictionary Model Classes" href="data_dict_models.html" /> 
 </head>
 
@@ -91,16 +91,62 @@
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_models.html">Data Dictionary Model Classes</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API - Viewsets</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#chironuserviewset">ChironUserViewSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#meviewset">MeViewSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#conceptviewset">ConceptViewSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rootviewset">RootViewSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#categoryviewset">CategoryViewSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#usercreatedcontentviewset">UserCreatedContentViewSet</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Endpoints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#chironusers">ChironUsers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#chiron-users-get">/chiron_users/ (GET)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chiron-users-chiron-user-id-get">/chiron_users/[chiron_user_id] (GET)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">API - Transforming Cohort Def</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#me">Me</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#me-get">/me/ (GET)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#concepts-get">/concepts/ (GET)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concepts-permanent-id-get-put">/concepts/[permanent_id]/ (GET, PUT)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#statistics-returned-for-built-in-cohort-def-processors">Statistics returned for built-in cohort def processors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cohort-def-options-returned-for-built-in-cohort-def-processors">Cohort def options returned for built-in cohort def processors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#conceptcategories">ConceptCategories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#concept-categories-get">/concept_categories/ (GET)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concept-categories-category-id-get">/concept_categories/[category_id]/ (GET)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cohortdefinitions">CohortDefinitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cohort-def-get">/cohort_def/ (GET)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cohort-def-snapshot-id-get">/cohort_def/[snapshot_id]/ (GET)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cohort-def-post">/cohort_def/ (POST)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tabledefinitions">TableDefinitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#table-def-get">/table_def/ (GET)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#table-def-snapshot-id-get">/table_def/[snapshot_id]/ (GET)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#table-def-post">/table_def/ (POST)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#querytools">QueryTools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#query-tools-count-get-post">/query_tools/count/ (GET, POST)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#query-tools-preview-get-post">/query_tools/preview/ (GET, POST)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#query-tools-export-csv-get-post">/query_tools/export_csv/ (GET, POST)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reports">Reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reports-get">/reports/ (GET)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reporttools">ReportTools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#report-tools-report-id-share-post">/report_tools/[report_id]/share/ (POST)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#report-tools-report-id-load-as-active-post">/report_tools/[report_id]/load_as_active (POST)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#report-tools-report-id-preview-get">/report_tools/[report_id]/preview/ (GET)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#report-tools-report-id-export-csv-get">/report_tools/[report_id]/export_csv/ (GET)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 </ul>
 
             
@@ -147,7 +193,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>API - Viewsets</li>
+      <li>API Endpoints</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -166,267 +212,910 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="api-viewsets">
-<h1>API - Viewsets<a class="headerlink" href="#api-viewsets" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="chironuserviewset">
-<h2>ChironUserViewSet<a class="headerlink" href="#chironuserviewset" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="chiron.api.viewsets.ChironUserViewSet">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">ChironUserViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.ReadOnlyModelViewSet</span></code></p>
-<p>API endpoint that allows users to be viewed or edited.</p>
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.ChironUserViewSet.queryset">
-<code class="sig-name descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;ChironUser: meinkejf&gt;, &lt;ChironUser: admin&gt;, &lt;ChironUser: demo&gt;]&gt;</em><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet.queryset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.ChironUserViewSet.serializer_class">
-<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.serializers.ChironUserSerializer</span></code></p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.ChironUserViewSet.permission_classes">
-<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+  <div class="section" id="api-endpoints">
+<h1>API Endpoints<a class="headerlink" href="#api-endpoints" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="chironusers">
+<h2>ChironUsers<a class="headerlink" href="#chironusers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="chiron-users-get">
+<h3>/chiron_users/ (GET)<a class="headerlink" href="#chiron-users-get" title="Permalink to this headline">¶</a></h3>
 <dl class="py method">
-<dt id="chiron.api.viewsets.ChironUserViewSet.get_queryset">
-<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet.get_queryset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the list of items for this view.
-This must be an iterable, and may be a queryset.
-Defaults to using <cite>self.queryset</cite>.</p>
-<p>This method should always be used rather than accessing <cite>self.queryset</cite>
-directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
-are cached for all subsequent requests.</p>
-<p>You may want to override this if you need to provide different
-querysets depending on the incoming request.</p>
-<p>(Eg. return a list of items that is specific to the user)</p>
-</dd></dl>
-
+<dt id="chiron.api.viewsets.ChironUserViewSet.list">
+<code class="sig-prename descclassname">ChironUserViewSet.</code><code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a serialized collection of ChironUsers sorted by last name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>term</strong> (<em>string</em><em>, </em><em>optional</em>) – lookup user(s) by first name, last name, or email</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
-<div class="section" id="meviewset">
-<h2>MeViewSet<a class="headerlink" href="#meviewset" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="chiron-users-chiron-user-id-get">
+<h3>/chiron_users/[chiron_user_id] (GET)<a class="headerlink" href="#chiron-users-chiron-user-id-get" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.api.viewsets.MeViewSet">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">MeViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.MeViewSet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.GenericViewSet</span></code></p>
-<p>API endpoint that shows the logged in users’ information</p>
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.MeViewSet.permission_classes">
-<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.MeViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="chiron.api.serializers.ChironUserSerializer">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.api.serializers.</code><code class="sig-name descname">ChironUserSerializer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.serializers.ChironUserSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Id</dt>
+<dd class="field-odd"><p>(int) the ChironUser ID</p>
+</dd>
+<dt class="field-even">User</dt>
+<dd class="field-even"><p>(dict) The Django User information: username, first_name,
+last_name, email</p>
+</dd>
+<dt class="field-odd">Can_view_phi</dt>
+<dd class="field-odd"><p>(bool)</p>
+</dd>
+<dt class="field-even">Permission_groups</dt>
+<dd class="field-even"><p>(list) IDs for permission groups user belongs to</p>
+</dd>
+</dl>
+</dd></dl>
 
+</div>
+</div>
+<div class="section" id="me">
+<h2>Me<a class="headerlink" href="#me" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="me-get">
+<h3>/me/ (GET)<a class="headerlink" href="#me-get" title="Permalink to this headline">¶</a></h3>
 <dl class="py method">
 <dt id="chiron.api.viewsets.MeViewSet.list">
-<code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.MeViewSet.list" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<code class="sig-prename descclassname">MeViewSet.</code><code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.MeViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current logged-in user’s information</p>
+<p>RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Id</dt>
+<dd class="field-odd"><p>(int) the Django User ID</p>
+</dd>
+<dt class="field-even">Chiron_user_id</dt>
+<dd class="field-even"><p>(int) the ChironUser ID</p>
+</dd>
+<dt class="field-odd">Username</dt>
+<dd class="field-odd"><p>(str)</p>
+</dd>
+<dt class="field-even">Name</dt>
+<dd class="field-even"><p>(str) full name of user</p>
+</dd>
+<dt class="field-odd">Email</dt>
+<dd class="field-odd"><p>(str)</p>
+</dd>
+<dt class="field-even">Can_view_phi</dt>
+<dd class="field-even"><p>(bool)</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
-<div class="section" id="conceptviewset">
-<h2>ConceptViewSet<a class="headerlink" href="#conceptviewset" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="chiron.api.viewsets.ConceptViewSet">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">ConceptViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.ReadOnlyModelViewSet</span></code></p>
-<p>API endpoint that allows Concepts to be viewed.
-Note that this endpoint is read-only and does not allow PUT or POST.
-Query String Parameters:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>root: permanent_id for a root</p></li>
-<li><p>category: id for a category</p></li>
-<li><p>search: search Concepts by name, name plural, and description</p></li>
-<li><p>show_unpublished: set this to “true” to return concepts that are not published</p></li>
-</ul>
-</div></blockquote>
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.ConceptViewSet.permission_classes">
-<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.ConceptViewSet.serializer_class">
-<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.serializers.ConceptSerializer</span></code></p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.ConceptViewSet.lookup_field">
-<code class="sig-name descname">lookup_field</code><em class="property"> = 'permanent_id'</em><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.lookup_field" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+</div>
+<div class="section" id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="concepts-get">
+<h3>/concepts/ (GET)<a class="headerlink" href="#concepts-get" title="Permalink to this headline">¶</a></h3>
 <dl class="py method">
-<dt id="chiron.api.viewsets.ConceptViewSet.get_queryset">
-<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.get_queryset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get Queryset
-Sets queryset for Concept ViewSet.
-This is where query string parameters are applied.
-Note: Be sure to add any new query string parameters to the ConceptViewSet class docstring!
-:return: Queryset to use for API call
-:rtype: class: django.db.models.query.QuerySet</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="rootviewset">
-<h2>RootViewSet<a class="headerlink" href="#rootviewset" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="chiron.api.viewsets.RootViewSet">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">RootViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.RootViewSet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.ReadOnlyModelViewSet</span></code></p>
-<p>API endpoint that returns Roots.
-Note that this endpoint is read-only and does not allow PUT or POST.
-TODO: Rename the “root” query string parameter
-Query String Parameters:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>root: permanent_id for a root</p></li>
+<dt id="chiron.api.viewsets.ConceptViewSet.list">
+<code class="sig-prename descclassname">ConceptViewSet.</code><code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a list of concepts</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<em>string</em><em>, </em><em>optional</em>) – permanent_id for a root to filter concepts</p></li>
+<li><p><strong>category</strong> (<em>int</em><em>, </em><em>optional</em>) – id for a category to filter concepts</p></li>
+<li><p><strong>search</strong> (<em>search Concepts by name</em><em>, </em><em>name plural</em><em>, </em><em>and description</em>) – search Concepts by name, name plural, and description</p></li>
+<li><p><strong>show_unpublished</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – set this to “true” to return concepts that are not published</p></li>
 </ul>
-</div></blockquote>
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.RootViewSet.permission_classes">
-<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.RootViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.RootViewSet.serializer_class">
-<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#chiron.api.viewsets.RootViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.serializers.RootSerializer</span></code></p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.api.viewsets.RootViewSet.get_queryset">
-<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.RootViewSet.get_queryset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get Queryset
-Sets queryset for Concept ViewSet.
-This is where query string parameters are applied.
-:return: Queryset to use for API call
-:rtype: class: django.db.models.query.QuerySet</p>
-</dd></dl>
-
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>serialized list of concepts</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
-<div class="section" id="categoryviewset">
-<h2>CategoryViewSet<a class="headerlink" href="#categoryviewset" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="chiron.api.viewsets.CategoryViewSet">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">CategoryViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CategoryViewSet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.ReadOnlyModelViewSet</span></code></p>
-<p>API endpoint that returns Category.
-Note that this endpoint is read-only and does not allow PUT or POST.
-Query String Parameters:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>name: search Categories by name</p></li>
-<li><p>show_concepts: set this to “true” to include concepts into the response</p></li>
-<li><p>show_subcategories: set this to “true” to include subcategories into the response</p></li>
-</ul>
-</div></blockquote>
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.CategoryViewSet.permission_classes">
-<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.IsAuthenticated'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.CategoryViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.CategoryViewSet.serializer_class">
-<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#chiron.api.viewsets.CategoryViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.serializers.CategorySerializer</span></code></p>
-</dd></dl>
-
+<div class="section" id="concepts-permanent-id-get-put">
+<h3>/concepts/[permanent_id]/ (GET, PUT)<a class="headerlink" href="#concepts-permanent-id-get-put" title="Permalink to this headline">¶</a></h3>
 <dl class="py method">
-<dt id="chiron.api.viewsets.CategoryViewSet.get_queryset">
-<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CategoryViewSet.get_queryset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get Queryset
-Sets queryset for Category ViewSet.
-This is where query string parameters are applied.
-Note that any query string parameters added here should be added to the Category Viewset
-class docstring.
-:return: Queryset to use for API call
-:rtype: class: django.db.models.query.QuerySet</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="usercreatedcontentviewset">
-<h2>UserCreatedContentViewSet<a class="headerlink" href="#usercreatedcontentviewset" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="chiron.api.viewsets.UserCreatedContentViewSet">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.api.viewsets.</code><code class="sig-name descname">UserCreatedContentViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.viewsets.ModelViewSet</span></code></p>
-<p>API endpoint for User Created Content.
-Query String Parameters:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>type: Type for User Created Content. Can be cohort, cohort_auto, or table.</p></li>
-<li><dl class="simple">
-<dt>state: Filter mode to use. Can be set to “shared_only”, “public_only”, or “mine”.</dt><dd><ul>
-<li><p>shared_only: Return entries that are shared with the current user.</p></li>
-<li><p>public_only: Return entries that are marked as public.</p></li>
-<li><p>mine: Return entries that have the current user as the creator.</p></li>
+<dt id="chiron.api.viewsets.ConceptViewSet.retrieve">
+<code class="sig-prename descclassname">ConceptViewSet.</code><code class="sig-name descname">retrieve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">permanent_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.retrieve" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>include_statistics</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include statistical analysis of concept</p></li>
+<li><p><strong>cohort_def</strong> – the current cohort definition for calculating statistics, if None</p></li>
 </ul>
 </dd>
 </dl>
-</li>
-<li><p>my_items_only: Filter for entries created by the current user.</p></li>
-<li><p>search: Search for User Created Content by name.</p></li>
-<li><p>page_size: Page size for response. Default 1000, Maximum 10000.</p></li>
-</ul>
+<p>then the active cohort definition will be used
+:type cohort_def: list, optional
+:param show_all_data: When calculating statistics, ignore the cohort_def and return stats</p>
+<blockquote>
+<div><p>about data for all subjects</p>
 </div></blockquote>
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.UserCreatedContentViewSet.permission_classes">
-<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'chiron.api.permissions.UserCreatedContentPermission'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.UserCreatedContentViewSet.serializer_class">
-<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.serializers.UserCreatedContentSerializer</span></code></p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.UserCreatedContentViewSet.pagination_class">
-<code class="sig-name descname">pagination_class</code><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.pagination_class" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.api.utils.pagination.LargeResultsSetPagination</span></code></p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.api.viewsets.UserCreatedContentViewSet.authentication_classes">
-<code class="sig-name descname">authentication_classes</code><em class="property"> = [&lt;class 'chiron.api.utils.authentication.CsrfExemptSessionAuthentication'&gt;]</em><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.authentication_classes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="chiron.api.viewsets.UserCreatedContentViewSet.get_serializer_context">
-<code class="sig-name descname">get_serializer_context</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.get_serializer_context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get Serializer Context
-Sets context for serializer.
-Values that need to be passed into the serializer can be added here.
-:return: Serializer context
-:rtype: dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>include_cohort_def_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include options for creating a cohort def entry</p></li>
+<li><p><strong>entry_id</strong> (<em>int</em><em>, </em><em>optional</em>) – if editing an existing cohort def entry, the entry_id to use when 
+generating cohort def options</p></li>
+<li><p><strong>callback</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – run callback method for concept</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A serialized concept; plus optionally statistics, cohort_def_options, and
+callback_data</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chiron.api.viewsets.UserCreatedContentViewSet.get_queryset">
-<code class="sig-name descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.UserCreatedContentViewSet.get_queryset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get Queryset
-Sets queryset for User Created Content.
-This is where query string parameters are applied.
-Note that any query string parameters added here should be added to the
-User Created Content Viewset class docstring.
-:return: Queryset to use for API call
-:rtype: class: django.db.models.query.QuerySet</p>
+<dt id="chiron.api.viewsets.ConceptViewSet.update">
+<code class="sig-prename descclassname">ConceptViewSet.</code><code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">permanent_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptViewSet.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does the same thing as retrieve() but allows a PUT request for long query parameters.</p>
 </dd></dl>
 
+<div class="section" id="statistics-returned-for-built-in-cohort-def-processors">
+<h4>Statistics returned for built-in cohort def processors<a class="headerlink" href="#statistics-returned-for-built-in-cohort-def-processors" title="Permalink to this headline">¶</a></h4>
+<dl class="py method">
+<dt id="chiron.processors.CohortDefBoolean.get_statistics">
+<code class="sig-prename descclassname">CohortDefBoolean.</code><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefBoolean.get_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Values</dt>
+<dd class="field-odd"><p>a list of dicts with category=true/false, count, and uniquePatientCount</p>
+</dd>
+<dt class="field-even">Max_count</dt>
+<dd class="field-even"><p>the count for the category with the greatest number of records</p>
+</dd>
+<dt class="field-odd">Count_missing_values</dt>
+<dd class="field-odd"><p>number of records with null or missing values</p>
+</dd>
+<dt class="field-even">Count_subjects_with_missing_values</dt>
+<dd class="field-even"><p>number of subjects who have records with null or
+missing values</p>
+</dd>
+</dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="chiron.processors.CohortDefCategory.get_statistics">
+<code class="sig-prename descclassname">CohortDefCategory.</code><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefCategory.get_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Values</dt>
+<dd class="field-odd"><p>a list of dicts with category, count, and uniquePatientCount for each
+category</p>
+</dd>
+<dt class="field-even">Max_count</dt>
+<dd class="field-even"><p>the count for the category with the greatest number of records</p>
+</dd>
+<dt class="field-odd">Count_missing_values</dt>
+<dd class="field-odd"><p>number of records with null or missing values</p>
+</dd>
+<dt class="field-even">Count_subjects_with_missing_values</dt>
+<dd class="field-even"><p>number of subjects who have records with null or
+missing values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefDate.get_statistics">
+<code class="sig-prename descclassname">CohortDefDate.</code><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDate.get_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Histogram_data_string</dt>
+<dd class="field-odd"><p>an array of arrays storing bin name/count pairs, returned
+as a JSON string</p>
+</dd>
+<dt class="field-even">Stats</dt>
+<dd class="field-even"><p>a dict of summary statistics: min, max, count_non_null, unique_patients</p>
+</dd>
+<dt class="field-odd">Count_missing_values</dt>
+<dd class="field-odd"><p>number of records with null or missing values</p>
+</dd>
+<dt class="field-even">Count_subjects_with_missing_values</dt>
+<dd class="field-even"><p>number of subjects who have records with null or
+missing values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefNumber.get_statistics">
+<code class="sig-prename descclassname">CohortDefNumber.</code><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumber.get_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Histogram_data_string</dt>
+<dd class="field-odd"><p>an array of arrays storing bin name/count pairs, returned
+as a JSON string</p>
+</dd>
+<dt class="field-even">Stats</dt>
+<dd class="field-even"><p>a dict of summary statistics: min, max, avg, count_non_null, unique_patients</p>
+</dd>
+<dt class="field-odd">Count_missing_values</dt>
+<dd class="field-odd"><p>number of records with null or missing values</p>
+</dd>
+<dt class="field-even">Count_subjects_with_missing_values</dt>
+<dd class="field-even"><p>number of subjects who have records with null or
+missing values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefText.get_statistics">
+<code class="sig-prename descclassname">CohortDefText.</code><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefText.get_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Count_missing_values</dt>
+<dd class="field-odd"><p>number of records with null or missing values</p>
+</dd>
+<dt class="field-even">Count_subjects_with_missing_values</dt>
+<dd class="field-even"><p>number of subjects who have records with null or
+missing values</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="cohort-def-options-returned-for-built-in-cohort-def-processors">
+<h4>Cohort def options returned for built-in cohort def processors<a class="headerlink" href="#cohort-def-options-returned-for-built-in-cohort-def-processors" title="Permalink to this headline">¶</a></h4>
+<dl class="py method">
+<dt id="chiron.processors.CohortDefBoolean.get_cohort_def_options">
+<code class="sig-prename descclassname">CohortDefBoolean.</code><code class="sig-name descname">get_cohort_def_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefBoolean.get_cohort_def_options" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Selected_values</dt>
+<dd class="field-odd"><p>if editing existing cd_entry, the values already selected</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefCategory.get_cohort_def_options">
+<code class="sig-prename descclassname">CohortDefCategory.</code><code class="sig-name descname">get_cohort_def_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefCategory.get_cohort_def_options" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Selected_values</dt>
+<dd class="field-odd"><p>if editing existing cd_entry, the values already selected</p>
+</dd>
+<dt class="field-even">Exclude_selected</dt>
+<dd class="field-even"><p>if editing existing cd_entry, True if exclude_selected is checked</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefDate.get_cohort_def_options">
+<code class="sig-prename descclassname">CohortDefDate.</code><code class="sig-name descname">get_cohort_def_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDate.get_cohort_def_options" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Query_type</dt>
+<dd class="field-odd"><p>“date_range” (default) or “relative_to_today”</p>
+</dd>
+<dt class="field-even">Existing_min</dt>
+<dd class="field-even"><p>for editing query_type=”date_range”, min date filter as date string</p>
+</dd>
+<dt class="field-odd">Existing_max</dt>
+<dd class="field-odd"><p>for editing query_type=”date_range”, max date filter as date string</p>
+</dd>
+<dt class="field-even">Days_ago</dt>
+<dd class="field-even"><p>for editing query_type=”relative_to_today”, days ago filter as integer</p>
+</dd>
+<dt class="field-odd">Exclude_selected</dt>
+<dd class="field-odd"><p>if editing existing cd_entry, True if exclude_selected is checked</p>
+</dd>
+<dt class="field-even">Include_null_and_missing</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefNumber.get_cohort_def_options">
+<code class="sig-prename descclassname">CohortDefNumber.</code><code class="sig-name descname">get_cohort_def_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumber.get_cohort_def_options" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Include_null_and_missing</dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Existing_min</dt>
+<dd class="field-even"><p>for editing query_type=”date_range”, min date filter as date string</p>
+</dd>
+<dt class="field-odd">Existing_max</dt>
+<dd class="field-odd"><p>for editing query_type=”date_range”, max date filter as date string</p>
+</dd>
+<dt class="field-even">Exclude_selected</dt>
+<dd class="field-even"><p>if editing existing cd_entry, True if exclude_selected is checked</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefText.get_cohort_def_options">
+<code class="sig-prename descclassname">CohortDefText.</code><code class="sig-name descname">get_cohort_def_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefText.get_cohort_def_options" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Include_null_and_missing</dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Exclude_selected</dt>
+<dd class="field-even"><p>if editing existing cd_entry, True if exclude_selected is checked</p>
+</dd>
+<dt class="field-odd">Terms</dt>
+<dd class="field-odd"><p>List of terms as string separated by newlines</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="conceptcategories">
+<h2>ConceptCategories<a class="headerlink" href="#conceptcategories" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="concept-categories-get">
+<h3>/concept_categories/ (GET)<a class="headerlink" href="#concept-categories-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.ConceptCategoryViewSet.list">
+<code class="sig-prename descclassname">ConceptCategoryViewSet.</code><code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptCategoryViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all top-level categories and concepts (i.e. categories that don’t have parents
+and concepts that don’t have a category). Results are filtered based on user permissions.</p>
+<p>RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Category_id</dt>
+<dd class="field-odd"><p>“top”</p>
+</dd>
+<dt class="field-even">Categories</dt>
+<dd class="field-even"><p>(list) all categories without a parent</p>
+</dd>
+<dt class="field-odd">Concepts</dt>
+<dd class="field-odd"><p>(list) all concepts without a category</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="concept-categories-category-id-get">
+<h3>/concept_categories/[category_id]/ (GET)<a class="headerlink" href="#concept-categories-category-id-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.ConceptCategoryViewSet.retrieve">
+<code class="sig-prename descclassname">ConceptCategoryViewSet.</code><code class="sig-name descname">retrieve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">pk</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptCategoryViewSet.retrieve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all child categories and concepts of the provided category ID.  Results are 
+filtered based on user permissions.</p>
+<p>RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Category_id</dt>
+<dd class="field-odd"><p>the provided category ID</p>
+</dd>
+<dt class="field-even">Categories</dt>
+<dd class="field-even"><p>(list) all direct descendant categories for this category</p>
+</dd>
+<dt class="field-odd">Concepts</dt>
+<dd class="field-odd"><p>(list) all concepts belonging to this category</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="cohortdefinitions">
+<h2>CohortDefinitions<a class="headerlink" href="#cohortdefinitions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cohort-def-get">
+<h3>/cohort_def/ (GET)<a class="headerlink" href="#cohort-def-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.CohortDefViewSet.list">
+<code class="sig-prename descclassname">CohortDefViewSet.</code><code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CohortDefViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current active cohort_def saved in the CohortDefSnapshot cue. Does not return
+a list as the method name implies.</p>
+<p>RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Cohort_def</dt>
+<dd class="field-odd"><p>the cohort definition used for the query</p>
+</dd>
+<dt class="field-even">Extended_cohort_def</dt>
+<dd class="field-even"><p>the cohort definition with additional details for display</p>
+</dd>
+<dt class="field-odd">Warnings</dt>
+<dd class="field-odd"><p>(list) user-friendly warnings (cohort def can still be queried)</p>
+</dd>
+<dt class="field-even">Errors</dt>
+<dd class="field-even"><p>(list) user-friendly errors (cohort def cannot be queried)</p>
+</dd>
+<dt class="field-odd">Snapshot_id</dt>
+<dd class="field-odd"><p>(int) ID of cohort def snapshot</p>
+</dd>
+<dt class="field-even">Previous_snapshot_id</dt>
+<dd class="field-even"><p>(int/None) ID of previous snapshot</p>
+</dd>
+<dt class="field-odd">Next_snapshot_id</dt>
+<dd class="field-odd"><p>(int/None) ID of next snapshot</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="cohort-def-snapshot-id-get">
+<h3>/cohort_def/[snapshot_id]/ (GET)<a class="headerlink" href="#cohort-def-snapshot-id-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.CohortDefViewSet.retrieve">
+<code class="sig-prename descclassname">CohortDefViewSet.</code><code class="sig-name descname">retrieve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">pk</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CohortDefViewSet.retrieve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a specific cohort def from the CohortDefSnapshot model.</p>
+<p>RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Cohort_def</dt>
+<dd class="field-odd"><p>the cohort definition used for the query</p>
+</dd>
+<dt class="field-even">Extended_cohort_def</dt>
+<dd class="field-even"><p>the cohort definition with additional details for display</p>
+</dd>
+<dt class="field-odd">Warnings</dt>
+<dd class="field-odd"><p>(list) user-friendly warnings (cohort def can still be queried)</p>
+</dd>
+<dt class="field-even">Errors</dt>
+<dd class="field-even"><p>(list) user-friendly errors (cohort def cannot be queried)</p>
+</dd>
+<dt class="field-odd">Snapshot_id</dt>
+<dd class="field-odd"><p>(int) ID of cohort def snapshot</p>
+</dd>
+<dt class="field-even">Previous_snapshot_id</dt>
+<dd class="field-even"><p>(int/None) ID of previous snapshot</p>
+</dd>
+<dt class="field-odd">Next_snapshot_id</dt>
+<dd class="field-odd"><p>(int/None) ID of next snapshot</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="cohort-def-post">
+<h3>/cohort_def/ (POST)<a class="headerlink" href="#cohort-def-post" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.CohortDefViewSet.create">
+<code class="sig-prename descclassname">CohortDefViewSet.</code><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CohortDefViewSet.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a transformation definition to a cohort definition and returns a new cohort
+definition. If no cohort_def is provided, the active cohort def is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transformation</strong> (<em>dict</em>) – the transformation definition</p></li>
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – the cohort definition; if not provided, active cohort def will be used</p></li>
+</ul>
+</dd>
+</dl>
+<p>FAIL RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Transformation_successful</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+<dt class="field-even">Cohort_def</dt>
+<dd class="field-even"><p>Since the transformation failed, it simply returns your original cohort def</p>
+</dd>
+<dt class="field-odd">Transformation_errors</dt>
+<dd class="field-odd"><p>list of error messages regarding the failed transformation</p>
+</dd>
+</dl>
+<p>SUCCESS RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Transformation_successful</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+<dt class="field-even">Cohort_def</dt>
+<dd class="field-even"><p>the new cohort def with the transformation applied</p>
+</dd>
+<dt class="field-odd">Extended_cohort_def</dt>
+<dd class="field-odd"><p>the new cohort definition with additional details for display</p>
+</dd>
+<dt class="field-even">Warnings</dt>
+<dd class="field-even"><p>(list) warnings about new cohort def (cohort def can still be queried)</p>
+</dd>
+<dt class="field-odd">Errors</dt>
+<dd class="field-odd"><p>(list) errors about new cohort def (cohort def cannot be queried)</p>
+</dd>
+<dt class="field-even">Snapshot_id</dt>
+<dd class="field-even"><p>integer ID of cohort def snapshot</p>
+</dd>
+<dt class="field-odd">Previous_snapshot_id</dt>
+<dd class="field-odd"><p>integer ID of previous snapshot or None</p>
+</dd>
+<dt class="field-even">Next_snapshot_id</dt>
+<dd class="field-even"><p>integer ID of next snapshot or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="tabledefinitions">
+<h2>TableDefinitions<a class="headerlink" href="#tabledefinitions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="table-def-get">
+<h3>/table_def/ (GET)<a class="headerlink" href="#table-def-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.TableDefViewSet.list">
+<code class="sig-prename descclassname">TableDefViewSet.</code><code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.TableDefViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current active table_def saved in the TableDefSnapshot cue.
+Does not return a list as the method name implies.</p>
+<p>RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Table_def</dt>
+<dd class="field-odd"><p>the table definition used for the query</p>
+</dd>
+<dt class="field-even">Extended_table_def</dt>
+<dd class="field-even"><p>the table definition with additional details for display</p>
+</dd>
+<dt class="field-odd">Warnings</dt>
+<dd class="field-odd"><p>(list) user-friendly warnings (table def can still be queried)</p>
+</dd>
+<dt class="field-even">Errors</dt>
+<dd class="field-even"><p>(list) user-friendly errors (table def cannot be queried)</p>
+</dd>
+<dt class="field-odd">Snapshot_id</dt>
+<dd class="field-odd"><p>(int) ID of table def snapshot</p>
+</dd>
+<dt class="field-even">Previous_snapshot_id</dt>
+<dd class="field-even"><p>(int/None) ID of previous snapshot</p>
+</dd>
+<dt class="field-odd">Next_snapshot_id</dt>
+<dd class="field-odd"><p>(int/None) ID of next snapshot</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="table-def-snapshot-id-get">
+<h3>/table_def/[snapshot_id]/ (GET)<a class="headerlink" href="#table-def-snapshot-id-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.TableDefViewSet.retrieve">
+<code class="sig-prename descclassname">TableDefViewSet.</code><code class="sig-name descname">retrieve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">pk</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.TableDefViewSet.retrieve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a specific table def from the TableDefSnapshot model.</p>
+<p>RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Table_def</dt>
+<dd class="field-odd"><p>the table definition used for the query</p>
+</dd>
+<dt class="field-even">Extended_table_def</dt>
+<dd class="field-even"><p>the table definition with additional details for display</p>
+</dd>
+<dt class="field-odd">Warnings</dt>
+<dd class="field-odd"><p>(list) user-friendly warnings (table def can still be queried)</p>
+</dd>
+<dt class="field-even">Errors</dt>
+<dd class="field-even"><p>(list) user-friendly errors (table def cannot be queried)</p>
+</dd>
+<dt class="field-odd">Snapshot_id</dt>
+<dd class="field-odd"><p>(int) ID of table def snapshot</p>
+</dd>
+<dt class="field-even">Previous_snapshot_id</dt>
+<dd class="field-even"><p>(int/None) ID of previous snapshot</p>
+</dd>
+<dt class="field-odd">Next_snapshot_id</dt>
+<dd class="field-odd"><p>(int/None) ID of next snapshot</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="table-def-post">
+<h3>/table_def/ (POST)<a class="headerlink" href="#table-def-post" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.TableDefViewSet.create">
+<code class="sig-prename descclassname">TableDefViewSet.</code><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.TableDefViewSet.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a transformation definition to a table definition and returns a new table
+definition. If no table_def is provided, the active table def is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transformation</strong> (<em>dict</em>) – the transformation definition</p></li>
+<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) – the table definition; if not provided, active table def will be used</p></li>
+</ul>
+</dd>
+</dl>
+<p>FAIL RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Transformation_successful</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+<dt class="field-even">Table_def</dt>
+<dd class="field-even"><p>Since the transformation failed, it simply returns your original table def</p>
+</dd>
+<dt class="field-odd">Transformation_errors</dt>
+<dd class="field-odd"><p>list of error messages regarding the failed transformation</p>
+</dd>
+</dl>
+<p>SUCCESS RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Transformation_successful</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+<dt class="field-even">Table_def</dt>
+<dd class="field-even"><p>the new table def with the transformation applied</p>
+</dd>
+<dt class="field-odd">Extended_table_def</dt>
+<dd class="field-odd"><p>the new table definition with additional details for display</p>
+</dd>
+<dt class="field-even">Warnings</dt>
+<dd class="field-even"><p>(list) warnings about new table def (table def can still be queried)</p>
+</dd>
+<dt class="field-odd">Errors</dt>
+<dd class="field-odd"><p>(list) errors about new table def (table def cannot be queried)</p>
+</dd>
+<dt class="field-even">Snapshot_id</dt>
+<dd class="field-even"><p>integer ID of table def snapshot</p>
+</dd>
+<dt class="field-odd">Previous_snapshot_id</dt>
+<dd class="field-odd"><p>integer ID of previous snapshot or None</p>
+</dd>
+<dt class="field-even">Next_snapshot_id</dt>
+<dd class="field-even"><p>integer ID of next snapshot or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="querytools">
+<h2>QueryTools<a class="headerlink" href="#querytools" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="query-tools-count-get-post">
+<h3>/query_tools/count/ (GET, POST)<a class="headerlink" href="#query-tools-count-get-post" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.QueryToolsViewSet.count">
+<code class="sig-prename descclassname">QueryToolsViewSet.</code><code class="sig-name descname">count</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.QueryToolsViewSet.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the count of subjects in a cohort.</p>
+<p>The POST method is provided to allow passing of long query parameters. It works exactly the
+same as the GET method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def or an
+empty cohort def will be used.</p>
+</dd>
+</dl>
+<p>RESPONSE</p>
+<dl class="field-list simple">
+<dt class="field-odd">Count</dt>
+<dd class="field-odd"><p>(integer) The number of subjects in the cohort</p>
+</dd>
+<dt class="field-even">Cohort_def</dt>
+<dd class="field-even"><p>The cohort def that was used.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="query-tools-preview-get-post">
+<h3>/query_tools/preview/ (GET, POST)<a class="headerlink" href="#query-tools-preview-get-post" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.QueryToolsViewSet.preview">
+<code class="sig-prename descclassname">QueryToolsViewSet.</code><code class="sig-name descname">preview</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.QueryToolsViewSet.preview" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a paginated  dataset.</p>
+<p>The POST method is provided to allow passing of long query parameters. It works exactly the
+same as the GET method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def
+will be used if available or an empty cohort def.</p></li>
+<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The table_def to use. If not provided, the active table_def
+will be used if available or an empty table_def.</p></li>
+<li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
+<li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
+<li><p><strong>single_subject_hyperlink</strong> (<em>str</em><em>, </em><em>optional</em>) – DEPRECATED The relative or absolute URL path to use
+for converting a subject ID into a “subject details” link. The ID insert location can
+be marked with curly brackets. ex. “/subject_details/{}”</p></li>
+</ul>
+</dd>
+</dl>
+<p>RESPONSE IF SUCCESS:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Record_count</dt>
+<dd class="field-odd"><p>(int)</p>
+</dd>
+<dt class="field-even">Subject_count</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+<dt class="field-odd">Page_number_current</dt>
+<dd class="field-odd"><p>(int)</p>
+</dd>
+<dt class="field-even">Page_number_max</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+<dt class="field-odd">Page_first_index</dt>
+<dd class="field-odd"><p>(int) The index of the first record on this page</p>
+</dd>
+<dt class="field-even">Page_last_index</dt>
+<dd class="field-even"><p>(int) The index of the last record on this page</p>
+</dd>
+<dt class="field-odd">Extended_table_def</dt>
+<dd class="field-odd"><p>(list)</p>
+</dd>
+<dt class="field-even">Extended_sort_def</dt>
+<dd class="field-even"><p>DEPRECATED - use extended_table_def instead</p>
+</dd>
+<dt class="field-odd">Data</dt>
+<dd class="field-odd"><p>(2D array of strings) The records returned for this page</p>
+</dd>
+<dt class="field-even">Warnings</dt>
+<dd class="field-even"><p>(array of strings) Warning messages to display to the user</p>
+</dd>
+</dl>
+<p>RESPONSE IF FAIL:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Preview_failed</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+<dt class="field-even">Extended_table_def</dt>
+<dd class="field-even"><p>(list)</p>
+</dd>
+<dt class="field-odd">Extended_sort_def</dt>
+<dd class="field-odd"><p>DEPRECATED - use extended_table_def instead</p>
+</dd>
+<dt class="field-even">Warnings</dt>
+<dd class="field-even"><p>(array of strings) Warning messages to display to the user</p>
+</dd>
+<dt class="field-odd">Errors</dt>
+<dd class="field-odd"><p>(array of strings) Error messages that explain why the query failed</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="query-tools-export-csv-get-post">
+<h3>/query_tools/export_csv/ (GET, POST)<a class="headerlink" href="#query-tools-export-csv-get-post" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.QueryToolsViewSet.export_csv">
+<code class="sig-prename descclassname">QueryToolsViewSet.</code><code class="sig-name descname">export_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.QueryToolsViewSet.export_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a CSV with a full dataset.</p>
+<p>The POST method is provided to allow passing of long query parameters. It works exactly the
+same as the GET method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def
+will be used if available or an empty cohort def.</p></li>
+<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The table_def to use. If not provided, the active table_def
+will be used if available or an empty table_def.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response</dt>
+<dd class="field-even"><p>the CSV file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>text/csv HTTP response</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="reports">
+<h2>Reports<a class="headerlink" href="#reports" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reports-get">
+<h3>/reports/ (GET)<a class="headerlink" href="#reports-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.ReportViewSet.list">
+<code class="sig-prename descclassname">ReportViewSet.</code><code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ReportViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a list of viewable reports (based on the user).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<em>string</em><em>, </em><em>optional</em>) – additional filtering, “shared_only”, “public_only”, “mine”</p></li>
+<li><p><strong>search</strong> (<em>string</em><em>, </em><em>optional</em>) – search for report using search string</p></li>
+<li><p><strong>page_size</strong> (<em>int</em><em>, </em><em>default=1000</em><em>, </em><em>max=10</em><em>,</em><em>000</em>) – page size for response</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>serialized list of reports</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="reporttools">
+<h2>ReportTools<a class="headerlink" href="#reporttools" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="report-tools-report-id-share-post">
+<h3>/report_tools/[report_id]/share/ (POST)<a class="headerlink" href="#report-tools-report-id-share-post" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.ReportToolsViewSet.share">
+<code class="sig-prename descclassname">ReportToolsViewSet.</code><code class="sig-name descname">share</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">pk</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ReportToolsViewSet.share" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pass an array of all ChironUser IDs to share with. Any preexisting sharing will be erased.</p>
+<p>Note that reports set to “public” are automatically shared with everyone regardless of
+what’s set with sharing.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="report-tools-report-id-load-as-active-post">
+<h3>/report_tools/[report_id]/load_as_active (POST)<a class="headerlink" href="#report-tools-report-id-load-as-active-post" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.ReportToolsViewSet.load_as_active">
+<code class="sig-prename descclassname">ReportToolsViewSet.</code><code class="sig-name descname">load_as_active</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">pk</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ReportToolsViewSet.load_as_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will set this report’s cohort def and table def as the active snapshot in the
+CohortDefSnapshot and TableDefSnapshot models. It will also erase the snapshot history
+in both tables.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="report-tools-report-id-preview-get">
+<h3>/report_tools/[report_id]/preview/ (GET)<a class="headerlink" href="#report-tools-report-id-preview-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.ReportToolsViewSet.preview">
+<code class="sig-prename descclassname">ReportToolsViewSet.</code><code class="sig-name descname">preview</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">pk</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ReportToolsViewSet.preview" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a paginated dataset based on the specified report ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sort_field</strong> (<em>string</em><em>, </em><em>optional</em>) – Ignore default sort order and sort by the field associated with the 
+provided table def entry ID</p></li>
+<li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
+<li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
+<li><p><strong>single_subject_hyperlink</strong> (<em>str</em><em>, </em><em>optional</em>) – DEPRECATED The relative or absolute URL path to use
+for converting a subject ID into a “subject details” link. The ID insert location can
+be marked with curly brackets. ex. “/subject_details/{}”</p></li>
+</ul>
+</dd>
+</dl>
+<p>RESPONSE IF SUCCESS:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Record_count</dt>
+<dd class="field-odd"><p>(int)</p>
+</dd>
+<dt class="field-even">Subject_count</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+<dt class="field-odd">Page_number_current</dt>
+<dd class="field-odd"><p>(int)</p>
+</dd>
+<dt class="field-even">Page_number_max</dt>
+<dd class="field-even"><p>(int)</p>
+</dd>
+<dt class="field-odd">Page_first_index</dt>
+<dd class="field-odd"><p>(int) The index of the first record on this page</p>
+</dd>
+<dt class="field-even">Page_last_index</dt>
+<dd class="field-even"><p>(int) The index of the last record on this page</p>
+</dd>
+<dt class="field-odd">Extended_table_def</dt>
+<dd class="field-odd"><p>(list)</p>
+</dd>
+<dt class="field-even">Extended_sort_def</dt>
+<dd class="field-even"><p>DEPRECATED - use extended_table_def instead</p>
+</dd>
+<dt class="field-odd">Data</dt>
+<dd class="field-odd"><p>(2D array of strings) The records returned for this page</p>
+</dd>
+<dt class="field-even">Warnings</dt>
+<dd class="field-even"><p>(array of strings) Warning messages to display to the user</p>
+</dd>
+</dl>
+<p>RESPONSE IF FAIL:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Preview_failed</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+<dt class="field-even">Extended_table_def</dt>
+<dd class="field-even"><p>(list)</p>
+</dd>
+<dt class="field-odd">Extended_sort_def</dt>
+<dd class="field-odd"><p>DEPRECATED - use extended_table_def instead</p>
+</dd>
+<dt class="field-even">Warnings</dt>
+<dd class="field-even"><p>(array of strings) Warning messages to display to the user</p>
+</dd>
+<dt class="field-odd">Errors</dt>
+<dd class="field-odd"><p>(array of strings) Error messages that explain why the query failed</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="report-tools-report-id-export-csv-get">
+<h3>/report_tools/[report_id]/export_csv/ (GET)<a class="headerlink" href="#report-tools-report-id-export-csv-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt id="chiron.api.viewsets.ReportToolsViewSet.export_csv">
+<code class="sig-prename descclassname">ReportToolsViewSet.</code><code class="sig-name descname">export_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">pk</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ReportToolsViewSet.export_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a CSV for the specified report ID with a full dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Response</dt>
+<dd class="field-odd"><p>the CSV file</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>text/csv HTTP response</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 </div>
 </div>
 
@@ -438,7 +1127,7 @@ User Created Content Viewset class docstring.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api_transforming_cohort_def.html" class="btn btn-neutral float-right" title="API - Transforming Cohort Def" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api_transforming_cohort_def.html" class="btn btn-neutral float-right" title="Transforming Cohort Definitions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="data_dict_models.html" class="btn btn-neutral float-left" title="Data Dictionary Model Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

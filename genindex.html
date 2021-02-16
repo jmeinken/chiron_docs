@@ -89,8 +89,8 @@
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_models.html">Data Dictionary Model Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API - Viewsets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">API - Transforming Cohort Def</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 </ul>
 
             
@@ -160,7 +160,6 @@
 <div class="genindex-jumpbox">
  <a href="#_"><strong>_</strong></a>
  | <a href="#A"><strong>A</strong></a>
- | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
@@ -173,10 +172,8 @@
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
- | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
- | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  
@@ -206,29 +203,35 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.app">app (chiron.models.AutoImportedField attribute)</a>
 </li>
+      <li><a href="api_transforming_cohort_def.html#chiron.api.utils.cohort_def.apply_transformation_add_criteria_set">apply_transformation_add_criteria_set() (in module chiron.api.utils.cohort_def)</a>
+</li>
+      <li><a href="api_transforming_cohort_def.html#chiron.api.utils.cohort_def.apply_transformation_add_entry">apply_transformation_add_entry() (in module chiron.api.utils.cohort_def)</a>
+</li>
+      <li><a href="api_transforming_cohort_def.html#chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_and">apply_transformation_change_to_boolean_and() (in module chiron.api.utils.cohort_def)</a>
+</li>
+      <li><a href="api_transforming_cohort_def.html#chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_or">apply_transformation_change_to_boolean_or() (in module chiron.api.utils.cohort_def)</a>
+</li>
+      <li><a href="api_transforming_cohort_def.html#chiron.api.utils.cohort_def.apply_transformation_delete_criteria_set">apply_transformation_delete_criteria_set() (in module chiron.api.utils.cohort_def)</a>
+</li>
+      <li><a href="api_transforming_cohort_def.html#chiron.api.utils.cohort_def.apply_transformation_delete_entry">apply_transformation_delete_entry() (in module chiron.api.utils.cohort_def)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_transforming_cohort_def.html#chiron.api.utils.cohort_def.apply_transformation_delete_event_rule">apply_transformation_delete_event_rule() (in module chiron.api.utils.cohort_def)</a>
+</li>
+      <li><a href="api_transforming_cohort_def.html#chiron.api.utils.cohort_def.apply_transformation_sort_cd_entries">apply_transformation_sort_cd_entries() (in module chiron.api.utils.cohort_def)</a>
+</li>
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.associated_concept">associated_concept (chiron.models.AutoImportedField attribute)</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.associated_concept_id">associated_concept_id (chiron.models.AutoImportedField attribute)</a>
 </li>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.UserCreatedContentViewSet.authentication_classes">authentication_classes (chiron.api.viewsets.UserCreatedContentViewSet attribute)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField">AutoImportedField (class in chiron.models)</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.DoesNotExist">AutoImportedField.DoesNotExist</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.MultipleObjectsReturned">AutoImportedField.MultipleObjectsReturned</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.autoimportedfield_set">autoimportedfield_set (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id33">[1]</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="B">B</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="built_in_processors.html#chiron.processors.BooleanFieldProcessor">BooleanFieldProcessor (class in chiron.processors)</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.autoimportedfield_set">autoimportedfield_set (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id36">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -244,20 +247,29 @@
       </ul></li>
       <li><a href="data_dict_models.html#chiron.models.Concept.category">category (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id10">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.category_id">category_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id34">[1]</a>
-</li>
-      <li><a href="built_in_processors.html#chiron.processors.CategoryFieldProcessor">CategoryFieldProcessor (class in chiron.processors)</a>
-</li>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.CategoryViewSet">CategoryViewSet (class in chiron.api.viewsets)</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.category_id">category_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id37">[1]</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.Root.check_event_permission_group">check_event_permission_group() (chiron.models.Root method)</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.Root.check_event_user_access_level">check_event_user_access_level() (chiron.models.Root method)</a>
 </li>
+      <li><a href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor.check_mongo_output_is_array">check_mongo_output_is_array() (chiron.processors.abstract.display_processor.DisplayProcessor method)</a>
+
+      <ul>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.DisplayProcessor.check_mongo_output_is_array">(chiron.processors.abstract.DisplayProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.check_mongo_output_is_array">[1]</a>
+</li>
+      </ul></li>
       <li><a href="data_dict_models.html#chiron.models.Concept.check_permission_group">check_permission_group() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id25">[1]</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.Concept.check_user_access_level">check_user_access_level() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id26">[1]</a>
 </li>
+      <li>
+    chiron.api.utils.cohort_def
+
+      <ul>
+        <li><a href="api_transforming_cohort_def.html#module-0">module</a>, <a href="api_transforming_cohort_def.html#module-1">[1]</a>, <a href="api_transforming_cohort_def.html#module-2">[2]</a>, <a href="api_transforming_cohort_def.html#module-3">[3]</a>, <a href="api_transforming_cohort_def.html#module-4">[4]</a>, <a href="api_transforming_cohort_def.html#module-5">[5]</a>, <a href="api_transforming_cohort_def.html#module-6">[6]</a>, <a href="api_transforming_cohort_def.html#module-chiron.api.utils.cohort_def">[7]</a>
+</li>
+      </ul></li>
       <li>
     chiron.api.views
 
@@ -294,29 +306,15 @@
 </li>
       </ul></li>
       <li>
-    chiron.processors.abstract.has_concept
-
-      <ul>
-        <li><a href="chiron.processors.abstract.html#module-chiron.processors.abstract.has_concept">module</a>
-</li>
-      </ul></li>
-      <li>
-    chiron.processors.abstract.has_user_and_concept
-
-      <ul>
-        <li><a href="chiron.processors.abstract.html#module-chiron.processors.abstract.has_user_and_concept">module</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
     chiron.processors.abstract.source_collection_processor
 
       <ul>
         <li><a href="chiron.processors.abstract.html#module-chiron.processors.abstract.source_collection_processor">module</a>
 </li>
       </ul></li>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.ChironUserViewSet">ChironUserViewSet (class in chiron.api.viewsets)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_viewsets.html#chiron.api.serializers.ChironUserSerializer">ChironUserSerializer (class in chiron.api.serializers)</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.Processor.cohort_def_for">cohort_def_for (chiron.models.Processor attribute)</a>
 </li>
@@ -326,9 +324,9 @@
 </li>
       <li><a href="data_dict_models.html#chiron.models.Concept.cohort_def_processor_deid_alt">cohort_def_processor_deid_alt (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id19">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.cohort_def_processor_deid_alt_id">cohort_def_processor_deid_alt_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id35">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.cohort_def_processor_deid_alt_id">cohort_def_processor_deid_alt_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id38">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.cohort_def_processor_id">cohort_def_processor_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id36">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.cohort_def_processor_id">cohort_def_processor_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id39">[1]</a>
 </li>
       <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.CohortDefProcessor">CohortDefProcessor (class in chiron.processors.abstract)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor">[1]</a>
 
@@ -338,9 +336,9 @@
       </ul></li>
       <li><a href="data_dict_models.html#chiron.models.Concept">Concept (class in chiron.models)</a>, <a href="data_dict_models.html#id0">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.DoesNotExist">Concept.DoesNotExist</a>, <a href="data_dict_models.html#id31">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.DoesNotExist">Concept.DoesNotExist</a>, <a href="data_dict_models.html#id34">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.MultipleObjectsReturned">Concept.MultipleObjectsReturned</a>, <a href="data_dict_models.html#id32">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.MultipleObjectsReturned">Concept.MultipleObjectsReturned</a>, <a href="data_dict_models.html#id35">[1]</a>
 </li>
       <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.concept_form_callback">concept_form_callback() (chiron.processors.abstract.cohort_def_processor.CohortDefProcessor method)</a>
 
@@ -354,14 +352,26 @@
         <li><a href="data_dict_models.html#chiron.models.SourceCollection.concept_set">(chiron.models.SourceCollection attribute)</a>
 </li>
       </ul></li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.conceptprocessorargument_set">conceptprocessorargument_set (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id37">[1]</a>
+      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.concept_type">concept_type (chiron.processors.abstract.cohort_def_processor.CohortDefProcessor attribute)</a>
+
+      <ul>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.CohortDefProcessor.concept_type">(chiron.processors.abstract.CohortDefProcessor attribute)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.concept_type">[1]</a>
 </li>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.ConceptViewSet">ConceptViewSet (class in chiron.api.viewsets)</a>
+      </ul></li>
+      <li><a href="data_dict_models.html#chiron.models.Concept.conceptprocessorargument_set">conceptprocessorargument_set (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id40">[1]</a>
 </li>
       <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor.convert_data_list_to_set">convert_data_list_to_set() (chiron.processors.abstract.etl_processor.EtlProcessor method)</a>
 
       <ul>
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.EtlProcessor.convert_data_list_to_set">(chiron.processors.abstract.EtlProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.EtlProcessor.convert_data_list_to_set">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_viewsets.html#chiron.api.viewsets.QueryToolsViewSet.count">count() (chiron.api.viewsets.QueryToolsViewSet method)</a>
+</li>
+      <li><a href="api_viewsets.html#chiron.api.viewsets.CohortDefViewSet.create">create() (chiron.api.viewsets.CohortDefViewSet method)</a>
+
+      <ul>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.TableDefViewSet.create">(chiron.api.viewsets.TableDefViewSet method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -370,10 +380,6 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="built_in_processors.html#chiron.processors.DateFieldProcessor">DateFieldProcessor (class in chiron.processors)</a>
-</li>
-      <li><a href="built_in_processors.html#chiron.processors.DateFieldProcessorDeidentified">DateFieldProcessorDeidentified (class in chiron.processors)</a>
-</li>
       <li><a href="data_dict_models.html#chiron.models.Processor.deid_cohort_def_for">deid_cohort_def_for (chiron.models.Processor attribute)</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.Processor.deid_display_for">deid_display_for (chiron.models.Processor attribute)</a>
@@ -406,9 +412,9 @@
 </li>
       <li><a href="data_dict_models.html#chiron.models.Concept.display_processor_deid_alt">display_processor_deid_alt (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id20">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.display_processor_deid_alt_id">display_processor_deid_alt_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id38">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.display_processor_deid_alt_id">display_processor_deid_alt_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id41">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.display_processor_id">display_processor_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id39">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.display_processor_id">display_processor_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id42">[1]</a>
 </li>
       <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.DisplayProcessor">DisplayProcessor (class in chiron.processors.abstract)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessor">[1]</a>
 
@@ -428,7 +434,7 @@
 </li>
       <li><a href="data_dict_models.html#chiron.models.Concept.etl_processor">etl_processor (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id15">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.etl_processor_id">etl_processor_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id40">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.etl_processor_id">etl_processor_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id43">[1]</a>
 </li>
       <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.EtlProcessor">EtlProcessor (class in chiron.processors.abstract)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.EtlProcessor">[1]</a>
 
@@ -436,24 +442,14 @@
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor">(class in chiron.processors.abstract.etl_processor)</a>
 </li>
       </ul></li>
-      <li><a href="built_in_processors.html#chiron.processors.EtlProcessorCounter">EtlProcessorCounter (class in chiron.processors)</a>
-</li>
-      <li><a href="built_in_processors.html#chiron.processors.EtlProcessorForDict">EtlProcessorForDict (class in chiron.processors)</a>
-</li>
-      <li><a href="built_in_processors.html#chiron.processors.EtlProcessorForDictGetCount">EtlProcessorForDictGetCount (class in chiron.processors)</a>
-</li>
-      <li><a href="built_in_processors.html#chiron.processors.EtlProcessorForDjangoField">EtlProcessorForDjangoField (class in chiron.processors)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="built_in_processors.html#chiron.processors.EtlProcessorForDjangoMultifieldMerge">EtlProcessorForDjangoMultifieldMerge (class in chiron.processors)</a>
-</li>
       <li><a href="data_dict_models.html#chiron.models.Root.event_date_field">event_date_field (chiron.models.Root attribute)</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.Root.event_date_field_id">event_date_field_id (chiron.models.Root attribute)</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.Root.event_end_date_field">event_end_date_field (chiron.models.Root attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="data_dict_models.html#chiron.models.Root.event_end_date_field_id">event_end_date_field_id (chiron.models.Root attribute)</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.Root.event_id_field">event_id_field (chiron.models.Root attribute)</a>
@@ -468,6 +464,12 @@
 </li>
       <li><a href="data_dict_models.html#chiron.models.SourceCollection.execution_order">execution_order (chiron.models.SourceCollection attribute)</a>
 </li>
+      <li><a href="api_viewsets.html#chiron.api.viewsets.QueryToolsViewSet.export_csv">export_csv() (chiron.api.viewsets.QueryToolsViewSet method)</a>
+
+      <ul>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.ReportToolsViewSet.export_csv">(chiron.api.viewsets.ReportToolsViewSet method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -488,9 +490,35 @@
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.CohortDefProcessor.generate_cohort_def_entry">(chiron.processors.abstract.CohortDefProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.generate_cohort_def_entry">[1]</a>
 </li>
       </ul></li>
+      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.generate_concept_form">generate_concept_form() (chiron.processors.abstract.cohort_def_processor.CohortDefProcessor method)</a>
+
+      <ul>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.CohortDefProcessor.generate_concept_form">(chiron.processors.abstract.CohortDefProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.generate_concept_form">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_alternative_project_root_ids">get_alternative_project_root_ids() (chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor method)</a>
+
+      <ul>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.SourceCollectionProcessor.get_alternative_project_root_ids">(chiron.processors.abstract.SourceCollectionProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.SourceCollectionProcessor.get_alternative_project_root_ids">[1]</a>
+</li>
+      </ul></li>
       <li><a href="data_dict_models.html#chiron.models.Concept.get_category_hierarchy">get_category_hierarchy() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id22">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.get_cohort_def_processor">get_cohort_def_processor() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id29">[1]</a>
+      <li><a href="api_viewsets.html#chiron.processors.CohortDefBoolean.get_cohort_def_options">get_cohort_def_options() (chiron.processors.CohortDefBoolean method)</a>
+
+      <ul>
+        <li><a href="api_viewsets.html#chiron.processors.CohortDefCategory.get_cohort_def_options">(chiron.processors.CohortDefCategory method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.processors.CohortDefDate.get_cohort_def_options">(chiron.processors.CohortDefDate method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.processors.CohortDefNumber.get_cohort_def_options">(chiron.processors.CohortDefNumber method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.processors.CohortDefText.get_cohort_def_options">(chiron.processors.CohortDefText method)</a>
+</li>
+      </ul></li>
+      <li><a href="data_dict_models.html#chiron.models.Concept.get_cohort_def_processor">get_cohort_def_processor() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id30">[1]</a>
+</li>
+      <li><a href="data_dict_models.html#chiron.models.Concept.get_cohort_def_processor_without_user">get_cohort_def_processor_without_user() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id29">[1]</a>
 </li>
       <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_concept_form">get_concept_form() (chiron.processors.abstract.cohort_def_processor.CohortDefProcessor method)</a>
 
@@ -498,25 +526,15 @@
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.CohortDefProcessor.get_concept_form">(chiron.processors.abstract.CohortDefProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.get_concept_form">[1]</a>
 </li>
       </ul></li>
-      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_concept_form_data">get_concept_form_data() (chiron.processors.abstract.cohort_def_processor.CohortDefProcessor method)</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.get_data_type">get_data_type() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id33">[1]</a>
 
       <ul>
-        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.CohortDefProcessor.get_concept_form_data">(chiron.processors.abstract.CohortDefProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.get_concept_form_data">[1]</a>
+        <li><a href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor.get_data_type">(chiron.processors.abstract.display_processor.DisplayProcessor method)</a>
 </li>
-        <li><a href="api_transforming_cohort_def.html#chiron.processors.BooleanFieldProcessor.get_concept_form_data">(chiron.processors.BooleanFieldProcessor method)</a>
-</li>
-        <li><a href="api_transforming_cohort_def.html#chiron.processors.CategoryFieldProcessor.get_concept_form_data">(chiron.processors.CategoryFieldProcessor method)</a>
-</li>
-        <li><a href="api_transforming_cohort_def.html#chiron.processors.DateFieldProcessor.get_concept_form_data">(chiron.processors.DateFieldProcessor method)</a>
-</li>
-        <li><a href="api_transforming_cohort_def.html#chiron.processors.DateFieldProcessorDeidentified.get_concept_form_data">(chiron.processors.DateFieldProcessorDeidentified method)</a>
-</li>
-        <li><a href="api_transforming_cohort_def.html#chiron.processors.NumberFieldProcessor.get_concept_form_data">(chiron.processors.NumberFieldProcessor method)</a>
-</li>
-        <li><a href="api_transforming_cohort_def.html#chiron.processors.TextFieldProcessor.get_concept_form_data">(chiron.processors.TextFieldProcessor method)</a>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.DisplayProcessor.get_data_type">(chiron.processors.abstract.DisplayProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.get_data_type">[1]</a>
 </li>
       </ul></li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.get_display_processor">get_display_processor() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id30">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.get_display_processor">get_display_processor() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id31">[1]</a>
 </li>
       <li><a href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor.get_display_value">get_display_value() (chiron.processors.abstract.display_processor.DisplayProcessor method)</a>
 
@@ -524,10 +542,10 @@
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.DisplayProcessor.get_display_value">(chiron.processors.abstract.DisplayProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.get_display_value">[1]</a>
 </li>
       </ul></li>
-      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_distinct_subject_records">get_distinct_subject_records() (chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor method)</a>
+      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_distinct_project_root_ids">get_distinct_project_root_ids() (chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor method)</a>
 
       <ul>
-        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.SourceCollectionProcessor.get_distinct_subject_records">(chiron.processors.abstract.SourceCollectionProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.SourceCollectionProcessor.get_distinct_subject_records">[1]</a>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.SourceCollectionProcessor.get_distinct_project_root_ids">(chiron.processors.abstract.SourceCollectionProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.SourceCollectionProcessor.get_distinct_project_root_ids">[1]</a>
 </li>
       </ul></li>
       <li><a href="data_dict_models.html#chiron.models.Concept.get_etl_processor">get_etl_processor() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id28">[1]</a>
@@ -540,6 +558,12 @@
 
       <ul>
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.DisplayProcessor.get_header_display_value">(chiron.processors.abstract.DisplayProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.get_header_display_value">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_id_field_for_efficient_run">get_id_field_for_efficient_run() (chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor method)</a>
+
+      <ul>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.SourceCollectionProcessor.get_id_field_for_efficient_run">(chiron.processors.abstract.SourceCollectionProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.SourceCollectionProcessor.get_id_field_for_efficient_run">[1]</a>
 </li>
       </ul></li>
       <li><a href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor.get_individual_display_value">get_individual_display_value() (chiron.processors.abstract.display_processor.DisplayProcessor method)</a>
@@ -580,6 +604,12 @@
 </li>
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.get_next_by_modified">get_next_by_modified() (chiron.models.AutoImportedField method)</a>
 </li>
+      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_other_concept_search_terms">get_other_concept_search_terms() (chiron.processors.abstract.cohort_def_processor.CohortDefProcessor method)</a>
+
+      <ul>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.CohortDefProcessor.get_other_concept_search_terms">(chiron.processors.abstract.CohortDefProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.get_other_concept_search_terms">[1]</a>
+</li>
+      </ul></li>
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.get_previous_by_created">get_previous_by_created() (chiron.models.AutoImportedField method)</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.get_previous_by_modified">get_previous_by_modified() (chiron.models.AutoImportedField method)</a>
@@ -592,26 +622,12 @@
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.SourceCollectionProcessor.get_project_root_id">(chiron.processors.abstract.SourceCollectionProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.SourceCollectionProcessor.get_project_root_id">[1]</a>
 </li>
       </ul></li>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.CategoryViewSet.get_queryset">get_queryset() (chiron.api.viewsets.CategoryViewSet method)</a>
-
-      <ul>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.ChironUserViewSet.get_queryset">(chiron.api.viewsets.ChironUserViewSet method)</a>
-</li>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.ConceptViewSet.get_queryset">(chiron.api.viewsets.ConceptViewSet method)</a>
-</li>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.RootViewSet.get_queryset">(chiron.api.viewsets.RootViewSet method)</a>
-</li>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.UserCreatedContentViewSet.get_queryset">(chiron.api.viewsets.UserCreatedContentViewSet method)</a>
-</li>
-      </ul></li>
       <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_root_id">get_root_id() (chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor method)</a>
 
       <ul>
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.SourceCollectionProcessor.get_root_id">(chiron.processors.abstract.SourceCollectionProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.SourceCollectionProcessor.get_root_id">[1]</a>
 </li>
       </ul></li>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.UserCreatedContentViewSet.get_serializer_context">get_serializer_context() (chiron.api.viewsets.UserCreatedContentViewSet method)</a>
-</li>
       <li><a href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor.get_sort_field">get_sort_field() (chiron.processors.abstract.display_processor.DisplayProcessor method)</a>
 
       <ul>
@@ -624,12 +640,38 @@
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.SourceCollectionProcessor.get_source_data_collection">(chiron.processors.abstract.SourceCollectionProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.SourceCollectionProcessor.get_source_data_collection">[1]</a>
 </li>
       </ul></li>
+      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_statistics">get_statistics() (chiron.processors.abstract.cohort_def_processor.CohortDefProcessor method)</a>
+
+      <ul>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.CohortDefProcessor.get_statistics">(chiron.processors.abstract.CohortDefProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.get_statistics">[1]</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.processors.CohortDefBoolean.get_statistics">(chiron.processors.CohortDefBoolean method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.processors.CohortDefCategory.get_statistics">(chiron.processors.CohortDefCategory method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.processors.CohortDefDate.get_statistics">(chiron.processors.CohortDefDate method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.processors.CohortDefNumber.get_statistics">(chiron.processors.CohortDefNumber method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.processors.CohortDefText.get_statistics">(chiron.processors.CohortDefText method)</a>
+</li>
+      </ul></li>
+      <li><a href="data_dict_models.html#chiron.models.Concept.get_summary_statistics">get_summary_statistics() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id32">[1]</a>
+
+      <ul>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_summary_statistics">(chiron.processors.abstract.cohort_def_processor.CohortDefProcessor method)</a>
+</li>
+        <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.CohortDefProcessor.get_summary_statistics">(chiron.processors.abstract.CohortDefProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.get_summary_statistics">[1]</a>
+</li>
+      </ul></li>
       <li><a href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor.get_table_form">get_table_form() (chiron.processors.abstract.display_processor.DisplayProcessor method)</a>
 
       <ul>
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.DisplayProcessor.get_table_form">(chiron.processors.abstract.DisplayProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.get_table_form">[1]</a>
 </li>
       </ul></li>
+      <li><a href="data_dict_models.html#chiron.models.Root.get_viewable_roots">get_viewable_roots() (chiron.models.Root static method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -637,12 +679,6 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="data_dict_models.html#chiron.models.Concept.has_phi">has_phi (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id18">[1]</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.has_concept.HasConcept">HasConcept (class in chiron.processors.abstract.has_concept)</a>
-</li>
-      <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.has_user_and_concept.HasUserAndConcept">HasUserAndConcept (class in chiron.processors.abstract.has_user_and_concept)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -653,7 +689,7 @@
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.id">id (chiron.models.AutoImportedField attribute)</a>
 
       <ul>
-        <li><a href="data_dict_models.html#chiron.models.Concept.id">(chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id41">[1]</a>
+        <li><a href="data_dict_models.html#chiron.models.Concept.id">(chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id44">[1]</a>
 </li>
         <li><a href="data_dict_models.html#chiron.models.Processor.id">(chiron.models.Processor attribute)</a>
 </li>
@@ -694,11 +730,25 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.MeViewSet.list">list() (chiron.api.viewsets.MeViewSet method)</a>
+      <li><a href="api_viewsets.html#chiron.api.viewsets.ChironUserViewSet.list">list() (chiron.api.viewsets.ChironUserViewSet method)</a>
+
+      <ul>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.CohortDefViewSet.list">(chiron.api.viewsets.CohortDefViewSet method)</a>
 </li>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.ConceptCategoryViewSet.list">(chiron.api.viewsets.ConceptCategoryViewSet method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.ConceptViewSet.list">(chiron.api.viewsets.ConceptViewSet method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.MeViewSet.list">(chiron.api.viewsets.MeViewSet method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.ReportViewSet.list">(chiron.api.viewsets.ReportViewSet method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.TableDefViewSet.list">(chiron.api.viewsets.TableDefViewSet method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.ConceptViewSet.lookup_field">lookup_field (chiron.api.viewsets.ConceptViewSet attribute)</a>
+      <li><a href="api_viewsets.html#chiron.api.viewsets.ReportToolsViewSet.load_as_active">load_as_active() (chiron.api.viewsets.ReportToolsViewSet method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -706,8 +756,6 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.MeViewSet">MeViewSet (class in chiron.api.viewsets)</a>
-</li>
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.model">model (chiron.models.AutoImportedField attribute)</a>
 </li>
       <li><a href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor.modify_table_def_entry">modify_table_def_entry() (chiron.processors.abstract.display_processor.DisplayProcessor method)</a>
@@ -720,6 +768,8 @@
     module
 
       <ul>
+        <li><a href="api_transforming_cohort_def.html#module-0">chiron.api.utils.cohort_def</a>, <a href="api_transforming_cohort_def.html#module-1">[1]</a>, <a href="api_transforming_cohort_def.html#module-2">[2]</a>, <a href="api_transforming_cohort_def.html#module-3">[3]</a>, <a href="api_transforming_cohort_def.html#module-4">[4]</a>, <a href="api_transforming_cohort_def.html#module-5">[5]</a>, <a href="api_transforming_cohort_def.html#module-6">[6]</a>, <a href="api_transforming_cohort_def.html#module-chiron.api.utils.cohort_def">[7]</a>
+</li>
         <li><a href="api_transforming_cohort_def.html#module-chiron.api.views">chiron.api.views</a>
 </li>
         <li><a href="chiron.processors.abstract.html#module-chiron.processors.abstract">chiron.processors.abstract</a>
@@ -729,10 +779,6 @@
         <li><a href="chiron.processors.abstract.display_processor.html#module-chiron.processors.abstract.display_processor">chiron.processors.abstract.display_processor</a>
 </li>
         <li><a href="chiron.processors.abstract.html#module-chiron.processors.abstract.etl_processor">chiron.processors.abstract.etl_processor</a>
-</li>
-        <li><a href="chiron.processors.abstract.html#module-chiron.processors.abstract.has_concept">chiron.processors.abstract.has_concept</a>
-</li>
-        <li><a href="chiron.processors.abstract.html#module-chiron.processors.abstract.has_user_and_concept">chiron.processors.abstract.has_user_and_concept</a>
 </li>
         <li><a href="chiron.processors.abstract.html#module-chiron.processors.abstract.source_collection_processor">chiron.processors.abstract.source_collection_processor</a>
 </li>
@@ -761,8 +807,6 @@
         <li><a href="data_dict_models.html#chiron.models.Root.name_plural">(chiron.models.Root attribute)</a>
 </li>
       </ul></li>
-      <li><a href="built_in_processors.html#chiron.processors.NumberFieldProcessor">NumberFieldProcessor (class in chiron.processors)</a>
-</li>
   </ul></td>
 </tr></table>
 
@@ -772,7 +816,7 @@
       <li><a href="data_dict_models.html#chiron.models.AutoImportedField.objects">objects (chiron.models.AutoImportedField attribute)</a>
 
       <ul>
-        <li><a href="data_dict_models.html#chiron.models.Concept.objects">(chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id42">[1]</a>
+        <li><a href="data_dict_models.html#chiron.models.Concept.objects">(chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id45">[1]</a>
 </li>
         <li><a href="data_dict_models.html#chiron.models.Processor.objects">(chiron.models.Processor attribute)</a>
 </li>
@@ -793,34 +837,30 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.UserCreatedContentViewSet.pagination_class">pagination_class (chiron.api.viewsets.UserCreatedContentViewSet attribute)</a>
-</li>
       <li><a href="data_dict_models.html#chiron.models.Concept.permanent_id">permanent_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id4">[1]</a>
 
       <ul>
         <li><a href="data_dict_models.html#chiron.models.Root.permanent_id">(chiron.models.Root attribute)</a>
 </li>
       </ul></li>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.CategoryViewSet.permission_classes">permission_classes (chiron.api.viewsets.CategoryViewSet attribute)</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.permissiongroup_allowedconcept_set">permissiongroup_allowedconcept_set (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id46">[1]</a>
+</li>
+      <li><a href="data_dict_models.html#chiron.models.Concept.permissiongroup_set">permissiongroup_set (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id47">[1]</a>
 
       <ul>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.ChironUserViewSet.permission_classes">(chiron.api.viewsets.ChironUserViewSet attribute)</a>
-</li>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.ConceptViewSet.permission_classes">(chiron.api.viewsets.ConceptViewSet attribute)</a>
-</li>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.MeViewSet.permission_classes">(chiron.api.viewsets.MeViewSet attribute)</a>
-</li>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.RootViewSet.permission_classes">(chiron.api.viewsets.RootViewSet attribute)</a>
-</li>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.UserCreatedContentViewSet.permission_classes">(chiron.api.viewsets.UserCreatedContentViewSet attribute)</a>
+        <li><a href="data_dict_models.html#chiron.models.Root.permissiongroup_set">(chiron.models.Root attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="data_dict_models.html#chiron.models.Concept.permissiongroup_set">permissiongroup_set (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id43">[1]</a>
+      <li><a href="api_viewsets.html#chiron.api.viewsets.QueryToolsViewSet.preview">preview() (chiron.api.viewsets.QueryToolsViewSet method)</a>
+
+      <ul>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.ReportToolsViewSet.preview">(chiron.api.viewsets.ReportToolsViewSet method)</a>
 </li>
+      </ul></li>
       <li><a href="data_dict_models.html#chiron.models.SourceCollection.processor">processor (chiron.models.SourceCollection attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="data_dict_models.html#chiron.models.Processor">Processor (class in chiron.models)</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.Processor.DoesNotExist">Processor.DoesNotExist</a>
@@ -842,14 +882,6 @@
   </ul></td>
 </tr></table>
 
-<h2 id="Q">Q</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.ChironUserViewSet.queryset">queryset (chiron.api.viewsets.ChironUserViewSet attribute)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -857,6 +889,16 @@
 </li>
       <li><a href="data_dict_models.html#chiron.models.Processor.required_args">required_args (chiron.models.Processor attribute)</a>
 </li>
+      <li><a href="api_viewsets.html#chiron.api.viewsets.CohortDefViewSet.retrieve">retrieve() (chiron.api.viewsets.CohortDefViewSet method)</a>
+
+      <ul>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.ConceptCategoryViewSet.retrieve">(chiron.api.viewsets.ConceptCategoryViewSet method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.ConceptViewSet.retrieve">(chiron.api.viewsets.ConceptViewSet method)</a>
+</li>
+        <li><a href="api_viewsets.html#chiron.api.viewsets.TableDefViewSet.retrieve">(chiron.api.viewsets.TableDefViewSet method)</a>
+</li>
+      </ul></li>
       <li><a href="data_dict_models.html#chiron.models.Concept.root">root (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id8">[1]</a>
 
       <ul>
@@ -865,21 +907,21 @@
       </ul></li>
       <li><a href="data_dict_models.html#chiron.models.Root">Root (class in chiron.models)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="data_dict_models.html#chiron.models.Root.DoesNotExist">Root.DoesNotExist</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.Root.MultipleObjectsReturned">Root.MultipleObjectsReturned</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.root_event_date">root_event_date (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id44">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.root_event_date">root_event_date (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id48">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="data_dict_models.html#chiron.models.Concept.root_event_end_date">root_event_end_date (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id45">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.root_event_end_date">root_event_end_date (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id49">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.root_event_id">root_event_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id46">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.root_event_id">root_event_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id50">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.root_event_name">root_event_name (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id47">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.root_event_name">root_event_name (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id51">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.root_id">root_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id48">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.root_id">root_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id52">[1]</a>
 
       <ul>
         <li><a href="data_dict_models.html#chiron.models.SourceCollection.root_id">(chiron.models.SourceCollection attribute)</a>
@@ -889,29 +931,17 @@
 </li>
       <li><a href="data_dict_models.html#chiron.models.Root.rootprocessorargument_set">rootprocessorargument_set (chiron.models.Root attribute)</a>
 </li>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.RootViewSet">RootViewSet (class in chiron.api.viewsets)</a>
-</li>
   </ul></td>
 </tr></table>
 
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.CategoryViewSet.serializer_class">serializer_class (chiron.api.viewsets.CategoryViewSet attribute)</a>
-
-      <ul>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.ChironUserViewSet.serializer_class">(chiron.api.viewsets.ChironUserViewSet attribute)</a>
+      <li><a href="api_viewsets.html#chiron.api.viewsets.ReportToolsViewSet.share">share() (chiron.api.viewsets.ReportToolsViewSet method)</a>
 </li>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.ConceptViewSet.serializer_class">(chiron.api.viewsets.ConceptViewSet attribute)</a>
-</li>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.RootViewSet.serializer_class">(chiron.api.viewsets.RootViewSet attribute)</a>
-</li>
-        <li><a href="api_viewsets.html#chiron.api.viewsets.UserCreatedContentViewSet.serializer_class">(chiron.api.viewsets.UserCreatedContentViewSet attribute)</a>
-</li>
-      </ul></li>
       <li><a href="data_dict_models.html#chiron.models.Concept.source_collection">source_collection (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id9">[1]</a>
 </li>
-      <li><a href="data_dict_models.html#chiron.models.Concept.source_collection_id">source_collection_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id49">[1]</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.source_collection_id">source_collection_id (chiron.models.Concept attribute)</a>, <a href="data_dict_models.html#id53">[1]</a>
 </li>
       <li><a href="data_dict_models.html#chiron.models.SourceCollection">SourceCollection (class in chiron.models)</a>
 </li>
@@ -935,37 +965,19 @@
       </ul></li>
       <li><a href="data_dict_models.html#chiron.models.SourceCollection.sourcecollectionprocessorargument_set">sourcecollectionprocessorargument_set (chiron.models.SourceCollection attribute)</a>
 </li>
-      <li><a href="built_in_processors.html#chiron.processors.SourceCollectionProcessorForDjangoModel">SourceCollectionProcessorForDjangoModel (class in chiron.processors)</a>
-</li>
-      <li><a href="built_in_processors.html#chiron.processors.SourceCollectionProcessorSelf">SourceCollectionProcessorSelf (class in chiron.processors)</a>
-</li>
-      <li><a href="built_in_processors.html#chiron.processors.SourceCollectionProcessorSubdoc">SourceCollectionProcessorSubdoc (class in chiron.processors)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="T">T</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="built_in_processors.html#chiron.processors.TextFieldProcessor">TextFieldProcessor (class in chiron.processors)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="built_in_processors.html#chiron.processors.TextFieldProcessorCustomSort">TextFieldProcessorCustomSort (class in chiron.processors)</a>
-</li>
-      <li><a href="api_transforming_cohort_def.html#chiron.api.views.transform_cohort_def_form">transform_cohort_def_form() (in module chiron.api.views)</a>
-</li>
   </ul></td>
 </tr></table>
 
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="data_dict_models.html#chiron.models.Concept.user_can_view_concept">user_can_view_concept() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id27">[1]</a>
+      <li><a href="api_viewsets.html#chiron.api.viewsets.ConceptViewSet.update">update() (chiron.api.viewsets.ConceptViewSet method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_viewsets.html#chiron.api.viewsets.UserCreatedContentViewSet">UserCreatedContentViewSet (class in chiron.api.viewsets)</a>
+      <li><a href="data_dict_models.html#chiron.models.Concept.user_can_view_concept">user_can_view_concept() (chiron.models.Concept method)</a>, <a href="data_dict_models.html#id27">[1]</a>
+</li>
+      <li><a href="data_dict_models.html#chiron.models.Root.user_can_view_root">user_can_view_root() (chiron.models.Root method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -977,6 +989,18 @@
 
       <ul>
         <li><a href="chiron.processors.abstract.html#chiron.processors.abstract.CohortDefProcessor.validate_concept_form">(chiron.processors.abstract.CohortDefProcessor method)</a>, <a href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.validate_concept_form">[1]</a>
+</li>
+        <li><a href="api_transforming_cohort_def.html#chiron.processors.CohortDefBoolean.validate_concept_form">(chiron.processors.CohortDefBoolean method)</a>
+</li>
+        <li><a href="api_transforming_cohort_def.html#chiron.processors.CohortDefCategory.validate_concept_form">(chiron.processors.CohortDefCategory method)</a>
+</li>
+        <li><a href="api_transforming_cohort_def.html#chiron.processors.CohortDefDate.validate_concept_form">(chiron.processors.CohortDefDate method)</a>
+</li>
+        <li><a href="api_transforming_cohort_def.html#chiron.processors.CohortDefDateDeid.validate_concept_form">(chiron.processors.CohortDefDateDeid method)</a>
+</li>
+        <li><a href="api_transforming_cohort_def.html#chiron.processors.CohortDefNumber.validate_concept_form">(chiron.processors.CohortDefNumber method)</a>
+</li>
+        <li><a href="api_transforming_cohort_def.html#chiron.processors.CohortDefText.validate_concept_form">(chiron.processors.CohortDefText method)</a>
 </li>
       </ul></li>
   </ul></td>

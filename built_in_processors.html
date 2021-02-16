@@ -117,8 +117,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_models.html">Data Dictionary Model Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API - Viewsets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">API - Transforming Cohort Def</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 </ul>
 
             
@@ -194,101 +194,30 @@ by passing arguments when instantiating. These arguments can be defined in the d
 <h2>SourceCollection Processors<a class="headerlink" href="#sourcecollection-processors" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="sourcecollectionprocessorfordjangomodel">
 <h3>SourceCollectionProcessorForDjangoModel<a class="headerlink" href="#sourcecollectionprocessorfordjangomodel" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.SourceCollectionProcessorForDjangoModel">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">SourceCollectionProcessorForDjangoModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oSourceCollection</span></em>, <em class="sig-param"><span class="n">app</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">root_id_field</span><span class="o">=</span><span class="default_value">'pk'</span></em>, <em class="sig-param"><span class="n">project_root_id_field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_batch_size</span><span class="o">=</span><span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">select_related</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">prefetch_related</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">filter_rules</span><span class="o">=</span><span class="default_value">'{}'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceCollectionProcessorForDjangoModel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor" title="chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor</span></code></a></p>
-</dd></dl>
-
 </div>
 <div class="section" id="sourcecollectionprocessorself">
 <h3>SourceCollectionProcessorSelf<a class="headerlink" href="#sourcecollectionprocessorself" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.SourceCollectionProcessorSelf">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">SourceCollectionProcessorSelf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oSourceCollection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceCollectionProcessorSelf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor" title="chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor</span></code></a></p>
-<p>Pulls all records from the Chiron Mongo database itself.
-Useful for generating calculated fields on existing Mongo records.
-Needs to be run later in execution order, when all the input fields
-it depends on have already been loaded.</p>
-</dd></dl>
-
 </div>
 <div class="section" id="sourcecollectionprocessorsubdoc">
 <h3>SourceCollectionProcessorSubdoc<a class="headerlink" href="#sourcecollectionprocessorsubdoc" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.SourceCollectionProcessorSubdoc">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">SourceCollectionProcessorSubdoc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oSourceCollection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceCollectionProcessorSubdoc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor" title="chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor</span></code></a></p>
-<p>Pulls all records from the Chiron Mongo database itself.
-Useful for generating calculated fields on existing Mongo records.
-Needs to be run later in execution order, when all the input fields
-it depends on have already been loaded.</p>
-</dd></dl>
-
 </div>
 </div>
 <div class="section" id="etl-processors">
 <h2>ETL Processors<a class="headerlink" href="#etl-processors" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="etlprocessorfordjangofield">
 <h3>EtlProcessorForDjangoField<a class="headerlink" href="#etlprocessorfordjangofield" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.EtlProcessorForDjangoField">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">EtlProcessorForDjangoField</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">django_field</span></em>, <em class="sig-param"><span class="n">cast_to_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ignore_casting_errors</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ignore_model_mismatch</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlProcessorForDjangoField" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor" title="chiron.processors.abstract.etl_processor.EtlProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.etl_processor.EtlProcessor</span></code></a></p>
-</dd></dl>
-
 </div>
 <div class="section" id="etlprocessorfordjangomultifieldmerge">
 <h3>EtlProcessorForDjangoMultifieldMerge<a class="headerlink" href="#etlprocessorfordjangomultifieldmerge" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.EtlProcessorForDjangoMultifieldMerge">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">EtlProcessorForDjangoMultifieldMerge</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">django_field</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlProcessorForDjangoMultifieldMerge" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor" title="chiron.processors.abstract.etl_processor.EtlProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.etl_processor.EtlProcessor</span></code></a></p>
-<p>Same behavior as EtlProcessorForDjangoField, except multiple django fields
-can be provided.
-After passing django_field and model_join_path like normal, provide additional
-fields
-by passing django_field2 &amp; model_join_path2, django_field3 &amp; model_join_path3,
-etc.</p>
-</dd></dl>
-
 </div>
 <div class="section" id="etlprocessorfordict">
 <h3>EtlProcessorForDict<a class="headerlink" href="#etlprocessorfordict" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.EtlProcessorForDict">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">EtlProcessorForDict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">field_name</span></em>, <em class="sig-param"><span class="n">cast_to_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ignore_casting_errors</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">convert_list_to_set</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlProcessorForDict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor" title="chiron.processors.abstract.etl_processor.EtlProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.etl_processor.EtlProcessor</span></code></a></p>
-</dd></dl>
-
 </div>
 <div class="section" id="etlprocessorfordictgetcount">
 <h3>EtlProcessorForDictGetCount<a class="headerlink" href="#etlprocessorfordictgetcount" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.EtlProcessorForDictGetCount">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">EtlProcessorForDictGetCount</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">field_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlProcessorForDictGetCount" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor" title="chiron.processors.abstract.etl_processor.EtlProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.etl_processor.EtlProcessor</span></code></a></p>
-<p>Selects a value out of a dictionary (using field_name argument).
-Instead of returning that value, it returns a count.
-If None, returns 0.  If simple value, returns 1. If list, returns count of
-values in list.</p>
-</dd></dl>
-
 </div>
 <div class="section" id="etlprocessorcounter">
 <h3>EtlProcessorCounter<a class="headerlink" href="#etlprocessorcounter" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.EtlProcessorCounter">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">EtlProcessorCounter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">field_name</span></em>, <em class="sig-param"><span class="n">treat_string_as_sequence</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlProcessorCounter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor" title="chiron.processors.abstract.etl_processor.EtlProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.etl_processor.EtlProcessor</span></code></a></p>
-<p>Expecting the record to be a Python dict.
-Will get count of entries for the specified field.
-If field is not a sequence or collection, will return 1 if field evaluates to
-true or False.
-By default, a string value returns 1 instead of len(str).</p>
-</dd></dl>
-
 </div>
 </div>
 <div class="section" id="cohortdef-display-processors">
@@ -298,121 +227,24 @@ how a concept is applied to results output. These built-in processors can be use
 unless otherwise stated.</p>
 <div class="section" id="categoryfieldprocessor">
 <h3>CategoryFieldProcessor<a class="headerlink" href="#categoryfieldprocessor" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.CategoryFieldProcessor">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">CategoryFieldProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CategoryFieldProcessor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
-<p>When to use:</p>
-<ul class="simple">
-<li><p>All values should either be a string or null</p></li>
-<li><p>Don’t use if too many distinct values, use TextField instead</p></li>
-<li><p>don’t use if no values repeat (like IDs or free-text comments), use TextField instead</p></li>
-<li><p>don’t use if values are longer than one line of text</p></li>
-</ul>
-</dd></dl>
-
 </div>
 <div class="section" id="booleanfieldprocessor">
 <h3>BooleanFieldProcessor<a class="headerlink" href="#booleanfieldprocessor" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.BooleanFieldProcessor">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">BooleanFieldProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.BooleanFieldProcessor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
-<p>When to use:</p>
-<ul class="simple">
-<li><p>All values should be true, false, or null</p></li>
-</ul>
-</dd></dl>
-
 </div>
 <div class="section" id="numberfieldprocessor">
 <h3>NumberFieldProcessor<a class="headerlink" href="#numberfieldprocessor" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.NumberFieldProcessor">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">NumberFieldProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">is_integer</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.NumberFieldProcessor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
-<p>When to use:</p>
-<ul class="simple">
-<li><p>All values should either be numbers or null</p></li>
-</ul>
-<p>Optional arguments:</p>
-<ul class="simple">
-<li><p>is_integer: (default: False) set to True if the number has no decimal value.
-NOTE: This does not round/force numbers to be integers, it only affects how histograms
-and statistics are calculated/displayed.</p></li>
-</ul>
-</dd></dl>
-
 </div>
 <div class="section" id="textfieldprocessor">
 <h3>TextFieldProcessor<a class="headerlink" href="#textfieldprocessor" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.TextFieldProcessor">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">TextFieldProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.TextFieldProcessor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
-<p>When to use:</p>
-<ul class="simple">
-<li><p>All values should either be a string or null</p></li>
-<li><p>If possible values are a limited number of categories, consider using CategoryField</p></li>
-<li><p>Good for IDs or free-text comments</p></li>
-<li><p>Not great for long, multi-line free text - like notes - but shouldn’t fail either</p></li>
-</ul>
-</dd></dl>
-
 </div>
 <div class="section" id="textfieldprocessorcustomsort">
 <h3>TextFieldProcessorCustomSort<a class="headerlink" href="#textfieldprocessorcustomsort" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.TextFieldProcessorCustomSort">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">TextFieldProcessorCustomSort</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.TextFieldProcessorCustomSort" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.text_field.TextFieldProcessor</span></code></p>
-<p>When to use:</p>
-<ul class="simple">
-<li><p>Text field where you want the sorting to be different from alphabetical</p></li>
-<li><p>good for numbers stored as strings, such as ID numbers</p></li>
-</ul>
-<p>This processor requires the value be stored as a dict with a string display value and a
-numeric sort value:
-{</p>
-<blockquote>
-<div><p>“value” : “my value”,
-“sort” : 1</p>
-</div></blockquote>
-<p>}</p>
-</dd></dl>
-
 </div>
 <div class="section" id="datefieldprocessor">
 <h3>DateFieldProcessor<a class="headerlink" href="#datefieldprocessor" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.DateFieldProcessor">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">DateFieldProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DateFieldProcessor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
-<p>When to use:</p>
-<ul class="simple">
-<li><p>All values should either be a Python datetime object or null</p></li>
-<li><p>You only care about the date component, typically you will want the time in your
-datetime values set to 0:00.</p></li>
-</ul>
-</dd></dl>
-
 </div>
 <div class="section" id="datefieldprocessordeidentified">
 <h3>DateFieldProcessorDeidentified<a class="headerlink" href="#datefieldprocessordeidentified" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="chiron.processors.DateFieldProcessorDeidentified">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">DateFieldProcessorDeidentified</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DateFieldProcessorDeidentified" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.date_field.DateFieldProcessor</span></code></p>
-<p>This is a deidentified alternative to the DateFieldProcessor. If you use it in place of the
-DateFieldProcessor, only the date year is presented to the user.</p>
-<p>Typically, this is used in situations where you want users who can view PHI to see/query the
-whole date, and other users to see/query only the year. To do this in a concept, you will
-set has_phi to true and set both cohort_def_processor_deid_alt and display_processor_deid_alt
-to this.</p>
-<p>If you only ever need to use year, an alternative would be to set only the year in Mongo as an
-integer and use the NumberFieldProcessor.</p>
-</dd></dl>
-
 </div>
 </div>
 </div>

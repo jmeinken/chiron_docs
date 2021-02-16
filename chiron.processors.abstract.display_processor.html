@@ -178,6 +178,16 @@ that will handle the flattening.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.check_mongo_output_is_array">
+<code class="sig-name descname">check_mongo_output_is_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.check_mongo_output_is_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Some aggregate methods (such as list) will return an array for that value from the
+MongoDB query. MongoDB will throw an error if you try to sort by more than 1 array field,
+simply because it causes performance issues.</p>
+<p>Returns True if array output for this field, else False. This methods primary use is to
+make sure the user doesn’t create an invalid sort def.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_individual_display_value">
 <code class="sig-name descname">get_individual_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">output_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_individual_display_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a value stored in the Mongo database to a display value.</p>
@@ -200,11 +210,11 @@ that will handle the flattening.</p>
 <dl class="py method">
 <dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_display_value">
 <code class="sig-name descname">get_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">output_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_display_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_individual_display_value() method looks at a single value coming from the 
+<dd><p>The get_individual_display_value() method looks at a single value coming from the
 Mongo database and converts it into the final display value. However, with aggregate
 queries things can get more complicated. For example, a count aggregate will return a
 number regardless of the concept data type. A list aggregate must get multiple values
-and merge them into a single string. This method looks at the aggregation rules and 
+and merge them into a single string. This method looks at the aggregation rules and
 returns the appropriate final value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -273,6 +283,12 @@ NOTE: This should only be run after validate_table_form has successfully run.</p
 <dd class="field-odd"><p><strong>existing_td_entry</strong> (<em>dict</em>) – the current table def entry</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_data_type">
+<code class="sig-name descname">get_data_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_data_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a human-readable string describing the data type (text, integer, etc.).</p>
 </dd></dl>
 
 </dd></dl>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API - Transforming Cohort Def &mdash; Chiron 1.0 documentation</title>
+  <title>Transforming Cohort Definitions &mdash; Chiron 1.0 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="API - Viewsets" href="api_viewsets.html" /> 
+    <link rel="prev" title="API Endpoints" href="api_viewsets.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,17 +90,19 @@
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_models.html">Data Dictionary Model Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API - Viewsets</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API - Transforming Cohort Def</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-chiron.api.views">transform_cohort_def_form</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#form-data-for-categoryfieldprocessor">form_data for CategoryFieldProcessor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#form-data-for-textfieldprocessor">form_data for TextFieldProcessor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#form-data-for-booleanfieldprocessor">form_data for BooleanFieldProcessor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#form-data-for-datefieldprocessor">form_data for DateFieldProcessor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#form-data-for-datefieldprocessordeidentified">form_data for DateFieldProcessorDeidentified</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#form-data-for-numberfieldprocessor">form_data for NumberFieldProcessor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Transforming Cohort Definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-chiron.api.utils.cohort_def">add_entry</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#additional-transformation-arguments-for-specific-processors">Additional transformation arguments for specific processors</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-0">delete_entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-1">add_criteria_set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-2">delete_criteria_set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-3">delete_event_rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-4">change_to_boolean_or</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-5">change_to_boolean_and</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-6">sort_cd_entries</a></li>
 </ul>
 </li>
 </ul>
@@ -149,7 +151,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>API - Transforming Cohort Def</li>
+      <li>Transforming Cohort Definitions</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -168,200 +170,269 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="api-transforming-cohort-def">
-<h1>API - Transforming Cohort Def<a class="headerlink" href="#api-transforming-cohort-def" title="Permalink to this headline">¶</a></h1>
-<p>Endpoints related to the transformation of the cohort def often have different request/response
-parameters based on the CohortDef processor associated with the concept.</p>
-<div class="section" id="module-chiron.api.views">
-<span id="transform-cohort-def-form"></span><h2>transform_cohort_def_form<a class="headerlink" href="#module-chiron.api.views" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="module-chiron.api.views">
+<span id="transforming-cohort-definitions"></span><h1>Transforming Cohort Definitions<a class="headerlink" href="#module-chiron.api.views" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-chiron.api.utils.cohort_def">
+<span id="add-entry"></span><h2>add_entry<a class="headerlink" href="#module-chiron.api.utils.cohort_def" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="chiron.api.views.transform_cohort_def_form">
-<code class="sig-prename descclassname">chiron.api.views.</code><code class="sig-name descname">transform_cohort_def_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">form_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.views.transform_cohort_def_form" title="Permalink to this definition">¶</a></dt>
-<dd><p>Some cohort_def transformation types need to collect user input using a form.
-This view returns data needed to render a form.</p>
+<dt id="chiron.api.utils.cohort_def.apply_transformation_add_entry">
+<code class="sig-prename descclassname">chiron.api.utils.cohort_def.</code><code class="sig-name descname">apply_transformation_add_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_cohort_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_add_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new entry or edit an existing entry on the cohort definition.</p>
+<p>The options for the transformation definition will depend on the type of cohort def processor.
+However, these are the global options for all “add entry” transformations:</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>request</strong> (<em>django.http.request.HttpRequest</em>) – The Djagno request</p></li>
-<li><p><strong>form_name</strong> (<em>str</em>) – The name of the form requested</p></li>
-</ul>
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“add_entry”</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The JSON data</p>
+<dt class="field-even">Concept_id</dt>
+<dd class="field-even"><p>(str) the permanent_id of the Concept to add</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>json</p>
+<dt class="field-odd">Entry_id</dt>
+<dd class="field-odd"><p>(optional) If editing an existing entry, provide the entry_id</p>
 </dd>
 </dl>
-<p>CONCEPT FORM RESPONSE:</p>
-<ul class="simple">
-<li><p><strong>concept_id</strong></p></li>
-<li><p><strong>concept_name</strong></p></li>
-<li><p><strong>concept__plural_name</strong></p></li>
-<li><p><strong>concept_description</strong></p></li>
-<li><p><strong>category_hierarchy</strong></p></li>
-<li><p><strong>processor_type</strong>: this is important since different processors return different form_data</p></li>
-<li><p><strong>form_data</strong>: a dict of data needed to render the form</p></li>
-</ul>
 </dd></dl>
 
-<p>The <code class="docutils literal notranslate"><span class="pre">form_data</span></code> returned from <code class="docutils literal notranslate"><span class="pre">transform_cohort_def_form</span></code> will depend on the
-processor type. Here are the built-in processor types:</p>
-<div class="section" id="form-data-for-categoryfieldprocessor">
-<h3>form_data for CategoryFieldProcessor<a class="headerlink" href="#form-data-for-categoryfieldprocessor" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="additional-transformation-arguments-for-specific-processors">
+<h3>Additional transformation arguments for specific processors<a class="headerlink" href="#additional-transformation-arguments-for-specific-processors" title="Permalink to this headline">¶</a></h3>
 <dl class="py method">
-<dt id="chiron.processors.CategoryFieldProcessor.get_concept_form_data">
-<code class="sig-prename descclassname">CategoryFieldProcessor.</code><code class="sig-name descname">get_concept_form_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CategoryFieldProcessor.get_concept_form_data" title="Permalink to this definition">¶</a></dt>
+<dt id="chiron.processors.CohortDefBoolean.validate_concept_form">
+<code class="sig-prename descclassname">CohortDefBoolean.</code><code class="sig-name descname">validate_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefBoolean.validate_concept_form" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Selected_categories</dt>
+<dd class="field-odd"><p>a list of categories to include (true, false, null)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefCategory.validate_concept_form">
+<code class="sig-prename descclassname">CohortDefCategory.</code><code class="sig-name descname">validate_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefCategory.validate_concept_form" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Selected_categories</dt>
+<dd class="field-odd"><p>a list of categories to include (can include null as a
+selection)</p>
+</dd>
+<dt class="field-even">Exclude_selected</dt>
+<dd class="field-even"><p>(optional, default False) invert the query by excluding
+provided values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefDateDeid.validate_concept_form">
+<code class="sig-prename descclassname">CohortDefDateDeid.</code><code class="sig-name descname">validate_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDateDeid.validate_concept_form" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Exclude_selected</dt>
+<dd class="field-odd"><p>(optional, default False) invert the query by excluding
+matching dates</p>
+</dd>
+<dt class="field-even">Include_null_and_missing</dt>
+<dd class="field-even"><p>(optional, default False)</p>
+</dd>
+<dt class="field-odd">Query_type</dt>
+<dd class="field-odd"><p>“date_range” or “relative_to_today”</p>
+</dd>
+<dt class="field-even">Cd_numeric_min</dt>
+<dd class="field-even"><p>if query_type=”date_range”, the minimum year as YYYY</p>
+</dd>
+<dt class="field-odd">Cd_numeric_max</dt>
+<dd class="field-odd"><p>if query_type=”date_range”, the maximum year as YYYY</p>
+</dd>
+<dt class="field-even">Days_ago</dt>
+<dd class="field-even"><p>if query_type=”relative_to_today”, the number of days ago as an integer,
+for deidentified date query must be a multiple of 365</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefDate.validate_concept_form">
+<code class="sig-prename descclassname">CohortDefDate.</code><code class="sig-name descname">validate_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDate.validate_concept_form" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li><p><strong>form_errors</strong>: if post request, the list of strings describing errors validating the 
-form</p></li>
-<li><p><strong>values</strong>: a list of dicts with category, count, and uniquePatientCount for each 
-category</p></li>
-<li><p><strong>max_count</strong>: the count for the category with the greatest number of records</p></li>
-<li><p><strong>selected_values</strong>: if editing existing cd_entry, the values already selected</p></li>
-<li><p><strong>count_missing_values</strong>: number of records with null or missing values</p></li>
-<li><p><strong>count_subjects_with_missing_values</strong>: number of subjects who have records with null or
-missing values</p></li>
-<li><p><strong>exclude_selected</strong>: if editing existing cd_entry, True if exclude_selected is checked</p></li>
+<li><p><strong>exclude_selected</strong> - (optional, default False) invert the query by excluding
+matching dates</p></li>
+<li><p><strong>include_null_and_missing</strong> - (optional, default False)</p></li>
+<li><p><strong>query_type</strong> - “date_range” or “relative_to_today”</p></li>
+<li><p><strong>cd_numeric_min</strong> - if query_type=”date_range”, the minimum date (“MM/DD/YYYY” or any
+valid date string</p></li>
+<li><p><strong>cd_numeric_max</strong> - if query_type=”date_range”, the maximum date (“MM/DD/YYYY” or any
+valid date string</p></li>
+<li><p><strong>days_ago</strong> - if query_type=”relative_to_today”, the number of days ago as an integer</p></li>
 </ul>
 </dd></dl>
 
-</div>
-<div class="section" id="form-data-for-textfieldprocessor">
-<h3>form_data for TextFieldProcessor<a class="headerlink" href="#form-data-for-textfieldprocessor" title="Permalink to this headline">¶</a></h3>
 <dl class="py method">
-<dt id="chiron.processors.TextFieldProcessor.get_concept_form_data">
-<code class="sig-prename descclassname">TextFieldProcessor.</code><code class="sig-name descname">get_concept_form_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.TextFieldProcessor.get_concept_form_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a data dict of values needed to render the concept form/visualization. Typically,
-this will merge together data from self._get_preprocessed_data() with any data from
-the provided existing_cd_entry</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition (typically visualizations will be specific for provided
-cohort def)</p></li>
-<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) – cohort def entry if editing existing</p></li>
-<li><p><strong>query_type</strong> (<em>string</em>) – some concepts might have multiple forms for multiple types of queries</p></li>
-</ul>
+<dt id="chiron.processors.CohortDefNumber.validate_concept_form">
+<code class="sig-prename descclassname">CohortDefNumber.</code><code class="sig-name descname">validate_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumber.validate_concept_form" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Exclude_selected</dt>
+<dd class="field-odd"><p>(optional, default False) invert the query by excluding
+matching dates</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>data needed to render form</p>
+<dt class="field-even">Include_null_and_missing</dt>
+<dd class="field-even"><p>(optional, default False)</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
+<dt class="field-odd">Cd_numeric_min</dt>
+<dd class="field-odd"><p>minimum value as number</p>
+</dd>
+<dt class="field-even">Cd_numeric_max</dt>
+<dd class="field-even"><p>maximum value as number</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.CohortDefText.validate_concept_form">
+<code class="sig-prename descclassname">CohortDefText.</code><code class="sig-name descname">validate_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefText.validate_concept_form" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Chiron_text_field_selection</dt>
+<dd class="field-odd"><p>string with different terms separated by newline</p>
+</dd>
+<dt class="field-even">Exclude_selected</dt>
+<dd class="field-even"><p>(optional, default False) invert the query by excluding
+provided values</p>
+</dd>
+<dt class="field-odd">Include_null_and_missing</dt>
+<dd class="field-odd"><p>(optional, default False)</p>
 </dd>
 </dl>
 </dd></dl>
 
 </div>
-<div class="section" id="form-data-for-booleanfieldprocessor">
-<h3>form_data for BooleanFieldProcessor<a class="headerlink" href="#form-data-for-booleanfieldprocessor" title="Permalink to this headline">¶</a></h3>
-<dl class="py method">
-<dt id="chiron.processors.BooleanFieldProcessor.get_concept_form_data">
-<code class="sig-prename descclassname">BooleanFieldProcessor.</code><code class="sig-name descname">get_concept_form_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.BooleanFieldProcessor.get_concept_form_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a data dict of values needed to render the concept form/visualization. Typically,
-this will merge together data from self._get_preprocessed_data() with any data from
-the provided existing_cd_entry</p>
+</div>
+<div class="section" id="module-0">
+<span id="delete-entry"></span><h2>delete_entry<a class="headerlink" href="#module-0" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="chiron.api.utils.cohort_def.apply_transformation_delete_entry">
+<code class="sig-prename descclassname">chiron.api.utils.cohort_def.</code><code class="sig-name descname">apply_transformation_delete_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_cohort_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_delete_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an entry from the cohort definition.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition (typically visualizations will be specific for provided
-cohort def)</p></li>
-<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) – cohort def entry if editing existing</p></li>
-<li><p><strong>query_type</strong> (<em>string</em>) – some concepts might have multiple forms for multiple types of queries</p></li>
-</ul>
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“delete_entry”</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>data needed to render form</p>
+<dt class="field-even">Entry_id</dt>
+<dd class="field-even"><p>The entry_id of the cohort def entry to remove</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
+<dt class="field-odd">Remove_empty_criteria_sets</dt>
+<dd class="field-odd"><p>(optional, default=False) If this is the last entry in
+a criteria set, also delete the criteria set.</p>
 </dd>
 </dl>
 </dd></dl>
 
 </div>
-<div class="section" id="form-data-for-datefieldprocessor">
-<h3>form_data for DateFieldProcessor<a class="headerlink" href="#form-data-for-datefieldprocessor" title="Permalink to this headline">¶</a></h3>
-<dl class="py method">
-<dt id="chiron.processors.DateFieldProcessor.get_concept_form_data">
-<code class="sig-prename descclassname">DateFieldProcessor.</code><code class="sig-name descname">get_concept_form_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DateFieldProcessor.get_concept_form_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a data dict of values needed to render the concept form/visualization. Typically,
-this will merge together data from self._get_preprocessed_data() with any data from
-the provided existing_cd_entry</p>
+<div class="section" id="module-1">
+<span id="add-criteria-set"></span><h2>add_criteria_set<a class="headerlink" href="#module-1" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="chiron.api.utils.cohort_def.apply_transformation_add_criteria_set">
+<code class="sig-prename descclassname">chiron.api.utils.cohort_def.</code><code class="sig-name descname">apply_transformation_add_criteria_set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_cohort_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_add_criteria_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an empty criteria set to a cohort definition</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition (typically visualizations will be specific for provided
-cohort def)</p></li>
-<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) – cohort def entry if editing existing</p></li>
-<li><p><strong>query_type</strong> (<em>string</em>) – some concepts might have multiple forms for multiple types of queries</p></li>
-</ul>
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“add_criteria_set”</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>data needed to render form</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
+<dt class="field-even">Root_id</dt>
+<dd class="field-even"><p>The permanent_id of the Root to add</p>
 </dd>
 </dl>
 </dd></dl>
 
 </div>
-<div class="section" id="form-data-for-datefieldprocessordeidentified">
-<h3>form_data for DateFieldProcessorDeidentified<a class="headerlink" href="#form-data-for-datefieldprocessordeidentified" title="Permalink to this headline">¶</a></h3>
-<dl class="py method">
-<dt id="chiron.processors.DateFieldProcessorDeidentified.get_concept_form_data">
-<code class="sig-prename descclassname">DateFieldProcessorDeidentified.</code><code class="sig-name descname">get_concept_form_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DateFieldProcessorDeidentified.get_concept_form_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a data dict of values needed to render the concept form/visualization. Typically,
-this will merge together data from self._get_preprocessed_data() with any data from
-the provided existing_cd_entry</p>
+<div class="section" id="module-2">
+<span id="delete-criteria-set"></span><h2>delete_criteria_set<a class="headerlink" href="#module-2" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="chiron.api.utils.cohort_def.apply_transformation_delete_criteria_set">
+<code class="sig-prename descclassname">chiron.api.utils.cohort_def.</code><code class="sig-name descname">apply_transformation_delete_criteria_set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_cohort_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_delete_criteria_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a criteria set (and all its members) from the cohort definition.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition (typically visualizations will be specific for provided
-cohort def)</p></li>
-<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) – cohort def entry if editing existing</p></li>
-<li><p><strong>query_type</strong> (<em>string</em>) – some concepts might have multiple forms for multiple types of queries</p></li>
-</ul>
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“delete_criteria_set”</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>data needed to render form</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
+<dt class="field-even">Entry_id</dt>
+<dd class="field-even"><p>The entry_id of the criteria set to remove</p>
 </dd>
 </dl>
 </dd></dl>
 
 </div>
-<div class="section" id="form-data-for-numberfieldprocessor">
-<h3>form_data for NumberFieldProcessor<a class="headerlink" href="#form-data-for-numberfieldprocessor" title="Permalink to this headline">¶</a></h3>
-<dl class="py method">
-<dt id="chiron.processors.NumberFieldProcessor.get_concept_form_data">
-<code class="sig-prename descclassname">NumberFieldProcessor.</code><code class="sig-name descname">get_concept_form_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.NumberFieldProcessor.get_concept_form_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a data dict of values needed to render the concept form/visualization. Typically,
-this will merge together data from self._get_preprocessed_data() with any data from
-the provided existing_cd_entry</p>
+<div class="section" id="module-3">
+<span id="delete-event-rule"></span><h2>delete_event_rule<a class="headerlink" href="#module-3" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="chiron.api.utils.cohort_def.apply_transformation_delete_event_rule">
+<code class="sig-prename descclassname">chiron.api.utils.cohort_def.</code><code class="sig-name descname">apply_transformation_delete_event_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_cohort_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_delete_event_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an event rule from a criteria set.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition (typically visualizations will be specific for provided
-cohort def)</p></li>
-<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) – cohort def entry if editing existing</p></li>
-<li><p><strong>query_type</strong> (<em>string</em>) – some concepts might have multiple forms for multiple types of queries</p></li>
-</ul>
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“delete_event_rule”</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>data needed to render form</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
+<dt class="field-even">Entry_id</dt>
+<dd class="field-even"><p>The entry_id of the criteria set the event rule is associated with</p>
 </dd>
 </dl>
 </dd></dl>
 
 </div>
+<div class="section" id="module-4">
+<span id="change-to-boolean-or"></span><h2>change_to_boolean_or<a class="headerlink" href="#module-4" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_or">
+<code class="sig-prename descclassname">chiron.api.utils.cohort_def.</code><code class="sig-name descname">apply_transformation_change_to_boolean_or</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_cohort_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_or" title="Permalink to this definition">¶</a></dt>
+<dd><p>Groups two cohort def entries into an “or” group. Both entries must be in the same criteria
+set and adjacent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“change_to_boolean_or”</p>
+</dd>
+<dt class="field-even">Entry_id</dt>
+<dd class="field-even"><p>Pass the entry_id of the first entry. The second entry will be autodetected.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-5">
+<span id="change-to-boolean-and"></span><h2>change_to_boolean_and<a class="headerlink" href="#module-5" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_and">
+<code class="sig-prename descclassname">chiron.api.utils.cohort_def.</code><code class="sig-name descname">apply_transformation_change_to_boolean_and</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_cohort_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_and" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Separates two cd_entries already in an “or” group. The entries must be</dt><dd><p>adjacent. If any remaining “or” groups after the split have only one cd_entry, the “or”
+group will be eliminated altogether.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“change_to_boolean_and”</p>
+</dd>
+<dt class="field-even">Entry_id</dt>
+<dd class="field-even"><p>the entry_id of the first entry. The second entry will be autodetected.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-6">
+<span id="sort-cd-entries"></span><h2>sort_cd_entries<a class="headerlink" href="#module-6" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="chiron.api.utils.cohort_def.apply_transformation_sort_cd_entries">
+<code class="sig-prename descclassname">chiron.api.utils.cohort_def.</code><code class="sig-name descname">apply_transformation_sort_cd_entries</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_cohort_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_sort_cd_entries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change how entries are sorted within a criteria set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“sort_cd_entries”</p>
+</dd>
+<dt class="field-even">Entry_id</dt>
+<dd class="field-even"><p>The entry ID of the criteria set to be sorted</p>
+</dd>
+<dt class="field-odd">Child_ids</dt>
+<dd class="field-odd"><p>An array of entry_ids for all cd_entries in the criteria set, sorted in the
+new desired order.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 </div>
 
@@ -374,7 +445,7 @@ cohort def)</p></li>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="api_viewsets.html" class="btn btn-neutral float-left" title="API - Viewsets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="api_viewsets.html" class="btn btn-neutral float-left" title="API Endpoints" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -101,8 +101,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_models.html">Data Dictionary Model Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API - Viewsets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">API - Transforming Cohort Def</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 </ul>
 
             
@@ -223,9 +223,23 @@ iterable of samples.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_distinct_subject_records">
-<code class="sig-name descname">get_distinct_subject_records</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_distinct_subject_records" title="Permalink to this definition">¶</a></dt>
+<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_distinct_project_root_ids">
+<code class="sig-name descname">get_distinct_project_root_ids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_distinct_project_root_ids" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_id_field_for_efficient_run">
+<code class="sig-name descname">get_id_field_for_efficient_run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_id_field_for_efficient_run" title="Permalink to this definition">¶</a></dt>
+<dd><p>ex. “_alt_ids.mrn”</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_alternative_project_root_ids">
+<code class="sig-name descname">get_alternative_project_root_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_alternative_project_root_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>In addition to the main project root it, which will be saved as _id in mongo,
+there is an _alt_ids dictionary to store any additional IDs you want.
+This can be useful for projects where multiple IDs are used to match up patients.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="chiron.processors.abstract.SourceCollectionProcessor.get_project_root_id">
@@ -240,13 +254,15 @@ with patient data from other source collections.</p>
 <li><p>If no match, a new document with the provided ID will be created.</p></li>
 <li><p>If <strong>None</strong> is returned, a new document with an auto ID will be created.</p></li>
 <li><p>If <strong>False</strong> is returned, the data will not be added to Mongo at all.</p></li>
+<li><p>If Python dictionary, will be used in mongo find_one query to match alt_id(s)
+lookup doc.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the project root ID</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str, integer, None, or False</p>
+<dd class="field-even"><p>str, integer, None, False, or python dictionary</p>
 </dd>
 </dl>
 </dd></dl>
@@ -374,9 +390,23 @@ will return None</p>
 applied in queries.</p>
 <p>It is associated with a concept in the data dictionary using the
 <code class="docutils literal notranslate"><span class="pre">Concept.cohort_def_processor</span></code> field.</p>
+<dl class="py attribute">
+<dt id="chiron.processors.abstract.CohortDefProcessor.concept_type">
+<code class="sig-name descname">concept_type</code><em class="property"> = 'undefined'</em><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.concept_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
-<dt id="chiron.processors.abstract.CohortDefProcessor.get_concept_form_data">
-<em class="property">abstract </em><code class="sig-name descname">get_concept_form_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">query_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_concept_form_data" title="Permalink to this definition">¶</a></dt>
+<dt id="chiron.processors.abstract.CohortDefProcessor.get_other_concept_search_terms">
+<code class="sig-name descname">get_other_concept_search_terms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_other_concept_search_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>The concept list is searchable. By default, search includes the concept ID,
+the concept name, the concept description, and all parent category names.</p>
+<p>To add additional search terms, return them here as a single string. This method is called
+after all the data is loaded, so it can query MongoDB to include patient data values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.get_statistics">
+<em class="property">abstract </em><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_statistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a data dict of values needed to render the concept form/visualization. Typically,
 this will merge together data from self._get_preprocessed_data() with any data from
 the provided existing_cd_entry</p>
@@ -399,8 +429,13 @@ cohort def)</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.generate_concept_form">
+<code class="sig-name descname">generate_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">statistics</span></em>, <em class="sig-param"><span class="n">form_options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.generate_concept_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="chiron.processors.abstract.CohortDefProcessor.get_concept_form">
-<em class="property">abstract </em><code class="sig-name descname">get_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">query_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_concept_form" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_concept_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_concept_form" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the entire entry form as an html string, along with corresponding javascript code</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -514,11 +549,14 @@ NOTE: This should only be run after validate_concept_form has successfully run.<
 
 <dl class="py method">
 <dt id="chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def">
-<em class="property">abstract </em><code class="sig-name descname">get_mongo_match_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">get_mongo_match_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd_entry</span></em>, <em class="sig-param"><span class="n">elem_match</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts this CD entry into something that can be embedded in a Mongo ‘$match’ definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p></li>
+<li><p><strong>elem_match</strong> (<em>boolean</em>) – whether this def will be embedded inside an $elemMatch block</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the match definition</p>
@@ -632,6 +670,11 @@ class to prevent duplicated code.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="chiron.processors.abstract.CohortDefProcessor.get_summary_statistics">
+<code class="sig-name descname">get_summary_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_summary_statistics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -657,6 +700,16 @@ that will handle the flattening.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="chiron.processors.abstract.DisplayProcessor.check_mongo_output_is_array">
+<code class="sig-name descname">check_mongo_output_is_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.check_mongo_output_is_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Some aggregate methods (such as list) will return an array for that value from the
+MongoDB query. MongoDB will throw an error if you try to sort by more than 1 array field,
+simply because it causes performance issues.</p>
+<p>Returns True if array output for this field, else False. This methods primary use is to
+make sure the user doesn’t create an invalid sort def.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="chiron.processors.abstract.DisplayProcessor.get_individual_display_value">
 <code class="sig-name descname">get_individual_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">output_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_individual_display_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a value stored in the Mongo database to a display value.</p>
@@ -679,11 +732,11 @@ that will handle the flattening.</p>
 <dl class="py method">
 <dt id="chiron.processors.abstract.DisplayProcessor.get_display_value">
 <code class="sig-name descname">get_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">output_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_display_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_individual_display_value() method looks at a single value coming from the 
+<dd><p>The get_individual_display_value() method looks at a single value coming from the
 Mongo database and converts it into the final display value. However, with aggregate
 queries things can get more complicated. For example, a count aggregate will return a
 number regardless of the concept data type. A list aggregate must get multiple values
-and merge them into a single string. This method looks at the aggregation rules and 
+and merge them into a single string. This method looks at the aggregation rules and
 returns the appropriate final value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -752,6 +805,12 @@ NOTE: This should only be run after validate_table_form has successfully run.</p
 <dd class="field-odd"><p><strong>existing_td_entry</strong> (<em>dict</em>) – the current table def entry</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.DisplayProcessor.get_data_type">
+<code class="sig-name descname">get_data_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_data_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a human-readable string describing the data type (text, integer, etc.).</p>
 </dd></dl>
 
 </dd></dl>

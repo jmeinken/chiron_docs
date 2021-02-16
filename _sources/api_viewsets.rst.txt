@@ -1,65 +1,208 @@
 
 
-API - Viewsets
+API Endpoints
 ========================
 
 
-ChironUserViewSet
+
+ChironUsers
+-----------
+
+/chiron_users/ (GET)
+^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ChironUserViewSet.list
+
+/chiron_users/[chiron_user_id] (GET)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.api.serializers.ChironUserSerializer
+
+
+
+
+Me
+--
+
+/me/ (GET)
+^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.MeViewSet.list
+
+
+Concepts
+--------
+
+/concepts/ (GET)
+^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ConceptViewSet.list
+
+/concepts/[permanent_id]/ (GET, PUT)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ConceptViewSet.retrieve
+
+.. automethod:: chiron.api.viewsets.ConceptViewSet.update
+
+Statistics returned for built-in cohort def processors
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. automethod:: chiron.processors.CohortDefBoolean.get_statistics
+
+.. automethod:: chiron.processors.CohortDefCategory.get_statistics
+
+.. automethod:: chiron.processors.CohortDefDate.get_statistics
+
+.. automethod:: chiron.processors.CohortDefNumber.get_statistics
+
+.. automethod:: chiron.processors.CohortDefText.get_statistics
+
+
+Cohort def options returned for built-in cohort def processors
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. automethod:: chiron.processors.CohortDefBoolean.get_cohort_def_options
+
+.. automethod:: chiron.processors.CohortDefCategory.get_cohort_def_options
+
+.. automethod:: chiron.processors.CohortDefDate.get_cohort_def_options
+
+.. automethod:: chiron.processors.CohortDefNumber.get_cohort_def_options
+
+.. automethod:: chiron.processors.CohortDefText.get_cohort_def_options
+
+
+
+
+
+
+
+ConceptCategories
+-----------------
+
+/concept_categories/ (GET)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ConceptCategoryViewSet.list
+
+/concept_categories/[category_id]/ (GET)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ConceptCategoryViewSet.retrieve
+
+
+
+
+
+
+CohortDefinitions
+-----------------
+
+/cohort_def/ (GET)
+^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.CohortDefViewSet.list
+
+/cohort_def/[snapshot_id]/ (GET)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.CohortDefViewSet.retrieve
+
+/cohort_def/ (POST)
+^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.CohortDefViewSet.create
+
+
+
+
+
+
+TableDefinitions
+----------------
+
+/table_def/ (GET)
 ^^^^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.api.viewsets.ChironUserViewSet
-   :show-inheritance:
-   :members:
-   :undoc-members:
-   
-MeViewSet
-^^^^^^^^^
+.. automethod:: chiron.api.viewsets.TableDefViewSet.list
 
-.. autoclass:: chiron.api.viewsets.MeViewSet
-   :show-inheritance:
-   :members:
-   :undoc-members:
-   
-ConceptViewSet
-^^^^^^^^^^^^^^
+/table_def/[snapshot_id]/ (GET)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.api.viewsets.ConceptViewSet
-   :show-inheritance:
-   :members:
-   :undoc-members:
-   
-   
-RootViewSet
-^^^^^^^^^^^
+.. automethod:: chiron.api.viewsets.TableDefViewSet.retrieve
 
-.. autoclass:: chiron.api.viewsets.RootViewSet
-   :show-inheritance:
-   :members:
-   :undoc-members:
-   
-   
-CategoryViewSet
+/table_def/ (POST)
+^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.TableDefViewSet.create
+
+
+
+
+
+QueryTools
+----------
+
+/query_tools/count/ (GET, POST)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.QueryToolsViewSet.count
+
+/query_tools/preview/ (GET, POST)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.QueryToolsViewSet.preview
+
+/query_tools/export_csv/ (GET, POST)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.QueryToolsViewSet.export_csv
+
+
+
+
+
+
+Reports
+-------
+
+/reports/ (GET)
 ^^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.api.viewsets.CategoryViewSet
-   :show-inheritance:
-   :members:
-   :undoc-members:
-   
-   
-UserCreatedContentViewSet
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.api.viewsets.UserCreatedContentViewSet
-   :show-inheritance:
-   :members:
-   :undoc-members:
-   
+.. automethod:: chiron.api.viewsets.ReportViewSet.list
 
 
 
 
-   
-   
-   
+
+ReportTools
+-----------
+
+/report_tools/[report_id]/share/ (POST)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ReportToolsViewSet.share
+
+/report_tools/[report_id]/load_as_active (POST)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ReportToolsViewSet.load_as_active
+
+/report_tools/[report_id]/preview/ (GET)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ReportToolsViewSet.preview
+
+/report_tools/[report_id]/export_csv/ (GET)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ReportToolsViewSet.export_csv
+
+
+
+
+
+
+
    

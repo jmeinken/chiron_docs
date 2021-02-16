@@ -1,48 +1,109 @@
 
 
-API - Transforming Cohort Def
-=========================================
-
-Endpoints related to the transformation of the cohort def often have different request/response
-parameters based on the CohortDef processor associated with the concept.
-
-transform_cohort_def_form
--------------------------
+Transforming Cohort Definitions
+===============================
 
 .. automodule:: chiron.api.views
    :show-inheritance:
-   :members: transform_cohort_def_form
+   :members: transform_cohort_def
    :undoc-members:
    
-The ``form_data`` returned from ``transform_cohort_def_form`` will depend on the 
-processor type. Here are the built-in processor types:
+add_entry
+---------
 
-form_data for CategoryFieldProcessor
-""""""""""""""""""""""""""""""""""""
+.. automodule:: chiron.api.utils.cohort_def
+   :show-inheritance:
+   :members: apply_transformation_add_entry
+   :undoc-members:
+   
+Additional transformation arguments for specific processors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automethod:: chiron.processors.CategoryFieldProcessor.get_concept_form_data
+.. automethod:: chiron.processors.CohortDefBoolean.validate_concept_form
+.. automethod:: chiron.processors.CohortDefCategory.validate_concept_form
+.. automethod:: chiron.processors.CohortDefDateDeid.validate_concept_form
+.. automethod:: chiron.processors.CohortDefDate.validate_concept_form
+.. automethod:: chiron.processors.CohortDefNumber.validate_concept_form
+.. automethod:: chiron.processors.CohortDefText.validate_concept_form
 
-form_data for TextFieldProcessor
-""""""""""""""""""""""""""""""""
 
-.. automethod:: chiron.processors.TextFieldProcessor.get_concept_form_data
+delete_entry
+------------
 
-form_data for BooleanFieldProcessor
-"""""""""""""""""""""""""""""""""""
+.. automodule:: chiron.api.utils.cohort_def
+   :show-inheritance:
+   :members: apply_transformation_delete_entry
+   :undoc-members:
+   
+add_criteria_set
+----------------
 
-.. automethod:: chiron.processors.BooleanFieldProcessor.get_concept_form_data
+.. automodule:: chiron.api.utils.cohort_def
+   :show-inheritance:
+   :members: apply_transformation_add_criteria_set
+   :undoc-members:
+   
+delete_criteria_set
+-------------------
 
-form_data for DateFieldProcessor
-""""""""""""""""""""""""""""""""
+.. automodule:: chiron.api.utils.cohort_def
+   :show-inheritance:
+   :members: apply_transformation_delete_criteria_set
+   :undoc-members:
+   
+delete_event_rule
+-----------------
 
-.. automethod:: chiron.processors.DateFieldProcessor.get_concept_form_data
+.. automodule:: chiron.api.utils.cohort_def
+   :show-inheritance:
+   :members: apply_transformation_delete_event_rule
+   :undoc-members:
+   
+change_to_boolean_or
+--------------------
 
-form_data for DateFieldProcessorDeidentified
-""""""""""""""""""""""""""""""""""""""""""""
+.. automodule:: chiron.api.utils.cohort_def
+   :show-inheritance:
+   :members: apply_transformation_change_to_boolean_or
+   :undoc-members:
+   
+change_to_boolean_and
+---------------------
 
-.. automethod:: chiron.processors.DateFieldProcessorDeidentified.get_concept_form_data
+.. automodule:: chiron.api.utils.cohort_def
+   :show-inheritance:
+   :members: apply_transformation_change_to_boolean_and
+   :undoc-members:
+   
+sort_cd_entries
+---------------
 
-form_data for NumberFieldProcessor
-""""""""""""""""""""""""""""""""""
+.. automodule:: chiron.api.utils.cohort_def
+   :show-inheritance:
+   :members: apply_transformation_sort_cd_entries
+   :undoc-members:
 
-.. automethod:: chiron.processors.NumberFieldProcessor.get_concept_form_data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
