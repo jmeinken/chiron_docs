@@ -170,8 +170,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-chiron.api.views">
-<span id="transforming-cohort-definitions"></span><h1>Transforming Cohort Definitions<a class="headerlink" href="#module-chiron.api.views" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="transforming-cohort-definitions">
+<span id="transforming-cohort-defs"></span><h1>Transforming Cohort Definitions<a class="headerlink" href="#transforming-cohort-definitions" title="Permalink to this headline">¶</a></h1>
+<p>You can define how to change a cohort def using a transformation dict. Chiron takes an existing
+cohort definition and a transformation dict, applies the transformation, and returns a new
+cohort definition. In the API, this is done using endpoint <a class="reference internal" href="api_viewsets.html#api-cohort-def-post"><span class="std std-ref">/cohort_def/ (POST)</span></a>.</p>
 <div class="section" id="module-chiron.api.utils.cohort_def">
 <span id="add-entry"></span><h2>add_entry<a class="headerlink" href="#module-chiron.api.utils.cohort_def" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">

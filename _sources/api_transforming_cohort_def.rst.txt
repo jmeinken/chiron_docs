@@ -1,12 +1,14 @@
 
+.. _transforming-cohort-defs:
 
 Transforming Cohort Definitions
 ===============================
 
-.. automodule:: chiron.api.views
-   :show-inheritance:
-   :members: transform_cohort_def
-   :undoc-members:
+You can define how to change a cohort def using a transformation dict. Chiron takes an existing
+cohort definition and a transformation dict, applies the transformation, and returns a new 
+cohort definition. In the API, this is done using endpoint :ref:`api-cohort-def-post`.
+
+
    
 add_entry
 ---------

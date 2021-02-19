@@ -109,8 +109,12 @@ CohortDefinitions
 
 .. automethod:: chiron.api.viewsets.CohortDefViewSet.retrieve
 
+.. _api-cohort-def-post:
+
 /cohort_def/ (POST)
 ^^^^^^^^^^^^^^^^^^^
+
+For an overview of how to build a transformation dict, see section :ref:`transforming-cohort-defs`.
 
 .. automethod:: chiron.api.viewsets.CohortDefViewSet.create
 
