@@ -28,6 +28,7 @@ The query system has good support for longitudinal data.
    data_dict_models
    api_viewsets
    api_transforming_cohort_def
+   api_transforming_table_def
    
    
 

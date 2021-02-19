@@ -1,0 +1,85 @@
+
+.. _transforming-table-defs:
+
+Transforming Table Definitions
+==============================
+
+You can define how to change a table def using a transformation dict. Chiron takes an existing
+table definition and a transformation dict, applies the transformation, and returns a new 
+table definition. In the API, this is done using endpoint :ref:`api-table-def-post`.
+
+
+   
+add_entry
+---------
+
+.. automodule:: chiron.api.utils.table_def
+   :show-inheritance:
+   :members: apply_transformation_add_entry
+   :undoc-members:
+   
+Additional transformation arguments for specific processors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+coming soon...
+
+
+edit_entry
+------------
+
+.. automodule:: chiron.api.utils.table_def
+   :show-inheritance:
+   :members: apply_transformation_edit_entry
+   :undoc-members:
+
+
+delete_entry
+------------
+
+.. automodule:: chiron.api.utils.table_def
+   :show-inheritance:
+   :members: apply_transformation_delete_entry
+   :undoc-members:
+   
+resort_columns
+--------------
+
+.. automodule:: chiron.api.utils.table_def
+   :show-inheritance:
+   :members: apply_transformation_resort_columns
+   :undoc-members:
+   
+add_sort_entry
+--------------
+
+.. automodule:: chiron.api.utils.table_def
+   :show-inheritance:
+   :members: apply_transformation_add_sort_entry
+   :undoc-members:
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

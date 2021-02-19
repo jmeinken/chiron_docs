@@ -136,10 +136,16 @@ TableDefinitions
 
 .. automethod:: chiron.api.viewsets.TableDefViewSet.retrieve
 
+.. _api-table-def-post:
+
 /table_def/ (POST)
 ^^^^^^^^^^^^^^^^^^
 
+For an overview of how to build a transformation dict, see section :ref:`transforming-table-defs`.
+
 .. automethod:: chiron.api.viewsets.TableDefViewSet.create
+
+
 
 
 

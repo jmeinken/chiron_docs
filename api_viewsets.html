@@ -147,6 +147,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_transforming_table_def.html">Transforming Table Definitions</a></li>
 </ul>
 
             
@@ -303,6 +304,7 @@ last_name, email</p>
 <li><p><strong>category</strong> (<em>int</em><em>, </em><em>optional</em>) – id for a category to filter concepts</p></li>
 <li><p><strong>search</strong> (<em>search Concepts by name</em><em>, </em><em>name plural</em><em>, </em><em>and description</em>) – search Concepts by name, name plural, and description</p></li>
 <li><p><strong>show_unpublished</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – set this to “true” to return concepts that are not published</p></li>
+<li><p><strong>concept_type</strong> (<em>string</em><em>, </em><em>cohort|table</em><em>, </em><em>default=None</em>) – filter based on the concept type</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -329,7 +331,7 @@ then the active cohort definition will be used</p></li>
 <li><p><strong>show_all_data</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – When calculating statistics, ignore the cohort_def and return stats
 about data for all subjects</p></li>
 <li><p><strong>include_cohort_def_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include options for creating a cohort def entry</p></li>
-<li><p><strong>entry_id</strong> (<em>int</em><em>, </em><em>optional</em>) – if editing an existing cohort def entry, the entry_id to use when 
+<li><p><strong>entry_id</strong> (<em>int</em><em>, </em><em>optional</em>) – if editing an existing cohort def entry, the entry_id to use when
 generating cohort def options</p></li>
 <li><p><strong>callback</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – run callback method for concept</p></li>
 </ul>
@@ -541,6 +543,11 @@ missing values</p>
 <code class="sig-prename descclassname">ConceptCategoryViewSet.</code><code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptCategoryViewSet.list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns all top-level categories and concepts (i.e. categories that don’t have parents
 and concepts that don’t have a category). Results are filtered based on user permissions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>concept_type</strong> (<em>string</em><em>, </em><em>cohort|table</em><em>, </em><em>default=None</em>) – filter based on the concept type</p>
+</dd>
+</dl>
 <p>RESPONSE:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Category_id</dt>
@@ -561,8 +568,13 @@ and concepts that don’t have a category). Results are filtered based on user p
 <dl class="py method">
 <dt id="chiron.api.viewsets.ConceptCategoryViewSet.retrieve">
 <code class="sig-prename descclassname">ConceptCategoryViewSet.</code><code class="sig-name descname">retrieve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">pk</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptCategoryViewSet.retrieve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns all child categories and concepts of the provided category ID.  Results are 
+<dd><p>Returns all child categories and concepts of the provided category ID.  Results are
 filtered based on user permissions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>concept_type</strong> (<em>string</em><em>, </em><em>cohort|table</em><em>, </em><em>default=None</em>) – filter based on the concept type</p>
+</dd>
+</dl>
 <p>RESPONSE:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Category_id</dt>
@@ -777,7 +789,8 @@ Does not return a list as the method name implies.</p>
 
 </div>
 <div class="section" id="table-def-post">
-<h3>/table_def/ (POST)<a class="headerlink" href="#table-def-post" title="Permalink to this headline">¶</a></h3>
+<span id="api-table-def-post"></span><h3>/table_def/ (POST)<a class="headerlink" href="#table-def-post" title="Permalink to this headline">¶</a></h3>
+<p>For an overview of how to build a transformation dict, see section <a class="reference internal" href="api_transforming_table_def.html#transforming-table-defs"><span class="std std-ref">Transforming Table Definitions</span></a>.</p>
 <dl class="py method">
 <dt id="chiron.api.viewsets.TableDefViewSet.create">
 <code class="sig-prename descclassname">TableDefViewSet.</code><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.TableDefViewSet.create" title="Permalink to this definition">¶</a></dt>
@@ -843,12 +856,12 @@ definition. If no table_def is provided, the active table def is used.</p>
 <code class="sig-prename descclassname">QueryToolsViewSet.</code><code class="sig-name descname">count</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.QueryToolsViewSet.count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the count of subjects in a cohort.</p>
 <p>The POST method is provided to allow passing of long query parameters. It works exactly the
-same as the GET method.</p>
+same as the GET method.
+:param cohort_def: The cohort def to use. If not provided, the active cohort_def or an</p>
+<blockquote>
+<div><p>empty cohort def will be used.</p>
+</div></blockquote>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def or an
-empty cohort def will be used.</p>
-</dd>
 </dl>
 <p>RESPONSE</p>
 <dl class="field-list simple">
@@ -1027,7 +1040,7 @@ in both tables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sort_field</strong> (<em>string</em><em>, </em><em>optional</em>) – Ignore default sort order and sort by the field associated with the 
+<li><p><strong>sort_field</strong> (<em>string</em><em>, </em><em>optional</em>) – Ignore default sort order and sort by the field associated with the
 provided table def entry ID</p></li>
 <li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
 <li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
