@@ -40,6 +40,26 @@ SourceCollectionProcessor (abstract)
    :undoc-members:
    :show-inheritance:
    
+StandardLoadMixin
+"""""""""""""""""
+
+.. autoclass:: chiron.processors.abstract.StandardLoadMixin
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+BatchLoadMixin
+""""""""""""""
+
+.. autoclass:: chiron.processors.abstract.BatchLoadMixin
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+
+   
 EtlProcessor (abstract)
 ^^^^^^^^^^^^^^^^^^^^^^^
 

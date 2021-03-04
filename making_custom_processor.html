@@ -92,7 +92,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Creating Your Own Processors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-make-a-custom-processor-class">How to make a custom processor class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#abstract-processors">Abstract Processors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#sourcecollectionprocessor-abstract">SourceCollectionProcessor (abstract)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sourcecollectionprocessor-abstract">SourceCollectionProcessor (abstract)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#standardloadmixin">StandardLoadMixin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#batchloadmixin">BatchLoadMixin</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#etlprocessor-abstract">EtlProcessor (abstract)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cohortdefprocessor-abstract">CohortDefProcessor (abstract)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#displayprocessor-abstract">DisplayProcessor (abstract)</a></li>
@@ -204,14 +208,53 @@ models to use your custom processor.</p>
 <em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.</code><code class="sig-name descname">SourceCollectionProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oSourceCollection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Generates an iterable of data to import into MongoDB.</p>
+<p>Must be associated with either the StandardLoadMixin or the BatchLoadMixin. If both mixins
+are used, the BatchLoadMixin will be used unless get_subject_match_defs() method returns
+None</p>
 <p>It is associated with a SourceCollection in the data dictionary using the
 <code class="docutils literal notranslate"><span class="pre">SourceCollection.processor</span></code> field.</p>
 <dl class="py method">
-<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_source_data_collection">
-<em class="property">abstract </em><code class="sig-name descname">get_source_data_collection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_source_data_collection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an iterable of data from an external source that corresponds to the associated
-<code class="docutils literal notranslate"><span class="pre">Root</span></code>.</p>
-<p>For example, a source data collection associated with a “sample” root should return an
+<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_collection_id">
+<em class="property">abstract </em><code class="sig-name descname">get_collection_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_collection_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads one record from the source data collection and returns a unique ID for the record.</p>
+<p>For example, if this is a source collection of samples, could return a sample ID. If you 
+had sample data in multiple source collections, that sample ID could be used to merge
+data for the same sample.</p>
+<p>Collection IDs only apply to subcollections This method has no effect on a collection
+associated with the subject (root) collection.</p>
+<ul class="simple">
+<li><p>If the ID matches an existing subdocument in Mongo, data will be appended to that
+subdocument.</p></li>
+<li><p>If no match, a new subdocument with the provided ID will be created.</p></li>
+<li><p>If <strong>None</strong> is returned, a new subdocument with an auto ID will be created.</p></li>
+<li><p>If <strong>False</strong> is returned, the data will not be added to Mongo at all.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the record ID</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str, integer, None, False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="standardloadmixin">
+<h4>StandardLoadMixin<a class="headerlink" href="#standardloadmixin" title="Permalink to this headline">¶</a></h4>
+<dl class="py class">
+<dt id="chiron.processors.abstract.StandardLoadMixin">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.</code><code class="sig-name descname">StandardLoadMixin</code><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Retrieves an entire source collection as an iterable and processes/loads
+to MongoDB one record at a time.</p>
+<dl class="py method">
+<dt id="chiron.processors.abstract.StandardLoadMixin.get_source_collection">
+<em class="property">abstract </em><code class="sig-name descname">get_source_collection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_source_collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the entire source dataset as an iterable. Each entry in this iterable should
+corresponds to the associated <code class="docutils literal notranslate"><span class="pre">Collection</span></code>.</p>
+<p>For example, a source data collection associated with a “sample” collection should return an
 iterable of samples.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -224,94 +267,61 @@ iterable of samples.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_distinct_project_root_ids">
-<code class="sig-name descname">get_distinct_project_root_ids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_distinct_project_root_ids" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_id_field_for_efficient_run">
-<code class="sig-name descname">get_id_field_for_efficient_run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_id_field_for_efficient_run" title="Permalink to this definition">¶</a></dt>
-<dd><p>ex. “_alt_ids.mrn”</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_alternative_project_root_ids">
-<code class="sig-name descname">get_alternative_project_root_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_alternative_project_root_ids" title="Permalink to this definition">¶</a></dt>
-<dd><p>In addition to the main project root it, which will be saved as _id in mongo,
-there is an _alt_ids dictionary to store any additional IDs you want.
-This can be useful for projects where multiple IDs are used to match up patients.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_project_root_id">
-<em class="property">abstract </em><code class="sig-name descname">get_project_root_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_project_root_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads one record from the source data collection and returns a unique ID corresponding to
-the project root. This will become the document “_id” field in Mongo.</p>
-<p>For example, if the project root is “Patients”, this should fetch an MRN or similar
-patient ID. This ID field will be used to match patient data from this source collection
-with patient data from other source collections.</p>
-<ul class="simple">
-<li><p>If the ID matches an existing document in Mongo, data will be appended to that document.</p></li>
-<li><p>If no match, a new document with the provided ID will be created.</p></li>
-<li><p>If <strong>None</strong> is returned, a new document with an auto ID will be created.</p></li>
-<li><p>If <strong>False</strong> is returned, the data will not be added to Mongo at all.</p></li>
-<li><p>If Python dictionary, will be used in mongo find_one query to match alt_id(s)
-lookup doc.</p></li>
-</ul>
+<dt id="chiron.processors.abstract.StandardLoadMixin.get_subject_match_def">
+<em class="property">abstract </em><code class="sig-name descname">get_subject_match_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_subject_match_def" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns rules as a Python dict about how associate a new record with the correct 
+subject in MongoDB.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the project root ID</p>
+<dt class="field-odd">Match_rule</dt>
+<dd class="field-odd"><p>A Python dict that gives the $match definition for this subject</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str, integer, None, False, or python dictionary</p>
+<dt class="field-even">Add_ids</dt>
+<dd class="field-even"><p>A dict of additional IDs to store in MongoDB for the subject. These will get
+added inside a dict field <cite>_ids</cite>. Then they can be referenced the match_rule for
+subsequent source collections.</p>
+</dd>
+<dt class="field-odd">If_no_match</dt>
+<dd class="field-odd"><p>create/skip (default: create) - what to do if there are no existing subjects
+that match the match_rule</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.abstract.SourceCollectionProcessor.get_root_id">
-<em class="property">abstract </em><code class="sig-name descname">get_root_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_root_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads one record from the source data collection and returns a unique ID corresponding to
-this root. This will become the subdocument “_id” field in Mongo.</p>
-<p>For example, if the associated root is “Samples”, this should fetch a sample ID.
-This ID field will be used to match sample data from this source collection
-with sample data from other source collections.</p>
-<ul class="simple">
-<li><p>If the ID matches an existing subdocument in Mongo, data will be appended to that
-subdocument.</p></li>
-<li><p>If no match, a new subdocument with the provided ID will be created.</p></li>
-<li><p>If <strong>None</strong> is returned, a new subdocument with an auto ID will be created.</p></li>
-<li><p>If <strong>False</strong> is returned, the data will not be added to Mongo at all.</p></li>
-</ul>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the root ID</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str, integer, None, or False</p>
+<p>SPECIAL VALUES YOU CAN RETURN:</p>
+<p>If a simple ID value (string, integer):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{</dt><dd><p>“match_rule” : {“_ids.id” : value},
+“add_ids” : {“id” : value},
+“if_no_match” : “create”,</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.abstract.SourceCollectionProcessor._lookup_existing_subject_id">
-<code class="sig-name descname">_lookup_existing_subject_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">match_def</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor._lookup_existing_subject_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Utility method:
-In order to append data to an existing subject, the response from method
-get_project_root_id()
-needs to match the _id field in Mongo. In situations where you’re source
-data doesn’t have the _id field and you are matching using different field(s),
-the get_project_root_id() method will have to query the Mongo database and
-find the _id field. This utility method can be used to do that.</p>
+<p>}</p>
+</div></blockquote>
+<p>If None, a new subject record will be created:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{</dt><dd><p>“match_rule” : {},
+“add_ids” : {},
+“if_no_match” : “create”,</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>If False, the record will be skipped:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{</dt><dd><p>“match_rule” : {},
+“add_ids” : {},
+“if_no_match” : “skip”,</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>match_def</strong> (<em>dict</em>) – a Mongo match definition (should return one unique document)</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the match_def</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the <code class="docutils literal notranslate"><span class="pre">_id</span></code> field of the document</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str, integer or None</p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>python dict, str, integer, None, False</p>
 </dd>
 </dl>
 </dd></dl>
@@ -319,13 +329,93 @@ find the _id field. This utility method can be used to do that.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="batchloadmixin">
+<h4>BatchLoadMixin<a class="headerlink" href="#batchloadmixin" title="Permalink to this headline">¶</a></h4>
+<dl class="py class">
+<dt id="chiron.processors.abstract.BatchLoadMixin">
+<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.</code><code class="sig-name descname">BatchLoadMixin</code><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Instead of loading one source collection record at a time, loads all the records for each
+subject at once. Sometimes this is more time efficient.</p>
+<dl class="py method">
+<dt id="chiron.processors.abstract.BatchLoadMixin.get_subject_match_defs">
+<code class="sig-name descname">get_subject_match_defs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin.get_subject_match_defs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all subject match definitions as a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Match_rule</dt>
+<dd class="field-odd"><p>A Python dict that gives the $match definition for this subject</p>
+</dd>
+<dt class="field-even">Add_ids</dt>
+<dd class="field-even"><p>A dict of additional IDs to store in MongoDB for the subject. These will get
+added inside a dict field <cite>_ids</cite>. Then they can be referenced the match_rule for
+subsequent source collections.</p>
+</dd>
+<dt class="field-odd">If_no_match</dt>
+<dd class="field-odd"><p>create/skip (default: create) - what to do if there are no existing subjects
+that match the match_rule</p>
+</dd>
+</dl>
+<p>SPECIAL VALUES YOU CAN RETURN:</p>
+<p>If a simple ID value (string, integer):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{</dt><dd><p>“match_rule” : {“_ids.id” : value},
+“add_ids” : {“id” : value},
+“if_no_match” : “create”,</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>If None, a new subject record will be created:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{</dt><dd><p>“match_rule” : {},
+“add_ids” : {},
+“if_no_match” : “create”,</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>If False, the record will be skipped:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{</dt><dd><p>“match_rule” : {},
+“add_ids” : {},
+“if_no_match” : “skip”,</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the match_def</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of: python dict, str, integer, None, False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.BatchLoadMixin.get_source_collection_batch">
+<em class="property">abstract </em><code class="sig-name descname">get_source_collection_batch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">subject_match_def</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin.get_source_collection_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all source collection entries associated with the subject corresponding to the
+subject_match_def</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
 <div class="section" id="etlprocessor-abstract">
 <h3>EtlProcessor (abstract)<a class="headerlink" href="#etlprocessor-abstract" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="chiron.processors.abstract.EtlProcessor">
 <em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.</code><code class="sig-name descname">EtlProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Retrieves or calculates the value to store in MongoDB from a source collection record.</p>
+<p>An ETL Processor is for a concept. During the ETL in to MongoDB, the ETLProcessor gets
+a record from the source collection and returns the value to store for this concept in
+MongoDB.</p>
 <p>It is associated with a Concept in the data dictionary using the <code class="docutils literal notranslate"><span class="pre">Concept.etl_processor</span></code>
 field.</p>
 <dl class="py method">
@@ -334,7 +424,7 @@ field.</p>
 <dd><p>Retrieves or calculates the value to store in MongoDB from a source collection record.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>record</strong> (<em>various</em>) – a single entry returned by <code class="docutils literal notranslate"><span class="pre">SourceCollection.get_source_data_collection()</span></code></p>
+<dd class="field-odd"><p><strong>record</strong> (<em>various</em>) – a single entry returned by <code class="docutils literal notranslate"><span class="pre">SourceCollection.get_source_collection()</span></code></p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the value to store in MongoDB</p>
@@ -352,7 +442,7 @@ field.</p>
 Returns only unique, non-null values from provided data_list.</p>
 <p>Chiron allows multiple values to be stored in a single concept entry as a list.
 This is useful when you have multiple values for a concept, but don’t want
-to create a whole new Root for that one concept. Typically it’s better to store the
+to create a whole new Collection for that one concept. Typically it’s better to store the
 unique set of values rather than a repetitive
 list.</p>
 <p>IN: [‘Hispanic’, ‘Caucasian’, ‘Caucasian’, None, ‘Caucasian’, None]

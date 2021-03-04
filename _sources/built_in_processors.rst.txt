@@ -12,23 +12,29 @@ SourceCollection Processors
 ---------------------------
 
 
-SourceCollectionProcessorForDjangoModel
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SourceDjangoModel
+^^^^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.processors.SourceCollectionProcessorForDjangoModel
+.. autoclass:: chiron.processors.SourceDjangoModel
    :show-inheritance:
    
-SourceCollectionProcessorSelf
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SourceCsv
+^^^^^^^^^
 
-.. autoclass:: chiron.processors.SourceCollectionProcessorSelf
+.. autoclass:: chiron.processors.SourceCsv
+   :show-inheritance:
+   
+SourceSelf
+^^^^^^^^^^
+
+.. autoclass:: chiron.processors.SourceSelf
    :show-inheritance:
    
    
-SourceCollectionProcessorSubdoc
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SourceSelfSubdoc
+^^^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.processors.SourceCollectionProcessorSubdoc
+.. autoclass:: chiron.processors.SourceSelfSubdoc
    :show-inheritance:
    
    
@@ -36,88 +42,135 @@ ETL Processors
 --------------
 
 
-EtlProcessorForDjangoField
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+EtlDjangoField
+^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.processors.EtlProcessorForDjangoField
+.. autoclass:: chiron.processors.EtlDjangoField
    :show-inheritance:
 
-EtlProcessorForDjangoMultifieldMerge
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EtlDjangoMultifieldMerge
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.processors.EtlProcessorForDjangoMultifieldMerge
-   :show-inheritance:
-   
-EtlProcessorForDict
-^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.EtlProcessorForDict
+.. autoclass:: chiron.processors.EtlDjangoMultifieldMerge
    :show-inheritance:
    
-EtlProcessorForDictGetCount
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EtlPythonDictItem
+^^^^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.processors.EtlProcessorForDictGetCount
+.. autoclass:: chiron.processors.EtlPythonDictItem
    :show-inheritance:
    
-EtlProcessorCounter
-^^^^^^^^^^^^^^^^^^^
+EtlPythonDictItemCounter
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.processors.EtlProcessorCounter
+.. autoclass:: chiron.processors.EtlPythonDictItemCounter
    :show-inheritance:
    
+   
 
-CohortDef & Display Processors
+CohortDef Processors
 ------------------------------
 
-CohortDef processors manage how a concept is applied to queries. Display Processors manage
-how a concept is applied to results output. These built-in processors can be used as either
-unless otherwise stated.
+CohortDef processors manage how a concept is applied to queries.
 
-CategoryFieldProcessor
-^^^^^^^^^^^^^^^^^^^^^^
+CohortDefCategory
+^^^^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.processors.CategoryFieldProcessor
+.. autoclass:: chiron.processors.CohortDefCategory
    :show-inheritance:
 
-BooleanFieldProcessor
+CohortDefDate
+^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.CohortDefDate
+   :show-inheritance:
+   
+CohortDefDateDeid
+^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.CohortDefDateDeid
+   :show-inheritance:
+   
+CohortDefNumber
+^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.CohortDefNumber
+   :show-inheritance:
+   
+CohortDefText
+^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.CohortDefText
+   :show-inheritance:
+   
+CohortDefTextCustomSort
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.CohortDefTextCustomSort
+   :show-inheritance:
+   
+CohortDefBoolean
+^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.CohortDefBoolean
+   :show-inheritance:
+   
+
+Display Processors
+------------------
+
+Display Processors manage how a concept is applied to results output.
+
+DisplayCategory
+^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.DisplayCategory
+   :show-inheritance:
+
+DisplayDate
+^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.DisplayDate
+   :show-inheritance:
+   
+DisplayDateDeid
+^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.DisplayDateDeid
+   :show-inheritance:
+   
+DisplayNumber
+^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.DisplayNumber
+   :show-inheritance:
+   
+DisplayText
+^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.DisplayText
+   :show-inheritance:
+   
+DisplayTextCustomSort
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.processors.BooleanFieldProcessor
+.. autoclass:: chiron.processors.DisplayTextCustomSort
    :show-inheritance:
    
-NumberFieldProcessor
-^^^^^^^^^^^^^^^^^^^^
+DisplayBoolean
+^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.processors.NumberFieldProcessor
+.. autoclass:: chiron.processors.DisplayBoolean
    :show-inheritance:
    
-TextFieldProcessor
-^^^^^^^^^^^^^^^^^^
+DisplayGeneric
+^^^^^^^^^^^^^^
 
-.. autoclass:: chiron.processors.TextFieldProcessor
+.. autoclass:: chiron.processors.DisplayGeneric
    :show-inheritance:
    
-TextFieldProcessorCustomSort
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.TextFieldProcessorCustomSort
-   :show-inheritance:
    
-DateFieldProcessor
-^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DateFieldProcessor
-   :show-inheritance:
    
-DateFieldProcessorDeidentified
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DateFieldProcessorDeidentified
-   :show-inheritance:
-   
-
-
 
 
 
