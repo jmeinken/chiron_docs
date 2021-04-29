@@ -163,19 +163,78 @@
 <dt id="chiron.processors.abstract.display_processor.DisplayProcessor">
 <em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.display_processor.</code><code class="sig-name descname">DisplayProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Manages how a concept is incorporated into output datasets.</p>
-<p>It is associated with a concept in the data dictionary using the
-<code class="docutils literal notranslate"><span class="pre">Concept.display_processor</span></code> field.</p>
+<p>Manages how a concept is incorporated into output datasets. It is associated with a concept in
+the data dictionary using the <code class="docutils literal notranslate"><span class="pre">Concept.display_processor</span></code> field.</p>
+<p>IMPORTANT METHOD WORKFLOWS:</p>
+<p>Creating a Table Def Entry:</p>
+<ul class="simple">
+<li><p>set_aggregation_method() - sets a list of aggregation objects that can be applied to this
+concept</p></li>
+<li><p>get_form_options() - data needed to display a table def entry form</p></li>
+<li><p>validate_form() - checks if a form submission is valid</p></li>
+<li><p>generate_table_def_entry() - converts form submission into a dict to be added to cohort def</p></li>
+</ul>
+<p>Applying a Table Def Entry to a Results Set:</p>
+<ul class="simple">
+<li><p>get_mongo_aggregate_def() - tell mongo how to aggregate this concept</p></li>
+<li><p>get_sort_field() - tell mongo how to sort this concept</p></li>
+<li><p>get_header_display_value() - the label for this column in the results output</p></li>
+<li><p>get_individual_display_value() - how to convert the stored concept value into a string</p></li>
+<li><p>get_display_value() - how to convert the mongo output value into a string</p></li>
+</ul>
 <dl class="py method">
-<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_header_display_value">
-<code class="sig-name descname">get_header_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_header_display_value" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.set_aggregation_methods">
+<code class="sig-name descname">set_aggregation_methods</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.set_aggregation_methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a list of AggregationMethod objects that can be applied to this concept. This is
+automatically called by the init method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_form_options">
+<code class="sig-name descname">get_form_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_def</span></em>, <em class="sig-param"><span class="n">existing_td_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_form_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of options for customizing a table_def_entry</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.validate_form">
+<code class="sig-name descname">validate_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.validate_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>If provided form validates, returns True and populates self.cleaned dict with any data
+needed to generate a table def entry. If validation fails, returns False and adds
+error message strings to self.errors list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) – the HTTP POST arguments from the client</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>whether form validated</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.generate_table_def_entry">
+<code class="sig-name descname">generate_table_def_entry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.generate_table_def_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the table_def entry definition for this column
+NOTE: This should typically be run after validate_table_form has successfully run.
+Otherwise, it will just generate a default entry with no customization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the table def entry</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_mongo_aggregate_def">
-<code class="sig-name descname">get_mongo_aggregate_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em>, <em class="sig-param"><span class="n">field_machine_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_mongo_aggregate_def" title="Permalink to this definition">¶</a></dt>
-<dd><p>For flattened (aggregated) fields, returns the $group rule and the $project rule
-that will handle the flattening.</p>
+<code class="sig-name descname">get_mongo_aggregate_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em>, <em class="sig-param"><span class="n">field_temp_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_mongo_aggregate_def" title="Permalink to this definition">¶</a></dt>
+<dd><p>For aggregated fields, returns the $group rule and the $project rule
+that will handle the aggregation.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -186,6 +245,27 @@ MongoDB query. MongoDB will throw an error if you try to sort by more than 1 arr
 simply because it causes performance issues.</p>
 <p>Returns True if array output for this field, else False. This methods primary use is to
 make sure the user doesn’t create an invalid sort def.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_sort_field">
+<code class="sig-name descname">get_sort_field</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_def</span></em>, <em class="sig-param"><span class="n">entry_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_sort_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the mongo field name to use for sorting by this concept. Often that will simply be
+the concept permanent ID itself, but could be different for more complex data structures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>mongo field name</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_header_display_value">
+<code class="sig-name descname">get_header_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_header_display_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a display name for the column</p>
 </dd></dl>
 
 <dl class="py method">
@@ -211,9 +291,10 @@ make sure the user doesn’t create an invalid sort def.</p>
 <dl class="py method">
 <dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_display_value">
 <code class="sig-name descname">get_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">td_entry</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">output_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_display_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_individual_display_value() method looks at a single value coming from the
-Mongo database and converts it into the final display value. However, with aggregate
-queries things can get more complicated. For example, a count aggregate will return a
+<dd><p>The get_individual_display_value() method converts a single value from the
+Mongo database into the final display value. However, with aggregate
+queries the type of value coming out of the query might be different from the type of
+value stored in the database. For example, a count aggregate will return a
 number regardless of the concept data type. A list aggregate must get multiple values
 and merge them into a single string. This method looks at the aggregation rules and
 returns the appropriate final value.</p>
@@ -235,61 +316,10 @@ returns the appropriate final value.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_sort_field">
-<code class="sig-name descname">get_sort_field</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entry_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_sort_field" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the mongo field name to use for sorting by this concept. Often that will simply be
-the concept permanent ID itself, but could be different for more complex data structures.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>mongo field name</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_table_form">
-<code class="sig-name descname">get_table_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">existing_td_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_table_form" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an HTML form for customizing this field.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.validate_table_form">
-<code class="sig-name descname">validate_table_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.validate_table_form" title="Permalink to this definition">¶</a></dt>
-<dd><p>If provided form validates, returns True and populates self.cleaned dict with any data
-needed to generate a table def entry. If validation fails, returns False and adds
-error message strings to self.errors list.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) – the HTTP POST arguments from the client</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>whether form validated</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>boolean</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.abstract.display_processor.DisplayProcessor.modify_table_def_entry">
-<em class="property">abstract </em><code class="sig-name descname">modify_table_def_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">existing_td_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.modify_table_def_entry" title="Permalink to this definition">¶</a></dt>
-<dd><p>Modifies a table def entry dict in place (no return value).
-NOTE: This should only be run after validate_table_form has successfully run.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>existing_td_entry</strong> (<em>dict</em>) – the current table def entry</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="chiron.processors.abstract.display_processor.DisplayProcessor.get_data_type">
 <code class="sig-name descname">get_data_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.display_processor.DisplayProcessor.get_data_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a human-readable string describing the data type (text, integer, etc.).</p>
+<dd><p>Returns a human-readable string describing the data type (text, integer, etc.).
+This is used to generate a data dictionary.</p>
 </dd></dl>
 
 </dd></dl>

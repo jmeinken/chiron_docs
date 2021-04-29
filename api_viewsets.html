@@ -331,8 +331,11 @@ then the active cohort definition will be used</p></li>
 <li><p><strong>show_all_data</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – When calculating statistics, ignore the cohort_def and return stats
 about data for all subjects</p></li>
 <li><p><strong>include_cohort_def_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include options for creating a cohort def entry</p></li>
-<li><p><strong>entry_id</strong> (<em>int</em><em>, </em><em>optional</em>) – if editing an existing cohort def entry, the entry_id to use when
-generating cohort def options</p></li>
+<li><p><strong>include_table_def_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include options for creating a table def entry</p></li>
+<li><p><strong>cohort_def_entry_id</strong> (<em>int</em><em>, </em><em>optional</em>) – if editing an existing cohort def entry, the entry_id to use
+whengenerating cohort def options</p></li>
+<li><p><strong>table_def_entry_id</strong> (<em>int</em><em>, </em><em>optional</em>) – if editing an existing table def entry, the entry_id to use when
+generating table def options</p></li>
 <li><p><strong>callback</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – run callback method for concept</p></li>
 </ul>
 </dd>
@@ -354,19 +357,19 @@ callback_data</p>
 <dl class="py method">
 <dt id="chiron.processors.CohortDefBoolean.get_statistics">
 <code class="sig-prename descclassname">CohortDefBoolean.</code><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefBoolean.get_statistics" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Values</dt>
-<dd class="field-odd"><p>a list of dicts with category=true/false, count, and uniquePatientCount</p>
+<dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
+There shouldn’t be any need to override this method.
+note: There is no cache implemented yet, so just returns preprocess_statistics()
+results directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
 </dd>
-<dt class="field-even">Max_count</dt>
-<dd class="field-even"><p>the count for the category with the greatest number of records</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>key/value pairs of data</p>
 </dd>
-<dt class="field-odd">Count_missing_values</dt>
-<dd class="field-odd"><p>number of records with null or missing values</p>
-</dd>
-<dt class="field-even">Count_subjects_with_missing_values</dt>
-<dd class="field-even"><p>number of subjects who have records with null or
-missing values</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -374,20 +377,19 @@ missing values</p>
 <dl class="py method">
 <dt id="chiron.processors.CohortDefCategory.get_statistics">
 <code class="sig-prename descclassname">CohortDefCategory.</code><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefCategory.get_statistics" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Values</dt>
-<dd class="field-odd"><p>a list of dicts with category, count, and uniquePatientCount for each
-category</p>
+<dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
+There shouldn’t be any need to override this method.
+note: There is no cache implemented yet, so just returns preprocess_statistics()
+results directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
 </dd>
-<dt class="field-even">Max_count</dt>
-<dd class="field-even"><p>the count for the category with the greatest number of records</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>key/value pairs of data</p>
 </dd>
-<dt class="field-odd">Count_missing_values</dt>
-<dd class="field-odd"><p>number of records with null or missing values</p>
-</dd>
-<dt class="field-even">Count_subjects_with_missing_values</dt>
-<dd class="field-even"><p>number of subjects who have records with null or
-missing values</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -395,20 +397,19 @@ missing values</p>
 <dl class="py method">
 <dt id="chiron.processors.CohortDefDate.get_statistics">
 <code class="sig-prename descclassname">CohortDefDate.</code><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDate.get_statistics" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Histogram_data_string</dt>
-<dd class="field-odd"><p>an array of arrays storing bin name/count pairs, returned
-as a JSON string</p>
+<dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
+There shouldn’t be any need to override this method.
+note: There is no cache implemented yet, so just returns preprocess_statistics()
+results directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
 </dd>
-<dt class="field-even">Stats</dt>
-<dd class="field-even"><p>a dict of summary statistics: min, max, count_non_null, unique_patients</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>key/value pairs of data</p>
 </dd>
-<dt class="field-odd">Count_missing_values</dt>
-<dd class="field-odd"><p>number of records with null or missing values</p>
-</dd>
-<dt class="field-even">Count_subjects_with_missing_values</dt>
-<dd class="field-even"><p>number of subjects who have records with null or
-missing values</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -416,20 +417,19 @@ missing values</p>
 <dl class="py method">
 <dt id="chiron.processors.CohortDefNumber.get_statistics">
 <code class="sig-prename descclassname">CohortDefNumber.</code><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumber.get_statistics" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Histogram_data_string</dt>
-<dd class="field-odd"><p>an array of arrays storing bin name/count pairs, returned
-as a JSON string</p>
+<dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
+There shouldn’t be any need to override this method.
+note: There is no cache implemented yet, so just returns preprocess_statistics()
+results directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
 </dd>
-<dt class="field-even">Stats</dt>
-<dd class="field-even"><p>a dict of summary statistics: min, max, avg, count_non_null, unique_patients</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>key/value pairs of data</p>
 </dd>
-<dt class="field-odd">Count_missing_values</dt>
-<dd class="field-odd"><p>number of records with null or missing values</p>
-</dd>
-<dt class="field-even">Count_subjects_with_missing_values</dt>
-<dd class="field-even"><p>number of subjects who have records with null or
-missing values</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -437,13 +437,19 @@ missing values</p>
 <dl class="py method">
 <dt id="chiron.processors.CohortDefText.get_statistics">
 <code class="sig-prename descclassname">CohortDefText.</code><code class="sig-name descname">get_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefText.get_statistics" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Count_missing_values</dt>
-<dd class="field-odd"><p>number of records with null or missing values</p>
+<dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
+There shouldn’t be any need to override this method.
+note: There is no cache implemented yet, so just returns preprocess_statistics()
+results directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
 </dd>
-<dt class="field-even">Count_subjects_with_missing_values</dt>
-<dd class="field-even"><p>number of subjects who have records with null or
-missing values</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>key/value pairs of data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -451,86 +457,6 @@ missing values</p>
 </div>
 <div class="section" id="cohort-def-options-returned-for-built-in-cohort-def-processors">
 <h4>Cohort def options returned for built-in cohort def processors<a class="headerlink" href="#cohort-def-options-returned-for-built-in-cohort-def-processors" title="Permalink to this headline">¶</a></h4>
-<dl class="py method">
-<dt id="chiron.processors.CohortDefBoolean.get_cohort_def_options">
-<code class="sig-prename descclassname">CohortDefBoolean.</code><code class="sig-name descname">get_cohort_def_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefBoolean.get_cohort_def_options" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Selected_values</dt>
-<dd class="field-odd"><p>if editing existing cd_entry, the values already selected</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.CohortDefCategory.get_cohort_def_options">
-<code class="sig-prename descclassname">CohortDefCategory.</code><code class="sig-name descname">get_cohort_def_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefCategory.get_cohort_def_options" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Selected_values</dt>
-<dd class="field-odd"><p>if editing existing cd_entry, the values already selected</p>
-</dd>
-<dt class="field-even">Exclude_selected</dt>
-<dd class="field-even"><p>if editing existing cd_entry, True if exclude_selected is checked</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.CohortDefDate.get_cohort_def_options">
-<code class="sig-prename descclassname">CohortDefDate.</code><code class="sig-name descname">get_cohort_def_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDate.get_cohort_def_options" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Query_type</dt>
-<dd class="field-odd"><p>“date_range” (default) or “relative_to_today”</p>
-</dd>
-<dt class="field-even">Existing_min</dt>
-<dd class="field-even"><p>for editing query_type=”date_range”, min date filter as date string</p>
-</dd>
-<dt class="field-odd">Existing_max</dt>
-<dd class="field-odd"><p>for editing query_type=”date_range”, max date filter as date string</p>
-</dd>
-<dt class="field-even">Days_ago</dt>
-<dd class="field-even"><p>for editing query_type=”relative_to_today”, days ago filter as integer</p>
-</dd>
-<dt class="field-odd">Exclude_selected</dt>
-<dd class="field-odd"><p>if editing existing cd_entry, True if exclude_selected is checked</p>
-</dd>
-<dt class="field-even">Include_null_and_missing</dt>
-<dd class="field-even"><p></p></dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.CohortDefNumber.get_cohort_def_options">
-<code class="sig-prename descclassname">CohortDefNumber.</code><code class="sig-name descname">get_cohort_def_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumber.get_cohort_def_options" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Include_null_and_missing</dt>
-<dd class="field-odd"><p></p></dd>
-<dt class="field-even">Existing_min</dt>
-<dd class="field-even"><p>for editing query_type=”date_range”, min date filter as date string</p>
-</dd>
-<dt class="field-odd">Existing_max</dt>
-<dd class="field-odd"><p>for editing query_type=”date_range”, max date filter as date string</p>
-</dd>
-<dt class="field-even">Exclude_selected</dt>
-<dd class="field-even"><p>if editing existing cd_entry, True if exclude_selected is checked</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.processors.CohortDefText.get_cohort_def_options">
-<code class="sig-prename descclassname">CohortDefText.</code><code class="sig-name descname">get_cohort_def_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cd</span></em>, <em class="sig-param"><span class="n">existing_cd_entry</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefText.get_cohort_def_options" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Include_null_and_missing</dt>
-<dd class="field-odd"><p></p></dd>
-<dt class="field-even">Exclude_selected</dt>
-<dd class="field-even"><p>if editing existing cd_entry, True if exclude_selected is checked</p>
-</dd>
-<dt class="field-odd">Terms</dt>
-<dd class="field-odd"><p>List of terms as string separated by newlines</p>
-</dd>
-</dl>
-</dd></dl>
-
 </div>
 </div>
 </div>
@@ -892,61 +818,46 @@ will be used if available or an empty cohort def.</p></li>
 will be used if available or an empty table_def.</p></li>
 <li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
 <li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
-<li><p><strong>single_subject_hyperlink</strong> (<em>str</em><em>, </em><em>optional</em>) – DEPRECATED The relative or absolute URL path to use
-for converting a subject ID into a “subject details” link. The ID insert location can
-be marked with curly brackets. ex. “/subject_details/{}”</p></li>
 </ul>
 </dd>
 </dl>
 <p>RESPONSE IF SUCCESS:</p>
 <dl class="field-list simple">
-<dt class="field-odd">Record_count</dt>
-<dd class="field-odd"><p>(int)</p>
+<dt class="field-odd">Warnings</dt>
+<dd class="field-odd"><p>(array of strings) Warning messages to display to the user</p>
 </dd>
-<dt class="field-even">Subject_count</dt>
+<dt class="field-even">Record_count</dt>
 <dd class="field-even"><p>(int)</p>
 </dd>
-<dt class="field-odd">Page_number_current</dt>
+<dt class="field-odd">Subject_count</dt>
 <dd class="field-odd"><p>(int)</p>
 </dd>
-<dt class="field-even">Page_number_max</dt>
-<dd class="field-even"><p>(int)</p>
+<dt class="field-even">Extended_table_def</dt>
+<dd class="field-even"><p>(list)</p>
 </dd>
-<dt class="field-odd">Page_first_index</dt>
-<dd class="field-odd"><p>(int) The index of the first record on this page</p>
+<dt class="field-odd">Paginator</dt>
+<dd class="field-odd"><p>(dict of integers) includes first_index, last_index, current_page,
+previous_page, next_page, last_page, total_records</p>
 </dd>
-<dt class="field-even">Page_last_index</dt>
-<dd class="field-even"><p>(int) The index of the last record on this page</p>
-</dd>
-<dt class="field-odd">Extended_table_def</dt>
-<dd class="field-odd"><p>(list)</p>
-</dd>
-<dt class="field-even">Extended_sort_def</dt>
-<dd class="field-even"><p>DEPRECATED - use extended_table_def instead</p>
-</dd>
-<dt class="field-odd">Data</dt>
-<dd class="field-odd"><p>(2D array of strings) The records returned for this page</p>
-</dd>
-<dt class="field-even">Warnings</dt>
-<dd class="field-even"><p>(array of strings) Warning messages to display to the user</p>
+<dt class="field-even">Data</dt>
+<dd class="field-even"><p>(2D array of strings) The records returned for this page;  if a value is also
+associated with a link, a concept return a dict with “link” and “value” instead of a
+string</p>
 </dd>
 </dl>
 <p>RESPONSE IF FAIL:</p>
 <dl class="field-list simple">
+<dt class="field-odd">Warnings</dt>
+<dd class="field-odd"><p>(array of strings) Warning messages to display to the user</p>
+</dd>
+<dt class="field-even">Errors</dt>
+<dd class="field-even"><p>(array of strings) Error messages that explain why the query failed</p>
+</dd>
 <dt class="field-odd">Preview_failed</dt>
 <dd class="field-odd"><p>True</p>
 </dd>
 <dt class="field-even">Extended_table_def</dt>
 <dd class="field-even"><p>(list)</p>
-</dd>
-<dt class="field-odd">Extended_sort_def</dt>
-<dd class="field-odd"><p>DEPRECATED - use extended_table_def instead</p>
-</dd>
-<dt class="field-even">Warnings</dt>
-<dd class="field-even"><p>(array of strings) Warning messages to display to the user</p>
-</dd>
-<dt class="field-odd">Errors</dt>
-<dd class="field-odd"><p>(array of strings) Error messages that explain why the query failed</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1044,9 +955,6 @@ in both tables.</p>
 provided table def entry ID</p></li>
 <li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
 <li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
-<li><p><strong>single_subject_hyperlink</strong> (<em>str</em><em>, </em><em>optional</em>) – DEPRECATED The relative or absolute URL path to use
-for converting a subject ID into a “subject details” link. The ID insert location can
-be marked with curly brackets. ex. “/subject_details/{}”</p></li>
 </ul>
 </dd>
 </dl>

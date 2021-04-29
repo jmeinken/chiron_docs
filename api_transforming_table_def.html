@@ -93,14 +93,10 @@
 <li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Transforming Table Definitions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-chiron.api.utils.table_def">add_entry</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#additional-transformation-arguments-for-specific-processors">Additional transformation arguments for specific processors</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-0">edit_entry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-1">delete_entry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-2">resort_columns</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-3">add_sort_entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chiron.api.utils.table_def">add_entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-0">delete_entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-1">resort_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-2">add_sort_entry</a></li>
 </ul>
 </li>
 </ul>
@@ -178,7 +174,7 @@ table definition. In the API, this is done using endpoint <a class="reference in
 <dl class="py function">
 <dt id="chiron.api.utils.table_def.apply_transformation_add_entry">
 <code class="sig-prename descclassname">chiron.api.utils.table_def.</code><code class="sig-name descname">apply_transformation_add_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_table_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.table_def.apply_transformation_add_entry" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a new entry on the table definition.</p>
+<dd><p>Add or edit an entry on the table definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>“add_entry”</p>
@@ -186,50 +182,25 @@ table definition. In the API, this is done using endpoint <a class="reference in
 <dt class="field-even">Concept_id</dt>
 <dd class="field-even"><p>(str) the permanent_id of the Concept to add</p>
 </dd>
-<dt class="field-odd">Position</dt>
-<dd class="field-odd"><p>(default=”append”) append|prepend new entry</p>
+<dt class="field-odd">Entry_id</dt>
+<dd class="field-odd"><p>(str, default=None) if editing existing entry, the entry_id</p>
 </dd>
-<dt class="field-even">Aggregation_style</dt>
-<dd class="field-even"><p>(default=”stack”) stack|flatten records for field</p>
+<dt class="field-even">Position</dt>
+<dd class="field-even"><p>(default=”append”) append|prepend new entry, has no effect if editing existing</p>
 </dd>
-<dt class="field-odd">Aggregation_method</dt>
-<dd class="field-odd"><p>(default=”list”) if aggregation_style is “flatten”, the method to use
-for aggregation</p>
-</dd>
-</dl>
-</dd></dl>
-
-<div class="section" id="additional-transformation-arguments-for-specific-processors">
-<h3>Additional transformation arguments for specific processors<a class="headerlink" href="#additional-transformation-arguments-for-specific-processors" title="Permalink to this headline">¶</a></h3>
-<p>coming soon…</p>
-</div>
-</div>
-<div class="section" id="module-0">
-<span id="edit-entry"></span><h2>edit_entry<a class="headerlink" href="#module-0" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt id="chiron.api.utils.table_def.apply_transformation_edit_entry">
-<code class="sig-prename descclassname">chiron.api.utils.table_def.</code><code class="sig-name descname">apply_transformation_edit_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_table_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.table_def.apply_transformation_edit_entry" title="Permalink to this definition">¶</a></dt>
-<dd><p>Edit an existing entry on the table definition.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“edit_entry”</p>
-</dd>
-<dt class="field-even">Entry_id</dt>
-<dd class="field-even"><p>(str) the entry_id for the table def entry to edit</p>
-</dd>
-<dt class="field-odd">Aggregation_style</dt>
-<dd class="field-odd"><p>(default=”stack”) stack|flatten records for field</p>
+<dt class="field-odd">Aggregate</dt>
+<dd class="field-odd"><p>(default=False) stack/aggregate records for field</p>
 </dd>
 <dt class="field-even">Aggregation_method</dt>
-<dd class="field-even"><p>(default=”list”) if aggregation_style is “flatten”, the method to use
-for aggregation</p>
+<dd class="field-even"><p>(default=None) if aggregate is True, the method to use for
+aggregation</p>
 </dd>
 </dl>
 </dd></dl>
 
 </div>
-<div class="section" id="module-1">
-<span id="delete-entry"></span><h2>delete_entry<a class="headerlink" href="#module-1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-0">
+<span id="delete-entry"></span><h2>delete_entry<a class="headerlink" href="#module-0" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="chiron.api.utils.table_def.apply_transformation_delete_entry">
 <code class="sig-prename descclassname">chiron.api.utils.table_def.</code><code class="sig-name descname">apply_transformation_delete_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_table_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.table_def.apply_transformation_delete_entry" title="Permalink to this definition">¶</a></dt>
@@ -245,8 +216,8 @@ for aggregation</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-2">
-<span id="resort-columns"></span><h2>resort_columns<a class="headerlink" href="#module-2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-1">
+<span id="resort-columns"></span><h2>resort_columns<a class="headerlink" href="#module-1" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="chiron.api.utils.table_def.apply_transformation_resort_columns">
 <code class="sig-prename descclassname">chiron.api.utils.table_def.</code><code class="sig-name descname">apply_transformation_resort_columns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_table_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.table_def.apply_transformation_resort_columns" title="Permalink to this definition">¶</a></dt>
@@ -263,8 +234,8 @@ sorted).</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-3">
-<span id="add-sort-entry"></span><h2>add_sort_entry<a class="headerlink" href="#module-3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-2">
+<span id="add-sort-entry"></span><h2>add_sort_entry<a class="headerlink" href="#module-2" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="chiron.api.utils.table_def.apply_transformation_add_sort_entry">
 <code class="sig-prename descclassname">chiron.api.utils.table_def.</code><code class="sig-name descname">apply_transformation_add_sort_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">input_table_def</span></em>, <em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.table_def.apply_transformation_add_sort_entry" title="Permalink to this definition">¶</a></dt>

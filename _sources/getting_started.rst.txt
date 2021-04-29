@@ -84,10 +84,9 @@ Step 3: Add your Chiron tables to the database
 Although Chiron uses MongoDB to store your patient/research data, all other data related to 
 Chiron configuration go into whichever relational database you're using for Django.
 
-create Chiron database tables and set initial values:
+create Chiron database tables:
 ::
 	python manage.py migrate
-	python manage.py chiron_initialize_database
 	
 Step 4: Set up authentication
 -----------------------------

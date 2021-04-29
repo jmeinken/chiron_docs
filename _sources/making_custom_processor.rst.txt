@@ -28,6 +28,30 @@ Once your processor code is ready, use the Processor model to include your proce
 data dictionary. Once added, you can set any processors in your SourceCollection or Concept
 models to use your custom processor.
 
+Register your processor class with Chiron
+-----------------------------------------
+
+You must register a processor class with Chiron to start using it.
+
+Step 1: Register the class in code
+
+.. code-block:: python
+
+    from chiron.processors.registration import ProcessorRegistry
+
+    ProcessorRegistry.register(MyProcessorClass)
+
+Step 2: Tell Chiron in which modules your processors are registered. This can be done using the
+CHIRON_PROCESSOR_MODULES setting. The default is to load the built-in Chiron processors, and any
+processors in `chiron_config.processors.__init__.py`
+
+.. code-block:: python
+
+    CHIRON_PROCESSOR_MODULES = ["chiron.processors", "chiron_config.processors"]
+
+Note: If you include a module path, that module will be checked. If you include a package path,
+the `__init__.py` of the package will be checked, but child modules will not be checked.
+
 Abstract Processors
 -------------------
 
@@ -76,7 +100,17 @@ CohortDefProcessor (abstract)
    :members:
    :private-members:
    :undoc-members:
-   :show-inheritance:   
+   :show-inheritance:
+
+CohortDefProcessorBuiltInUiMixin
+""""""""""""""""""""""""""""""""
+
+.. autoclass:: chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
 
 DisplayProcessor (abstract)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -86,4 +120,64 @@ DisplayProcessor (abstract)
    :private-members:
    :undoc-members:
    :show-inheritance:
+
+DisplayProcessorBuiltInUiMixin
+""""""""""""""""""""""""""""""
+
+.. autoclass:: chiron.processors.abstract.DisplayProcessorBuiltInUiMixin
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+
+AggregationMethod Classes for Display Processors
+------------------------------------------------
+
+AggregationMethod (abstract base class)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation._base.AggregationMethod
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+CountAll
+^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.CountAll
+   :show-inheritance:
+
+CountDistinct
+^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.CountDistinct
+   :show-inheritance:
+
+ListAll
+^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.ListAll
+   :show-inheritance:
+
+ListDistinct
+^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.ListDistinct
+   :show-inheritance:
+
+Min
+^^^
+
+.. autoclass:: chiron.processors.display.aggregation.Min
+   :show-inheritance:
+
+Max
+^^^
+
+.. autoclass:: chiron.processors.display.aggregation.Max
+   :show-inheritance:
+
+
 

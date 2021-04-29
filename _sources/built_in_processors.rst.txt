@@ -168,6 +168,12 @@ DisplayGeneric
 
 .. autoclass:: chiron.processors.DisplayGeneric
    :show-inheritance:
+
+
+
+
+
+
    
    
    

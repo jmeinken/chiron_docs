@@ -17,20 +17,6 @@ add_entry
    :show-inheritance:
    :members: apply_transformation_add_entry
    :undoc-members:
-   
-Additional transformation arguments for specific processors
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-coming soon...
-
-
-edit_entry
-------------
-
-.. automodule:: chiron.api.utils.table_def
-   :show-inheritance:
-   :members: apply_transformation_edit_entry
-   :undoc-members:
 
 
 delete_entry
