@@ -18,9 +18,9 @@ In the API concept detail view, "entry_id" query parameter was changed to "cohor
 Boolean cohort_def forms now works exactly like category cohort_def forms (except no exclude_selected option).
     - return categories are "True", "False", and null.
 
-cohort def statistics for dates, numbers: "histogram_data_string" was changed to "histogram_data" and is now a JSON data structure instead of a JSON string.
+Cohort def statistics for dates, numbers: "histogram_data_string" was changed to "histogram_data" and is now a JSON data structure instead of a JSON string.
 
-A lot of method renaming and reorganizing of CohortDefProcessor and DisplayProcessor. If you have any custom ones, you'll want to review the abstract methods and check everything:
-    - see API endpoint :ref:`cohort-def-processor-abstract` and :ref:`display-processor-abstract`
+A lot of method renaming and reorganizing of CohortDefProcessor and DisplayProcessor. If you have any custom ones, you'll want to review the abstract methods and check everything.
+    - see classes :ref:`cohort-def-processor-abstract` and :ref:`display-processor-abstract`
 
 
