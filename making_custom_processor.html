@@ -85,6 +85,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing Chiron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_example.html">Data Dictionary Setup Tutorial</a></li>
@@ -539,7 +540,7 @@ will return None</p>
 
 </div>
 <div class="section" id="cohortdefprocessor-abstract">
-<h3>CohortDefProcessor (abstract)<a class="headerlink" href="#cohortdefprocessor-abstract" title="Permalink to this headline">¶</a></h3>
+<span id="cohort-def-processor-abstract"></span><h3>CohortDefProcessor (abstract)<a class="headerlink" href="#cohortdefprocessor-abstract" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="chiron.processors.abstract.CohortDefProcessor">
 <em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.</code><code class="sig-name descname">CohortDefProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor" title="Permalink to this definition">¶</a></dt>
@@ -876,7 +877,7 @@ cohort def)</p></li>
 </div>
 </div>
 <div class="section" id="displayprocessor-abstract">
-<h3>DisplayProcessor (abstract)<a class="headerlink" href="#displayprocessor-abstract" title="Permalink to this headline">¶</a></h3>
+<span id="display-processor-abstract"></span><h3>DisplayProcessor (abstract)<a class="headerlink" href="#displayprocessor-abstract" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="chiron.processors.abstract.DisplayProcessor">
 <em class="property">class </em><code class="sig-prename descclassname">chiron.processors.abstract.</code><code class="sig-name descname">DisplayProcessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor" title="Permalink to this definition">¶</a></dt>
@@ -1105,7 +1106,7 @@ later for editing and deleting.</p>
 <p>Subclasses need to set an id, label, and group property in their __init__ method. ex:</p>
 <dl class="py method">
 <dt id="chiron.processors.display.aggregation._base.AggregationMethod.get_mongo_aggregate_def">
-<code class="sig-name descname">get_mongo_aggregate_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">td_entry</span></em>, <em class="sig-param"><span class="n">field_temp_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_mongo_aggregate_def" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">get_mongo_aggregate_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">td_entry</span></em>, <em class="sig-param"><span class="n">field_temp_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_mongo_aggregate_def" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns parts to be plugged into the mongo aggregation pipeline.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1128,14 +1129,14 @@ the $project step</p>
 
 <dl class="py method">
 <dt id="chiron.processors.display.aggregation._base.AggregationMethod.mongo_output_is_array">
-<code class="sig-name descname">mongo_output_is_array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.mongo_output_is_array" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">mongo_output_is_array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.mongo_output_is_array" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if the result of the rules defined in get_mongo_aggregate_def() will be an
 array. This check is needed because Mongo can’t sort by multiple array fields.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="chiron.processors.display.aggregation._base.AggregationMethod.get_header_display_value">
-<code class="sig-name descname">get_header_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">td_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_header_display_value" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">get_header_display_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">td_entry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_header_display_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a header label for this aggregated column.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

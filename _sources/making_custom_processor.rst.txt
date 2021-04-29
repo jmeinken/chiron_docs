@@ -92,6 +92,8 @@ EtlProcessor (abstract)
    :private-members:
    :undoc-members:
    :show-inheritance:
+
+.. _cohort-def-processor-abstract:
    
 CohortDefProcessor (abstract)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -111,6 +113,7 @@ CohortDefProcessorBuiltInUiMixin
    :undoc-members:
    :show-inheritance:
 
+.. _display-processor-abstract:
 
 DisplayProcessor (abstract)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -8,7 +8,7 @@ You can define how to change a table def using a transformation dict. Chiron tak
 table definition and a transformation dict, applies the transformation, and returns a new 
 table definition. In the API, this is done using endpoint :ref:`api-table-def-post`.
 
-
+.. _table-def-transformations-add-entry:
    
 add_entry
 ---------

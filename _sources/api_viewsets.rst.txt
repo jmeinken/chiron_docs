@@ -38,6 +38,8 @@ Concepts
 
 .. automethod:: chiron.api.viewsets.ConceptViewSet.list
 
+.. _api-concepts-detail-get:
+
 /concepts/[permanent_id]/ (GET, PUT)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

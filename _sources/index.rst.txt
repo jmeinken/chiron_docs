@@ -20,6 +20,7 @@ The query system has good support for longitudinal data.
    :caption: Contents:
    
    system_overview
+   version_changelog
    demo
    getting_started
    data_dict_example
