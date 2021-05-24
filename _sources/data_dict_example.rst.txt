@@ -26,39 +26,39 @@ This example will be importing from the following dataset in a Django app named 
         bmi = models.FloatField()
         
         
-Setting up Roots
-^^^^^^^^^^^^^^^^
+Setting up Collections
+^^^^^^^^^^^^^^^^^^^^^^
 
-The first decision we need to make is how to set up our Roots to structure the database. We have
+The first decision we need to make is how to set up our Collections to structure the database. We have
 a ``Subject`` table that has a many:many relationship to ``Race`` and a 1:many relationship to ``Survey``.
 
 For data about research participants or patients, you will almost always want the person to be
-the project root. So we will use ``Subject`` as the project root. ``Survey`` is longitudinal data
-(one subject can have multiple surveys over time), so we will create a second root to hold 
+the root collection. So we will use ``Subject`` as the root collection. ``Survey`` is longitudinal data
+(one subject can have multiple surveys over time), so we will create a second collection to hold
 the survey data.
 
 ``Race`` is a little trickier. The model allows a single subject to specify multiple races. However,
 the data is not longitudinal, and it is not a collection of related fields but simply a single
 field ``race_name``. For those reasons, this is a good candidate for an overloaded field. Instead
-of creating a separate ``Race`` root, we will put the ``race_name`` concept in the ``Subject`` root and 
+of creating a separate ``Race`` collection, we will put the ``race_name`` concept in the ``Subject`` collection and
 store an array of strings whenever a subject has multiple races.
 
-So in total we will have two roots:
+So in total we will have two collections:
 ::
     from chiron import models
     
-    subject_root = models.Root(
+    subject_collection = models.Collection(
     	permanent_id="subject",
     	name="study subject",
-    	is_project_root=True
+    	is_root_collection=True
     )
-    subject_root.save()
+    subject_collection.save()
     
-    survey_root = models.Root(
+    survey_collection = models.Collection(
     	permanent_id="survey",
     	name="survey",
     )
-    survey_root.save()
+    survey_collection.save()
     
 
 Setting up Source Collections
@@ -66,8 +66,8 @@ Setting up Source Collections
 
 Next we need to define our source collections and set up source collection processors. 
 Recall that a source collection processor needs to return a dataset as an iterable. 
-To populate our Subject root, we will need an iterable of subjects, and to populate our
-Survey root we will need an iterable of surveys.
+To populate our Subject collection, we will need an iterable of subjects, and to populate our
+Survey collection we will need an iterable of surveys.
 
 Chiron has a built-in source collection processor for getting data from the Django ORM. We will
 configure two source collections - one associated with the Subject model and one with the Survey model.
@@ -77,7 +77,7 @@ Let's start with the Subject:
     sc_processor = models.Processor.get(name="Source Collection Processor for Django Model")
     subject_sc = models.SourceCollection(
     	name="subjects",
-    	root=subject_root,
+    	collection=subject_collection,
     	processor=sc_processor,
     	execution_order=1
     )
@@ -110,12 +110,12 @@ that we could use.
     
 Let's use the ``subject_id`` field:
 ::
-    arg_root_id = models.SourceCollectionProcessorArgument(
+    arg_collection_id = models.SourceCollectionProcessorArgument(
     	source_collection=subject_sc,
-    	name="root_id",
+    	name="collection_id",
     	value="subject_uid"
     )
-    arg_root_id.save()
+    arg_collection_id.save()
     
 The ``Subject`` source collection is now complete. Next we will set up the ``Survey`` source collection the
 same way:
@@ -123,7 +123,7 @@ same way:
     # create the survey source collection
     survey_sc = models.SourceCollection(
     	name="surveys",
-    	root=survey_root,
+    	collection=survey_collection,
     	processor=sc_processor,
     	execution_order=2
     )
@@ -143,10 +143,10 @@ same way:
     )
     arg_model.save()
     
-For surveys, we have two ``_id`` fields to worry about. First, we need a ``root_id`` which will be
+For surveys, we have two ``_id`` fields to worry about. First, we need a ``collection_id`` which will be
 a unique identifier for each survey. Then, in order to associate surveys with the appropriate subject,
-we need a ``project_root_id``. This will be a unique identifier for the project_root, which is the
-``Subject`` root.
+we need a ``root_collection_id``. This will be a unique identifier for the root_collection, which is the
+``Subject`` collection.
 
 For the survey ID, we can just leave it undefined and let Django use the ``Survey`` model primary key field.
 However, the subject ID needs to match what we set previously - the ``subject_uid`` field in 
@@ -155,12 +155,12 @@ the ``Subject`` model.
 Since we're iterating over the ``Survey`` model for surveys, we need to "follow" the foreign-key relationship
 from Survey to Subject. The processor allows Django's built-in double underscore syntax to do that:
 ::
-    arg_project_root_id = models.SourceCollectionProcessorArgument(
+    arg_root_collection_id = models.SourceCollectionProcessorArgument(
     	source_collection=survey_sc,
-    	name="project_root_id",
+    	name="root_collection_id",
     	value="subject__subject_uid"
     )
-    arg_root_id.save()
+    arg_root_collection_id.save()
 
 Now that both our Subject and Survey source collection are returning ``Subject.subject_uid`` as
 the subject ID, they will be merged in MongoDB appropriately.  
@@ -169,7 +169,7 @@ the subject ID, they will be merged in MongoDB appropriately.
 Setting up Concepts
 ^^^^^^^^^^^^^^^^^^^
 
-Now that our Roots and SourceCollections are all in place, we can begin defining the concepts we 
+Now that our Collections and SourceCollections are all in place, we can begin defining the concepts we
 want to import. For subjects we have ``gender``, ``race``, and ``DOB``. For Surveys, we have 
 ``survey_name``, ``survey_date``, ``has_fever`` and ``bmi``.
 
@@ -197,7 +197,7 @@ Now we have all the references in place to build our ``gender`` concept:
     gender = models.Concept(
         permanent_id="subject_gender",
         name="gender",
-        root=subject_root,
+        collection=subject_collection,
         source_collection=subject_sc,
         etl_processor=etl_processor,
         cohort_def_processor=category_processor,
@@ -220,7 +220,7 @@ The ``race`` concept is also a category and can use the same processors as gende
     race = models.Concept(
         permanent_id="subject_race",
         name="race",
-        root=subject_root,
+        collection=subject_collection,
         source_collection=subject_sc,
         etl_processor=etl_processor,
         cohort_def_processor=category_processor,
@@ -245,7 +245,7 @@ using a similar approach to our other concepts:
     survey_date = models.Concept(
         permanent_id="survey_date",
         name="survey date",
-        root=survey_root,
+        collection=survey_collection,
         source_collection=survey_sc,
         etl_processor=etl_processor,
         cohort_def_processor=category_processor,
@@ -277,7 +277,7 @@ a major time-saver for a large number of fields.
 Your source data must satisfy these rules for the auto-generator
 
 1. Your data must be stored in Django models.
-2. You must have a model representing the project root.
+2. You must have a model representing the root collection.
 3. All models must be connected through Django model relationships.
 
 Step 1. Create a model tree file
@@ -286,7 +286,7 @@ Step 1. Create a model tree file
 You need to create a text file that shows how your Django model relationships are set up. This
 file can go anywhere, but a good place to store it is 
 `[YOUR PROJECT DIR]/chiron_config/autocreate/modeltree_[dataset name].txt`. The first entry in this file will 
-be the app and model name of the model that corresponds to your project root.
+be the app and model name of the model that corresponds to your root collection.
 ::
     # example for chiron_config/autocreate/modeltree_myapp.txt
     
@@ -297,10 +297,10 @@ be the app and model name of the model that corresponds to your project root.
     
 
     
-Step 2. Add child models of your project root model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step 2. Add child models of your root collection model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A child model is any model that has a direct relationship to the project root model. 
+A child model is any model that has a direct relationship to the root collection model.
 The type of relationship (1:1, 1:many, many:1, many:many) doesn't matter. Use a dash to indicate
 one step down in the hierarchy. You don't need to specify a model's app name unless it's different
 from the parent. 
@@ -331,11 +331,11 @@ Use multiple dashes to indicate position in the hierarchy.
     --Freezer
     -surveys
     
-Step 4: Mark models that should be made into roots
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step 4: Mark models that should be made into collections
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The auto-creator will use a separate root for any entries followed by an asterisk. The first model
-in the list corresponds to your project root and should always have an asterisk. For all other models,
+The auto-creator will use a separate collection for any entries followed by an asterisk. The first model
+in the list corresponds to your root collection and should always have an asterisk. For all other models,
 the asterisk is optional based on your data. Models without an asterisk will be associated with the
 closest parent containing an asterisk.
 
@@ -344,26 +344,26 @@ In the example,
 Let's consider each model in our example:
 
 - **Demographics** - Demographics is 1:1 with Subjects, so we will leave the asterisk off and associate demographic
-  fields directly with the Subject root.
+  fields directly with the Subject collection.
 
 - **Race** - is 1:many with demographics (one person is allowed to have multiple races). However, assuming
   the Race table only has 1 field race_name, this will be a good option for an overloaded field. We 
-  will leave off the asterisk, leaving Race field(s) associated with the Subject root. If any
+  will leave off the asterisk, leaving Race field(s) associated with the Subject collection. If any
   subjects have multiple races listed, they will be stored as arrays with the distinct set of values found.
 
 - **Specimen** - It is likely that subjects can have multiple specimen, and that specimen have 
   multiple values such as collection date, specimen type, amount, etc. For this reason, specimen
-  can be considered longitudinal data and should get their own root.
+  can be considered longitudinal data and should get their own collection.
 
 - **Freezer** - Let's assume that the freezer is many:1 with Specimen, i.e. a freezer
   has multiple specimen, but each specimen only has 1 freezer. Since there is only 1 freezer per
-  specimen, we should leave off the asterisk and associate freezer fields directly with the Specimen root.
+  specimen, we should leave off the asterisk and associate freezer fields directly with the Specimen collection.
 
 - **Surveys** - If subjects complete multiple surveys, this is longitudinal data and should get its
-  own root. If subjects only complete a survey once, it would be better to leave off the asterisk and
+  own collection. If subjects only complete a survey once, it would be better to leave off the asterisk and
   associate all survey fields directly with a subject. Let's assume the former and include an asterisk.
 
-So the model with roots defined will look like this:
+So the model with collections defined will look like this:
 ::
     # example forchiron_config/autocreate/modeltree_myapp.txt
     
@@ -378,7 +378,7 @@ Step 5: Mark models that don't need their own Category
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Concepts are grouped into a hierarchy using the Category model. Keep in mind that the Category hierarchy
-is completely separate from the Root hierarchy. The category only affects how the concepts are 
+is completely separate from the collection hierarchy. The category only affects how the concepts are
 displayed in  the UI, and has no impact on how concepts are stored or queried in MongoDB.
 
 The auto-importer will create a category hierarchy that mirrors your defined model hierarchy. 
@@ -423,8 +423,8 @@ Step 7: Cleanup
 ^^^^^^^^^^^^^^^
 
 Your autocreated code may require additional editing. The autocreate tool creates a separate 
-SourceCollection for each Root it creates. It assumes that the root_id is the primary key of the
-associated model, and that the project_root_id is the primary key of that model. If you are using
+SourceCollection for each collection it creates. It assumes that the collection_id is the primary key of the
+associated model, and that the root_collection_id is the primary key of that model. If you are using
 different IDs in your project, you need to manually edit the processor arguments passed to
 the SourceCollection.
 

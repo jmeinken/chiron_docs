@@ -62,7 +62,6 @@ In your settings.py file:
 	
 	# (optional) Add chiron site title and Subject ID label
 	CHIRON_SITE_TITLE = 'Chiron Development'
-	CHIRON_SUBJECT_ID_LABEL = 'Patient ID'
 	
 	
 In your urls.py:

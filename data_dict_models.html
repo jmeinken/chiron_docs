@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Data Dictionary Model Classes &mdash; Chiron 1.0 documentation</title>
   
@@ -13,10 +13,15 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -51,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Chiron
+            <a href="index.html" class="icon icon-home"> Chiron
           
 
           
@@ -93,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data Dictionary Model Classes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#processor-model">Processor Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#root-model">Root Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#collection-model">Collection Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sourcecollection-model">SourceCollection Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#concept-model">Concept Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#category-model">Category Model</a></li>
@@ -143,6 +148,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -154,7 +161,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="_sources/data_dict_models.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -173,104 +180,104 @@
 <div class="section" id="processor-model">
 <h2>Processor Model<a class="headerlink" href="#processor-model" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="chiron.models.Processor">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.models.</code><code class="sig-name descname">Processor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">required_args</span></em>, <em class="sig-param"><span class="n">optional_args</span></em>, <em class="sig-param"><span class="n">is_source_collection_processor</span></em>, <em class="sig-param"><span class="n">is_etl_processor</span></em>, <em class="sig-param"><span class="n">is_cohort_def_processor</span></em>, <em class="sig-param"><span class="n">is_display_processor</span></em>, <em class="sig-param"><span class="n">is_permission_processor</span></em>, <em class="sig-param"><span class="n">python_path</span></em>, <em class="sig-param"><span class="n">description</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required_args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional_args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_source_collection_processor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_etl_processor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_cohort_def_processor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_display_processor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_permission_processor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">python_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
 <dl class="py attribute">
-<dt id="chiron.models.Processor.name">
-<code class="sig-name descname">name</code><a class="headerlink" href="#chiron.models.Processor.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#chiron.models.Processor.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.required_args">
-<code class="sig-name descname">required_args</code><a class="headerlink" href="#chiron.models.Processor.required_args" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.required_args">
+<span class="sig-name descname"><span class="pre">required_args</span></span><a class="headerlink" href="#chiron.models.Processor.required_args" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.optional_args">
-<code class="sig-name descname">optional_args</code><a class="headerlink" href="#chiron.models.Processor.optional_args" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.optional_args">
+<span class="sig-name descname"><span class="pre">optional_args</span></span><a class="headerlink" href="#chiron.models.Processor.optional_args" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.is_source_collection_processor">
-<code class="sig-name descname">is_source_collection_processor</code><a class="headerlink" href="#chiron.models.Processor.is_source_collection_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.is_source_collection_processor">
+<span class="sig-name descname"><span class="pre">is_source_collection_processor</span></span><a class="headerlink" href="#chiron.models.Processor.is_source_collection_processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.is_etl_processor">
-<code class="sig-name descname">is_etl_processor</code><a class="headerlink" href="#chiron.models.Processor.is_etl_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.is_etl_processor">
+<span class="sig-name descname"><span class="pre">is_etl_processor</span></span><a class="headerlink" href="#chiron.models.Processor.is_etl_processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.is_cohort_def_processor">
-<code class="sig-name descname">is_cohort_def_processor</code><a class="headerlink" href="#chiron.models.Processor.is_cohort_def_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.is_cohort_def_processor">
+<span class="sig-name descname"><span class="pre">is_cohort_def_processor</span></span><a class="headerlink" href="#chiron.models.Processor.is_cohort_def_processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.is_display_processor">
-<code class="sig-name descname">is_display_processor</code><a class="headerlink" href="#chiron.models.Processor.is_display_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.is_display_processor">
+<span class="sig-name descname"><span class="pre">is_display_processor</span></span><a class="headerlink" href="#chiron.models.Processor.is_display_processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.is_permission_processor">
-<code class="sig-name descname">is_permission_processor</code><a class="headerlink" href="#chiron.models.Processor.is_permission_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.is_permission_processor">
+<span class="sig-name descname"><span class="pre">is_permission_processor</span></span><a class="headerlink" href="#chiron.models.Processor.is_permission_processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.python_path">
-<code class="sig-name descname">python_path</code><a class="headerlink" href="#chiron.models.Processor.python_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.python_path">
+<span class="sig-name descname"><span class="pre">python_path</span></span><a class="headerlink" href="#chiron.models.Processor.python_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.description">
-<code class="sig-name descname">description</code><a class="headerlink" href="#chiron.models.Processor.description" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#chiron.models.Processor.description" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Processor.instantiate">
-<code class="sig-name descname">instantiate</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Processor.instantiate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.instantiate">
+<span class="sig-name descname"><span class="pre">instantiate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Processor.instantiate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Processor.is_custom">
-<code class="sig-name descname">is_custom</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Processor.is_custom" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.is_custom">
+<span class="sig-name descname"><span class="pre">is_custom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Processor.is_custom" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py exception">
-<dt id="chiron.models.Processor.DoesNotExist">
-<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#chiron.models.Processor.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#chiron.models.Processor.DoesNotExist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="chiron.models.Processor.MultipleObjectsReturned">
-<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#chiron.models.Processor.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#chiron.models.Processor.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.cohort_def_for">
-<code class="sig-name descname">cohort_def_for</code><a class="headerlink" href="#chiron.models.Processor.cohort_def_for" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.cohort_def_for">
+<span class="sig-name descname"><span class="pre">cohort_def_for</span></span><a class="headerlink" href="#chiron.models.Processor.cohort_def_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -284,8 +291,8 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.deid_cohort_def_for">
-<code class="sig-name descname">deid_cohort_def_for</code><a class="headerlink" href="#chiron.models.Processor.deid_cohort_def_for" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.deid_cohort_def_for">
+<span class="sig-name descname"><span class="pre">deid_cohort_def_for</span></span><a class="headerlink" href="#chiron.models.Processor.deid_cohort_def_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -299,8 +306,8 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.deid_display_for">
-<code class="sig-name descname">deid_display_for</code><a class="headerlink" href="#chiron.models.Processor.deid_display_for" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.deid_display_for">
+<span class="sig-name descname"><span class="pre">deid_display_for</span></span><a class="headerlink" href="#chiron.models.Processor.deid_display_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -314,8 +321,8 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.display_for">
-<code class="sig-name descname">display_for</code><a class="headerlink" href="#chiron.models.Processor.display_for" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.display_for">
+<span class="sig-name descname"><span class="pre">display_for</span></span><a class="headerlink" href="#chiron.models.Processor.display_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -329,8 +336,8 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.etl_for">
-<code class="sig-name descname">etl_for</code><a class="headerlink" href="#chiron.models.Processor.etl_for" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.etl_for">
+<span class="sig-name descname"><span class="pre">etl_for</span></span><a class="headerlink" href="#chiron.models.Processor.etl_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -344,20 +351,20 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.id">
-<code class="sig-name descname">id</code><a class="headerlink" href="#chiron.models.Processor.id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#chiron.models.Processor.id" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.objects">
-<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#chiron.models.Processor.objects" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#chiron.models.Processor.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Processor.sourcecollection_set">
-<code class="sig-name descname">sourcecollection_set</code><a class="headerlink" href="#chiron.models.Processor.sourcecollection_set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Processor.sourcecollection_set">
+<span class="sig-name descname"><span class="pre">sourcecollection_set</span></span><a class="headerlink" href="#chiron.models.Processor.sourcecollection_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -373,25 +380,284 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 </div>
-<div class="section" id="root-model">
-<h2>Root Model<a class="headerlink" href="#root-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="collection-model">
+<h2>Collection Model<a class="headerlink" href="#collection-model" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.models.Collection">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>Defines a collection of related concepts and corresponds to a Mongo collection or
+subcollection.</p>
+<p>Every project has a collection collection that represents a subject and is the foundation for
+how data is stored and queried. Any concept that is 1:1 with a subject can be associated
+with the collection collection.</p>
+<p>Then there can be any number of other collections where each subject can have multiple
+subcollections. For example, you could have a Sample collection to store concept data
+about samples that are associated with a subject.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.permanent_id">
+<span class="sig-name descname"><span class="pre">permanent_id</span></span><a class="headerlink" href="#chiron.models.Collection.permanent_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#chiron.models.Collection.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.name_plural">
+<span class="sig-name descname"><span class="pre">name_plural</span></span><a class="headerlink" href="#chiron.models.Collection.name_plural" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.is_root_collection">
+<span class="sig-name descname"><span class="pre">is_root_collection</span></span><a class="headerlink" href="#chiron.models.Collection.is_root_collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.use_dedicated_mongo_collection">
+<span class="sig-name descname"><span class="pre">use_dedicated_mongo_collection</span></span><a class="headerlink" href="#chiron.models.Collection.use_dedicated_mongo_collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.collection_id_is_integer">
+<span class="sig-name descname"><span class="pre">collection_id_is_integer</span></span><a class="headerlink" href="#chiron.models.Collection.collection_id_is_integer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.event_id_field">
+<span class="sig-name descname"><span class="pre">event_id_field</span></span><a class="headerlink" href="#chiron.models.Collection.event_id_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.event_name_field">
+<span class="sig-name descname"><span class="pre">event_name_field</span></span><a class="headerlink" href="#chiron.models.Collection.event_name_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.event_date_field">
+<span class="sig-name descname"><span class="pre">event_date_field</span></span><a class="headerlink" href="#chiron.models.Collection.event_date_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.event_end_date_field">
+<span class="sig-name descname"><span class="pre">event_end_date_field</span></span><a class="headerlink" href="#chiron.models.Collection.event_end_date_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.models.Collection.get_mongo_subcollection_name">
+<span class="sig-name descname"><span class="pre">get_mongo_subcollection_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Collection.get_mongo_subcollection_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.models.Collection.get_name_plural">
+<span class="sig-name descname"><span class="pre">get_name_plural</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Collection.get_name_plural" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.models.Collection.instantiate">
+<span class="sig-name descname"><span class="pre">instantiate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Collection.instantiate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.models.Collection.get_event_type">
+<span class="sig-name descname"><span class="pre">get_event_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Collection.get_event_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.models.Collection.check_event_permission_group">
+<span class="sig-name descname"><span class="pre">check_event_permission_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Collection.check_event_permission_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns True if can view both start and end date for event, else false
+(also need to check PHI)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.models.Collection.check_event_user_access_level">
+<span class="sig-name descname"><span class="pre">check_event_user_access_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Collection.check_event_user_access_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns ‘normal’, ‘deid’, or None based on user access level to both
+start and end date for event</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.models.Collection.user_can_view_collection">
+<span class="sig-name descname"><span class="pre">user_can_view_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Collection.user_can_view_collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if user has access to at least one concept in this collection</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.models.Collection.get_viewable_collections">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_viewable_collections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Collection.get_viewable_collections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a queryset of collections that the user is allowed to view</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="chiron.models.Collection.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#chiron.models.Collection.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="chiron.models.Collection.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#chiron.models.Collection.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.collectionprocessorargument_set">
+<span class="sig-name descname"><span class="pre">collectionprocessorargument_set</span></span><a class="headerlink" href="#chiron.models.Collection.collectionprocessorargument_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.concept_set">
+<span class="sig-name descname"><span class="pre">concept_set</span></span><a class="headerlink" href="#chiron.models.Collection.concept_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.event_date_field_id">
+<span class="sig-name descname"><span class="pre">event_date_field_id</span></span><a class="headerlink" href="#chiron.models.Collection.event_date_field_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.event_end_date_field_id">
+<span class="sig-name descname"><span class="pre">event_end_date_field_id</span></span><a class="headerlink" href="#chiron.models.Collection.event_end_date_field_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.event_id_field_id">
+<span class="sig-name descname"><span class="pre">event_id_field_id</span></span><a class="headerlink" href="#chiron.models.Collection.event_id_field_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.event_name_field_id">
+<span class="sig-name descname"><span class="pre">event_name_field_id</span></span><a class="headerlink" href="#chiron.models.Collection.event_name_field_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#chiron.models.Collection.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#chiron.models.Collection.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.permissiongroup_set">
+<span class="sig-name descname"><span class="pre">permissiongroup_set</span></span><a class="headerlink" href="#chiron.models.Collection.permissiongroup_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Collection.sourcecollection_set">
+<span class="sig-name descname"><span class="pre">sourcecollection_set</span></span><a class="headerlink" href="#chiron.models.Collection.sourcecollection_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="sourcecollection-model">
 <h2>SourceCollection Model<a class="headerlink" href="#sourcecollection-model" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="chiron.models.SourceCollection">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.models.</code><code class="sig-name descname">SourceCollection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">collection</span></em>, <em class="sig-param"><span class="n">processor</span></em>, <em class="sig-param"><span class="n">execution_order</span></em>, <em class="sig-param"><span class="n">exclude_from_etl</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.SourceCollection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">SourceCollection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_from_etl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.SourceCollection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.name">
-<code class="sig-name descname">name</code><a class="headerlink" href="#chiron.models.SourceCollection.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#chiron.models.SourceCollection.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.collection">
-<code class="sig-name descname">collection</code><a class="headerlink" href="#chiron.models.SourceCollection.collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.collection">
+<span class="sig-name descname"><span class="pre">collection</span></span><a class="headerlink" href="#chiron.models.SourceCollection.collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -403,8 +669,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.processor">
-<code class="sig-name descname">processor</code><a class="headerlink" href="#chiron.models.SourceCollection.processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.processor">
+<span class="sig-name descname"><span class="pre">processor</span></span><a class="headerlink" href="#chiron.models.SourceCollection.processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -416,46 +682,44 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.execution_order">
-<code class="sig-name descname">execution_order</code><a class="headerlink" href="#chiron.models.SourceCollection.execution_order" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.execution_order">
+<span class="sig-name descname"><span class="pre">execution_order</span></span><a class="headerlink" href="#chiron.models.SourceCollection.execution_order" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.exclude_from_etl">
-<code class="sig-name descname">exclude_from_etl</code><a class="headerlink" href="#chiron.models.SourceCollection.exclude_from_etl" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.exclude_from_etl">
+<span class="sig-name descname"><span class="pre">exclude_from_etl</span></span><a class="headerlink" href="#chiron.models.SourceCollection.exclude_from_etl" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.SourceCollection.get_processor">
-<code class="sig-name descname">get_processor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.SourceCollection.get_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.get_processor">
+<span class="sig-name descname"><span class="pre">get_processor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.SourceCollection.get_processor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py exception">
-<dt id="chiron.models.SourceCollection.DoesNotExist">
-<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#chiron.models.SourceCollection.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#chiron.models.SourceCollection.DoesNotExist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="chiron.models.SourceCollection.MultipleObjectsReturned">
-<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#chiron.models.SourceCollection.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#chiron.models.SourceCollection.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.collection_id">
-<code class="sig-name descname">collection_id</code><a class="headerlink" href="#chiron.models.SourceCollection.collection_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.collection_id">
+<span class="sig-name descname"><span class="pre">collection_id</span></span><a class="headerlink" href="#chiron.models.SourceCollection.collection_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.concept_set">
-<code class="sig-name descname">concept_set</code><a class="headerlink" href="#chiron.models.SourceCollection.concept_set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.concept_set">
+<span class="sig-name descname"><span class="pre">concept_set</span></span><a class="headerlink" href="#chiron.models.SourceCollection.concept_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -469,27 +733,25 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.id">
-<code class="sig-name descname">id</code><a class="headerlink" href="#chiron.models.SourceCollection.id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#chiron.models.SourceCollection.id" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.objects">
-<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#chiron.models.SourceCollection.objects" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#chiron.models.SourceCollection.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.processor_id">
-<code class="sig-name descname">processor_id</code><a class="headerlink" href="#chiron.models.SourceCollection.processor_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.processor_id">
+<span class="sig-name descname"><span class="pre">processor_id</span></span><a class="headerlink" href="#chiron.models.SourceCollection.processor_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.SourceCollection.sourcecollectionprocessorargument_set">
-<code class="sig-name descname">sourcecollectionprocessorargument_set</code><a class="headerlink" href="#chiron.models.SourceCollection.sourcecollectionprocessorargument_set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.SourceCollection.sourcecollectionprocessorargument_set">
+<span class="sig-name descname"><span class="pre">sourcecollectionprocessorargument_set</span></span><a class="headerlink" href="#chiron.models.SourceCollection.sourcecollectionprocessorargument_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -508,56 +770,56 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <div class="section" id="concept-model">
 <h2>Concept Model<a class="headerlink" href="#concept-model" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="chiron.models.Concept">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.models.</code><code class="sig-name descname">Concept</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Concept</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
 <p>Defines a single menu item on the cohort def view.</p>
 <dl class="py attribute">
-<dt id="chiron.models.Concept.ETL_PROCESSOR">
-<code class="sig-name descname">ETL_PROCESSOR</code><em class="property"> = 'etl_processor'</em><a class="headerlink" href="#chiron.models.Concept.ETL_PROCESSOR" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.ETL_PROCESSOR">
+<span class="sig-name descname"><span class="pre">ETL_PROCESSOR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'etl_processor'</span></em><a class="headerlink" href="#chiron.models.Concept.ETL_PROCESSOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.COHORT_DEF_PROCESSOR">
-<code class="sig-name descname">COHORT_DEF_PROCESSOR</code><em class="property"> = 'cohort_def_processor'</em><a class="headerlink" href="#chiron.models.Concept.COHORT_DEF_PROCESSOR" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.COHORT_DEF_PROCESSOR">
+<span class="sig-name descname"><span class="pre">COHORT_DEF_PROCESSOR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'cohort_def_processor'</span></em><a class="headerlink" href="#chiron.models.Concept.COHORT_DEF_PROCESSOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.DISPLAY_PROCESSOR">
-<code class="sig-name descname">DISPLAY_PROCESSOR</code><em class="property"> = 'display_processor'</em><a class="headerlink" href="#chiron.models.Concept.DISPLAY_PROCESSOR" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.DISPLAY_PROCESSOR">
+<span class="sig-name descname"><span class="pre">DISPLAY_PROCESSOR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'display_processor'</span></em><a class="headerlink" href="#chiron.models.Concept.DISPLAY_PROCESSOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.permanent_id">
-<code class="sig-name descname">permanent_id</code><a class="headerlink" href="#chiron.models.Concept.permanent_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.permanent_id">
+<span class="sig-name descname"><span class="pre">permanent_id</span></span><a class="headerlink" href="#chiron.models.Concept.permanent_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.name">
-<code class="sig-name descname">name</code><a class="headerlink" href="#chiron.models.Concept.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#chiron.models.Concept.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.name_plural">
-<code class="sig-name descname">name_plural</code><a class="headerlink" href="#chiron.models.Concept.name_plural" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.name_plural">
+<span class="sig-name descname"><span class="pre">name_plural</span></span><a class="headerlink" href="#chiron.models.Concept.name_plural" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.description">
-<code class="sig-name descname">description</code><a class="headerlink" href="#chiron.models.Concept.description" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#chiron.models.Concept.description" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.collection">
-<code class="sig-name descname">collection</code><a class="headerlink" href="#chiron.models.Concept.collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.collection">
+<span class="sig-name descname"><span class="pre">collection</span></span><a class="headerlink" href="#chiron.models.Concept.collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -569,8 +831,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.source_collection">
-<code class="sig-name descname">source_collection</code><a class="headerlink" href="#chiron.models.Concept.source_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.source_collection">
+<span class="sig-name descname"><span class="pre">source_collection</span></span><a class="headerlink" href="#chiron.models.Concept.source_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -582,8 +844,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.category">
-<code class="sig-name descname">category</code><a class="headerlink" href="#chiron.models.Concept.category" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.category">
+<span class="sig-name descname"><span class="pre">category</span></span><a class="headerlink" href="#chiron.models.Concept.category" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -595,36 +857,36 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.order">
-<code class="sig-name descname">order</code><a class="headerlink" href="#chiron.models.Concept.order" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.order">
+<span class="sig-name descname"><span class="pre">order</span></span><a class="headerlink" href="#chiron.models.Concept.order" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.published">
-<code class="sig-name descname">published</code><a class="headerlink" href="#chiron.models.Concept.published" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.published">
+<span class="sig-name descname"><span class="pre">published</span></span><a class="headerlink" href="#chiron.models.Concept.published" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.include_in_cohort_def">
-<code class="sig-name descname">include_in_cohort_def</code><a class="headerlink" href="#chiron.models.Concept.include_in_cohort_def" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.include_in_cohort_def">
+<span class="sig-name descname"><span class="pre">include_in_cohort_def</span></span><a class="headerlink" href="#chiron.models.Concept.include_in_cohort_def" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.include_in_table_def">
-<code class="sig-name descname">include_in_table_def</code><a class="headerlink" href="#chiron.models.Concept.include_in_table_def" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.include_in_table_def">
+<span class="sig-name descname"><span class="pre">include_in_table_def</span></span><a class="headerlink" href="#chiron.models.Concept.include_in_table_def" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.etl_processor">
-<code class="sig-name descname">etl_processor</code><a class="headerlink" href="#chiron.models.Concept.etl_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.etl_processor">
+<span class="sig-name descname"><span class="pre">etl_processor</span></span><a class="headerlink" href="#chiron.models.Concept.etl_processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -636,8 +898,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.cohort_def_processor">
-<code class="sig-name descname">cohort_def_processor</code><a class="headerlink" href="#chiron.models.Concept.cohort_def_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.cohort_def_processor">
+<span class="sig-name descname"><span class="pre">cohort_def_processor</span></span><a class="headerlink" href="#chiron.models.Concept.cohort_def_processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -649,8 +911,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.display_processor">
-<code class="sig-name descname">display_processor</code><a class="headerlink" href="#chiron.models.Concept.display_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.display_processor">
+<span class="sig-name descname"><span class="pre">display_processor</span></span><a class="headerlink" href="#chiron.models.Concept.display_processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -662,15 +924,15 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.has_phi">
-<code class="sig-name descname">has_phi</code><a class="headerlink" href="#chiron.models.Concept.has_phi" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.has_phi">
+<span class="sig-name descname"><span class="pre">has_phi</span></span><a class="headerlink" href="#chiron.models.Concept.has_phi" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.cohort_def_processor_deid_alt">
-<code class="sig-name descname">cohort_def_processor_deid_alt</code><a class="headerlink" href="#chiron.models.Concept.cohort_def_processor_deid_alt" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.cohort_def_processor_deid_alt">
+<span class="sig-name descname"><span class="pre">cohort_def_processor_deid_alt</span></span><a class="headerlink" href="#chiron.models.Concept.cohort_def_processor_deid_alt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -682,8 +944,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.display_processor_deid_alt">
-<code class="sig-name descname">display_processor_deid_alt</code><a class="headerlink" href="#chiron.models.Concept.display_processor_deid_alt" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.display_processor_deid_alt">
+<span class="sig-name descname"><span class="pre">display_processor_deid_alt</span></span><a class="headerlink" href="#chiron.models.Concept.display_processor_deid_alt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -695,86 +957,86 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.references_mongo_id_field">
-<code class="sig-name descname">references_mongo_id_field</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.references_mongo_id_field" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.references_mongo_id_field">
+<span class="sig-name descname"><span class="pre">references_mongo_id_field</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.references_mongo_id_field" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.get_category_hierarchy">
-<code class="sig-name descname">get_category_hierarchy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_category_hierarchy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.get_category_hierarchy">
+<span class="sig-name descname"><span class="pre">get_category_hierarchy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_category_hierarchy" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.get_name_plural">
-<code class="sig-name descname">get_name_plural</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_name_plural" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.get_name_plural">
+<span class="sig-name descname"><span class="pre">get_name_plural</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_name_plural" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.get_full_mongo_field_name">
-<code class="sig-name descname">get_full_mongo_field_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entry_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_full_mongo_field_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.get_full_mongo_field_name">
+<span class="sig-name descname"><span class="pre">get_full_mongo_field_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_full_mongo_field_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.check_permission_group">
-<code class="sig-name descname">check_permission_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.check_permission_group" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.check_permission_group">
+<span class="sig-name descname"><span class="pre">check_permission_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.check_permission_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns True if can view concept, else false (also need to check PHI)</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.check_user_access_level">
-<code class="sig-name descname">check_user_access_level</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.check_user_access_level" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.check_user_access_level">
+<span class="sig-name descname"><span class="pre">check_user_access_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.check_user_access_level" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.user_can_query_concept">
-<code class="sig-name descname">user_can_query_concept</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.user_can_query_concept" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.user_can_query_concept">
+<span class="sig-name descname"><span class="pre">user_can_query_concept</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.user_can_query_concept" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.get_etl_processor">
-<code class="sig-name descname">get_etl_processor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_etl_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.get_etl_processor">
+<span class="sig-name descname"><span class="pre">get_etl_processor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_etl_processor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.get_cohort_def_processor_without_user">
-<code class="sig-name descname">get_cohort_def_processor_without_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_cohort_def_processor_without_user" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.get_cohort_def_processor_without_user">
+<span class="sig-name descname"><span class="pre">get_cohort_def_processor_without_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_cohort_def_processor_without_user" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.get_cohort_def_processor">
-<code class="sig-name descname">get_cohort_def_processor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_cohort_def_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.get_cohort_def_processor">
+<span class="sig-name descname"><span class="pre">get_cohort_def_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_cohort_def_processor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.get_display_processor">
-<code class="sig-name descname">get_display_processor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_display_processor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.get_display_processor">
+<span class="sig-name descname"><span class="pre">get_display_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_display_processor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.get_summary_statistics">
-<code class="sig-name descname">get_summary_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_summary_statistics" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.get_summary_statistics">
+<span class="sig-name descname"><span class="pre">get_summary_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_summary_statistics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.Concept.get_data_type">
-<code class="sig-name descname">get_data_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_data_type" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.get_data_type">
+<span class="sig-name descname"><span class="pre">get_data_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.Concept.get_data_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py exception">
-<dt id="chiron.models.Concept.DoesNotExist">
-<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#chiron.models.Concept.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#chiron.models.Concept.DoesNotExist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="chiron.models.Concept.MultipleObjectsReturned">
-<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#chiron.models.Concept.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#chiron.models.Concept.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.autoimportedfield_set">
-<code class="sig-name descname">autoimportedfield_set</code><a class="headerlink" href="#chiron.models.Concept.autoimportedfield_set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.autoimportedfield_set">
+<span class="sig-name descname"><span class="pre">autoimportedfield_set</span></span><a class="headerlink" href="#chiron.models.Concept.autoimportedfield_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -788,144 +1050,130 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.category_id">
-<code class="sig-name descname">category_id</code><a class="headerlink" href="#chiron.models.Concept.category_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.cohort_def_processor_deid_alt_id">
-<code class="sig-name descname">cohort_def_processor_deid_alt_id</code><a class="headerlink" href="#chiron.models.Concept.cohort_def_processor_deid_alt_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.cohort_def_processor_id">
-<code class="sig-name descname">cohort_def_processor_id</code><a class="headerlink" href="#chiron.models.Concept.cohort_def_processor_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.collection_event_date">
-<code class="sig-name descname">collection_event_date</code><a class="headerlink" href="#chiron.models.Concept.collection_event_date" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accessor to the related objects manager on the reverse side of a
-many-to-one relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
-<p>Most of the implementation is delegated to a dynamically defined manager
-class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.collection_event_end_date">
-<code class="sig-name descname">collection_event_end_date</code><a class="headerlink" href="#chiron.models.Concept.collection_event_end_date" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accessor to the related objects manager on the reverse side of a
-many-to-one relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
-<p>Most of the implementation is delegated to a dynamically defined manager
-class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.collection_event_id">
-<code class="sig-name descname">collection_event_id</code><a class="headerlink" href="#chiron.models.Concept.collection_event_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accessor to the related objects manager on the reverse side of a
-many-to-one relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
-<p>Most of the implementation is delegated to a dynamically defined manager
-class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.collection_event_name">
-<code class="sig-name descname">collection_event_name</code><a class="headerlink" href="#chiron.models.Concept.collection_event_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accessor to the related objects manager on the reverse side of a
-many-to-one relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
-<p>Most of the implementation is delegated to a dynamically defined manager
-class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.collection_id">
-<code class="sig-name descname">collection_id</code><a class="headerlink" href="#chiron.models.Concept.collection_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.conceptprocessorargument_set">
-<code class="sig-name descname">conceptprocessorargument_set</code><a class="headerlink" href="#chiron.models.Concept.conceptprocessorargument_set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accessor to the related objects manager on the reverse side of a
-many-to-one relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
-<p>Most of the implementation is delegated to a dynamically defined manager
-class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.display_processor_deid_alt_id">
-<code class="sig-name descname">display_processor_deid_alt_id</code><a class="headerlink" href="#chiron.models.Concept.display_processor_deid_alt_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.display_processor_id">
-<code class="sig-name descname">display_processor_id</code><a class="headerlink" href="#chiron.models.Concept.display_processor_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.etl_processor_id">
-<code class="sig-name descname">etl_processor_id</code><a class="headerlink" href="#chiron.models.Concept.etl_processor_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.id">
-<code class="sig-name descname">id</code><a class="headerlink" href="#chiron.models.Concept.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chiron.models.Concept.objects">
-<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#chiron.models.Concept.objects" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.category_id">
+<span class="sig-name descname"><span class="pre">category_id</span></span><a class="headerlink" href="#chiron.models.Concept.category_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.permissiongroup_allowedconcept_set">
-<code class="sig-name descname">permissiongroup_allowedconcept_set</code><a class="headerlink" href="#chiron.models.Concept.permissiongroup_allowedconcept_set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.cohort_def_processor_deid_alt_id">
+<span class="sig-name descname"><span class="pre">cohort_def_processor_deid_alt_id</span></span><a class="headerlink" href="#chiron.models.Concept.cohort_def_processor_deid_alt_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.cohort_def_processor_id">
+<span class="sig-name descname"><span class="pre">cohort_def_processor_id</span></span><a class="headerlink" href="#chiron.models.Concept.cohort_def_processor_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.collection_event_date">
+<span class="sig-name descname"><span class="pre">collection_event_date</span></span><a class="headerlink" href="#chiron.models.Concept.collection_event_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.collection_event_end_date">
+<span class="sig-name descname"><span class="pre">collection_event_end_date</span></span><a class="headerlink" href="#chiron.models.Concept.collection_event_end_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.collection_event_id">
+<span class="sig-name descname"><span class="pre">collection_event_id</span></span><a class="headerlink" href="#chiron.models.Concept.collection_event_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.collection_event_name">
+<span class="sig-name descname"><span class="pre">collection_event_name</span></span><a class="headerlink" href="#chiron.models.Concept.collection_event_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.collection_id">
+<span class="sig-name descname"><span class="pre">collection_id</span></span><a class="headerlink" href="#chiron.models.Concept.collection_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.conceptprocessorargument_set">
+<span class="sig-name descname"><span class="pre">conceptprocessorargument_set</span></span><a class="headerlink" href="#chiron.models.Concept.conceptprocessorargument_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.display_processor_deid_alt_id">
+<span class="sig-name descname"><span class="pre">display_processor_deid_alt_id</span></span><a class="headerlink" href="#chiron.models.Concept.display_processor_deid_alt_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.display_processor_id">
+<span class="sig-name descname"><span class="pre">display_processor_id</span></span><a class="headerlink" href="#chiron.models.Concept.display_processor_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.etl_processor_id">
+<span class="sig-name descname"><span class="pre">etl_processor_id</span></span><a class="headerlink" href="#chiron.models.Concept.etl_processor_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#chiron.models.Concept.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#chiron.models.Concept.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chiron.models.Concept.permissiongroup_allowedconcept_set">
+<span class="sig-name descname"><span class="pre">permissiongroup_allowedconcept_set</span></span><a class="headerlink" href="#chiron.models.Concept.permissiongroup_allowedconcept_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the forward and reverse sides of
 a many-to-many relation.</p>
 <p>In the example:</p>
@@ -940,8 +1188,8 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.permissiongroup_set">
-<code class="sig-name descname">permissiongroup_set</code><a class="headerlink" href="#chiron.models.Concept.permissiongroup_set" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.Concept.permissiongroup_set">
+<span class="sig-name descname"><span class="pre">permissiongroup_set</span></span><a class="headerlink" href="#chiron.models.Concept.permissiongroup_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -955,11 +1203,9 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.Concept.source_collection_id">
-<code class="sig-name descname">source_collection_id</code><a class="headerlink" href="#chiron.models.Concept.source_collection_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="chiron.models.Concept.source_collection_id">
+<span class="sig-name descname"><span class="pre">source_collection_id</span></span><a class="headerlink" href="#chiron.models.Concept.source_collection_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -967,56 +1213,56 @@ object the first time, the query is executed.</p>
 <div class="section" id="category-model">
 <h2>Category Model<a class="headerlink" href="#category-model" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="id0">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.models.</code><code class="sig-name descname">Concept</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Concept</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
 <p>Defines a single menu item on the cohort def view.</p>
 <dl class="py attribute">
-<dt id="id1">
-<code class="sig-name descname">ETL_PROCESSOR</code><em class="property"> = 'etl_processor'</em><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">ETL_PROCESSOR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'etl_processor'</span></em><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="id2">
-<code class="sig-name descname">COHORT_DEF_PROCESSOR</code><em class="property"> = 'cohort_def_processor'</em><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">COHORT_DEF_PROCESSOR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'cohort_def_processor'</span></em><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="id3">
-<code class="sig-name descname">DISPLAY_PROCESSOR</code><em class="property"> = 'display_processor'</em><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">DISPLAY_PROCESSOR</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'display_processor'</span></em><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="id4">
-<code class="sig-name descname">permanent_id</code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">permanent_id</span></span><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id5">
-<code class="sig-name descname">name</code><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id6">
-<code class="sig-name descname">name_plural</code><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">name_plural</span></span><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id7">
-<code class="sig-name descname">description</code><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id8">
-<code class="sig-name descname">collection</code><a class="headerlink" href="#id8" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">collection</span></span><a class="headerlink" href="#id8" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -1028,8 +1274,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id9">
-<code class="sig-name descname">source_collection</code><a class="headerlink" href="#id9" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">source_collection</span></span><a class="headerlink" href="#id9" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -1041,8 +1287,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id10">
-<code class="sig-name descname">category</code><a class="headerlink" href="#id10" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">category</span></span><a class="headerlink" href="#id10" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -1054,36 +1300,36 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id11">
-<code class="sig-name descname">order</code><a class="headerlink" href="#id11" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">order</span></span><a class="headerlink" href="#id11" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id12">
-<code class="sig-name descname">published</code><a class="headerlink" href="#id12" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">published</span></span><a class="headerlink" href="#id12" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id13">
-<code class="sig-name descname">include_in_cohort_def</code><a class="headerlink" href="#id13" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">include_in_cohort_def</span></span><a class="headerlink" href="#id13" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id14">
-<code class="sig-name descname">include_in_table_def</code><a class="headerlink" href="#id14" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">include_in_table_def</span></span><a class="headerlink" href="#id14" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id15">
-<code class="sig-name descname">etl_processor</code><a class="headerlink" href="#id15" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">etl_processor</span></span><a class="headerlink" href="#id15" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -1095,8 +1341,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id16">
-<code class="sig-name descname">cohort_def_processor</code><a class="headerlink" href="#id16" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id16">
+<span class="sig-name descname"><span class="pre">cohort_def_processor</span></span><a class="headerlink" href="#id16" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -1108,8 +1354,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id17">
-<code class="sig-name descname">display_processor</code><a class="headerlink" href="#id17" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id17">
+<span class="sig-name descname"><span class="pre">display_processor</span></span><a class="headerlink" href="#id17" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -1121,15 +1367,15 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id18">
-<code class="sig-name descname">has_phi</code><a class="headerlink" href="#id18" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id18">
+<span class="sig-name descname"><span class="pre">has_phi</span></span><a class="headerlink" href="#id18" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id19">
-<code class="sig-name descname">cohort_def_processor_deid_alt</code><a class="headerlink" href="#id19" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id19">
+<span class="sig-name descname"><span class="pre">cohort_def_processor_deid_alt</span></span><a class="headerlink" href="#id19" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -1141,8 +1387,8 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id20">
-<code class="sig-name descname">display_processor_deid_alt</code><a class="headerlink" href="#id20" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id20">
+<span class="sig-name descname"><span class="pre">display_processor_deid_alt</span></span><a class="headerlink" href="#id20" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -1154,86 +1400,86 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id21">
-<code class="sig-name descname">references_mongo_id_field</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id21" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id21">
+<span class="sig-name descname"><span class="pre">references_mongo_id_field</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id21" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id22">
-<code class="sig-name descname">get_category_hierarchy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id22" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id22">
+<span class="sig-name descname"><span class="pre">get_category_hierarchy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id22" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id23">
-<code class="sig-name descname">get_name_plural</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id23" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id23">
+<span class="sig-name descname"><span class="pre">get_name_plural</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id23" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id24">
-<code class="sig-name descname">get_full_mongo_field_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entry_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#id24" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id24">
+<span class="sig-name descname"><span class="pre">get_full_mongo_field_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id24" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id25">
-<code class="sig-name descname">check_permission_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#id25" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id25">
+<span class="sig-name descname"><span class="pre">check_permission_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id25" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns True if can view concept, else false (also need to check PHI)</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id26">
-<code class="sig-name descname">check_user_access_level</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#id26" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id26">
+<span class="sig-name descname"><span class="pre">check_user_access_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id26" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id27">
-<code class="sig-name descname">user_can_query_concept</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#id27" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id27">
+<span class="sig-name descname"><span class="pre">user_can_query_concept</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id27" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id28">
-<code class="sig-name descname">get_etl_processor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id28" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id28">
+<span class="sig-name descname"><span class="pre">get_etl_processor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id28" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id29">
-<code class="sig-name descname">get_cohort_def_processor_without_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id29" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id29">
+<span class="sig-name descname"><span class="pre">get_cohort_def_processor_without_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id29" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id30">
-<code class="sig-name descname">get_cohort_def_processor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#id30" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id30">
+<span class="sig-name descname"><span class="pre">get_cohort_def_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id30" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id31">
-<code class="sig-name descname">get_display_processor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#id31" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id31">
+<span class="sig-name descname"><span class="pre">get_display_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id31" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id32">
-<code class="sig-name descname">get_summary_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#id32" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id32">
+<span class="sig-name descname"><span class="pre">get_summary_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id32" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="id33">
-<code class="sig-name descname">get_data_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#id33" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id33">
+<span class="sig-name descname"><span class="pre">get_data_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id33" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py exception">
-<dt id="id34">
-<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#id34" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id34">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#id34" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="id35">
-<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#id35" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id35">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#id35" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id36">
-<code class="sig-name descname">autoimportedfield_set</code><a class="headerlink" href="#id36" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id36">
+<span class="sig-name descname"><span class="pre">autoimportedfield_set</span></span><a class="headerlink" href="#id36" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -1247,144 +1493,130 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id37">
-<code class="sig-name descname">category_id</code><a class="headerlink" href="#id37" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id38">
-<code class="sig-name descname">cohort_def_processor_deid_alt_id</code><a class="headerlink" href="#id38" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id39">
-<code class="sig-name descname">cohort_def_processor_id</code><a class="headerlink" href="#id39" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id40">
-<code class="sig-name descname">collection_event_date</code><a class="headerlink" href="#id40" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accessor to the related objects manager on the reverse side of a
-many-to-one relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
-<p>Most of the implementation is delegated to a dynamically defined manager
-class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id41">
-<code class="sig-name descname">collection_event_end_date</code><a class="headerlink" href="#id41" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accessor to the related objects manager on the reverse side of a
-many-to-one relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
-<p>Most of the implementation is delegated to a dynamically defined manager
-class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id42">
-<code class="sig-name descname">collection_event_id</code><a class="headerlink" href="#id42" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accessor to the related objects manager on the reverse side of a
-many-to-one relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
-<p>Most of the implementation is delegated to a dynamically defined manager
-class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id43">
-<code class="sig-name descname">collection_event_name</code><a class="headerlink" href="#id43" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accessor to the related objects manager on the reverse side of a
-many-to-one relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
-<p>Most of the implementation is delegated to a dynamically defined manager
-class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id44">
-<code class="sig-name descname">collection_id</code><a class="headerlink" href="#id44" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id45">
-<code class="sig-name descname">conceptprocessorargument_set</code><a class="headerlink" href="#id45" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accessor to the related objects manager on the reverse side of a
-many-to-one relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
-<p>Most of the implementation is delegated to a dynamically defined manager
-class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id46">
-<code class="sig-name descname">display_processor_deid_alt_id</code><a class="headerlink" href="#id46" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id47">
-<code class="sig-name descname">display_processor_id</code><a class="headerlink" href="#id47" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id48">
-<code class="sig-name descname">etl_processor_id</code><a class="headerlink" href="#id48" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id49">
-<code class="sig-name descname">id</code><a class="headerlink" href="#id49" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="id50">
-<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#id50" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id37">
+<span class="sig-name descname"><span class="pre">category_id</span></span><a class="headerlink" href="#id37" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="id51">
-<code class="sig-name descname">permissiongroup_allowedconcept_set</code><a class="headerlink" href="#id51" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id38">
+<span class="sig-name descname"><span class="pre">cohort_def_processor_deid_alt_id</span></span><a class="headerlink" href="#id38" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id39">
+<span class="sig-name descname"><span class="pre">cohort_def_processor_id</span></span><a class="headerlink" href="#id39" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id40">
+<span class="sig-name descname"><span class="pre">collection_event_date</span></span><a class="headerlink" href="#id40" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id41">
+<span class="sig-name descname"><span class="pre">collection_event_end_date</span></span><a class="headerlink" href="#id41" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id42">
+<span class="sig-name descname"><span class="pre">collection_event_id</span></span><a class="headerlink" href="#id42" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id43">
+<span class="sig-name descname"><span class="pre">collection_event_name</span></span><a class="headerlink" href="#id43" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id44">
+<span class="sig-name descname"><span class="pre">collection_id</span></span><a class="headerlink" href="#id44" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id45">
+<span class="sig-name descname"><span class="pre">conceptprocessorargument_set</span></span><a class="headerlink" href="#id45" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id46">
+<span class="sig-name descname"><span class="pre">display_processor_deid_alt_id</span></span><a class="headerlink" href="#id46" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id47">
+<span class="sig-name descname"><span class="pre">display_processor_id</span></span><a class="headerlink" href="#id47" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id48">
+<span class="sig-name descname"><span class="pre">etl_processor_id</span></span><a class="headerlink" href="#id48" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id49">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#id49" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id50">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#id50" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id51">
+<span class="sig-name descname"><span class="pre">permissiongroup_allowedconcept_set</span></span><a class="headerlink" href="#id51" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the forward and reverse sides of
 a many-to-many relation.</p>
 <p>In the example:</p>
@@ -1399,8 +1631,8 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id52">
-<code class="sig-name descname">permissiongroup_set</code><a class="headerlink" href="#id52" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id52">
+<span class="sig-name descname"><span class="pre">permissiongroup_set</span></span><a class="headerlink" href="#id52" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -1414,11 +1646,9 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="id53">
-<code class="sig-name descname">source_collection_id</code><a class="headerlink" href="#id53" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="id53">
+<span class="sig-name descname"><span class="pre">source_collection_id</span></span><a class="headerlink" href="#id53" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1426,8 +1656,8 @@ object the first time, the query is executed.</p>
 <div class="section" id="autoimportedfield-model">
 <h2>AutoImportedField Model<a class="headerlink" href="#autoimportedfield-model" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="chiron.models.AutoImportedField">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.models.</code><code class="sig-name descname">AutoImportedField</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.AutoImportedField" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">AutoImportedField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.AutoImportedField" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.models.data_definition_models.TimeStampedModel</span></code></p>
 <p>Keep track of which Django fields have already been auto-imported, so that they
 are not</p>
@@ -1435,29 +1665,29 @@ are not</p>
 <div><p>imported again when auto-import is rerun.</p>
 </div></blockquote>
 <dl class="py attribute">
-<dt id="chiron.models.AutoImportedField.app">
-<code class="sig-name descname">app</code><a class="headerlink" href="#chiron.models.AutoImportedField.app" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.app">
+<span class="sig-name descname"><span class="pre">app</span></span><a class="headerlink" href="#chiron.models.AutoImportedField.app" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.AutoImportedField.model">
-<code class="sig-name descname">model</code><a class="headerlink" href="#chiron.models.AutoImportedField.model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#chiron.models.AutoImportedField.model" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.AutoImportedField.field">
-<code class="sig-name descname">field</code><a class="headerlink" href="#chiron.models.AutoImportedField.field" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.field">
+<span class="sig-name descname"><span class="pre">field</span></span><a class="headerlink" href="#chiron.models.AutoImportedField.field" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.AutoImportedField.associated_concept">
-<code class="sig-name descname">associated_concept</code><a class="headerlink" href="#chiron.models.AutoImportedField.associated_concept" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.associated_concept">
+<span class="sig-name descname"><span class="pre">associated_concept</span></span><a class="headerlink" href="#chiron.models.AutoImportedField.associated_concept" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -1469,54 +1699,52 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="chiron.models.AutoImportedField.DoesNotExist">
-<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#chiron.models.AutoImportedField.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#chiron.models.AutoImportedField.DoesNotExist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="chiron.models.AutoImportedField.MultipleObjectsReturned">
-<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#chiron.models.AutoImportedField.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#chiron.models.AutoImportedField.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.AutoImportedField.associated_concept_id">
-<code class="sig-name descname">associated_concept_id</code><a class="headerlink" href="#chiron.models.AutoImportedField.associated_concept_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chiron.models.AutoImportedField.get_next_by_created">
-<code class="sig-name descname">get_next_by_created</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateTimeField: created&gt;</em>, <em class="sig-param">is_next=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.AutoImportedField.get_next_by_created" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.associated_concept_id">
+<span class="sig-name descname"><span class="pre">associated_concept_id</span></span><a class="headerlink" href="#chiron.models.AutoImportedField.associated_concept_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.AutoImportedField.get_next_by_modified">
-<code class="sig-name descname">get_next_by_modified</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateTimeField: modified&gt;</em>, <em class="sig-param">is_next=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.AutoImportedField.get_next_by_modified" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.get_next_by_created">
+<span class="sig-name descname"><span class="pre">get_next_by_created</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=True</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.AutoImportedField.get_next_by_created" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.AutoImportedField.get_previous_by_created">
-<code class="sig-name descname">get_previous_by_created</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateTimeField: created&gt;</em>, <em class="sig-param">is_next=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.AutoImportedField.get_previous_by_created" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.get_next_by_modified">
+<span class="sig-name descname"><span class="pre">get_next_by_modified</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">modified&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=True</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.AutoImportedField.get_next_by_modified" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chiron.models.AutoImportedField.get_previous_by_modified">
-<code class="sig-name descname">get_previous_by_modified</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateTimeField: modified&gt;</em>, <em class="sig-param">is_next=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.AutoImportedField.get_previous_by_modified" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.get_previous_by_created">
+<span class="sig-name descname"><span class="pre">get_previous_by_created</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=False</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.AutoImportedField.get_previous_by_created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.get_previous_by_modified">
+<span class="sig-name descname"><span class="pre">get_previous_by_modified</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">modified&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=False</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.models.AutoImportedField.get_previous_by_modified" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.AutoImportedField.id">
-<code class="sig-name descname">id</code><a class="headerlink" href="#chiron.models.AutoImportedField.id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#chiron.models.AutoImportedField.id" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chiron.models.AutoImportedField.objects">
-<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#chiron.models.AutoImportedField.objects" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.models.AutoImportedField.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#chiron.models.AutoImportedField.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1529,37 +1757,29 @@ object the first time, the query is executed.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_viewsets.html" class="btn btn-neutral float-right" title="API Endpoints" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="making_custom_processor.html" class="btn btn-neutral float-left" title="Creating Your Own Processors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="api_viewsets.html" class="btn btn-neutral float-right" title="API Endpoints" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="making_custom_processor.html" class="btn btn-neutral float-left" title="Creating Your Own Processors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics
+        &#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

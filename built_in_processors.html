@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Built-In Processors &mdash; Chiron 1.0 documentation</title>
   
@@ -13,10 +13,15 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -51,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Chiron
+            <a href="index.html" class="icon icon-home"> Chiron
           
 
           
@@ -109,6 +114,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cohortdefdate">CohortDefDate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cohortdefdatedeid">CohortDefDateDeid</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cohortdefnumber">CohortDefNumber</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cohortdefnumberwithcategories">CohortDefNumberWithCategories</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cohortdeftext">CohortDefText</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cohortdeftextcustomsort">CohortDefTextCustomSort</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cohortdefboolean">CohortDefBoolean</a></li>
@@ -119,6 +125,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#displaydate">DisplayDate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#displaydatedeid">DisplayDateDeid</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#displaynumber">DisplayNumber</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#displaynumberwithcategories">DisplayNumberWithCategories</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#displaytext">DisplayText</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#displaytextcustomsort">DisplayTextCustomSort</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#displayboolean">DisplayBoolean</a></li>
@@ -172,6 +179,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -183,7 +192,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="_sources/built_in_processors.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -208,8 +217,8 @@ by passing arguments when instantiating. These arguments can be defined in the d
 <div class="section" id="sourcedjangomodel">
 <h3>SourceDjangoModel<a class="headerlink" href="#sourcedjangomodel" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.SourceDjangoModel">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">SourceDjangoModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oSourceCollection</span></em>, <em class="sig-param"><span class="n">app</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">collection_id_field</span><span class="o">=</span><span class="default_value">'pk'</span></em>, <em class="sig-param"><span class="n">root_collection_id_field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_batch_size</span><span class="o">=</span><span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">select_related</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">prefetch_related</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">filter_rules</span><span class="o">=</span><span class="default_value">'{}'</span></em>, <em class="sig-param"><span class="n">set_alt_id_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceDjangoModel" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.SourceDjangoModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">SourceDjangoModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSourceCollection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_collection_id_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select_related</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefetch_related</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_rules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'{}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_alt_id_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceDjangoModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.BatchLoadMixin" title="chiron.processors.abstract.source_collection_processor.BatchLoadMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.BatchLoadMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.StandardLoadMixin" title="chiron.processors.abstract.source_collection_processor.StandardLoadMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.StandardLoadMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor" title="chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor</span></code></a></p>
 <p>A source collection processor that reads from a Django model.</p>
 <dl class="field-list simple">
@@ -233,8 +242,8 @@ value</em><em>)</em>) – The name of the field where the root_collection_id is 
 <div class="section" id="sourcecsv">
 <h3>SourceCsv<a class="headerlink" href="#sourcecsv" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.SourceCsv">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">SourceCsv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oSourceCollection</span></em>, <em class="sig-param"><span class="n">filepath</span></em>, <em class="sig-param"><span class="n">collection_id_field</span></em>, <em class="sig-param"><span class="n">root_collection_id_field</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceCsv" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.SourceCsv">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">SourceCsv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSourceCollection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_collection_id_field</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceCsv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor" title="chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor</span></code></a></p>
 <p>Source collection for CSV. The CSV file needs a header row. The records returned will
 be Python dicts.</p>
@@ -253,8 +262,8 @@ be Python dicts.</p>
 <div class="section" id="sourceself">
 <h3>SourceSelf<a class="headerlink" href="#sourceself" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.SourceSelf">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">SourceSelf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oSourceCollection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceSelf" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.SourceSelf">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">SourceSelf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSourceCollection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceSelf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.StandardLoadMixin" title="chiron.processors.abstract.source_collection_processor.StandardLoadMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.StandardLoadMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor" title="chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor</span></code></a></p>
 <p>Pulls all records from the Chiron Mongo database itself.
 Useful for generating calculated fields on existing Mongo records.
@@ -266,8 +275,8 @@ it depends on have already been loaded.</p>
 <div class="section" id="sourceselfsubdoc">
 <h3>SourceSelfSubdoc<a class="headerlink" href="#sourceselfsubdoc" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.SourceSelfSubdoc">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">SourceSelfSubdoc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oSourceCollection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceSelfSubdoc" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.SourceSelfSubdoc">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">SourceSelfSubdoc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSourceCollection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceSelfSubdoc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.StandardLoadMixin" title="chiron.processors.abstract.source_collection_processor.StandardLoadMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.StandardLoadMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor" title="chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor</span></code></a></p>
 <p>Pulls all records from the Chiron Mongo database itself.
 Useful for generating calculated fields on existing Mongo records.
@@ -285,8 +294,8 @@ specific sudocument record and “doc” for the entire document that the subdoc
 <div class="section" id="etldjangofield">
 <h3>EtlDjangoField<a class="headerlink" href="#etldjangofield" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.EtlDjangoField">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">EtlDjangoField</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">django_field</span></em>, <em class="sig-param"><span class="n">cast_to_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ignore_casting_errors</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ignore_model_mismatch</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlDjangoField" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.EtlDjangoField">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">EtlDjangoField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">django_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cast_to_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_casting_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_model_mismatch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlDjangoField" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor" title="chiron.processors.abstract.etl_processor.EtlProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.etl_processor.EtlProcessor</span></code></a></p>
 <p>Use with a source collection of Django models. Will pull a single field value from each
 model object.</p>
@@ -306,8 +315,8 @@ model object.</p>
 <div class="section" id="etldjangomultifieldmerge">
 <h3>EtlDjangoMultifieldMerge<a class="headerlink" href="#etldjangomultifieldmerge" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.EtlDjangoMultifieldMerge">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">EtlDjangoMultifieldMerge</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">django_field</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlDjangoMultifieldMerge" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.EtlDjangoMultifieldMerge">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">EtlDjangoMultifieldMerge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">django_field</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlDjangoMultifieldMerge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor" title="chiron.processors.abstract.etl_processor.EtlProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.etl_processor.EtlProcessor</span></code></a></p>
 <p>Same behavior as EtlProcessorForDjangoField, except multiple django fields
 can be provided.
@@ -321,8 +330,8 @@ etc.</p>
 <div class="section" id="etlpythondictitem">
 <h3>EtlPythonDictItem<a class="headerlink" href="#etlpythondictitem" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.EtlPythonDictItem">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">EtlPythonDictItem</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">field_name</span></em>, <em class="sig-param"><span class="n">cast_to_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ignore_casting_errors</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">convert_list_to_set</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlPythonDictItem" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.EtlPythonDictItem">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">EtlPythonDictItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cast_to_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_casting_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_list_to_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlPythonDictItem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor" title="chiron.processors.abstract.etl_processor.EtlProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.etl_processor.EtlProcessor</span></code></a></p>
 <p>Use with a source collection that returns a Python dictionary.</p>
 <dl class="field-list simple">
@@ -341,8 +350,8 @@ etc.</p>
 <div class="section" id="etlpythondictitemcounter">
 <h3>EtlPythonDictItemCounter<a class="headerlink" href="#etlpythondictitemcounter" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.EtlPythonDictItemCounter">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">EtlPythonDictItemCounter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">field_name</span></em>, <em class="sig-param"><span class="n">treat_string_as_sequence</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlPythonDictItemCounter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.EtlPythonDictItemCounter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">EtlPythonDictItemCounter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treat_string_as_sequence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.EtlPythonDictItemCounter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.etl_processor.EtlProcessor" title="chiron.processors.abstract.etl_processor.EtlProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.etl_processor.EtlProcessor</span></code></a></p>
 <p>Retrieves an item (usually a sequence) from a python dict and returns
 the length of the item as an integer.
@@ -368,9 +377,9 @@ treat_string_as_sequence=True to override.</p>
 <div class="section" id="cohortdefcategory">
 <h3>CohortDefCategory<a class="headerlink" href="#cohortdefcategory" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.CohortDefCategory">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">CohortDefCategory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefCategory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin</span></code>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a></p>
+<dt class="sig sig-object py" id="chiron.processors.CohortDefCategory">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">CohortDefCategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefCategory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should either be a string or null</p></li>
@@ -384,9 +393,9 @@ treat_string_as_sequence=True to override.</p>
 <div class="section" id="cohortdefdate">
 <h3>CohortDefDate<a class="headerlink" href="#cohortdefdate" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.CohortDefDate">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">CohortDefDate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin</span></code>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a></p>
+<dt class="sig sig-object py" id="chiron.processors.CohortDefDate">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">CohortDefDate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should either be a Python datetime object or null</p></li>
@@ -399,9 +408,9 @@ datetime values set to 0:00.</p></li>
 <div class="section" id="cohortdefdatedeid">
 <h3>CohortDefDateDeid<a class="headerlink" href="#cohortdefdatedeid" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.CohortDefDateDeid">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">CohortDefDateDeid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDateDeid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.cohort_def.date.CohortDefDate</span></code></p>
+<dt class="sig sig-object py" id="chiron.processors.CohortDefDateDeid">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">CohortDefDateDeid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDateDeid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chiron.processors.CohortDefDate" title="chiron.processors.cohort_def.date.CohortDefDate"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.cohort_def.date.CohortDefDate</span></code></a></p>
 <p>This is a deidentified alternative to the DateFieldProcessor. If you use it in place of the
 DateFieldProcessor, only the date year is presented to the user.</p>
 <p>Typically, this is used in situations where you want users who can view PHI to see/query the
@@ -416,9 +425,9 @@ integer and use the NumberFieldProcessor.</p>
 <div class="section" id="cohortdefnumber">
 <h3>CohortDefNumber<a class="headerlink" href="#cohortdefnumber" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.CohortDefNumber">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">CohortDefNumber</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="n">is_integer</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumber" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin</span></code>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a></p>
+<dt class="sig sig-object py" id="chiron.processors.CohortDefNumber">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">CohortDefNumber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_integer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should either be numbers or null</p></li>
@@ -432,12 +441,33 @@ and statistics are calculated/displayed.</p></li>
 </dd></dl>
 
 </div>
+<div class="section" id="cohortdefnumberwithcategories">
+<h3>CohortDefNumberWithCategories<a class="headerlink" href="#cohortdefnumberwithcategories" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.processors.CohortDefNumberWithCategories">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">CohortDefNumberWithCategories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_integer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumberWithCategories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a></p>
+<p>When to use:</p>
+<ul class="simple">
+<li><p>All values should be numbers, strings or null.</p></li>
+<li><p>When importing during ETL, need to set cast_to_type “integer/string” or “float/string” which
+will store number values in Mongo as {“num”: 5} and string values as {“txt”: “my value”}</p></li>
+</ul>
+<p>Optional arguments:</p>
+<ul class="simple">
+<li><p>is_integer: (default: False) set to True if the number has no decimal value.
+NOTE: This does not round/force numbers to be integers, it only affects how histograms
+and statistics are calculated/displayed.</p></li>
+</ul>
+</dd></dl>
+
+</div>
 <div class="section" id="cohortdeftext">
 <h3>CohortDefText<a class="headerlink" href="#cohortdeftext" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.CohortDefText">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">CohortDefText</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefText" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin</span></code>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a></p>
+<dt class="sig sig-object py" id="chiron.processors.CohortDefText">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">CohortDefText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.CohortDefProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.html#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.cohort_def_processor.CohortDefProcessor</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should either be a string or null</p></li>
@@ -451,9 +481,9 @@ and statistics are calculated/displayed.</p></li>
 <div class="section" id="cohortdeftextcustomsort">
 <h3>CohortDefTextCustomSort<a class="headerlink" href="#cohortdeftextcustomsort" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.CohortDefTextCustomSort">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">CohortDefTextCustomSort</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefTextCustomSort" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.cohort_def.text.CohortDefText</span></code></p>
+<dt class="sig sig-object py" id="chiron.processors.CohortDefTextCustomSort">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">CohortDefTextCustomSort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefTextCustomSort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chiron.processors.CohortDefText" title="chiron.processors.cohort_def.text.CohortDefText"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.cohort_def.text.CohortDefText</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>Text field where you want the sorting to be different from alphabetical</p></li>
@@ -473,9 +503,9 @@ numeric sort value:
 <div class="section" id="cohortdefboolean">
 <h3>CohortDefBoolean<a class="headerlink" href="#cohortdefboolean" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.CohortDefBoolean">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">CohortDefBoolean</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefBoolean" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.cohort_def.category.CohortDefCategory</span></code></p>
+<dt class="sig sig-object py" id="chiron.processors.CohortDefBoolean">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">CohortDefBoolean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefBoolean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chiron.processors.CohortDefCategory" title="chiron.processors.cohort_def.category.CohortDefCategory"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.cohort_def.category.CohortDefCategory</span></code></a></p>
 <p>This is a subclass of CohortDefCategory and behaves similarly. When to use:</p>
 <ul class="simple">
 <li><p>All values should be true, false, or null</p></li>
@@ -490,9 +520,9 @@ numeric sort value:
 <div class="section" id="displaycategory">
 <h3>DisplayCategory<a class="headerlink" href="#displaycategory" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.DisplayCategory">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">DisplayCategory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayCategory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
+<dt class="sig sig-object py" id="chiron.processors.DisplayCategory">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">DisplayCategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayCategory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should either be a string or null</p></li>
@@ -506,9 +536,9 @@ numeric sort value:
 <div class="section" id="displaydate">
 <h3>DisplayDate<a class="headerlink" href="#displaydate" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.DisplayDate">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">DisplayDate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayDate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
+<dt class="sig sig-object py" id="chiron.processors.DisplayDate">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">DisplayDate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should either be a Python datetime object or null</p></li>
@@ -521,9 +551,9 @@ datetime values set to 0:00.</p></li>
 <div class="section" id="displaydatedeid">
 <h3>DisplayDateDeid<a class="headerlink" href="#displaydatedeid" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.DisplayDateDeid">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">DisplayDateDeid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayDateDeid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.date.DisplayDate</span></code></p>
+<dt class="sig sig-object py" id="chiron.processors.DisplayDateDeid">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">DisplayDateDeid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayDateDeid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chiron.processors.DisplayDate" title="chiron.processors.display.date.DisplayDate"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.date.DisplayDate</span></code></a></p>
 <p>This is a deidentified alternative to the DateFieldProcessor. If you use it in place of the
 DateFieldProcessor, only the date year is presented to the user.</p>
 <p>Typically, this is used in situations where you want users who can view PHI to see/query the
@@ -538,9 +568,9 @@ integer and use the NumberFieldProcessor.</p>
 <div class="section" id="displaynumber">
 <h3>DisplayNumber<a class="headerlink" href="#displaynumber" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.DisplayNumber">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">DisplayNumber</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayNumber" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
+<dt class="sig sig-object py" id="chiron.processors.DisplayNumber">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">DisplayNumber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayNumber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should either be numbers or null</p></li>
@@ -554,12 +584,33 @@ and statistics are calculated/displayed.</p></li>
 </dd></dl>
 
 </div>
+<div class="section" id="displaynumberwithcategories">
+<h3>DisplayNumberWithCategories<a class="headerlink" href="#displaynumberwithcategories" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.processors.DisplayNumberWithCategories">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">DisplayNumberWithCategories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayNumberWithCategories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
+<p>When to use:</p>
+<ul class="simple">
+<li><p>All values should be numbers, strings or null.</p></li>
+<li><p>When importing during ETL, need to set cast_to_type “integer/string” or “float/string” which
+will store number values in Mongo as {“num”: 5} and string values as {“txt”: “my value”}</p></li>
+</ul>
+<p>Optional arguments:</p>
+<ul class="simple">
+<li><p>is_integer: (default: False) set to True if the number has no decimal value.
+NOTE: This does not round/force numbers to be integers, it only affects how histograms
+and statistics are calculated/displayed.</p></li>
+</ul>
+</dd></dl>
+
+</div>
 <div class="section" id="displaytext">
 <h3>DisplayText<a class="headerlink" href="#displaytext" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.DisplayText">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">DisplayText</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayText" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
+<dt class="sig sig-object py" id="chiron.processors.DisplayText">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">DisplayText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should either be a string or null</p></li>
@@ -573,9 +624,9 @@ and statistics are calculated/displayed.</p></li>
 <div class="section" id="displaytextcustomsort">
 <h3>DisplayTextCustomSort<a class="headerlink" href="#displaytextcustomsort" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.DisplayTextCustomSort">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">DisplayTextCustomSort</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayTextCustomSort" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.text.DisplayText</span></code></p>
+<dt class="sig sig-object py" id="chiron.processors.DisplayTextCustomSort">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">DisplayTextCustomSort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayTextCustomSort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chiron.processors.DisplayText" title="chiron.processors.display.text.DisplayText"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.text.DisplayText</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>Text field where you want the sorting to be different from alphabetical</p></li>
@@ -595,9 +646,9 @@ numeric sort value:
 <div class="section" id="displayboolean">
 <h3>DisplayBoolean<a class="headerlink" href="#displayboolean" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.DisplayBoolean">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">DisplayBoolean</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayBoolean" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
+<dt class="sig sig-object py" id="chiron.processors.DisplayBoolean">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">DisplayBoolean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayBoolean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should be true, false, or null</p></li>
@@ -608,9 +659,9 @@ numeric sort value:
 <div class="section" id="displaygeneric">
 <h3>DisplayGeneric<a class="headerlink" href="#displaygeneric" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="chiron.processors.DisplayGeneric">
-<em class="property">class </em><code class="sig-prename descclassname">chiron.processors.</code><code class="sig-name descname">DisplayGeneric</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oUser</span></em>, <em class="sig-param"><span class="n">oConcept</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayGeneric" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
+<dt class="sig sig-object py" id="chiron.processors.DisplayGeneric">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">DisplayGeneric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.DisplayGeneric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="making_custom_processor.html#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin" title="chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.built_in_ui_mixins.DisplayProcessorBuiltInUiMixin</span></code></a>, <a class="reference internal" href="chiron.processors.abstract.display_processor.html#chiron.processors.abstract.display_processor.DisplayProcessor" title="chiron.processors.abstract.display_processor.DisplayProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.display_processor.DisplayProcessor</span></code></a></p>
 </dd></dl>
 
 </div>
@@ -622,37 +673,29 @@ numeric sort value:
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="making_custom_processor.html" class="btn btn-neutral float-right" title="Creating Your Own Processors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="data_dict_example.html" class="btn btn-neutral float-left" title="Data Dictionary Setup Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="making_custom_processor.html" class="btn btn-neutral float-right" title="Creating Your Own Processors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="data_dict_example.html" class="btn btn-neutral float-left" title="Data Dictionary Setup Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics
+        &#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

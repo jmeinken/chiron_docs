@@ -96,6 +96,12 @@ CohortDefNumber
 
 .. autoclass:: chiron.processors.CohortDefNumber
    :show-inheritance:
+
+CohortDefNumberWithCategories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.CohortDefNumberWithCategories
+   :show-inheritance:
    
 CohortDefText
 ^^^^^^^^^^^^^
@@ -143,6 +149,12 @@ DisplayNumber
 ^^^^^^^^^^^^^
 
 .. autoclass:: chiron.processors.DisplayNumber
+   :show-inheritance:
+
+DisplayNumberWithCategories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.DisplayNumberWithCategories
    :show-inheritance:
    
 DisplayText

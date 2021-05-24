@@ -171,9 +171,35 @@ QueryTools
 
 .. automethod:: chiron.api.viewsets.QueryToolsViewSet.export_csv
 
+.. _api-endpoints-projects:
 
+Projects
+--------
 
+/projects/ (GET)
+^^^^^^^^^^^^^^^
 
+.. automethod:: chiron.api.viewsets.ProjectViewSet.list
+
+/projects/[project_id] (GET)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ProjectViewSet.retrieve
+
+/projects/[project_id] (POST)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ProjectViewSet.create
+
+/projects/[project_id] (PUT)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ProjectViewSet.update
+
+/projects/[project_id] (DELETE)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ProjectViewSet.delete
 
 
 Reports
@@ -183,6 +209,13 @@ Reports
 ^^^^^^^^^^^^^^^
 
 .. automethod:: chiron.api.viewsets.ReportViewSet.list
+
+.. _api-endpoints-reports-flag:
+
+/reports/[report_id]/flag/ (POST)
+^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.ReportViewSet.flag
 
 
 

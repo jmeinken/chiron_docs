@@ -11,10 +11,10 @@ Processor Model
    :undoc-members:
    :show-inheritance:
 
-Root Model
-----------
+Collection Model
+----------------
 
-.. autoclass:: chiron.models.Root
+.. autoclass:: chiron.models.Collection
    :members:
    :undoc-members:
    :show-inheritance:
