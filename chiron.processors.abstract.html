@@ -1,71 +1,32 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>chiron.processors.abstract package &mdash; Chiron 1.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>chiron.processors.abstract package &mdash; Chiron 2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Chiron
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,24 +34,12 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_example.html">Data Dictionary Setup Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
@@ -98,89 +47,49 @@
 <li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_table_def.html">Transforming Table Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Chiron</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>chiron.processors.abstract package</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/chiron.processors.abstract.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="chiron-processors-abstract-package">
-<h1>chiron.processors.abstract package<a class="headerlink" href="#chiron-processors-abstract-package" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="chiron-processors-abstract-package">
+<h1>chiron.processors.abstract package<a class="headerlink" href="#chiron-processors-abstract-package" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="chiron.processors.abstract.display_processor.html">chiron.processors.abstract.display_processor module</a></li>
 </ul>
 </div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-chiron.processors.abstract.cohort_def_processor">
-<span id="chiron-processors-abstract-cohort-def-processor-module"></span><h2>chiron.processors.abstract.cohort_def_processor module<a class="headerlink" href="#module-chiron.processors.abstract.cohort_def_processor" title="Permalink to this headline">¶</a></h2>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-chiron.processors.abstract.cohort_def_processor">
+<span id="chiron-processors-abstract-cohort-def-processor-module"></span><h2>chiron.processors.abstract.cohort_def_processor module<a class="headerlink" href="#module-chiron.processors.abstract.cohort_def_processor" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.cohort_def_processor.</span></span><span class="sig-name descname"><span class="pre">CohortDefProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.cohort_def_processor.</span></span><span class="sig-name descname"><span class="pre">CohortDefProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Handles how a concept gets applied in queries. It is associated with a concept in the data
 dictionary using the <code class="docutils literal notranslate"><span class="pre">Concept.cohort_def_processor</span></code> field.</p>
@@ -200,19 +109,18 @@ dictionary using the <code class="docutils literal notranslate"><span class="pre
 </ul>
 <p>Using a Cohort Def Entry:</p>
 <ul class="simple">
-<li><p>display_cd_entry_as_string()</p></li>
-<li><p>display_cd_entry_as_html()</p></li>
+<li><p>display_entry_as_string()</p></li>
+<li><p>display_entry_as_html()</p></li>
 <li><p>get_mongo_match_def()</p></li>
-<li><p>get_mongo_filter_def()</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.concept_type">
-<span class="sig-name descname"><span class="pre">concept_type</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'undefined'</span></em><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.concept_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">concept_type</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'undefined'</span></em><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.concept_type" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.preprocess_statistics">
-<span class="sig-name descname"><span class="pre">preprocess_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.preprocess_statistics" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">preprocess_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.preprocess_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>If there is data needed to render the cohort def form, it can be retrieved/calculated here.
 NOTE: Don’t access directly! Instead, use <code class="docutils literal notranslate"><span class="pre">self.get_statistics()</span></code> which will
 manage caching of this data.</p>
@@ -231,7 +139,7 @@ manage caching of this data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_statistics">
-<span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_statistics" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
 There shouldn’t be any need to override this method.
 note: There is no cache implemented yet, so just returns preprocess_statistics()
@@ -251,13 +159,13 @@ results directly.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_form_options">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_form_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_form_options" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_form_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_form_options" title="Permalink to this definition"></a></dt>
 <dd><p>Returns any data needed to render a form for creating a cohort def entry</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.form_callback">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">form_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">get_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.form_callback" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">form_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">get_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.form_callback" title="Permalink to this definition"></a></dt>
 <dd><p>Used when the form needs to collect data by AJAX in order to work properly.
 Data returned by this will be passed to the form as JSON data.</p>
 <dl class="field-list simple">
@@ -275,7 +183,7 @@ Data returned by this will be passed to the form as JSON data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.form_callback_streaming">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">form_callback_streaming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">get_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.form_callback_streaming" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">form_callback_streaming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">get_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.form_callback_streaming" title="Permalink to this definition"></a></dt>
 <dd><p>Same as form callback but can yield data multiple times to be returned using
 streaming HTTP</p>
 <dl class="field-list simple">
@@ -293,7 +201,7 @@ streaming HTTP</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.validate_form">
-<span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.validate_form" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.validate_form" title="Permalink to this definition"></a></dt>
 <dd><p>If provided form validates, returns True and populates self.cleaned dict with any data
 needed to generate a cohort def entry. If validation fails, returns False and adds
 error message strings to self.errors list.</p>
@@ -311,8 +219,13 @@ error message strings to self.errors list.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_fields_to_index">
+<span class="sig-name descname"><span class="pre">get_fields_to_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_fields_to_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.generate_cohort_def_entry">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">generate_cohort_def_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.generate_cohort_def_entry" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">generate_cohort_def_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.generate_cohort_def_entry" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a cohort def entry dict that can be added to the cohort definition.
 NOTE: This should only be run after validate_form has successfully run.</p>
 <dl class="field-list simple">
@@ -332,8 +245,8 @@ NOTE: This should only be run after validate_form has successfully run.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.display_cd_entry_as_string">
-<span class="sig-name descname"><span class="pre">display_cd_entry_as_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.display_cd_entry_as_string" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.display_entry_as_string">
+<span class="sig-name descname"><span class="pre">display_entry_as_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.display_entry_as_string" title="Permalink to this definition"></a></dt>
 <dd><p>Converts cd_entry dict into a human-readable string</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -349,8 +262,13 @@ NOTE: This should only be run after validate_form has successfully run.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.display_cd_entry_as_html">
-<span class="sig-name descname"><span class="pre">display_cd_entry_as_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.display_cd_entry_as_html" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.display_entry_as_html_full">
+<span class="sig-name descname"><span class="pre">display_entry_as_html_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.display_entry_as_html_full" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.display_entry_as_html">
+<span class="sig-name descname"><span class="pre">display_entry_as_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.display_entry_as_html" title="Permalink to this definition"></a></dt>
 <dd><p>Converts cd_entry dict into a human-readable HTML-formatted string</p>
 <dl class="simple">
 <dt>SECURITY: This string should be displayable as HTML without risk of XSS, etc.</dt><dd><p>If the string incorporates user-input text that hasn’t already been sanitized/
@@ -372,7 +290,7 @@ escaped, it should be dealt with here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_mongo_match_def">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_mongo_match_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem_match</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_mongo_match_def" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_mongo_match_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem_match</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_mongo_match_def" title="Permalink to this definition"></a></dt>
 <dd><p>Converts this CD entry into something that can be embedded in a Mongo ‘$match’ definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -391,47 +309,27 @@ escaped, it should be dealt with here.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_mongo_filter_def">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_mongo_filter_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_mongo_filter_def" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts this CD entry into something that can be embedded in a Mongo ‘$filter’ definition.
-($filter definitions need to be boolean expressions have a different structure from
-$match definitions)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the filter definition</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_mongo_match_def_full">
+<span class="sig-name descname"><span class="pre">get_mongo_match_def_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem_match</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_mongo_match_def_full" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_concept_search_terms">
-<span class="sig-name descname"><span class="pre">get_concept_search_terms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_concept_search_terms" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_concept_search_terms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.get_concept_search_terms" title="Permalink to this definition"></a></dt>
 <dd><p>The concept list is searchable. By default, search includes the concept ID,
 the concept name, the concept description, and all parent category names.</p>
 <p>To add additional search terms, return them here as a single string. This method is called
 after all the data is loaded, so it can query MongoDB to include patient data values.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.summarize">
-<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.cohort_def_processor.CohortDefProcessor.summarize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Some summary statistics about this concept (shouldn’t be any need to override this method)</p>
 </dd></dl>
 
-</dd></dl>
-
-</div>
-<div class="section" id="module-chiron.processors.abstract.etl_processor">
-<span id="chiron-processors-abstract-etl-processor-module"></span><h2>chiron.processors.abstract.etl_processor module<a class="headerlink" href="#module-chiron.processors.abstract.etl_processor" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-chiron.processors.abstract.etl_processor">
+<span id="chiron-processors-abstract-etl-processor-module"></span><h2>chiron.processors.abstract.etl_processor module<a class="headerlink" href="#module-chiron.processors.abstract.etl_processor" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.etl_processor.EtlProcessor">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.etl_processor.</span></span><span class="sig-name descname"><span class="pre">EtlProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.etl_processor.EtlProcessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.etl_processor.</span></span><span class="sig-name descname"><span class="pre">EtlProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.etl_processor.EtlProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>An ETL Processor is for a concept. During the ETL in to MongoDB, the ETLProcessor gets
 a record from the source collection and returns the value to store for this concept in
@@ -440,7 +338,7 @@ MongoDB.</p>
 field.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.etl_processor.EtlProcessor.pull_record_data_from_source">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">pull_record_data_from_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.etl_processor.EtlProcessor.pull_record_data_from_source" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">pull_record_data_from_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.etl_processor.EtlProcessor.pull_record_data_from_source" title="Permalink to this definition"></a></dt>
 <dd><p>Retrieves or calculates the value to store in MongoDB from a source collection record.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -457,7 +355,7 @@ field.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.etl_processor.EtlProcessor.convert_data_list_to_set">
-<span class="sig-name descname"><span class="pre">convert_data_list_to_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.etl_processor.EtlProcessor.convert_data_list_to_set" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">convert_data_list_to_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.etl_processor.EtlProcessor.convert_data_list_to_set" title="Permalink to this definition"></a></dt>
 <dd><p>UTILITY FUNCTION
 Returns only unique, non-null values from provided data_list.</p>
 <p>Chiron allows multiple values to be stored in a single concept entry as a list.
@@ -479,7 +377,7 @@ OUT: None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.etl_processor.EtlProcessor.cast">
-<span class="sig-name descname"><span class="pre">cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.etl_processor.EtlProcessor.cast" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.etl_processor.EtlProcessor.cast" title="Permalink to this definition"></a></dt>
 <dd><p>UTILITY FUNCTION
 Useful for converting data types of input values when necessary.</p>
 <p>There are two relevant object properties:
@@ -490,24 +388,24 @@ will return None</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="chiron-processors-abstract-has-concept-module">
-<h2>chiron.processors.abstract.has_concept module<a class="headerlink" href="#chiron-processors-abstract-has-concept-module" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="chiron-processors-abstract-has-user-and-concept-module">
-<h2>chiron.processors.abstract.has_user_and_concept module<a class="headerlink" href="#chiron-processors-abstract-has-user-and-concept-module" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-chiron.processors.abstract.source_collection_processor">
-<span id="chiron-processors-abstract-source-collection-processor-module"></span><h2>chiron.processors.abstract.source_collection_processor module<a class="headerlink" href="#module-chiron.processors.abstract.source_collection_processor" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="chiron-processors-abstract-has-concept-module">
+<h2>chiron.processors.abstract.has_concept module<a class="headerlink" href="#chiron-processors-abstract-has-concept-module" title="Permalink to this headline"></a></h2>
+</section>
+<section id="chiron-processors-abstract-has-user-and-concept-module">
+<h2>chiron.processors.abstract.has_user_and_concept module<a class="headerlink" href="#chiron-processors-abstract-has-user-and-concept-module" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-chiron.processors.abstract.source_collection_processor">
+<span id="chiron-processors-abstract-source-collection-processor-module"></span><h2>chiron.processors.abstract.source_collection_processor module<a class="headerlink" href="#module-chiron.processors.abstract.source_collection_processor" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.source_collection_processor.StandardLoadMixin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.source_collection_processor.</span></span><span class="sig-name descname"><span class="pre">StandardLoadMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.StandardLoadMixin" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.source_collection_processor.</span></span><span class="sig-name descname"><span class="pre">StandardLoadMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.StandardLoadMixin" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Retrieves an entire source collection as an iterable and processes/loads
 to MongoDB one record at a time.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.source_collection_processor.StandardLoadMixin.get_source_collection">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_source_collection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.StandardLoadMixin.get_source_collection" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_source_collection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.StandardLoadMixin.get_source_collection" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the entire source dataset as an iterable. Each entry in this iterable should
 corresponds to the associated <code class="docutils literal notranslate"><span class="pre">Collection</span></code>.</p>
 <p>For example, a source data collection associated with a “sample” collection should return
@@ -524,7 +422,7 @@ an iterable of samples.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.source_collection_processor.StandardLoadMixin.get_subject_match_def">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_subject_match_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.StandardLoadMixin.get_subject_match_def" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_subject_match_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.StandardLoadMixin.get_subject_match_def" title="Permalink to this definition"></a></dt>
 <dd><p>Returns rules as a Python dict about how associate a new record with the correct
 subject in MongoDB.</p>
 <dl class="field-list simple">
@@ -589,7 +487,7 @@ definitions (or special values) and they ETL loaded will use all of them.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.source_collection_processor.BatchLoadMixin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.source_collection_processor.</span></span><span class="sig-name descname"><span class="pre">BatchLoadMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.BatchLoadMixin" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.source_collection_processor.</span></span><span class="sig-name descname"><span class="pre">BatchLoadMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.BatchLoadMixin" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Instead of loading one source collection record at a time, loads all the records for each
 subject at once. Sometimes this is more time efficient.</p>
@@ -616,7 +514,7 @@ can’t.</p>
 </ul>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.source_collection_processor.BatchLoadMixin.get_subject_match_defs">
-<span class="sig-name descname"><span class="pre">get_subject_match_defs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.BatchLoadMixin.get_subject_match_defs" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_subject_match_defs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.BatchLoadMixin.get_subject_match_defs" title="Permalink to this definition"></a></dt>
 <dd><p>Returns all subject match definitions as a list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Match_rule</dt>
@@ -675,7 +573,7 @@ that match the match_rule</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.source_collection_processor.BatchLoadMixin.get_source_collection_batch">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_source_collection_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject_match_def</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.BatchLoadMixin.get_source_collection_batch" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_source_collection_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject_match_def</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.BatchLoadMixin.get_source_collection_batch" title="Permalink to this definition"></a></dt>
 <dd><p>Returns all source collection entries associated with the subject corresponding to the
 subject_match_def</p>
 </dd></dl>
@@ -684,7 +582,7 @@ subject_match_def</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.source_collection_processor.</span></span><span class="sig-name descname"><span class="pre">SourceCollectionProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSourceCollection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.source_collection_processor.</span></span><span class="sig-name descname"><span class="pre">SourceCollectionProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSourceCollection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Generates an iterable of data to import into MongoDB.</p>
 <p>Must be associated with either the StandardLoadMixin or the BatchLoadMixin. If both mixins
@@ -694,7 +592,7 @@ None</p>
 <code class="docutils literal notranslate"><span class="pre">SourceCollection.processor</span></code> field.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_collection_id">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_collection_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_collection_id" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_collection_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_collection_id" title="Permalink to this definition"></a></dt>
 <dd><p>Reads one record from the source data collection and returns a unique ID for the record.</p>
 <p>For example, if this is a source collection of samples, could return a sample ID. If you
 had sample data in multiple source collections, that sample ID could be used to merge
@@ -720,7 +618,7 @@ subdocument.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_data_last_updated_date">
-<span class="sig-name descname"><span class="pre">get_data_last_updated_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_data_last_updated_date" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_data_last_updated_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.source_collection_processor.SourceCollectionProcessor.get_data_last_updated_date" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the datetime when this source collection was last updated.
 If this is a live data source, that will be now. If this is an archived data source, it
 will be whatever is the date last updated.</p>
@@ -728,12 +626,12 @@ will be whatever is the date last updated.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-chiron.processors.abstract">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-chiron.processors.abstract" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-chiron.processors.abstract">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-chiron.processors.abstract" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">CohortDefProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">CohortDefProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Handles how a concept gets applied in queries. It is associated with a concept in the data
 dictionary using the <code class="docutils literal notranslate"><span class="pre">Concept.cohort_def_processor</span></code> field.</p>
@@ -753,19 +651,18 @@ dictionary using the <code class="docutils literal notranslate"><span class="pre
 </ul>
 <p>Using a Cohort Def Entry:</p>
 <ul class="simple">
-<li><p>display_cd_entry_as_string()</p></li>
-<li><p>display_cd_entry_as_html()</p></li>
+<li><p>display_entry_as_string()</p></li>
+<li><p>display_entry_as_html()</p></li>
 <li><p>get_mongo_match_def()</p></li>
-<li><p>get_mongo_filter_def()</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.concept_type">
-<span class="sig-name descname"><span class="pre">concept_type</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'undefined'</span></em><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.concept_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">concept_type</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'undefined'</span></em><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.concept_type" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.preprocess_statistics">
-<span class="sig-name descname"><span class="pre">preprocess_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.preprocess_statistics" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">preprocess_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.preprocess_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>If there is data needed to render the cohort def form, it can be retrieved/calculated here.
 NOTE: Don’t access directly! Instead, use <code class="docutils literal notranslate"><span class="pre">self.get_statistics()</span></code> which will
 manage caching of this data.</p>
@@ -784,7 +681,7 @@ manage caching of this data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.get_statistics">
-<span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_statistics" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
 There shouldn’t be any need to override this method.
 note: There is no cache implemented yet, so just returns preprocess_statistics()
@@ -804,13 +701,13 @@ results directly.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.get_form_options">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_form_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_form_options" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_form_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_form_options" title="Permalink to this definition"></a></dt>
 <dd><p>Returns any data needed to render a form for creating a cohort def entry</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.form_callback">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">form_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">get_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.form_callback" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">form_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">get_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.form_callback" title="Permalink to this definition"></a></dt>
 <dd><p>Used when the form needs to collect data by AJAX in order to work properly.
 Data returned by this will be passed to the form as JSON data.</p>
 <dl class="field-list simple">
@@ -828,7 +725,7 @@ Data returned by this will be passed to the form as JSON data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.form_callback_streaming">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">form_callback_streaming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">get_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.form_callback_streaming" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">form_callback_streaming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">get_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.form_callback_streaming" title="Permalink to this definition"></a></dt>
 <dd><p>Same as form callback but can yield data multiple times to be returned using
 streaming HTTP</p>
 <dl class="field-list simple">
@@ -846,7 +743,7 @@ streaming HTTP</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.validate_form">
-<span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.validate_form" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.validate_form" title="Permalink to this definition"></a></dt>
 <dd><p>If provided form validates, returns True and populates self.cleaned dict with any data
 needed to generate a cohort def entry. If validation fails, returns False and adds
 error message strings to self.errors list.</p>
@@ -864,8 +761,13 @@ error message strings to self.errors list.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.get_fields_to_index">
+<span class="sig-name descname"><span class="pre">get_fields_to_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_fields_to_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.generate_cohort_def_entry">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">generate_cohort_def_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.generate_cohort_def_entry" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">generate_cohort_def_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.generate_cohort_def_entry" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a cohort def entry dict that can be added to the cohort definition.
 NOTE: This should only be run after validate_form has successfully run.</p>
 <dl class="field-list simple">
@@ -885,8 +787,8 @@ NOTE: This should only be run after validate_form has successfully run.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.display_cd_entry_as_string">
-<span class="sig-name descname"><span class="pre">display_cd_entry_as_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.display_cd_entry_as_string" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.display_entry_as_string">
+<span class="sig-name descname"><span class="pre">display_entry_as_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.display_entry_as_string" title="Permalink to this definition"></a></dt>
 <dd><p>Converts cd_entry dict into a human-readable string</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -902,8 +804,13 @@ NOTE: This should only be run after validate_form has successfully run.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.display_cd_entry_as_html">
-<span class="sig-name descname"><span class="pre">display_cd_entry_as_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.display_cd_entry_as_html" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.display_entry_as_html_full">
+<span class="sig-name descname"><span class="pre">display_entry_as_html_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.display_entry_as_html_full" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.display_entry_as_html">
+<span class="sig-name descname"><span class="pre">display_entry_as_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.display_entry_as_html" title="Permalink to this definition"></a></dt>
 <dd><p>Converts cd_entry dict into a human-readable HTML-formatted string</p>
 <dl class="simple">
 <dt>SECURITY: This string should be displayable as HTML without risk of XSS, etc.</dt><dd><p>If the string incorporates user-input text that hasn’t already been sanitized/
@@ -925,7 +832,7 @@ escaped, it should be dealt with here.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_mongo_match_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem_match</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_mongo_match_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem_match</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def" title="Permalink to this definition"></a></dt>
 <dd><p>Converts this CD entry into something that can be embedded in a Mongo ‘$match’ definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -944,44 +851,24 @@ escaped, it should be dealt with here.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.get_mongo_filter_def">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_mongo_filter_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_mongo_filter_def" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts this CD entry into something that can be embedded in a Mongo ‘$filter’ definition.
-($filter definitions need to be boolean expressions have a different structure from
-$match definitions)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the filter definition</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def_full">
+<span class="sig-name descname"><span class="pre">get_mongo_match_def_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem_match</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def_full" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.get_concept_search_terms">
-<span class="sig-name descname"><span class="pre">get_concept_search_terms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_concept_search_terms" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_concept_search_terms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_concept_search_terms" title="Permalink to this definition"></a></dt>
 <dd><p>The concept list is searchable. By default, search includes the concept ID,
 the concept name, the concept description, and all parent category names.</p>
 <p>To add additional search terms, return them here as a single string. This method is called
 after all the data is loaded, so it can query MongoDB to include patient data values.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.summarize">
-<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.summarize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Some summary statistics about this concept (shouldn’t be any need to override this method)</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">DisplayProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">DisplayProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Manages how a concept is incorporated into output datasets. It is associated with a concept in
 the data dictionary using the <code class="docutils literal notranslate"><span class="pre">Concept.display_processor</span></code> field.</p>
@@ -997,27 +884,26 @@ concept</p></li>
 <p>Applying a Table Def Entry to a Results Set:</p>
 <ul class="simple">
 <li><p>get_mongo_aggregate_def() - tell mongo how to aggregate this concept</p></li>
-<li><p>get_sort_field() - tell mongo how to sort this concept</p></li>
 <li><p>get_header_display_value() - the label for this column in the results output</p></li>
 <li><p>get_individual_display_value() - how to convert the stored concept value into a string</p></li>
-<li><p>get_display_value() - how to convert the mongo output value into a string</p></li>
+<li><p>get_display_value3() - how to convert the mongo output value into a string</p></li>
 </ul>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.set_aggregation_methods">
-<span class="sig-name descname"><span class="pre">set_aggregation_methods</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.set_aggregation_methods" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_aggregation_methods</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.set_aggregation_methods" title="Permalink to this definition"></a></dt>
 <dd><p>Sets a list of AggregationMethod objects that can be applied to this concept. This is
 automatically called by the init method.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_form_options">
-<span class="sig-name descname"><span class="pre">get_form_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_form_options" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_form_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_form_options" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a list of options for customizing a table_def_entry</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.validate_form">
-<span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.validate_form" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.validate_form" title="Permalink to this definition"></a></dt>
 <dd><p>If provided form validates, returns True and populates self.cleaned dict with any data
 needed to generate a table def entry. If validation fails, returns False and adds
 error message strings to self.errors list.</p>
@@ -1036,7 +922,7 @@ error message strings to self.errors list.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.generate_table_def_entry">
-<span class="sig-name descname"><span class="pre">generate_table_def_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.generate_table_def_entry" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">generate_table_def_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.generate_table_def_entry" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the table_def entry definition for this column
 NOTE: This should typically be run after validate_table_form has successfully run.
 Otherwise, it will just generate a default entry with no customization.</p>
@@ -1052,45 +938,35 @@ Otherwise, it will just generate a default entry with no customization.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_mongo_aggregate_def">
-<span class="sig-name descname"><span class="pre">get_mongo_aggregate_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_temp_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_mongo_aggregate_def" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_mongo_aggregate_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_temp_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_mongo_aggregate_def" title="Permalink to this definition"></a></dt>
 <dd><p>For aggregated fields, returns the $group rule and the $project rule
 that will handle the aggregation.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.check_mongo_output_is_array">
-<span class="sig-name descname"><span class="pre">check_mongo_output_is_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.check_mongo_output_is_array" title="Permalink to this definition">¶</a></dt>
-<dd><p>Some aggregate methods (such as list) will return an array for that value from the
-MongoDB query. MongoDB will throw an error if you try to sort by more than 1 array field,
-simply because it causes performance issues.</p>
-<p>Returns True if array output for this field, else False. This methods primary use is to
-make sure the user doesn’t create an invalid sort def.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_sort_value">
+<span class="sig-name descname"><span class="pre">get_sort_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_sort_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_sort_field">
-<span class="sig-name descname"><span class="pre">get_sort_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_sort_field" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the mongo field name to use for sorting by this concept. Often that will simply be
-the concept permanent ID itself, but could be different for more complex data structures.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>mongo field name</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_sort_key">
+<span class="sig-name descname"><span class="pre">get_sort_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_sort_key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_sort_key_function">
+<span class="sig-name descname"><span class="pre">get_sort_key_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_sort_key_function" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_header_display_value">
-<span class="sig-name descname"><span class="pre">get_header_display_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_header_display_value" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_header_display_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_header_display_value" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a display name for the column</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_individual_display_value">
-<span class="sig-name descname"><span class="pre">get_individual_display_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_individual_display_value" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_individual_display_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_individual_display_value" title="Permalink to this definition"></a></dt>
 <dd><p>Converts a value stored in the Mongo database to a display value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1109,35 +985,18 @@ the concept permanent ID itself, but could be different for more complex data st
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_display_value">
-<span class="sig-name descname"><span class="pre">get_display_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_display_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_individual_display_value() method converts a single value from the
-Mongo database into the final display value. However, with aggregate
-queries the type of value coming out of the query might be different from the type of
-value stored in the database. For example, a count aggregate will return a
-number regardless of the concept data type. A list aggregate must get multiple values
-and merge them into a single string. This method looks at the aggregation rules and
-returns the appropriate final value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>td_entry</strong> (<em>dict</em>) – the table def entry for this field</p></li>
-<li><p><strong>value</strong> (<em>various</em>) – the raw value coming from the Mongo database for this concept</p></li>
-<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>optional</em>) – the type of output being generated (html, csv, etc.)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a displayable representation of the value or aggregate value</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_display_value3">
+<span class="sig-name descname"><span class="pre">get_display_value3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_display_value3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.calculate_aggregate_value">
+<span class="sig-name descname"><span class="pre">calculate_aggregate_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.calculate_aggregate_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_data_type">
-<span class="sig-name descname"><span class="pre">get_data_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_data_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_data_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_data_type" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a human-readable string describing the data type (text, integer, etc.).
 This is used to generate a data dictionary.</p>
 </dd></dl>
@@ -1146,7 +1005,7 @@ This is used to generate a data dictionary.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">EtlProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">EtlProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>An ETL Processor is for a concept. During the ETL in to MongoDB, the ETLProcessor gets
 a record from the source collection and returns the value to store for this concept in
@@ -1155,7 +1014,7 @@ MongoDB.</p>
 field.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor.pull_record_data_from_source">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">pull_record_data_from_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.pull_record_data_from_source" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">pull_record_data_from_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.pull_record_data_from_source" title="Permalink to this definition"></a></dt>
 <dd><p>Retrieves or calculates the value to store in MongoDB from a source collection record.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1172,7 +1031,7 @@ field.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor.convert_data_list_to_set">
-<span class="sig-name descname"><span class="pre">convert_data_list_to_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.convert_data_list_to_set" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">convert_data_list_to_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.convert_data_list_to_set" title="Permalink to this definition"></a></dt>
 <dd><p>UTILITY FUNCTION
 Returns only unique, non-null values from provided data_list.</p>
 <p>Chiron allows multiple values to be stored in a single concept entry as a list.
@@ -1194,7 +1053,7 @@ OUT: None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor.cast">
-<span class="sig-name descname"><span class="pre">cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.cast" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.cast" title="Permalink to this definition"></a></dt>
 <dd><p>UTILITY FUNCTION
 Useful for converting data types of input values when necessary.</p>
 <p>There are two relevant object properties:
@@ -1207,7 +1066,7 @@ will return None</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.SourceCollectionProcessor">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">SourceCollectionProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSourceCollection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">SourceCollectionProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSourceCollection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Generates an iterable of data to import into MongoDB.</p>
 <p>Must be associated with either the StandardLoadMixin or the BatchLoadMixin. If both mixins
@@ -1217,7 +1076,7 @@ None</p>
 <code class="docutils literal notranslate"><span class="pre">SourceCollection.processor</span></code> field.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.SourceCollectionProcessor.get_collection_id">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_collection_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_collection_id" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_collection_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_collection_id" title="Permalink to this definition"></a></dt>
 <dd><p>Reads one record from the source data collection and returns a unique ID for the record.</p>
 <p>For example, if this is a source collection of samples, could return a sample ID. If you
 had sample data in multiple source collections, that sample ID could be used to merge
@@ -1243,7 +1102,7 @@ subdocument.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.SourceCollectionProcessor.get_data_last_updated_date">
-<span class="sig-name descname"><span class="pre">get_data_last_updated_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_data_last_updated_date" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_data_last_updated_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_data_last_updated_date" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the datetime when this source collection was last updated.
 If this is a live data source, that will be now. If this is an archived data source, it
 will be whatever is the date last updated.</p>
@@ -1253,13 +1112,13 @@ will be whatever is the date last updated.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.StandardLoadMixin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">StandardLoadMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">StandardLoadMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Retrieves an entire source collection as an iterable and processes/loads
 to MongoDB one record at a time.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.StandardLoadMixin.get_source_collection">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_source_collection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_source_collection" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_source_collection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_source_collection" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the entire source dataset as an iterable. Each entry in this iterable should
 corresponds to the associated <code class="docutils literal notranslate"><span class="pre">Collection</span></code>.</p>
 <p>For example, a source data collection associated with a “sample” collection should return
@@ -1276,7 +1135,7 @@ an iterable of samples.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.StandardLoadMixin.get_subject_match_def">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_subject_match_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_subject_match_def" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_subject_match_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_subject_match_def" title="Permalink to this definition"></a></dt>
 <dd><p>Returns rules as a Python dict about how associate a new record with the correct
 subject in MongoDB.</p>
 <dl class="field-list simple">
@@ -1341,7 +1200,7 @@ definitions (or special values) and they ETL loaded will use all of them.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.BatchLoadMixin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">BatchLoadMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">BatchLoadMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Instead of loading one source collection record at a time, loads all the records for each
 subject at once. Sometimes this is more time efficient.</p>
@@ -1368,7 +1227,7 @@ can’t.</p>
 </ul>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.BatchLoadMixin.get_subject_match_defs">
-<span class="sig-name descname"><span class="pre">get_subject_match_defs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin.get_subject_match_defs" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_subject_match_defs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin.get_subject_match_defs" title="Permalink to this definition"></a></dt>
 <dd><p>Returns all subject match definitions as a list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Match_rule</dt>
@@ -1427,7 +1286,7 @@ that match the match_rule</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.BatchLoadMixin.get_source_collection_batch">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_source_collection_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject_match_def</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin.get_source_collection_batch" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_source_collection_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject_match_def</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin.get_source_collection_batch" title="Permalink to this definition"></a></dt>
 <dd><p>Returns all source collection entries associated with the subject corresponding to the
 subject_match_def</p>
 </dd></dl>
@@ -1436,7 +1295,7 @@ subject_match_def</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">CohortDefProcessorBuiltInUiMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">CohortDefProcessorBuiltInUiMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>CohortDefProcessor functionality needed by the built-in UI. If you are only using the
 API, your processors don’t need this mixin.</p>
@@ -1445,7 +1304,7 @@ API, your processors don’t need this mixin.</p>
 - self.form_js_template (optional)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin.get_concept_form">
-<span class="sig-name descname"><span class="pre">get_concept_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin.get_concept_form" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_concept_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin.get_concept_form" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the entire entry form as an html string, along with corresponding javascript code</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1467,73 +1326,57 @@ cohort def)</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin.generate_concept_form">
-<span class="sig-name descname"><span class="pre">generate_concept_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statistics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form_options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin.generate_concept_form" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">generate_concept_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statistics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form_options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin.generate_concept_form" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessorBuiltInUiMixin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">DisplayProcessorBuiltInUiMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">DisplayProcessorBuiltInUiMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessorBuiltInUiMixin.form_html_template">
-<span class="sig-name descname"><span class="pre">form_html_template</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'chiron/processors/table_def_forms/generic_table_def_form.html'</span></em><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin.form_html_template" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">form_html_template</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'chiron/processors/table_def_forms/generic_table_def_form.html'</span></em><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin.form_html_template" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessorBuiltInUiMixin.get_field_edit_form">
-<span class="sig-name descname"><span class="pre">get_field_edit_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">existing_td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin.get_field_edit_form" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_field_edit_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">existing_td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin.get_field_edit_form" title="Permalink to this definition"></a></dt>
 <dd><p>Returns an HTML form for customizing this field.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.
-
-    </p>
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

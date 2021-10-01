@@ -1,73 +1,34 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Transforming Cohort Definitions &mdash; Chiron 1.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Transforming Cohort Definitions &mdash; Chiron 2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Transforming Table Definitions" href="api_transforming_table_def.html" />
     <link rel="prev" title="API Endpoints" href="api_viewsets.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Chiron
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -75,24 +36,12 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_example.html">Data Dictionary Setup Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
@@ -106,90 +55,54 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-0">delete_entry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-1">add_criteria_set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-2">delete_criteria_set</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-3">delete_event_rule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-4">change_to_boolean_or</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-5">change_to_boolean_and</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-6">sort_cd_entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-3">change_to_boolean_or</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-4">change_to_boolean_and</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-5">sort_cd_entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-6">clear_all</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-7">add_criteria_set_count_rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-8">create_event_rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-9">modify_event_rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-10">delete_event_rule</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_table_def.html">Transforming Table Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Chiron</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Transforming Cohort Definitions</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/api_transforming_cohort_def.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="transforming-cohort-definitions">
-<span id="transforming-cohort-defs"></span><h1>Transforming Cohort Definitions<a class="headerlink" href="#transforming-cohort-definitions" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="transforming-cohort-definitions">
+<span id="transforming-cohort-defs"></span><h1>Transforming Cohort Definitions<a class="headerlink" href="#transforming-cohort-definitions" title="Permalink to this headline"></a></h1>
 <p>You can define how to change a cohort def using a transformation dict. Chiron takes an existing
 cohort definition and a transformation dict, applies the transformation, and returns a new
 cohort definition. In the API, this is done using endpoint <a class="reference internal" href="api_viewsets.html#api-cohort-def-post"><span class="std std-ref">/cohort_def/ (POST)</span></a>.</p>
-<div class="section" id="module-chiron.api.utils.cohort_def">
-<span id="add-entry"></span><h2>add_entry<a class="headerlink" href="#module-chiron.api.utils.cohort_def" title="Permalink to this headline">¶</a></h2>
+<section id="module-chiron.api.utils.cohort_def">
+<span id="add-entry"></span><h2>add_entry<a class="headerlink" href="#module-chiron.api.utils.cohort_def" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_add_entry">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_add_entry" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_add_entry" title="Permalink to this definition"></a></dt>
 <dd><p>Add a new entry or edit an existing entry on the cohort definition.</p>
 <p>The options for the transformation definition will depend on the type of cohort def processor.
 However, these are the global options for all “add entry” transformations:</p>
@@ -206,15 +119,139 @@ However, these are the global options for all “add entry” transformations:</
 </dl>
 </dd></dl>
 
-<div class="section" id="additional-transformation-arguments-for-specific-processors">
-<h3>Additional transformation arguments for specific processors<a class="headerlink" href="#additional-transformation-arguments-for-specific-processors" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="module-0">
-<span id="delete-entry"></span><h2>delete_entry<a class="headerlink" href="#module-0" title="Permalink to this headline">¶</a></h2>
+<section id="additional-transformation-arguments-for-specific-processors">
+<h3>Additional transformation arguments for specific processors<a class="headerlink" href="#additional-transformation-arguments-for-specific-processors" title="Permalink to this headline"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.CohortDefBoolean.validate_form">
+<span class="sig-prename descclassname"><span class="pre">CohortDefBoolean.</span></span><span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefBoolean.validate_form" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Selected_categories</dt>
+<dd class="field-odd"><p>a list of categories to include (true, false, null)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.CohortDefCategory.validate_form">
+<span class="sig-prename descclassname"><span class="pre">CohortDefCategory.</span></span><span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefCategory.validate_form" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Selected_categories</dt>
+<dd class="field-odd"><p>a list of categories to include (can include null as a
+selection)</p>
+</dd>
+<dt class="field-even">Exclude_selected</dt>
+<dd class="field-even"><p>(optional, default False) invert the query by excluding
+provided values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.CohortDefDateDeid.validate_form">
+<span class="sig-prename descclassname"><span class="pre">CohortDefDateDeid.</span></span><span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDateDeid.validate_form" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Exclude_selected</dt>
+<dd class="field-odd"><p>(optional, default False) invert the query by excluding
+matching dates</p>
+</dd>
+<dt class="field-even">Include_null_and_missing</dt>
+<dd class="field-even"><p>(optional, default False)</p>
+</dd>
+<dt class="field-odd">Query_type</dt>
+<dd class="field-odd"><p>“date_range” or “relative_to_today”</p>
+</dd>
+<dt class="field-even">Cd_numeric_min</dt>
+<dd class="field-even"><p>if query_type=”date_range”, the minimum year as YYYY</p>
+</dd>
+<dt class="field-odd">Cd_numeric_max</dt>
+<dd class="field-odd"><p>if query_type=”date_range”, the maximum year as YYYY</p>
+</dd>
+<dt class="field-even">Days_ago</dt>
+<dd class="field-even"><p>if query_type=”relative_to_today”, the number of days ago as an integer,
+for deidentified date query must be a multiple of 365</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.CohortDefDate.validate_form">
+<span class="sig-prename descclassname"><span class="pre">CohortDefDate.</span></span><span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDate.validate_form" title="Permalink to this definition"></a></dt>
+<dd><ul class="simple">
+<li><p><strong>exclude_selected</strong> - (optional, default False) invert the query by excluding
+matching dates</p></li>
+<li><p><strong>include_null_and_missing</strong> - (optional, default False)</p></li>
+<li><p><strong>query_type</strong> - “date_range” or “relative_to_today”</p></li>
+<li><p><strong>cd_numeric_min</strong> - if query_type=”date_range”, the minimum date (“MM/DD/YYYY” or any
+valid date string</p></li>
+<li><p><strong>cd_numeric_max</strong> - if query_type=”date_range”, the maximum date (“MM/DD/YYYY” or any
+valid date string</p></li>
+<li><p><strong>days_ago</strong> - if query_type=”relative_to_today”, the number of days ago as an integer</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.CohortDefNumber.validate_form">
+<span class="sig-prename descclassname"><span class="pre">CohortDefNumber.</span></span><span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumber.validate_form" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Exclude_selected</dt>
+<dd class="field-odd"><p>(optional, default False) invert the query by excluding
+matching dates</p>
+</dd>
+<dt class="field-even">Include_null_and_missing</dt>
+<dd class="field-even"><p>(optional, default False)</p>
+</dd>
+<dt class="field-odd">Cd_numeric_min</dt>
+<dd class="field-odd"><p>minimum value as number</p>
+</dd>
+<dt class="field-even">Cd_numeric_max</dt>
+<dd class="field-even"><p>maximum value as number</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.CohortDefText.validate_form">
+<span class="sig-prename descclassname"><span class="pre">CohortDefText.</span></span><span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefText.validate_form" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Chiron_text_field_selection</dt>
+<dd class="field-odd"><p>string with different terms separated by newline</p>
+</dd>
+<dt class="field-even">Exclude_selected</dt>
+<dd class="field-even"><p>(optional, default False) invert the query by excluding
+provided values</p>
+</dd>
+<dt class="field-odd">Include_null_and_missing</dt>
+<dd class="field-odd"><p>(optional, default False)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.CohortDefNumberWithCategories.validate_form">
+<span class="sig-prename descclassname"><span class="pre">CohortDefNumberWithCategories.</span></span><span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumberWithCategories.validate_form" title="Permalink to this definition"></a></dt>
+<dd><p>If provided form validates, returns True and populates self.cleaned dict with any data
+needed to generate a cohort def entry. If validation fails, returns False and adds
+error message strings to self.errors list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) – the HTTP POST arguments from the client</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>whether form validated</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-0">
+<span id="delete-entry"></span><h2>delete_entry<a class="headerlink" href="#module-0" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_delete_entry">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_delete_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_delete_entry" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_delete_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_delete_entry" title="Permalink to this definition"></a></dt>
 <dd><p>Delete an entry from the cohort definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -230,12 +267,12 @@ a criteria set, also delete the criteria set.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-1">
-<span id="add-criteria-set"></span><h2>add_criteria_set<a class="headerlink" href="#module-1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-1">
+<span id="add-criteria-set"></span><h2>add_criteria_set<a class="headerlink" href="#module-1" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_add_criteria_set">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_criteria_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_add_criteria_set" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_criteria_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_add_criteria_set" title="Permalink to this definition"></a></dt>
 <dd><p>Add an empty criteria set to a cohort definition</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -247,12 +284,12 @@ a criteria set, also delete the criteria set.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-2">
-<span id="delete-criteria-set"></span><h2>delete_criteria_set<a class="headerlink" href="#module-2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-2">
+<span id="delete-criteria-set"></span><h2>delete_criteria_set<a class="headerlink" href="#module-2" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_delete_criteria_set">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_delete_criteria_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_delete_criteria_set" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_delete_criteria_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_delete_criteria_set" title="Permalink to this definition"></a></dt>
 <dd><p>Delete a criteria set (and all its members) from the cohort definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -264,29 +301,12 @@ a criteria set, also delete the criteria set.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-3">
-<span id="delete-event-rule"></span><h2>delete_event_rule<a class="headerlink" href="#module-3" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_delete_event_rule">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_delete_event_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_delete_event_rule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete an event rule from a criteria set.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“delete_event_rule”</p>
-</dd>
-<dt class="field-even">Entry_id</dt>
-<dd class="field-even"><p>The entry_id of the criteria set the event rule is associated with</p>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
-<div class="section" id="module-4">
-<span id="change-to-boolean-or"></span><h2>change_to_boolean_or<a class="headerlink" href="#module-4" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-3">
+<span id="change-to-boolean-or"></span><h2>change_to_boolean_or<a class="headerlink" href="#module-3" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_or">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_change_to_boolean_or</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_or" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_change_to_boolean_or</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_or" title="Permalink to this definition"></a></dt>
 <dd><p>Groups two cohort def entries into an “or” group. Both entries must be in the same criteria
 set and adjacent.</p>
 <dl class="field-list simple">
@@ -299,12 +319,12 @@ set and adjacent.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-5">
-<span id="change-to-boolean-and"></span><h2>change_to_boolean_and<a class="headerlink" href="#module-5" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-4">
+<span id="change-to-boolean-and"></span><h2>change_to_boolean_and<a class="headerlink" href="#module-4" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_and">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_change_to_boolean_and</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_and" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_change_to_boolean_and</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_change_to_boolean_and" title="Permalink to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>Separates two cd_entries already in an “or” group. The entries must be</dt><dd><p>adjacent. If any remaining “or” groups after the split have only one cd_entry, the “or”
 group will be eliminated altogether.</p>
@@ -320,12 +340,12 @@ group will be eliminated altogether.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-6">
-<span id="sort-cd-entries"></span><h2>sort_cd_entries<a class="headerlink" href="#module-6" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-5">
+<span id="sort-cd-entries"></span><h2>sort_cd_entries<a class="headerlink" href="#module-5" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_sort_cd_entries">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_sort_cd_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_sort_cd_entries" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_sort_cd_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_sort_cd_entries" title="Permalink to this definition"></a></dt>
 <dd><p>Change how entries are sorted within a criteria set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -341,55 +361,126 @@ new desired order.</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
+</section>
+<section id="module-6">
+<span id="clear-all"></span><h2>clear_all<a class="headerlink" href="#module-6" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_clear_all">
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_clear_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_clear_all" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-7">
+<span id="add-criteria-set-count-rule"></span><h2>add_criteria_set_count_rule<a class="headerlink" href="#module-7" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_add_criteria_set_count_rule">
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_criteria_set_count_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_add_criteria_set_count_rule" title="Permalink to this definition"></a></dt>
+<dd><p>Add or edit the count rule for an existing criteria set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“add_criteria_set_count_rule”</p>
+</dd>
+<dt class="field-even">Entry_id</dt>
+<dd class="field-even"><p>The entry ID of the criteria set to be sorted</p>
+</dd>
+<dt class="field-odd">Rule_operator</dt>
+<dd class="field-odd"><p>“at least”, “at most”, or “exactly”</p>
+</dd>
+<dt class="field-even">Rule_count</dt>
+<dd class="field-even"><p>integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-8">
+<span id="create-event-rule"></span><h2>create_event_rule<a class="headerlink" href="#module-8" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_create_event_rule">
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_create_event_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_create_event_rule" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a blank event rule for a criteria set “any date”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“create_event_rule”</p>
+</dd>
+<dt class="field-even">Entry_id</dt>
+<dd class="field-even"><p>The entry_id of the criteria set</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-9">
+<span id="modify-event-rule"></span><h2>modify_event_rule<a class="headerlink" href="#module-9" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_modify_event_rule">
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_modify_event_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_modify_event_rule" title="Permalink to this definition"></a></dt>
+<dd><p>Edit an existing event rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“modify_event_rule”</p>
+</dd>
+<dt class="field-even">Entry_id</dt>
+<dd class="field-even"><p>The entry_id of the criteria set the event rule is associated with</p>
+</dd>
+<dt class="field-odd">Option_type</dt>
+<dd class="field-odd"><p>There are various forms that can be used to modify an event rule</p>
+</dd>
+<dt class="field-even">[various]</dt>
+<dd class="field-even"><p>Other data will depend on the form type.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-10">
+<span id="delete-event-rule"></span><h2>delete_event_rule<a class="headerlink" href="#module-10" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="chiron.api.utils.cohort_def.apply_transformation_delete_event_rule">
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_delete_event_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.utils.cohort_def.apply_transformation_delete_event_rule" title="Permalink to this definition"></a></dt>
+<dd><p>Delete an event rule from a criteria set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“delete_event_rule”</p>
+</dd>
+<dt class="field-even">Entry_id</dt>
+<dd class="field-even"><p>The entry_id of the criteria set the event rule is associated with</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api_transforming_table_def.html" class="btn btn-neutral float-right" title="Transforming Table Definitions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="api_viewsets.html" class="btn btn-neutral float-left" title="API Endpoints" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_transforming_table_def.html" class="btn btn-neutral float-right" title="Transforming Table Definitions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.
-
-    </p>
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

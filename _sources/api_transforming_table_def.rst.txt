@@ -42,6 +42,22 @@ add_sort_entry
    :show-inheritance:
    :members: apply_transformation_add_sort_entry
    :undoc-members:
+
+bulk_add_entries
+----------------
+
+.. automodule:: chiron.api.utils.table_def
+   :show-inheritance:
+   :members: apply_transformation_bulk_add_entries
+   :undoc-members:
+
+add_category
+------------
+
+.. automodule:: chiron.api.utils.table_def
+   :show-inheritance:
+   :members: apply_transformation_add_category
+   :undoc-members:
    
 
 

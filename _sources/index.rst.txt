@@ -6,23 +6,39 @@
 Welcome to Chiron's documentation!
 ==================================
 
-Chiron is a web application for patient or research-subject data. It can be configured to
-consume and merge data from multiple sources. It gives a lot of control over how the data is
-organized and presented to the user - including calculated fields and permission settings for
-restricting what patients and fields a user can see.
+Chiron is a data exploration/reporting tool for research data with a strong focus on
+human-subject/patient data and longitudinal data. It has a built-in web interface that can be used directly, or an API for integrating Chiron features into existing applications.
 
-Chiron has an interface for browsing the entire data collection. Users can also build ad-hoc 
-queries to identify specific patient cohorts and build/share reports based on those cohorts.
-The query system has good support for longitudinal data.
+Things Chiron can do:
+^^^^^^^^^^^^^^^^^^^^^
+
+- import and merge data from multiple sources
+- during import, reorganize and modify data or create calculated fields
+- users can browse merged data as a single, integrated dataset
+- users can define cohorts and get cohort counts
+- users can build a report of data that can be saved, shared, or exported to a file
+- detailed access control over which patients and data each user is allowed to view
+
+
+Things Chiron CANNOT do:
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Chiron does not work on live data. It takes periodic (nightly, weekly, etc.) snapshots from the data source(s).
+- Chiron is not a data collection tool. All data is read-only after being imported.
+
+See Chiron in action:
+^^^^^^^^^^^^^^^^^^^^^
+View the `Chiron demo <https://chi.uc.edu/chiron_demo/>`_, which uses the Synthea artificial
+EHR dataset.
+
 
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
    
    system_overview
-   version_changelog
-   demo
    getting_started
+   chiron_settings
    data_dict_example
    built_in_processors
    making_custom_processor
@@ -30,6 +46,7 @@ The query system has good support for longitudinal data.
    api_viewsets
    api_transforming_cohort_def
    api_transforming_table_def
+   version_changelog
    
    
 

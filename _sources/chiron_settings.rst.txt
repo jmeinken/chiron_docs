@@ -1,0 +1,13 @@
+
+
+
+Chiron Global Settings
+======================
+
+All of these settings can be defined in your django settings file.
+
+
+.. automodule:: chiron.chiron_settings
+   :members:
+   :show-inheritance:
+

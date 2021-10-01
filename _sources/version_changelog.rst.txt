@@ -2,8 +2,8 @@
 Version Changelog
 =================
 
-Active development version (not released)
-----------------------------
+Version 1.3.0 (released 6/18/2021)
+----------------------------------
 
 1. There is a new model Project, and Reports can have a project associated with them. Projects
 at this point are only used to help group reports.

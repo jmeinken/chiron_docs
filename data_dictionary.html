@@ -1,71 +1,32 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Configuring the Data Dictionary &mdash; Chiron 1.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Configuring the Data Dictionary &mdash; Chiron 2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Chiron
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,24 +34,12 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_example.html">Data Dictionary Setup Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
@@ -98,83 +47,43 @@
 <li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_table_def.html">Transforming Table Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Chiron</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Configuring the Data Dictionary</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/data_dictionary.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="configuring-the-data-dictionary">
-<h1>Configuring the Data Dictionary<a class="headerlink" href="#configuring-the-data-dictionary" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="configuring-the-data-dictionary">
+<h1>Configuring the Data Dictionary<a class="headerlink" href="#configuring-the-data-dictionary" title="Permalink to this headline"></a></h1>
 <p>The Chiron data dictionary is a set of Django models containing metadata about your patient data.
 Most of the customization of Chiron is controlled by the data dictionary. It defines how your
 MongoDB database will be structured, how the data will be pulled into MongoDB during the ETL
 process, how queries work, and how the data will be presented to users through the user interface.</p>
 <p>Note that the data dictionary is metadata about your patient data -
 not the patient data itself - and is stored in a standard relational database using the Django ORM.</p>
-<div class="section" id="how-the-data-dictionary-relates-to-the-mongodb-structure">
-<h2>How the data dictionary relates to the MongoDB Structure<a class="headerlink" href="#how-the-data-dictionary-relates-to-the-mongodb-structure" title="Permalink to this headline">¶</a></h2>
+<section id="how-the-data-dictionary-relates-to-the-mongodb-structure">
+<h2>How the data dictionary relates to the MongoDB Structure<a class="headerlink" href="#how-the-data-dictionary-relates-to-the-mongodb-structure" title="Permalink to this headline"></a></h2>
 <p>Your MongoDB structure is affected by the Root and Concept models in your data dictionary:</p>
 <a class="reference internal image-reference" href="_images/mongo_structure_data_dict.png"><img alt="data dictionary for ETL" src="_images/mongo_structure_data_dict.png" style="width: 200px;" /></a>
 <p>The <strong>Root model</strong> contains a list of all the data collections you will have in your MongoDB database.
@@ -218,9 +127,9 @@ those would be embedded in the patient document as a subcollection.</p>
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="how-the-data-dictionary-relates-to-the-etl-process">
-<h2>How the data dictionary relates to the ETL Process<a class="headerlink" href="#how-the-data-dictionary-relates-to-the-etl-process" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="how-the-data-dictionary-relates-to-the-etl-process">
+<h2>How the data dictionary relates to the ETL Process<a class="headerlink" href="#how-the-data-dictionary-relates-to-the-etl-process" title="Permalink to this headline"></a></h2>
 <p>Chiron has a management command <code class="docutils literal notranslate"><span class="pre">chiron_run_etl</span></code> that will automatically pull source data into
 MongoDB based on the rules defined in the data dictionary. The ETL process is affected by the
 following data dictionary models:</p>
@@ -233,51 +142,35 @@ be a CSV file with one line per patient. A source collection on root “surveys�
 any iterable that returns one survey at a time. If your data source doesn’t match neatly to an
 iterable, you will need to create a custom iterable function or class for it.</p>
 <p>There are two processor classes that are relevant to the ETL process.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.
-
-    </p>
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

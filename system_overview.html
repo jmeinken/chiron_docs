@@ -1,73 +1,34 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>System Overview &mdash; Chiron 1.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>System Overview &mdash; Chiron 2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Version Changelog" href="version_changelog.html" />
+    <link rel="next" title="Installing Chiron" href="getting_started.html" />
     <link rel="prev" title="Welcome to Chiron’s documentation!" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Chiron
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -75,19 +36,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">System Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#code-architecture">Code Architecture</a></li>
@@ -97,12 +47,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#how-the-data-dictionary-relates-to-the-etl-process">How the data dictionary relates to the ETL Process</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#chiron-processors">Chiron Processors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_example.html">Data Dictionary Setup Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
@@ -110,221 +58,136 @@
 <li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_table_def.html">Transforming Table Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Chiron</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>System Overview</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/system_overview.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="system-overview">
-<h1>System Overview<a class="headerlink" href="#system-overview" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="system-overview">
+<h1>System Overview<a class="headerlink" href="#system-overview" title="Permalink to this headline"></a></h1>
 <a class="reference internal image-reference" href="_images/system_architecture.png"><img alt="Chiron system architecture" src="_images/system_architecture.png" style="width: 600px;" /></a>
-<div class="section" id="code-architecture">
-<h2>Code Architecture<a class="headerlink" href="#code-architecture" title="Permalink to this headline">¶</a></h2>
-<p>Chiron is a Django app. It can be embedded in a larger Django project or set up as a standalone
-system in a dedicated Django project.</p>
-<p>Chiron can be customized from outside the app code in a wide variety of ways.
-You should avoid editing the Chiron code directly, as this makes it difficult to update as new versions are released.
-Configuration can be done using the Django settings.py file,
-by editing the Chiron data dictionary in the database, and by providing custom code
-somewhere outside of the Chiron app. It’s recommended to create a chiron_config package
-in your Django project folder for storing all your custom code related to Chiron.</p>
-</div>
-<div class="section" id="database-architecture">
-<h2>Database Architecture<a class="headerlink" href="#database-architecture" title="Permalink to this headline">¶</a></h2>
+<section id="code-architecture">
+<h2>Code Architecture<a class="headerlink" href="#code-architecture" title="Permalink to this headline"></a></h2>
+<p>Chiron is a Django app. It can be embedded in a larger Django project or set up as a standalone system in a dedicated Django project.</p>
+<p>There are a variety of ways to customize your Chiron instance:</p>
+<ul class="simple">
+<li><p>Global chiron settings can be customized in your django settings file.</p></li>
+<li><p>The Chiron data dictionary is stored in the database, and many basic modifications can be made here.</p></li>
+<li><p>Chiron uses Processor classes to perform many of its data-related tasks. For more advanced customization, you can write your own processor classes for specific datasets or fields.</p></li>
+</ul>
+<p>You should avoid editing the Chiron code directly, as this makes it difficult to update as new versions are released. Your custom processor classes will be stored outside of the Chiron codebase.</p>
+</section>
+<section id="database-architecture">
+<h2>Database Architecture<a class="headerlink" href="#database-architecture" title="Permalink to this headline"></a></h2>
 <p>Django requires a relational database, with a wide variety of systems supported. The relational database
 is used to store Django system tables. Chiron also uses the relational database to store the chiron data dictionary,
 user info, and user-created content.</p>
-<p>Chiron stores all patient data in a MongoDB database. Even if your patient data is already
+<p>Chiron stores all patient/research data in a MongoDB database. Even if your patient data is already
 in Django models, it must first be pulled into MongoDB before Chiron can present it to the user.</p>
 <p>Django does not have any built-in
 support for MongoDB, so Chiron uses the pymongo library for connecting to MongoDB.
 The Chiron app handles populating and querying the MongoDB database,
-and you do not need to know much about MongoDB to get started.</p>
-</div>
-<div class="section" id="the-data-dictionary">
-<h2>The Data Dictionary<a class="headerlink" href="#the-data-dictionary" title="Permalink to this headline">¶</a></h2>
+so you do not need to know much about MongoDB to get started.</p>
+</section>
+<section id="the-data-dictionary">
+<h2>The Data Dictionary<a class="headerlink" href="#the-data-dictionary" title="Permalink to this headline"></a></h2>
 <p>The Chiron data dictionary is a set of Django models containing metadata about your patient data.
 Most of the customization of Chiron is controlled by the data dictionary. It defines how your
 MongoDB database will be structured, how the data will be pulled into MongoDB during the ETL
 process, how queries work, and how the data will be presented to users through the user interface.</p>
 <p>Note that the data dictionary is metadata about your patient data -
 not the patient data itself - and is stored in a standard relational database using the Django ORM.</p>
-<div class="section" id="how-the-data-dictionary-relates-to-the-mongodb-structure">
-<h3>How the data dictionary relates to the MongoDB Structure<a class="headerlink" href="#how-the-data-dictionary-relates-to-the-mongodb-structure" title="Permalink to this headline">¶</a></h3>
-<p>Your MongoDB structure is affected by the Root and Concept models in your data dictionary:</p>
+<section id="how-the-data-dictionary-relates-to-the-mongodb-structure">
+<h3>How the data dictionary relates to the MongoDB Structure<a class="headerlink" href="#how-the-data-dictionary-relates-to-the-mongodb-structure" title="Permalink to this headline"></a></h3>
+<p>Your MongoDB structure is affected by the Collection and Concept models in your data dictionary:</p>
 <a class="reference internal image-reference" href="_images/mongo_structure_data_dict.png"><img alt="data dictionary for ETL" src="_images/mongo_structure_data_dict.png" style="width: 200px;" /></a>
-<p>The <strong>Root model</strong> contains a list of all the data collections you will have in your MongoDB database.
-You will have one and only one project root in your Root model, which is typically a patient
+<p>The <strong>Collection model</strong> contains a list of all the data collections you will have in your MongoDB database.
+You will have one and only one root collection in your Collection model, which is typically a patient
 or research subject. Then you can have any number of additional roots representing subcollections
 that are 1:many with your project root.</p>
 <p>The <strong>Concept model</strong> contains a list of all fields you have data for. Typically, fields will be
-associated with the Root that they are 1:1 with. So for example, concepts like gender and DOB should
-be associated with your Patient root. If patients have multiple visits, you’d want to create a
-Visit root for concepts like visit date, visit location, visit reason, etc.</p>
+associated with the collection that they are 1:1 with. So for example, concepts like gender and DOB should
+be associated with your Patient collection. If patients have multiple visits, you’d want to create a
+Visit collection for concepts like visit date, visit location, visit reason, etc.</p>
 <p>As an example, consider a system to keep track of patients visiting your clinic. Patients can visit
 any number of times, and they can also have any number of lab tests run. You could define three
-Root records:</p>
+Collection records:</p>
 <ul class="simple">
-<li><p>Patient root (set as project root)</p></li>
-<li><p>Visit root</p></li>
-<li><p>Lab test root</p></li>
+<li><p>Patient collection (set as root collection)</p></li>
+<li><p>Visit collection</p></li>
+<li><p>Lab test collection</p></li>
 </ul>
 <p>This would correspond to a relational structure as follows:</p>
 <a class="reference internal image-reference" href="_images/relational_structure_example.png"><img alt="data dictionary for ETL" src="_images/relational_structure_example.png" style="width: 400px;" /></a>
-<p>In MongoDB, all of the data is stored in a single collection of documents. Each document would
-represent a patient since that is the project root. Then if that patient had any visits or lab tests,
-those would be embedded in the patient document as a subcollection.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the patient collection</span>
-<span class="p">[</span>
-        <span class="p">{</span>
-            <span class="n">_id</span> <span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
-            <span class="n">gender</span><span class="p">:</span> <span class="s2">&quot;female&quot;</span><span class="p">,</span>
-            <span class="n">DOB</span><span class="p">:</span> <span class="s2">&quot;1977-05-12&quot;</span>
-            <span class="o">...</span>
-            <span class="n">visit_docs</span> <span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span><span class="n">_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="s2">&quot;Barret Center&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span>
-                <span class="o">...</span>
-            <span class="p">],</span>
-            <span class="n">labtest_docs</span> <span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span><span class="n">_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lab_name</span><span class="p">:</span> <span class="s2">&quot;blood glucose&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span>
-                <span class="o">...</span>
-            <span class="p">]</span>
-        <span class="p">},</span>
-        <span class="o">...</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="how-the-data-dictionary-relates-to-the-etl-process">
-<h3>How the data dictionary relates to the ETL Process<a class="headerlink" href="#how-the-data-dictionary-relates-to-the-etl-process" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="how-the-data-dictionary-relates-to-the-etl-process">
+<h3>How the data dictionary relates to the ETL Process<a class="headerlink" href="#how-the-data-dictionary-relates-to-the-etl-process" title="Permalink to this headline"></a></h3>
 <p>Chiron has a management command <code class="docutils literal notranslate"><span class="pre">chiron_run_etl</span></code> that will automatically pull source data into
 MongoDB based on the rules defined in the data dictionary. The ETL process is affected by the
 following data dictionary models:</p>
 <a class="reference internal image-reference" href="_images/etl_data_dict.png"><img alt="data dictionary for ETL" src="_images/etl_data_dict.png" style="width: 200px;" /></a>
 <p>We’ve already discussed the <strong>Root</strong> and <strong>Concept</strong> models.</p>
 <p>The <strong>SouceCollection model</strong> contains a list of datasets to load into Chiron. A source
-collection can be any Python iterable of the root it’s associated with. For example, a source
-collection on root “patients” could simply be a Django queryset based on a Patient model. Or it could
-be a CSV file with one line per patient. A source collection on root “surveys” could be
+collection can be any Python iterable of the collection it’s associated with. For example, a source
+collection loading into collection “patients” could simply be a Django queryset based on a Patient model. Or it could
+be a CSV file with one line per patient. A source collection loading into collection “surveys” could be
 any iterable that returns one survey at a time. If your data source doesn’t match neatly to an
 iterable, you will need to create a custom iterable function or class for it.</p>
-<p>There are two processor classes that are relevant to the ETL process.</p>
-</div>
-</div>
-<div class="section" id="chiron-processors">
-<h2>Chiron Processors<a class="headerlink" href="#chiron-processors" title="Permalink to this headline">¶</a></h2>
-<p>[coming soon]</p>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="version_changelog.html" class="btn btn-neutral float-right" title="Version Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Chiron’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Installing Chiron" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.
-
-    </p>
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
