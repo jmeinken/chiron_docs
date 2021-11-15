@@ -146,11 +146,6 @@ AggregationMethod (abstract base class)
    :undoc-members:
    :show-inheritance:
 
-CountAll
-^^^^^^^^
-
-.. autoclass:: chiron.processors.display.aggregation.CountAll
-   :show-inheritance:
 
 CountDistinct
 ^^^^^^^^^^^^^
@@ -158,11 +153,6 @@ CountDistinct
 .. autoclass:: chiron.processors.display.aggregation.CountDistinct
    :show-inheritance:
 
-ListAll
-^^^^^^^
-
-.. autoclass:: chiron.processors.display.aggregation.ListAll
-   :show-inheritance:
 
 ListDistinct
 ^^^^^^^^^^^^

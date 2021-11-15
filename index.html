@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Welcome to Chiron’s documentation! &mdash; Chiron 1.0 documentation</title>
+  <title>Welcome to Chiron’s documentation! &mdash; Chiron 2.0 documentation</title>
   
 
   
@@ -89,9 +89,8 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_example.html">Data Dictionary Setup Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
@@ -99,6 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_table_def.html">Transforming Table Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
 </ul>
 
             
@@ -168,20 +168,36 @@
             
   <div class="section" id="welcome-to-chiron-s-documentation">
 <h1>Welcome to Chiron’s documentation!<a class="headerlink" href="#welcome-to-chiron-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Chiron is a web application for patient or research-subject data. It can be configured to
-consume and merge data from multiple sources. It gives a lot of control over how the data is
-organized and presented to the user - including calculated fields and permission settings for
-restricting what patients and fields a user can see.</p>
-<p>Chiron has an interface for browsing the entire data collection. Users can also build ad-hoc
-queries to identify specific patient cohorts and build/share reports based on those cohorts.
-The query system has good support for longitudinal data.</p>
+<p>Chiron is a data exploration/reporting tool for research data with a strong focus on
+human-subject/patient data and longitudinal data. It has a built-in web interface that can be used directly, or an API for integrating Chiron features into existing applications.</p>
+<div class="section" id="things-chiron-can-do">
+<h2>Things Chiron can do:<a class="headerlink" href="#things-chiron-can-do" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>import and merge data from multiple sources</p></li>
+<li><p>during import, reorganize and modify data or create calculated fields</p></li>
+<li><p>users can browse merged data as a single, integrated dataset</p></li>
+<li><p>users can define cohorts and get cohort counts</p></li>
+<li><p>users can build a report of data that can be saved, shared, or exported to a file</p></li>
+<li><p>detailed access control over which patients and data each user is allowed to view</p></li>
+</ul>
+</div>
+<div class="section" id="things-chiron-cannot-do">
+<h2>Things Chiron CANNOT do:<a class="headerlink" href="#things-chiron-cannot-do" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Chiron does not work on live data. It takes periodic (nightly, weekly, etc.) snapshots from the data source(s).</p></li>
+<li><p>Chiron is not a data collection tool. All data is read-only after being imported.</p></li>
+</ul>
+</div>
+<div class="section" id="see-chiron-in-action">
+<h2>See Chiron in action:<a class="headerlink" href="#see-chiron-in-action" title="Permalink to this headline">¶</a></h2>
+<p>View the <a class="reference external" href="https://chi.uc.edu/chiron_demo/">Chiron demo</a>, which uses the Synthea artificial
+EHR dataset.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_example.html">Data Dictionary Setup Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
@@ -189,7 +205,9 @@ The query system has good support for longitudinal data.</p>
 <li class="toctree-l1"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_table_def.html">Transforming Table Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
 </ul>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">

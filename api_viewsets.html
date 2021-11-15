@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>API Endpoints &mdash; Chiron 1.0 documentation</title>
+  <title>API Endpoints &mdash; Chiron 2.0 documentation</title>
   
 
   
@@ -90,9 +90,8 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict_example.html">Data Dictionary Setup Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
@@ -105,6 +104,15 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#me">Me</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#me-get">/me/ (GET)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#collection">Collection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#collections-get">/collections/ (GET)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collections-permanent-id-get">/collections/[permanent_id]/ (GET)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#additional-data-returned-if-include-criteria-set-options-is-true">Additional data returned if include_criteria_set_options is True</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-data-returned-if-include-criteria-set-event-options-is-true">Additional data returned if include_criteria_set_event_options is True</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a><ul>
@@ -163,6 +171,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_transforming_table_def.html">Transforming Table Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
 </ul>
 
             
@@ -292,18 +301,100 @@ last_name, email</p>
 <dt class="field-odd">Username</dt>
 <dd class="field-odd"><p>(str)</p>
 </dd>
-<dt class="field-even">Name</dt>
-<dd class="field-even"><p>(str) full name of user</p>
+<dt class="field-even">Is_staff</dt>
+<dd class="field-even"><p>(bool) can view admin page</p>
 </dd>
-<dt class="field-odd">Email</dt>
-<dd class="field-odd"><p>(str)</p>
+<dt class="field-odd">Name</dt>
+<dd class="field-odd"><p>(str) full name of user</p>
 </dd>
-<dt class="field-even">Can_view_phi</dt>
-<dd class="field-even"><p>(bool)</p>
+<dt class="field-even">Email</dt>
+<dd class="field-even"><p>(str)</p>
+</dd>
+<dt class="field-odd">Can_view_phi</dt>
+<dd class="field-odd"><p>(bool)</p>
 </dd>
 </dl>
 </dd></dl>
 
+</div>
+</div>
+<div class="section" id="collection">
+<h2>Collection<a class="headerlink" href="#collection" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="collections-get">
+<h3>/collections/ (GET)<a class="headerlink" href="#collections-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.api.viewsets.CollectionViewSet.list">
+<span class="sig-prename descclassname"><span class="pre">CollectionViewSet.</span></span><span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CollectionViewSet.list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="collections-permanent-id-get">
+<h3>/collections/[permanent_id]/ (GET)<a class="headerlink" href="#collections-permanent-id-get" title="Permalink to this headline">¶</a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.api.viewsets.CollectionViewSet.retrieve">
+<span class="sig-prename descclassname"><span class="pre">CollectionViewSet.</span></span><span class="sig-name descname"><span class="pre">retrieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permanent_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CollectionViewSet.retrieve" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The current cohort definition for determining criteria set options and
+criteria set event options. if None then the active cohort definition will be used.</p></li>
+<li><p><strong>include_criteria_set_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include options for modifying a criteria set in the
+cohort definition</p></li>
+<li><p><strong>include_criteria_set_event_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include options for modifying a criteria set
+event rule in the cohort definition</p></li>
+<li><p><strong>criteria_set_entry_id</strong> (<em>str</em><em>, </em><em>optional</em>) – If editing a criteria set in the cohort definition, the
+entry_id of that criteria set. Required if include_criteria_set_options is True or
+include_criteria_set_event_options is True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A serialized collection; plus optionally criteria_set_options and
+criteria_set_event_options</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="additional-data-returned-if-include-criteria-set-options-is-true">
+<h4>Additional data returned if include_criteria_set_options is True<a class="headerlink" href="#additional-data-returned-if-include-criteria-set-options-is-true" title="Permalink to this headline">¶</a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.api.viewsets.CollectionViewSet._get_criteria_set_options">
+<span class="sig-prename descclassname"><span class="pre">CollectionViewSet.</span></span><span class="sig-name descname"><span class="pre">_get_criteria_set_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CollectionViewSet._get_criteria_set_options" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p>A list of dicts representing options for manipulating criteria sets:</p>
+<ul class="simple">
+<li><p>transformation - the transformation that this option applies to</p></li>
+<li><p>allowed - in the context of the cohort def, can this option be applied?</p></li>
+<li><p>disallowed_reason - if not allowed, why?</p></li>
+<li><p>[various] - all of the other configuration values that can be set for this option</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="additional-data-returned-if-include-criteria-set-event-options-is-true">
+<h4>Additional data returned if include_criteria_set_event_options is True<a class="headerlink" href="#additional-data-returned-if-include-criteria-set-event-options-is-true" title="Permalink to this headline">¶</a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.api.viewsets.CollectionViewSet._get_criteria_set_event_options">
+<span class="sig-prename descclassname"><span class="pre">CollectionViewSet.</span></span><span class="sig-name descname"><span class="pre">_get_criteria_set_event_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CollectionViewSet._get_criteria_set_event_options" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p>A list of dicts representing options for manipulating a criteria set event rule:</p>
+<ul class="simple">
+<li><p>option - a unique name for this option</p></li>
+<li><p>transformation - the transformation that this option applies to</p></li>
+<li><p>allowed - in the context of the cohort def, can this option be applied?</p></li>
+<li><p>disallowed_reason - if not allowed, why?</p></li>
+<li><p>(various) - all of the other configuration values that can be set for this option</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 </div>
 </div>
 <div class="section" id="concepts">
@@ -833,6 +924,7 @@ same as the GET method.</p>
 will be used if available or an empty cohort def.</p></li>
 <li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The table_def to use. If not provided, the active table_def
 will be used if available or an empty table_def.</p></li>
+<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>default=&quot;json&quot;</em>) – how output data should be formatted, options are “html”, “json”, “csv”</p></li>
 <li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
 <li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
 </ul>
@@ -1082,6 +1174,7 @@ in both tables.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sort_field</strong> (<em>string</em><em>, </em><em>optional</em>) – Ignore default sort order and sort by the field associated with the
 provided table def entry ID</p></li>
+<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>default=&quot;json&quot;</em>) – how output data should be formatted, options are “html”, “json”, “csv”</p></li>
 <li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
 <li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
 </ul>

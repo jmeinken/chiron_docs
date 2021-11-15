@@ -30,6 +30,30 @@ Me
 .. automethod:: chiron.api.viewsets.MeViewSet.list
 
 
+Collection
+----------
+
+/collections/ (GET)
+^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.CollectionViewSet.list
+
+/collections/[permanent_id]/ (GET)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.CollectionViewSet.retrieve
+
+Additional data returned if include_criteria_set_options is True
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. automethod:: chiron.api.viewsets.CollectionViewSet._get_criteria_set_options
+
+Additional data returned if include_criteria_set_event_options is True
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. automethod:: chiron.api.viewsets.CollectionViewSet._get_criteria_set_event_options
+
+
 Concepts
 --------
 
@@ -41,7 +65,7 @@ Concepts
 .. _api-concepts-detail-get:
 
 /concepts/[permanent_id]/ (GET, PUT)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. automethod:: chiron.api.viewsets.ConceptViewSet.retrieve
 

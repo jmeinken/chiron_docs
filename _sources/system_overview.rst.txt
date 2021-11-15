@@ -10,15 +10,15 @@ System Overview
 Code Architecture
 -----------------
 
-Chiron is a Django app. It can be embedded in a larger Django project or set up as a standalone
-system in a dedicated Django project.
+Chiron is a Django app. It can be embedded in a larger Django project or set up as a standalone system in a dedicated Django project.
 
-Chiron can be customized from outside the app code in a wide variety of ways. 
-You should avoid editing the Chiron code directly, as this makes it difficult to update as new versions are released.
-Configuration can be done using the Django settings.py file, 
-by editing the Chiron data dictionary in the database, and by providing custom code
-somewhere outside of the Chiron app. It's recommended to create a chiron_config package
-in your Django project folder for storing all your custom code related to Chiron.
+There are a variety of ways to customize your Chiron instance:
+
+- Global chiron settings can be customized in your django settings file.
+- The Chiron data dictionary is stored in the database, and many basic modifications can be made here.
+- Chiron uses Processor classes to perform many of its data-related tasks. For more advanced customization, you can write your own processor classes for specific datasets or fields.
+
+You should avoid editing the Chiron code directly, as this makes it difficult to update as new versions are released. Your custom processor classes will be stored outside of the Chiron codebase.
 
 Database Architecture
 ---------------------
@@ -27,13 +27,13 @@ Django requires a relational database, with a wide variety of systems supported.
 is used to store Django system tables. Chiron also uses the relational database to store the chiron data dictionary, 
 user info, and user-created content.
 
-Chiron stores all patient data in a MongoDB database. Even if your patient data is already
+Chiron stores all patient/research data in a MongoDB database. Even if your patient data is already
 in Django models, it must first be pulled into MongoDB before Chiron can present it to the user.
 
 Django does not have any built-in
 support for MongoDB, so Chiron uses the pymongo library for connecting to MongoDB.
 The Chiron app handles populating and querying the MongoDB database, 
-and you do not need to know much about MongoDB to get started.
+so you do not need to know much about MongoDB to get started.
 
 The Data Dictionary
 -------------------
@@ -50,29 +50,29 @@ not the patient data itself - and is stored in a standard relational database us
 How the data dictionary relates to the MongoDB Structure
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Your MongoDB structure is affected by the Root and Concept models in your data dictionary:
+Your MongoDB structure is affected by the Collection and Concept models in your data dictionary:
 
 .. image:: _static/mongo_structure_data_dict.png
    :width: 200
    :alt: data dictionary for ETL
    
-The **Root model** contains a list of all the data collections you will have in your MongoDB database.
-You will have one and only one project root in your Root model, which is typically a patient
+The **Collection model** contains a list of all the data collections you will have in your MongoDB database.
+You will have one and only one root collection in your Collection model, which is typically a patient
 or research subject. Then you can have any number of additional roots representing subcollections
 that are 1:many with your project root. 
 
 The **Concept model** contains a list of all fields you have data for. Typically, fields will be 
-associated with the Root that they are 1:1 with. So for example, concepts like gender and DOB should
-be associated with your Patient root. If patients have multiple visits, you'd want to create a
-Visit root for concepts like visit date, visit location, visit reason, etc.
+associated with the collection that they are 1:1 with. So for example, concepts like gender and DOB should
+be associated with your Patient collection. If patients have multiple visits, you'd want to create a
+Visit collection for concepts like visit date, visit location, visit reason, etc.
 
 As an example, consider a system to keep track of patients visiting your clinic. Patients can visit
 any number of times, and they can also have any number of lab tests run. You could define three
-Root records:
+Collection records:
 
-* Patient root (set as project root)
-* Visit root
-* Lab test root
+* Patient collection (set as root collection)
+* Visit collection
+* Lab test collection
 
 This would correspond to a relational structure as follows:
 
@@ -80,28 +80,7 @@ This would correspond to a relational structure as follows:
    :width: 400
    :alt: data dictionary for ETL
 
-In MongoDB, all of the data is stored in a single collection of documents. Each document would 
-represent a patient since that is the project root. Then if that patient had any visits or lab tests, 
-those would be embedded in the patient document as a subcollection. 
-::
-	# the patient collection
-	[
-		{
-		    _id : 123,
-		    gender: "female",
-		    DOB: "1977-05-12"
-		    ...
-		    visit_docs : [
-		        {_id: 1, location: "Barret Center", ...},
-		        ...
-		    ],
-		    labtest_docs : [
-		        {_id: 1, lab_name: "blood glucose", ...},
-		        ...
-		    ]
-		},
-		...
-	]
+
 	
 How the data dictionary relates to the ETL Process
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -117,18 +96,14 @@ following data dictionary models:
 We've already discussed the **Root** and **Concept** models.
 
 The **SouceCollection model** contains a list of datasets to load into Chiron. A source 
-collection can be any Python iterable of the root it's associated with. For example, a source 
-collection on root "patients" could simply be a Django queryset based on a Patient model. Or it could
-be a CSV file with one line per patient. A source collection on root "surveys" could be 
+collection can be any Python iterable of the collection it's associated with. For example, a source
+collection loading into collection "patients" could simply be a Django queryset based on a Patient model. Or it could
+be a CSV file with one line per patient. A source collection loading into collection "surveys" could be
 any iterable that returns one survey at a time. If your data source doesn't match neatly to an
 iterable, you will need to create a custom iterable function or class for it.
 
-There are two processor classes that are relevant to the ETL process. 
 
-Chiron Processors
------------------
 
-[coming soon]
 
 
 
