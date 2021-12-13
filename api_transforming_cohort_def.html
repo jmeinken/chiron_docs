@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transforming Cohort Definitions &mdash; Chiron 2.0 documentation</title>
+  <title>Transforming Cohort Definitions &mdash; Chiron 2.1.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -116,6 +116,15 @@ However, these are the global options for all “add entry” transformations:</
 <dt class="field-odd">Entry_id</dt>
 <dd class="field-odd"><p>(optional) If editing an existing entry, provide the entry_id</p>
 </dd>
+<dt class="field-even">Prefilter_value</dt>
+<dd class="field-even"><p>(optional) TODO: Define what this is.</p>
+</dd>
+<dt class="field-odd">Validate_only</dt>
+<dd class="field-odd"><p>(default=False) Do not save results and return validation info</p>
+</dd>
+<dt class="field-even">Ignore_warnings</dt>
+<dd class="field-even"><p>(default=False) Apply the transformation even if there are warnings</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -212,16 +221,21 @@ matching dates</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.CohortDefText.validate_form">
 <span class="sig-prename descclassname"><span class="pre">CohortDefText.</span></span><span class="sig-name descname"><span class="pre">validate_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefText.validate_form" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Chiron_text_field_selection</dt>
-<dd class="field-odd"><p>string with different terms separated by newline</p>
+<dd><p>Validate Form</p>
+<p>Validates incoming form data.</p>
+<p>form_data fields:
+- chiron_text_field_selection: string with different terms separated by newline
+- exclude_selected: (optional, default False) invert the query by excluding provided values
+- include_null_and_missing: (optional, default False)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) – Form data to validate</p>
 </dd>
-<dt class="field-even">Exclude_selected</dt>
-<dd class="field-even"><p>(optional, default False) invert the query by excluding
-provided values</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Validation pass or fail.</p>
 </dd>
-<dt class="field-odd">Include_null_and_missing</dt>
-<dd class="field-odd"><p>(optional, default False)</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>

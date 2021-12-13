@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creating Your Own Processors &mdash; Chiron 2.0 documentation</title>
+  <title>Creating Your Own Processors &mdash; Chiron 2.1.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -707,13 +707,6 @@ after all the data is loaded, so it can query MongoDB to include patient data va
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor._generate_entry_id">
-<span class="sig-name descname"><span class="pre">_generate_entry_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor._generate_entry_id" title="Permalink to this definition"></a></dt>
-<dd><p>CD Entries are assigned a random ID in order to uniquely identify them
-later for editing and deleting.</p>
-</dd></dl>
-
 </dd></dl>
 
 <section id="cohortdefprocessorbuiltinuimixin">
@@ -727,28 +720,6 @@ API, your processors don’t need this mixin.</p>
 <p>Needed properties:
 - self.form_html_template
 - self.form_js_template (optional)</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin.get_concept_form">
-<span class="sig-name descname"><span class="pre">get_concept_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin.get_concept_form" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the entire entry form as an html string, along with corresponding javascript code</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition (typically visualizations will be specific for provided
-cohort def)</p></li>
-<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) – cohort def entry if editing existing</p></li>
-<li><p><strong>query_type</strong> (<em>string</em>) – some concepts might have multiple forms for multiple types of queries</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the html form and javascript code as strings</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict with ‘html’ value and optional ‘js_code’ value</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin.generate_concept_form">
 <span class="sig-name descname"><span class="pre">generate_concept_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statistics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form_options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin.generate_concept_form" title="Permalink to this definition"></a></dt>
@@ -777,7 +748,6 @@ concept</p></li>
 </ul>
 <p>Applying a Table Def Entry to a Results Set:</p>
 <ul class="simple">
-<li><p>get_mongo_aggregate_def() - tell mongo how to aggregate this concept</p></li>
 <li><p>get_header_display_value() - the label for this column in the results output</p></li>
 <li><p>get_individual_display_value() - how to convert the stored concept value into a string</p></li>
 <li><p>get_display_value3() - how to convert the mongo output value into a string</p></li>
@@ -790,10 +760,20 @@ automatically called by the init method.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.set_td_entry">
+<span class="sig-name descname"><span class="pre">set_td_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.set_td_entry" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_form_options">
-<span class="sig-name descname"><span class="pre">get_form_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_form_options" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_form_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_def</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_form_options" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a list of options for customizing a table_def_entry</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_default_aggregation_settings">
+<span class="sig-name descname"><span class="pre">get_default_aggregation_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_default_aggregation_settings" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.validate_form">
@@ -831,13 +811,6 @@ Otherwise, it will just generate a default entry with no customization.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_mongo_aggregate_def">
-<span class="sig-name descname"><span class="pre">get_mongo_aggregate_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_temp_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_mongo_aggregate_def" title="Permalink to this definition"></a></dt>
-<dd><p>For aggregated fields, returns the $group rule and the $project rule
-that will handle the aggregation.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_sort_value">
 <span class="sig-name descname"><span class="pre">get_sort_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_sort_value" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -849,18 +822,18 @@ that will handle the aggregation.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_sort_key_function">
-<span class="sig-name descname"><span class="pre">get_sort_key_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_sort_key_function" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_sort_key_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_sort_key_function" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_header_display_value">
-<span class="sig-name descname"><span class="pre">get_header_display_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_header_display_value" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_header_display_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prepend_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_header_display_value" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a display name for the column</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_individual_display_value">
-<span class="sig-name descname"><span class="pre">get_individual_display_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_individual_display_value" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_individual_display_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_individual_display_value" title="Permalink to this definition"></a></dt>
 <dd><p>Converts a value stored in the Mongo database to a display value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -880,12 +853,12 @@ that will handle the aggregation.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.get_display_value3">
-<span class="sig-name descname"><span class="pre">get_display_value3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_display_value3" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_display_value3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.get_display_value3" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.calculate_aggregate_value">
-<span class="sig-name descname"><span class="pre">calculate_aggregate_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.calculate_aggregate_value" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">calculate_aggregate_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.calculate_aggregate_value" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -894,6 +867,11 @@ that will handle the aggregation.</p>
 <dd><p>Returns a human-readable string describing the data type (text, integer, etc.).
 This is used to generate a data dictionary.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor.check_requires_event_dates">
+<span class="sig-name descname"><span class="pre">check_requires_event_dates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor.check_requires_event_dates" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor._get_agg_option_by_id">
@@ -917,34 +895,10 @@ This is used to generate a data dictionary.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor._generate_entry_id">
-<span class="sig-name descname"><span class="pre">_generate_entry_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor._generate_entry_id" title="Permalink to this definition"></a></dt>
-<dd><p>CD Entries are assigned a random ID in order to uniquely identify them
-later for editing and deleting.</p>
-</dd></dl>
-
 </dd></dl>
 
 <section id="displayprocessorbuiltinuimixin">
 <h4>DisplayProcessorBuiltInUiMixin<a class="headerlink" href="#displayprocessorbuiltinuimixin" title="Permalink to this headline"></a></h4>
-<dl class="py class">
-<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessorBuiltInUiMixin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">DisplayProcessorBuiltInUiMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessorBuiltInUiMixin.form_html_template">
-<span class="sig-name descname"><span class="pre">form_html_template</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'chiron/processors/table_def_forms/generic_table_def_form.html'</span></em><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin.form_html_template" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessorBuiltInUiMixin.get_field_edit_form">
-<span class="sig-name descname"><span class="pre">get_field_edit_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">existing_td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessorBuiltInUiMixin.get_field_edit_form" title="Permalink to this definition"></a></dt>
-<dd><p>Returns an HTML form for customizing this field.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 </section>
 </section>
@@ -959,33 +913,41 @@ later for editing and deleting.</p>
 <p>Has methods needed to aggregate a concept in the final output table.</p>
 <p>Subclasses need to set an id, label, and group property in their __init__ method. ex:</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod.get_mongo_aggregate_def">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_mongo_aggregate_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_temp_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_mongo_aggregate_def" title="Permalink to this definition"></a></dt>
-<dd><p>Returns parts to be plugged into the mongo aggregation pipeline.</p>
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod.get_inputs">
+<span class="sig-name descname"><span class="pre">get_inputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_inputs" title="Permalink to this definition"></a></dt>
+<dd><p>returns a list of dicts that define custom settings for this aggregation option</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>oConcept</strong> (<em>model object</em>) – the concept being aggregated</p></li>
-<li><p><strong>td_entry</strong> (<em>dict</em>) – the column definition</p></li>
-<li><p><strong>field_temp_name</strong> (<em>string</em>) – During the mongo $project step, the field will have a temporary
-name different from the name in the mongo database in order to prevent name clashes.</p></li>
-</ul>
+<dt class="field-odd">Id</dt>
+<dd class="field-odd"><p>(str) a unique id to identify this input</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the group_rule to use during the $group step; the project_rule to use during
-the $project step</p>
+<dt class="field-even">Label</dt>
+<dd class="field-even"><p>(str) the human-readable label for this input</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>(str) “select” for HTML select and “ajax_select” for select tool that must lookup
+options</p>
+</dd>
+<dt class="field-even">Options</dt>
+<dd class="field-even"><p>(list of tuples) for type=”select”; id/value pairs for options</p>
+</dd>
+<dt class="field-odd">Options_callback</dt>
+<dd class="field-odd"><p>(str) for type=”ajax_select”; the url where options can be looked up</p>
 </dd>
 </dl>
+<p>selected: (str) value that should be selected by default</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod.mongo_output_is_array">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">mongo_output_is_array</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.mongo_output_is_array" title="Permalink to this definition"></a></dt>
-<dd><p>Returns True if the result of the rules defined in get_mongo_aggregate_def() will be an
-array. This check is needed because Mongo can’t sort by multiple array fields.</p>
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod.set_custom_settings">
+<span class="sig-name descname"><span class="pre">set_custom_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.set_custom_settings" title="Permalink to this definition"></a></dt>
+<dd><p>takes an input_data dict from post request and returns a dict of values that will be saved
+to the table def entry</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod.check_requires_event_dates">
+<span class="sig-name descname"><span class="pre">check_requires_event_dates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.check_requires_event_dates" title="Permalink to this definition"></a></dt>
+<dd><p>Does this aggregation option require the event date(s) from the parent collection?</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1010,18 +972,87 @@ array. This check is needed because Mongo can’t sort by multiple array fields.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod.get_display_value3">
-<span class="sig-name descname"><span class="pre">get_display_value3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_processor_display_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_display_value3" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">get_display_value3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_processor_display_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_display_value3" title="Permalink to this definition"></a></dt>
+<dd><p>convert the calculated aggregate value to the final display value</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod._date_to_string">
+<span class="sig-name descname"><span class="pre">_date_to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod._date_to_string" title="Permalink to this definition"></a></dt>
+<dd><p>Utility function that converts a date to a string.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key">
 <span class="sig-name descname"><span class="pre">get_sort_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Returns the value from the report that will be used for sorting. By default, this is the
+column value itself.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key_date">
+<span class="sig-name descname"><span class="pre">get_sort_key_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key_date" title="Permalink to this definition"></a></dt>
+<dd><p>This can be used to sort date values</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key_function">
-<span class="sig-name descname"><span class="pre">get_sort_key_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display_processor_sort_value_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key_function" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_sort_key_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display_processor_sort_value_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation_settings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key_function" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the function that will be used for sorting the report. The column_index gives
+which report column this field is in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>display_processor_sort_value_func</strong> (<em>python function</em>) – The function that would normally be used to
+sort the non-aggregated value.</p></li>
+<li><p><strong>column_index</strong> (<em>integer</em>) – The index position of this column in the report</p></li>
+<li><p><strong>reverse</strong> (<em>boolean</em>) – In some instances, sort key might work differently if reverse sorting</p></li>
+<li><p><strong>aggregation_settings</strong> (<em>python dict</em>) – Any settings included in the td_entry</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod._get_value_list_no_nulls">
+<span class="sig-name descname"><span class="pre">_get_value_list_no_nulls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concept_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod._get_value_list_no_nulls" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod._get_value_list">
+<span class="sig-name descname"><span class="pre">_get_value_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concept_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod._get_value_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod._remove_records_with_null_values">
+<span class="sig-name descname"><span class="pre">_remove_records_with_null_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concept_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod._remove_records_with_null_values" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod._get_event_list">
+<span class="sig-name descname"><span class="pre">_get_event_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concept_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_date_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod._get_event_list" title="Permalink to this definition"></a></dt>
+<dd><p>The query process can end up duplicating collection records. This uses the _id to
+remove duplicate records.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod._get_event_list_no_nulls">
+<span class="sig-name descname"><span class="pre">_get_event_list_no_nulls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concept_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_date_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod._get_event_list_no_nulls" title="Permalink to this definition"></a></dt>
+<dd><p>The query process can end up duplicating collection records. This uses the _id to
+remove duplicate records.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod._get_ordinal_string">
+<span class="sig-name descname"><span class="pre">_get_ordinal_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod._get_ordinal_string" title="Permalink to this definition"></a></dt>
+<dd><p>Convert an integer into its ordinal representation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make_ordinal</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="o">=&gt;</span> <span class="s1">&#39;0th&#39;</span>
+<span class="n">make_ordinal</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>   <span class="o">=&gt;</span> <span class="s1">&#39;3rd&#39;</span>
+<span class="n">make_ordinal</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="s1">&#39;122nd&#39;</span>
+<span class="n">make_ordinal</span><span class="p">(</span><span class="mi">213</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="s1">&#39;213th&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
 
 </dd></dl>
 

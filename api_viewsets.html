@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Endpoints &mdash; Chiron 2.0 documentation</title>
+  <title>API Endpoints &mdash; Chiron 2.1.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -157,13 +157,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.api.viewsets.ChironUserViewSet.list">
 <span class="sig-prename descclassname"><span class="pre">ChironUserViewSet.</span></span><span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ChironUserViewSet.list" title="Permalink to this definition"></a></dt>
-<dd><p>Returns a serialized collection of ChironUsers sorted by last name.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>term</strong> (<em>string</em><em>, </em><em>optional</em>) – lookup user(s) by first name, last name, or email</p>
-</dd>
-</dl>
-</dd></dl>
+<dd></dd></dl>
 
 </section>
 <section id="chiron-users-chiron-user-id-get">
@@ -630,6 +624,9 @@ definition. If no cohort_def is provided, the active cohort def is used.</p>
 <dt class="field-odd">Transformation_errors</dt>
 <dd class="field-odd"><p>list of error messages regarding the failed transformation</p>
 </dd>
+<dt class="field-even">Transformation_warnings</dt>
+<dd class="field-even"><p>list of warning messages regarding the failed transformation</p>
+</dd>
 </dl>
 <p>SUCCESS RESPONSE:</p>
 <dl class="field-list simple">
@@ -833,6 +830,7 @@ same as the GET method.</p>
 will be used if available or an empty cohort def.</p></li>
 <li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The table_def to use. If not provided, the active table_def
 will be used if available or an empty table_def.</p></li>
+<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>default=&quot;json&quot;</em>) – how output data should be formatted, options are “html”, “json”, “csv”</p></li>
 <li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
 <li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
 </ul>
@@ -1082,6 +1080,7 @@ in both tables.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sort_field</strong> (<em>string</em><em>, </em><em>optional</em>) – Ignore default sort order and sort by the field associated with the
 provided table def entry ID</p></li>
+<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>default=&quot;json&quot;</em>) – how output data should be formatted, options are “html”, “json”, “csv”</p></li>
 <li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
 <li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
 </ul>
