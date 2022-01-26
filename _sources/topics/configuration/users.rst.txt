@@ -1,0 +1,9 @@
+
+Users and User Permissions
+==========================
+
+You can control which concepts can be accessed and which subjects can be accessed based on the
+user. You can also hide PHI based on the user or even limit a user to only aggregated views of
+the data.
+
+More documentation on users coming soon.

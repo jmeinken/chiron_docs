@@ -1,0 +1,145 @@
+# 2. Set Up the Data Dictionary
+
+## Data Dictionary Overview
+
+**Collections**
+
+Collections in the data dictionary represent literal MongoDB collections. If you're not familiar with MongoDB, you can think of a collection as a table.
+
+Every data dictionary will have one subject collection (flagged with `is_root_collection=True`) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for data that is 1:many with the subject.
+
+The only relationships are between your subject collection and sub-collections. Sub-collections cannot have other sub-collections, and you cannot have relationships between sub-collections (though this might be added in the future).
+
+**Concepts**
+
+Each collection can have any number of concepts. The subject collection could have concepts like birthdate and gender. A biospecimen collection could have concepts like collection date and sample amount.
+
+**SourceCollections**
+
+A SourceCollection is a dataset to load into Chiron. It can be anything that can be iterated to get records that correspond to the collection it's being loaded into. 
+
+For example, a SubjectDemographics table in a database could be a SourceCollection for the Subject collection. A CSV file with one row per patient medication could be a SourceCollection for a Medication collection.
+
+Chiron manages the ETL process from your SourceCollections into MongoDB. There's built-in support for data coming from a database through the Django ORM or from CSV files. If you have data coming from other types of sources, you can write your own SourceCollection processor class to enable Chiron to consume it.
+
+**Categories**
+
+Categories define a hierarchical structure for users to browse concepts. They have no effect on queries or how the data is stored in MongoDB.
+
+## Autocreate the Data Dictionary
+
+If the data you're using is coming from the Django ORM, you can autocreate a data dictionary and then edit as needed from there. For any other data source, you have to create the data dictionary from scratch. 
+
+### Step 1: Create a model tree file
+
+You need to create a text file that shows how your Django model relationships are set up. This file can go anywhere, but a good place to store it is `[YOUR PROJECT DIR]/chiron_config/autocreate/modeltree_[dataset name].txt`. 
+
+Start with a single model (if you have a subject model, start with that). Then list all models with a direct relationship to the first model with a single hyphen. The type of relationship (1:1, 1:many, many:1, many:many) doesn’t matter. Then under each of those list any relationships with a double hyphen. Continue until all your models are listed. This is your model tree.
+
+You must specify the Django app for at least the first model as `my_app.my_model`. All children will be assumed to be in the same app as their parent. For any models where that is not true, specify the Django app.
+
+```
+# Lines starting with pound sign are ignored.
+# In this example, the Subject model has a 1:1 relationship with Demographics, a 1:many relationship with biospecimen, and a many:many relationship with medications.
+# Then the Demographics model has a RaceLookup table allowing a subject to have more than one race.
+# The Biospecimen model has a many:1 relationsip with FreezerLocation and then the FreezerLocation has a many:1 relationship with BuildingLocation.
+
+my_django_app.Subject
+-Demographics
+--RaceLookup
+-Biospecimen
+--FreezerLocation
+---BuildingLocation
+-Medications
+
+```
+
+### Step 2: Define how the models will map to Chiron collections
+
+You can use asterisks to mark models you want converted into collections. Each model marked with an asterisk will get its own collection. Models not marked with an asterisk will go into the closest parent collection.
+
+Use a double asterisk to add something to the subject collection.
+
+```
+# Subject, Demographics and RaceLookup fields will all be added to the Subject collection.
+# Biospecimen, FreezerLocation, and BuildingLocation fields will all go into a new collection called Biospecimen.
+# Medication fields will go into a new collection called Medications.
+
+my_django_app.Subject**
+-Demographics
+--RaceLookup
+-Biospecimen*
+--FreezerLocation
+---BuildingLocation
+-Medications*
+
+```
+
+**Rarer situations**
+
+Sometimes if the source data is modeled poorly, you might want to associate a model with the collection above the parent collection. This often comes up with REDCap longitudinal projects. Use a carat symbol.
+
+```
+# Demographics is 1:1 with Subject but is associated with SurveyEvents in the source database.
+# In this example, Demographics fields will be added to the Subject collection. WeeklyReport fields will be added to the SurveyEvents collection.
+
+my_django_app.Subject**
+-SurveyEvents*
+--Demographics^
+--WeeklyReport
+```
+
+### Step 3: Define how the models will map to Chiron categories
+
+By default, a new category will be created for each model. If you don't want to create a category for a model, put an `@` mark next to it. The fields will instead go into the nearest parent.
+
+```
+# Subject and Demographics categories will be created. RaceLookup fields will go into the Demographics category.
+# A Biospecimen category will be created and all Biospecimen, FreezerLocation, and BuildingLocation fields will go into it.
+# A medications category will be created.
+
+my_django_app.Subject**
+-Demographics
+--RaceLookup@
+-Biospecimen*
+--FreezerLocation@
+---BuildingLocation@
+-Medications*
+
+```
+
+### Step 4: Tell Chiron where your modeltree text files are
+
+The autocreate_dd_config list tells Chiron where all your modeltree text files are. By default, Chiron will look for this list in chiron_config/autocreate/autocreate.py.
+
+```
+# file location chiron_config/autocreate/autocreate.py
+
+autocreate_dd_config = [
+    {
+        'source_id' : 'myapp',              # this can be any unique ID you want
+        'modeltree_path' : 'chiron_config/autocreate/modeltree_myapp.txt',
+    },
+]
+```
+
+Now you can run the autocreate management command. If your autocreate_dd_config file isn’t in the standard location, you can specify the Python module in Django settings using CHIRON_AUTOCREATE_DD_MODULE_PATH, or you can pass it as an argument using –module.
+
+```
+python manage.py chiron_autocreate_dd
+```
+
+### Step 5: Cleanup DD
+
+### Rerunning Autocreate After Changes
+
+There is a dedicated model AutoImportedField to keep track of all fields that have been loaded through autocreate. Any fields that have been imported are tracked in this model and will not be imported again, even if the associated Concepts have been modified or deleted. So it is safe to rerun chiron_autocreate_dd after adding new modeltrees, models, or fields.
+
+If you actually want to reload previously loaded concepts (for example, if you deleted something by accident), you can remove the fields you wish to re-import from AutoImportedField, then run chiron_autocreate_dd again.
+
+## Manually Create/Edit the Data Dictionary
+
+
+See the full data dictionary for all configuration options - {doc}`../configuration/data_dict_models`
+
+

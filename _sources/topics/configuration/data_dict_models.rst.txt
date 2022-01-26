@@ -1,0 +1,62 @@
+
+
+
+Data Dictionary
+===============
+
+
+
+Processor Model
+---------------
+
+.. autoclass:: chiron.models.Processor
+   :noindex:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Collection Model
+----------------
+
+.. autoclass:: chiron.models.Collection
+   :noindex:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+SourceCollection Model
+----------------------
+
+.. autoclass:: chiron.models.SourceCollection
+   :noindex:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+Concept Model
+-------------
+
+.. autoclass:: chiron.models.Concept
+   :noindex:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+Category Model
+--------------
+
+.. autoclass:: chiron.models.Concept
+   :noindex:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+AutoImportedField Model
+-----------------------
+
+.. autoclass:: chiron.models.AutoImportedField
+   :noindex:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   

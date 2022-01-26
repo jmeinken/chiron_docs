@@ -1,0 +1,22 @@
+# 3. Load data into MongoDB
+
+Once the data dictionary is set up, you can load data anytime with the following command:
+
+```
+python manage.py chiron_run_etl
+```
+
+This command fully erases the existing data and reloads everything from scratch.
+
+**Partial Loading**
+
+SourceCollections have an exclude_from_etl option. Set to True for the source collections you wish to skip and then run `chiron_run_etl` as usual. Any fields those SourceCollections load into will show as having no data.
+
+You can also load data from a single SourceCollection, but it doesn't always work correctly, so it's not recommended for production.
+
+```
+# good for a quick test, but not recommended for production systems
+python manage.py chiron_run_etl --source=my_source_collection_id
+```
+
+

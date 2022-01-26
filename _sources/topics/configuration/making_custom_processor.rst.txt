@@ -1,0 +1,242 @@
+Creating Your Own Processors
+============================
+
+The **processor classes** control how data is loaded into MongoDB from data sources and how it is
+displayed and queried. Chiron has a variety of :ref:`built-in-processors` that you can use
+without writing any code. However, if you need customized behavior beyond what's already provided,
+you can create your own processors.
+
+How to make a custom processor class
+------------------------------------
+
+The code for your processor class can go anywhere, but we recommend creating a root-level package
+in your project called ``chiron_config`` and create an additional package inside that called
+``processors`` to store your custom processors. **Do not** put them directly inside the chiron app,
+as that will make it harder to update chiron in the future.
+
+::
+   cd myproject
+   mkdir chiron_config
+   cd chiron_config
+   touch __init__.py
+   mkdir processors
+   cd processors
+   touch __init__.py
+    
+Your processors can extend any of the chiron abstract processors in 
+``chiron.processors.abstract`` or built-in processors in ``chiron.processors``.
+
+Once your processor code is ready, use the Processor model to include your processor in the
+data dictionary. Once added, you can set any processors in your SourceCollection or Concept
+models to use your custom processor.
+
+Register your processor class with Chiron
+-----------------------------------------
+
+You must register a processor class with Chiron to start using it.
+
+Step 1: Register the class in code
+
+.. code-block:: python
+
+   from chiron.processors.registration import ProcessorRegistry
+
+   ProcessorRegistry.register(MyProcessorClass)
+
+Step 2: Tell Chiron in which modules your processors are registered. This can be done using the
+CHIRON_PROCESSOR_MODULES setting. The default is to load the built-in Chiron processors, and any
+processors in `chiron_config.processors.__init__.py`
+
+.. code-block:: python
+
+    CHIRON_PROCESSOR_MODULES = ["chiron.processors", "chiron_config.processors"]
+
+Note: If you include a module path, that module will be checked. If you include a package path,
+the `__init__.py` of the package will be checked, but child modules will not be checked.
+
+Abstract Processors
+-------------------
+
+SourceCollectionProcessor (abstract)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.abstract.SourceCollectionProcessor
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+   
+StandardLoadMixin
+"""""""""""""""""
+
+.. autoclass:: chiron.processors.abstract.StandardLoadMixin
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+BatchLoadMixin
+""""""""""""""
+
+.. autoclass:: chiron.processors.abstract.BatchLoadMixin
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+
+   
+EtlProcessor (abstract)
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.abstract.EtlProcessor
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+.. _cohort-def-processor-abstract:
+   
+CohortDefProcessor (abstract)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.abstract.CohortDefProcessor
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+CohortDefProcessorBuiltInUiMixin
+""""""""""""""""""""""""""""""""
+
+.. autoclass:: chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+.. _display-processor-abstract:
+
+DisplayProcessor (abstract)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.abstract.DisplayProcessor
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+
+AggregationMethod Classes for Display Processors
+------------------------------------------------
+
+Display processors store custom lists of aggregation methods that they allow. For example,
+a numeric display processor will usually include the Average aggregation method, but a text
+processor would not. You can use any of the built-in aggregation methods in your custom display
+processor or create your own by extending the AggregationMethod abstract class.
+
+AggregationMethod (abstract base class)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation._base.AggregationMethod
+   :members:
+   :private-members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Average
+^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.Average
+   :show-inheritance:
+
+CountAll
+^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.CountAll
+   :show-inheritance:
+
+CountDistinct
+^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.CountDistinct
+   :show-inheritance:
+
+Earliest
+^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.Earliest
+   :show-inheritance:
+
+HasValue
+^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.HasValue
+   :show-inheritance:
+
+HasValueText
+^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.HasValueText
+   :show-inheritance:
+
+Latest
+^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.Latest
+   :show-inheritance:
+
+ListAll
+^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.ListAll
+   :show-inheritance:
+
+ListDistinct
+^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.ListDistinct
+   :show-inheritance:
+
+Max
+^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.Max
+   :show-inheritance:
+
+MaxDate
+^^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.MaxDate
+   :show-inheritance:
+
+Median
+^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.Median
+   :show-inheritance:
+
+Min
+^^^
+
+.. autoclass:: chiron.processors.display.aggregation.Min
+   :show-inheritance:
+
+MinDate
+^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.MinDate
+   :show-inheritance:
+
+MostFrequent
+^^^^^^^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.MostFrequent
+   :show-inheritance:
+
+StdDev
+^^^^^^
+
+.. autoclass:: chiron.processors.display.aggregation.StdDev
+   :show-inheritance:

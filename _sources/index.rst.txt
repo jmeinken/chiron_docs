@@ -36,17 +36,12 @@ EHR dataset.
    :maxdepth: 1
    :caption: Contents:
    
-   system_overview
-   getting_started
-   chiron_settings
-   data_dict_example
-   built_in_processors
-   making_custom_processor
-   data_dict_models
-   api_viewsets
-   api_transforming_cohort_def
-   api_transforming_table_def
-   version_changelog
+   topics/system_overview.rst
+   topics/workflow.rst
+   topics/configuration.rst
+   topics/api.rst
+
+   topics/version_changelog.rst
    
    
 
