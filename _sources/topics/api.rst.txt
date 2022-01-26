@@ -3,7 +3,21 @@
 Chiron API
 ==========
 
-Try this out
+Chiron has a built-in web interface you can use. However, all of the functionality of Chiron is available
+as a web API if you want to integrate it into your own site.
+
+.. _djangorestframework: https://www.django-rest-framework.org/
+
+Chiron uses `djangorestframework`_ for the API. On your development site, you can browse the API
+directly:
+
+1. Start your Django server using ``python manage.py runserver``
+
+2. Navigate to the API root. Depending on how your URLs are set up, this will probably either be
+   ``http://localhost:8000/api`` or ``http://localhost:8000/chiron/api``.
+
+
+
 
 .. toctree::
    :maxdepth: 1
