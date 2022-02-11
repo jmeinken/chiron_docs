@@ -86,6 +86,17 @@
 <li class="toctree-l4"><a class="reference internal" href="#query-tools-export-csv-get-post">/query_tools/export_csv/ (GET, POST)</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#analysisdefinitions">AnalysisDefinitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#analysis-def-get">/analysis_def/ (GET)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analysis-def-snapshot-id-get">/analysis_def/[snapshot_id]/ (GET)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analysis-def-post">/analysis_def/ (POST)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#analysistools">AnalysisTools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#analysis-tools-run-analysis-get-post">/analysis_tools/run_analysis/ (GET, POST)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analysis-tools-export-csv-get-post">/analysis_tools/export_csv/ (GET, POST)</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#projects">Projects</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#projects-get">/projects/ (GET)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#projects-project-id-get">/projects/[project_id] (GET)</a></li>
@@ -110,6 +121,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api_transforming_cohort_def.html">Transforming Cohort Definitions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api_transforming_table_def.html">Transforming Table Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_transforming_analysis_def.html">Transforming Analysis Definitions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
@@ -166,8 +178,8 @@
 <dd class="field-even"><p>(dict) The Django User information: username, first_name,
 last_name, email</p>
 </dd>
-<dt class="field-odd">Can_view_phi</dt>
-<dd class="field-odd"><p>(bool)</p>
+<dt class="field-odd">Access_level</dt>
+<dd class="field-odd"><p>(str)</p>
 </dd>
 <dt class="field-even">Permission_groups</dt>
 <dd class="field-even"><p>(list) IDs for permission groups user belongs to</p>
@@ -205,8 +217,8 @@ last_name, email</p>
 <dt class="field-even">Email</dt>
 <dd class="field-even"><p>(str)</p>
 </dd>
-<dt class="field-odd">Can_view_phi</dt>
-<dd class="field-odd"><p>(bool)</p>
+<dt class="field-odd">Access_level</dt>
+<dd class="field-odd"><p>(str)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -955,6 +967,197 @@ string</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.api.viewsets.QueryToolsViewSet.export_csv">
 <span class="sig-prename descclassname"><span class="pre">QueryToolsViewSet.</span></span><span class="sig-name descname"><span class="pre">export_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.QueryToolsViewSet.export_csv" title="Permalink to this definition"></a></dt>
+<dd><p>Get a CSV with a full dataset.</p>
+<p>The POST method is provided to allow passing of long query parameters. It works exactly the
+same as the GET method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def
+will be used if available or an empty cohort def.</p></li>
+<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The table_def to use. If not provided, the active table_def
+will be used if available or an empty table_def.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response</dt>
+<dd class="field-even"><p>the CSV file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>text/csv HTTP response</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="analysisdefinitions">
+<h2>AnalysisDefinitions<a class="headerlink" href="#analysisdefinitions" title="Permalink to this headline"></a></h2>
+<section id="analysis-def-get">
+<h3>/analysis_def/ (GET)<a class="headerlink" href="#analysis-def-get" title="Permalink to this headline"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.api.viewsets.AnalysisDefViewSet.list">
+<span class="sig-prename descclassname"><span class="pre">AnalysisDefViewSet.</span></span><span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.AnalysisDefViewSet.list" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the current active analysis_def saved in the AnalysisDefSnapshot cue.
+Does not return a list as the method name implies.</p>
+<p>RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Analysis_def</dt>
+<dd class="field-odd"><p>the analysis definition used for the query</p>
+</dd>
+<dt class="field-even">Extended_analysis_def</dt>
+<dd class="field-even"><p>the analysis definition with additional details for display</p>
+</dd>
+<dt class="field-odd">Warnings</dt>
+<dd class="field-odd"><p>(list) user-friendly warnings (analysis def can still be queried)</p>
+</dd>
+<dt class="field-even">Errors</dt>
+<dd class="field-even"><p>(list) user-friendly errors (analysis def cannot be queried)</p>
+</dd>
+<dt class="field-odd">Snapshot_id</dt>
+<dd class="field-odd"><p>(int) ID of analysis def snapshot</p>
+</dd>
+<dt class="field-even">Previous_snapshot_id</dt>
+<dd class="field-even"><p>(int/None) ID of previous snapshot</p>
+</dd>
+<dt class="field-odd">Next_snapshot_id</dt>
+<dd class="field-odd"><p>(int/None) ID of next snapshot</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="analysis-def-snapshot-id-get">
+<h3>/analysis_def/[snapshot_id]/ (GET)<a class="headerlink" href="#analysis-def-snapshot-id-get" title="Permalink to this headline"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.api.viewsets.AnalysisDefViewSet.retrieve">
+<span class="sig-prename descclassname"><span class="pre">AnalysisDefViewSet.</span></span><span class="sig-name descname"><span class="pre">retrieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.AnalysisDefViewSet.retrieve" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieve a specific analysis def from the AnalysisDefSnapshot model.</p>
+<p>RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Analysis_def</dt>
+<dd class="field-odd"><p>the analysis definition used for the query</p>
+</dd>
+<dt class="field-even">Extended_analysis_def</dt>
+<dd class="field-even"><p>the analysis definition with additional details for display</p>
+</dd>
+<dt class="field-odd">Warnings</dt>
+<dd class="field-odd"><p>(list) user-friendly warnings (analysis def can still be queried)</p>
+</dd>
+<dt class="field-even">Errors</dt>
+<dd class="field-even"><p>(list) user-friendly errors (analysis def cannot be queried)</p>
+</dd>
+<dt class="field-odd">Snapshot_id</dt>
+<dd class="field-odd"><p>(int) ID of analysis def snapshot</p>
+</dd>
+<dt class="field-even">Previous_snapshot_id</dt>
+<dd class="field-even"><p>(int/None) ID of previous snapshot</p>
+</dd>
+<dt class="field-odd">Next_snapshot_id</dt>
+<dd class="field-odd"><p>(int/None) ID of next snapshot</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="analysis-def-post">
+<span id="api-analysis-def-post"></span><h3>/analysis_def/ (POST)<a class="headerlink" href="#analysis-def-post" title="Permalink to this headline"></a></h3>
+<p>For an overview of how to build a transformation dict, see section <a class="reference internal" href="api_transforming_analysis_def.html#transforming-analysis-defs"><span class="std std-ref">Transforming Analysis Definitions</span></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.api.viewsets.AnalysisDefViewSet.create">
+<span class="sig-prename descclassname"><span class="pre">AnalysisDefViewSet.</span></span><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.AnalysisDefViewSet.create" title="Permalink to this definition"></a></dt>
+<dd><p>Applies a transformation definition to an analysis definition and returns a new analysis
+definition. If no analysis_def is provided, the active analysis def is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transformation</strong> (<em>dict</em>) – the transformation definition</p></li>
+<li><p><strong>analysis_def</strong> (<em>list</em><em>, </em><em>optional</em>) – the analysis def; if not provided, active analysis def will be used</p></li>
+</ul>
+</dd>
+</dl>
+<p>FAIL RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Transformation_successful</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+<dt class="field-even">Analysis_def</dt>
+<dd class="field-even"><p>Since the transformation failed, simply returns your original analysis def</p>
+</dd>
+<dt class="field-odd">Transformation_errors</dt>
+<dd class="field-odd"><p>list of error messages regarding the failed transformation</p>
+</dd>
+</dl>
+<p>SUCCESS RESPONSE:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Transformation_successful</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+<dt class="field-even">Analysis_def</dt>
+<dd class="field-even"><p>the new analysis def with the transformation applied</p>
+</dd>
+<dt class="field-odd">Extended_analysis_def</dt>
+<dd class="field-odd"><p>the new analysis definition with additional details for display</p>
+</dd>
+<dt class="field-even">Warnings</dt>
+<dd class="field-even"><p>(list) warnings about new analysis def (analysis def can still be queried)</p>
+</dd>
+<dt class="field-odd">Errors</dt>
+<dd class="field-odd"><p>(list) errors about new analysis def (analysis def cannot be queried)</p>
+</dd>
+<dt class="field-even">Snapshot_id</dt>
+<dd class="field-even"><p>integer ID of analysis def snapshot</p>
+</dd>
+<dt class="field-odd">Previous_snapshot_id</dt>
+<dd class="field-odd"><p>integer ID of previous snapshot or None</p>
+</dd>
+<dt class="field-even">Next_snapshot_id</dt>
+<dd class="field-even"><p>integer ID of next snapshot or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="analysistools">
+<h2>AnalysisTools<a class="headerlink" href="#analysistools" title="Permalink to this headline"></a></h2>
+<section id="analysis-tools-run-analysis-get-post">
+<h3>/analysis_tools/run_analysis/ (GET, POST)<a class="headerlink" href="#analysis-tools-run-analysis-get-post" title="Permalink to this headline"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.api.viewsets.AnalysisToolsViewSet.run_analysis">
+<span class="sig-prename descclassname"><span class="pre">AnalysisToolsViewSet.</span></span><span class="sig-name descname"><span class="pre">run_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.AnalysisToolsViewSet.run_analysis" title="Permalink to this definition"></a></dt>
+<dd><p>Get the analysis dataset.</p>
+<p>The POST method is provided to allow passing of long query parameters. It works exactly the
+same as the GET method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def or an
+empty cohort def will be used.</p></li>
+<li><p><strong>analysis_def</strong> (<em>dict</em><em>, </em><em>optional</em>) – The analysis def to use. If not provided, the active analysis_def or
+an empty analysis_def def will be used.</p></li>
+</ul>
+</dd>
+</dl>
+<p>RESPONSE</p>
+<dl class="field-list simple">
+<dt class="field-odd">Data</dt>
+<dd class="field-odd"><p>(list) The dataset</p>
+</dd>
+<dt class="field-even">Cohort_def</dt>
+<dd class="field-even"><p>The cohort def that was used.</p>
+</dd>
+<dt class="field-odd">Analysis_def</dt>
+<dd class="field-odd"><p>The analysis def that was used.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="analysis-tools-export-csv-get-post">
+<h3>/analysis_tools/export_csv/ (GET, POST)<a class="headerlink" href="#analysis-tools-export-csv-get-post" title="Permalink to this headline"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.api.viewsets.AnalysisToolsViewSet.export_csv">
+<span class="sig-prename descclassname"><span class="pre">AnalysisToolsViewSet.</span></span><span class="sig-name descname"><span class="pre">export_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.AnalysisToolsViewSet.export_csv" title="Permalink to this definition"></a></dt>
 <dd><p>Get a CSV with a full dataset.</p>
 <p>The POST method is provided to allow passing of long query parameters. It works exactly the
 same as the GET method.</p>

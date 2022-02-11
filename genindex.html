@@ -123,10 +123,12 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation._base.AggregationMethod">AggregationMethod (class in chiron.processors.display.aggregation._base)</a>
+      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.aggregate_stats">aggregate_stats() (chiron.processors.abstract.CohortDefProcessor method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation._base.AggregationMethod">AggregationMethod (class in chiron.processors.display.aggregation._base)</a>
+</li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation.Average">Average (class in chiron.processors.display.aggregation)</a>
 </li>
   </ul></td>
@@ -160,11 +162,11 @@
         <li><a href="topics/configuration/chiron_settings.html#module-chiron.chiron_settings">module</a>
 </li>
       </ul></li>
+      <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT">CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT (in module chiron.chiron_settings)</a>
+</li>
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_AUTOCREATE_DD_MODULE_PATH">CHIRON_AUTOCREATE_DD_MODULE_PATH (in module chiron.chiron_settings)</a>
 </li>
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS">CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS (in module chiron.chiron_settings)</a>
-</li>
-      <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_PHI">CHIRON_AUTOCREATED_USERS_CAN_VIEW_PHI (in module chiron.chiron_settings)</a>
 </li>
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS">CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS (in module chiron.chiron_settings)</a>
 </li>
@@ -173,6 +175,8 @@
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_DATA_DICT_FIXTURE_PATH">CHIRON_DATA_DICT_FIXTURE_PATH (in module chiron.chiron_settings)</a>
 </li>
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_DATA_SUMMARY_FUNCTION_PATH">CHIRON_DATA_SUMMARY_FUNCTION_PATH (in module chiron.chiron_settings)</a>
+</li>
+      <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_DEFAULT_ACCESS_LEVEL">CHIRON_DEFAULT_ACCESS_LEVEL (in module chiron.chiron_settings)</a>
 </li>
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF">CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF (in module chiron.chiron_settings)</a>
 </li>
@@ -192,7 +196,11 @@
 </li>
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_MONGO_DATABASE_NAME">CHIRON_MONGO_DATABASE_NAME (in module chiron.chiron_settings)</a>
 </li>
+      <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_PRINT_QUERY_INFO">CHIRON_PRINT_QUERY_INFO (in module chiron.chiron_settings)</a>
+</li>
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_PROCESSOR_MODULES">CHIRON_PROCESSOR_MODULES (in module chiron.chiron_settings)</a>
+</li>
+      <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_SHOW_ANALYSIS_VIEW">CHIRON_SHOW_ANALYSIS_VIEW (in module chiron.chiron_settings)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -203,6 +211,10 @@
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_SUBJECT_ID_FIELDS">CHIRON_SUBJECT_ID_FIELDS (in module chiron.chiron_settings)</a>
 </li>
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_TEST_MONGO_CLIENT">CHIRON_TEST_MONGO_CLIENT (in module chiron.chiron_settings)</a>
+</li>
+      <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_USE_CACHES">CHIRON_USE_CACHES (in module chiron.chiron_settings)</a>
+</li>
+      <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_USE_MONGO_MOCK">CHIRON_USE_MONGO_MOCK (in module chiron.chiron_settings)</a>
 </li>
       <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.CHIRON_USE_STAGING_DURING_ETL">CHIRON_USE_STAGING_DURING_ETL (in module chiron.chiron_settings)</a>
 </li>
@@ -238,9 +250,11 @@
 </li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation.CountDistinct">CountDistinct (class in chiron.processors.display.aggregation)</a>
 </li>
-      <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.CohortDefViewSet.create">create() (chiron.api.viewsets.CohortDefViewSet method)</a>
+      <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.AnalysisDefViewSet.create">create() (chiron.api.viewsets.AnalysisDefViewSet method)</a>
 
       <ul>
+        <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.CohortDefViewSet.create">(chiron.api.viewsets.CohortDefViewSet method)</a>
+</li>
         <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.ProjectViewSet.create">(chiron.api.viewsets.ProjectViewSet method)</a>
 </li>
         <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.TableDefViewSet.create">(chiron.api.viewsets.TableDefViewSet method)</a>
@@ -304,9 +318,11 @@
 </li>
       <li><a href="topics/configuration/built_in_processors.html#chiron.processors.EtlPythonDictItemCounter">EtlPythonDictItemCounter (class in chiron.processors)</a>
 </li>
-      <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.QueryToolsViewSet.export_csv">export_csv() (chiron.api.viewsets.QueryToolsViewSet method)</a>
+      <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.AnalysisToolsViewSet.export_csv">export_csv() (chiron.api.viewsets.AnalysisToolsViewSet method)</a>
 
       <ul>
+        <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.QueryToolsViewSet.export_csv">(chiron.api.viewsets.QueryToolsViewSet method)</a>
+</li>
         <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.ReportToolsViewSet.export_csv">(chiron.api.viewsets.ReportToolsViewSet method)</a>
 </li>
       </ul></li>
@@ -370,28 +386,22 @@
         <li><a href="topics/api/api_viewsets.html#chiron.processors.CohortDefText.get_form_options">(chiron.processors.CohortDefText method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.get_header_display_value">get_header_display_value() (chiron.processors.abstract.DisplayProcessor method)</a>
 
       <ul>
         <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation._base.AggregationMethod.get_header_display_value">(chiron.processors.display.aggregation._base.AggregationMethod method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.get_individual_display_value">get_individual_display_value() (chiron.processors.abstract.DisplayProcessor method)</a>
-</li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation._base.AggregationMethod.get_inputs">get_inputs() (chiron.processors.display.aggregation._base.AggregationMethod method)</a>
 </li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def">get_mongo_match_def() (chiron.processors.abstract.CohortDefProcessor method)</a>
 </li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def_full">get_mongo_match_def_full() (chiron.processors.abstract.CohortDefProcessor method)</a>
 </li>
-      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.get_sort_key">get_sort_key() (chiron.processors.abstract.DisplayProcessor method)</a>
-
-      <ul>
-        <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key">(chiron.processors.display.aggregation._base.AggregationMethod method)</a>
+      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key">get_sort_key() (chiron.processors.display.aggregation._base.AggregationMethod method)</a>
 </li>
-      </ul></li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key_date">get_sort_key_date() (chiron.processors.display.aggregation._base.AggregationMethod method)</a>
 </li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.get_sort_key_function">get_sort_key_function() (chiron.processors.abstract.DisplayProcessor method)</a>
@@ -400,8 +410,6 @@
         <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation._base.AggregationMethod.get_sort_key_function">(chiron.processors.display.aggregation._base.AggregationMethod method)</a>
 </li>
       </ul></li>
-      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.get_sort_value">get_sort_value() (chiron.processors.abstract.DisplayProcessor method)</a>
-</li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.StandardLoadMixin.get_source_collection">get_source_collection() (chiron.processors.abstract.StandardLoadMixin method)</a>
 </li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.BatchLoadMixin.get_source_collection_batch">get_source_collection_batch() (chiron.processors.abstract.BatchLoadMixin method)</a>
@@ -444,9 +452,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation.Latest">Latest (class in chiron.processors.display.aggregation)</a>
 </li>
-      <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.ChironUserViewSet.list">list() (chiron.api.viewsets.ChironUserViewSet method)</a>
+      <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.AnalysisDefViewSet.list">list() (chiron.api.viewsets.AnalysisDefViewSet method)</a>
 
       <ul>
+        <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.ChironUserViewSet.list">(chiron.api.viewsets.ChironUserViewSet method)</a>
+</li>
         <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.CohortDefViewSet.list">(chiron.api.viewsets.CohortDefViewSet method)</a>
 </li>
         <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.CollectionViewSet.list">(chiron.api.viewsets.CollectionViewSet method)</a>
@@ -478,16 +488,20 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.map_to_value">map_to_value() (chiron.processors.abstract.DisplayProcessor method)</a>
+</li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation.Max">Max (class in chiron.processors.display.aggregation)</a>
+</li>
+      <li><a href="topics/configuration/chiron_settings.html#chiron.chiron_settings.MAX_CACHED_SUBJECT_IDS">MAX_CACHED_SUBJECT_IDS (in module chiron.chiron_settings)</a>
 </li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation.MaxDate">MaxDate (class in chiron.processors.display.aggregation)</a>
 </li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation.Median">Median (class in chiron.processors.display.aggregation)</a>
 </li>
-      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation.Min">Min (class in chiron.processors.display.aggregation)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation.Min">Min (class in chiron.processors.display.aggregation)</a>
+</li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation.MinDate">MinDate (class in chiron.processors.display.aggregation)</a>
 </li>
       <li>
@@ -523,9 +537,11 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.CohortDefViewSet.retrieve">retrieve() (chiron.api.viewsets.CohortDefViewSet method)</a>
+      <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.AnalysisDefViewSet.retrieve">retrieve() (chiron.api.viewsets.AnalysisDefViewSet method)</a>
 
       <ul>
+        <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.CohortDefViewSet.retrieve">(chiron.api.viewsets.CohortDefViewSet method)</a>
+</li>
         <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.CollectionViewSet.retrieve">(chiron.api.viewsets.CollectionViewSet method)</a>
 </li>
         <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.ConceptCategoryViewSet.retrieve">(chiron.api.viewsets.ConceptCategoryViewSet method)</a>
@@ -538,6 +554,10 @@
 </li>
       </ul></li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.AnalysisToolsViewSet.run_analysis">run_analysis() (chiron.api.viewsets.AnalysisToolsViewSet method)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="S">S</h2>
@@ -547,14 +567,20 @@
 </li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation._base.AggregationMethod.set_custom_settings">set_custom_settings() (chiron.processors.display.aggregation._base.AggregationMethod method)</a>
 </li>
+      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.set_display_function">set_display_function() (chiron.processors.abstract.DisplayProcessor method)</a>
+</li>
+      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.set_map_settings">set_map_settings() (chiron.processors.abstract.DisplayProcessor method)</a>
+</li>
+      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.set_sort_keygen_function">set_sort_keygen_function() (chiron.processors.abstract.DisplayProcessor method)</a>
+</li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.set_td_entry">set_td_entry() (chiron.processors.abstract.DisplayProcessor method)</a>
 </li>
       <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.ReportToolsViewSet.share">share() (chiron.api.viewsets.ReportToolsViewSet method)</a>
 </li>
-      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.SourceCollectionProcessor">SourceCollectionProcessor (class in chiron.processors.abstract)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.SourceCollectionProcessor">SourceCollectionProcessor (class in chiron.processors.abstract)</a>
+</li>
       <li><a href="topics/configuration/built_in_processors.html#chiron.processors.SourceCsv">SourceCsv (class in chiron.processors)</a>
 </li>
       <li><a href="topics/configuration/built_in_processors.html#chiron.processors.SourceDjangoModel">SourceDjangoModel (class in chiron.processors)</a>

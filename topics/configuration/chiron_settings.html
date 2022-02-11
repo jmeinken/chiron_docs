@@ -84,7 +84,7 @@
 <span class="target" id="module-chiron.chiron_settings"></span><dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_SITE_TITLE">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_SITE_TITLE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'Chiron</span> <span class="pre">Test'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_SITE_TITLE" title="Permalink to this definition"></a></dt>
-<dd><p>For the built-in website, allows a custom django template to use for the page footer.</p>
+<dd><p>For the built-in website, the title is displayed in the Navbar and various other places.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -96,47 +96,53 @@
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_EXTRA_NAVBAR_ITEMS">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_EXTRA_NAVBAR_ITEMS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'main/extra_navbar.html'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_EXTRA_NAVBAR_ITEMS" title="Permalink to this definition"></a></dt>
+<dd><p>For the built-in website, allows a custom django template to use for the page footer.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS" title="Permalink to this definition"></a></dt>
 <dd><p>There is ChironUser model associated 1:1 with the Django User. If True, a ChironUser record
 will be created automatically the first time a user accesses any Chiron built-in views.
 TODO: might want the same functionality for users accessing Chiron through the API</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS" title="Permalink to this definition"></a></dt>
-<dd><p>If CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True, should autocreated users be allowed to
-view PHI by default.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_PHI">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATED_USERS_CAN_VIEW_PHI</span></span><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_PHI" title="Permalink to this definition"></a></dt>
-<dd><p>If CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True, should autocreated users be allowed to
-view the built-in workspace sections by default.</p>
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_DEFAULT_ACCESS_LEVEL">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_DEFAULT_ACCESS_LEVEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'deid'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_DEFAULT_ACCESS_LEVEL" title="Permalink to this definition"></a></dt>
+<dd><p>If CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True, what access level should autocreated users
+have? Options are “phi”, “deid”, and “agg”.</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_WORKSPACE">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATED_USERS_CAN_VIEW_WORKSPACE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_WORKSPACE" title="Permalink to this definition"></a></dt>
 <dd><p>If CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True, should autocreated users be allowed to
-view the built-in subject details sections by default.</p>
+view the built-in workspace sections by default.</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS" title="Permalink to this definition"></a></dt>
-<dd><p>The MongoDB connection settings definition that will be passed to pymongo.</p>
+<dd><p>If CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True, should autocreated users be allowed to
+view the built-in subject details sections by default.</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_MONGO_CONNECTION_SETTINGS">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_MONGO_CONNECTION_SETTINGS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'host':</span> <span class="pre">'localhost'}</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_MONGO_CONNECTION_SETTINGS" title="Permalink to this definition"></a></dt>
-<dd><p>All your patient data will be stored in a single MongoDB database.</p>
+<dd><p>The MongoDB connection settings definition that will be passed to pymongo.</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_MONGO_DATABASE_NAME">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_MONGO_DATABASE_NAME</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'chiron_demo'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_MONGO_DATABASE_NAME" title="Permalink to this definition"></a></dt>
+<dd><p>All your patient data will be stored in a single MongoDB database.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_USE_STAGING_DURING_ETL">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_USE_STAGING_DURING_ETL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_USE_STAGING_DURING_ETL" title="Permalink to this definition"></a></dt>
 <dd><p>Applies to <cite>python manage.py chiron_run_etl</cite> command. Normally, existing MongoDB collection(s) are
 deleted at the start of the ETL process and repopulated. If this setting is True, data will be
 loaded into separate staging tables and existing MongoDB collection(s) will be kept until the end
@@ -145,54 +151,48 @@ by the staging collections.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_USE_STAGING_DURING_ETL">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_USE_STAGING_DURING_ETL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_USE_STAGING_DURING_ETL" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF</span></span><em class="property"> <span class="pre">=</span> <span class="pre">[]</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF" title="Permalink to this definition"></a></dt>
 <dd><p>List permanent IDs for any concepts you want to show up as default fields in the results table.
 These fields can still be removed by the user.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF</span></span><em class="property"> <span class="pre">=</span> <span class="pre">[]</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_DATA_DICT_FIXTURE_PATH">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_DATA_DICT_FIXTURE_PATH</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'chiron_config/fixtures.json'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_DATA_DICT_FIXTURE_PATH" title="Permalink to this definition"></a></dt>
 <dd><p>For backing up and restoring the Chiron data dictionary (management commands chiron_backup_dd
 and chiron_restore_dd), where should the fixture file be stored.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_DATA_DICT_FIXTURE_PATH">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_DATA_DICT_FIXTURE_PATH</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'chiron_config/fixtures.json'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_DATA_DICT_FIXTURE_PATH" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_DATA_SUMMARY_FUNCTION_PATH">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_DATA_SUMMARY_FUNCTION_PATH</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'chiron.views.views.get_data_summary_string'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_DATA_SUMMARY_FUNCTION_PATH" title="Permalink to this definition"></a></dt>
 <dd><p>You can customize what’s shown on the built-in home page. This function will take a request object
 as an argument and should return an HTML string.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_DATA_SUMMARY_FUNCTION_PATH">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_DATA_SUMMARY_FUNCTION_PATH</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'chiron.views.views.get_data_summary_string'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_DATA_SUMMARY_FUNCTION_PATH" title="Permalink to this definition"></a></dt>
-<dd><p>The module where your autocreate_dd_config list is stored.</p>
-</dd></dl>
-
-<dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_AUTOCREATE_DD_MODULE_PATH">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATE_DD_MODULE_PATH</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'chiron_config.autocreate.autocreate'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_AUTOCREATE_DD_MODULE_PATH" title="Permalink to this definition"></a></dt>
-<dd><p>The Chiron navbar has a logout link.</p>
+<dd><p>The module where your autocreate_dd_config list is stored.</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_LOGOUT_URL">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_LOGOUT_URL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'/accounts/logout'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_LOGOUT_URL" title="Permalink to this definition"></a></dt>
+<dd><p>The Chiron navbar has a logout link.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_USE_MONGO_MOCK">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_USE_MONGO_MOCK</span></span><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_USE_MONGO_MOCK" title="Permalink to this definition"></a></dt>
 <dd><p>Can turn on mongomock for testing purposes</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_TEST_MONGO_CLIENT">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_TEST_MONGO_CLIENT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_TEST_MONGO_CLIENT" title="Permalink to this definition"></a></dt>
-<dd><p>You can display an infobar at the top of all built-in views. For example, a warning bar
-that this is a test site. CHIRON_INFOBAR should have a string of the content to display and
-CHIRON_INFOBAR_TYPE should have the type of bar, which will usually be indicated
-by color:</p>
-<p>“info” -&gt; blue
-“warning” -&gt; orange
-“danger” -&gt; red</p>
+<dd><p>If CHIRON_USE_MONGO_MOCK=True, the mongo client to use</p>
 </dd></dl>
 
 <dl class="py data">
@@ -210,29 +210,44 @@ by color:</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_INFOBAR_TYPE">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_INFOBAR_TYPE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'info'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_INFOBAR_TYPE" title="Permalink to this definition"></a></dt>
-<dd><p>Processor classes must be registered with Chiron. List any modules that load processors
-here to ensure that they are loaded during registry updates.</p>
+<dd><p>You can display an infobar at the top of all built-in views. For example, a warning bar
+that this is a test site. CHIRON_INFOBAR should have a string of the content to display and
+CHIRON_INFOBAR_TYPE should have the type of bar, which will usually be indicated
+by color:</p>
+<p>“info” -&gt; blue
+“warning” -&gt; orange
+“danger” -&gt; red</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_PROCESSOR_MODULES">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_PROCESSOR_MODULES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">['chiron.processors',</span> <span class="pre">'chiron_config.processors']</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_PROCESSOR_MODULES" title="Permalink to this definition"></a></dt>
+<dd><p>Processor classes must be registered with Chiron. List any modules that load processors
+here to ensure that they are loaded during registry updates.</p>
+<p>The recommended location for registering custom processors is in 
+<cite>[your_project]/chiron_config/processors/__init__.py</cite>. Then this setting would need to be:</p>
+<p>CHIRON_PROCESSOR_MODULES = [“chiron.processors”, “chiron_config.processors”]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_SOURCE_DATA_DIRECTORY">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_SOURCE_DATA_DIRECTORY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">''</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_SOURCE_DATA_DIRECTORY" title="Permalink to this definition"></a></dt>
 <dd><p>If loading source data from files, the directory path to prepend
 ex. C://Users/meinken/data/
 ex. ../../data/</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_SOURCE_DATA_DIRECTORY">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_SOURCE_DATA_DIRECTORY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">''</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_SOURCE_DATA_DIRECTORY" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_SUBJECT_ID_FIELDS">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_SUBJECT_ID_FIELDS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">['id']</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_SUBJECT_ID_FIELDS" title="Permalink to this definition"></a></dt>
 <dd><p>The main collection has an _ids object field that can be used to match source records to existing
 subjects. This is the list of field names you are using inside _ids, and will be used to
 create indexes to speed up the ETL.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_SUBJECT_ID_FIELDS">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_SUBJECT_ID_FIELDS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">['id']</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_SUBJECT_ID_FIELDS" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_EVENT_CONCEPT_TYPE">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_EVENT_CONCEPT_TYPE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'date'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_EVENT_CONCEPT_TYPE" title="Permalink to this definition"></a></dt>
 <dd><p>The event query system allows date concepts to be associated with specific collections (using
 collection.event_date_field and collection.event_end_date_field) indicating when an event occurred.
 Then users can do temporal queries at the collection level.
@@ -242,10 +257,40 @@ type of value. Set that type here.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_EVENT_CONCEPT_TYPE">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_EVENT_CONCEPT_TYPE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'date'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_EVENT_CONCEPT_TYPE" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.chiron_settings.MAX_CACHED_SUBJECT_IDS">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">MAX_CACHED_SUBJECT_IDS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">100000</span></em><a class="headerlink" href="#chiron.chiron_settings.MAX_CACHED_SUBJECT_IDS" title="Permalink to this definition"></a></dt>
 <dd><p>Maximum number of Subject IDs that are allowed to be cached for a saved Cohort Definition.
 If a saved Cohort Definition has more Subject IDs than this number then it will not cache them.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_SHOW_ANALYSIS_VIEW">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_SHOW_ANALYSIS_VIEW</span></span><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_SHOW_ANALYSIS_VIEW" title="Permalink to this definition"></a></dt>
+<dd><p>Include the analysis view on the built-in UI</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_PRINT_QUERY_INFO">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_PRINT_QUERY_INFO</span></span><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_PRINT_QUERY_INFO" title="Permalink to this definition"></a></dt>
+<dd><p>The query engine can print various statements as stdout that help with debugging query
+problems. This includes the amount of time it takes for each query step to run and notifications
+when a cache was used. Set to true to turn these statements on.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_USE_CACHES">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_USE_CACHES</span></span><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_USE_CACHES" title="Permalink to this definition"></a></dt>
+<dd><p>Chiron can cache various patient data and stats to improve performance. Setting to True will
+improve performance, but might cause problems in a development environment where you’re actively
+modifying the data dictionary.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">5</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT" title="Permalink to this definition"></a></dt>
+<dd><p>For users with access_level=”agg” (only allowed to see aggregated data), what is the minimum
+subject count they can see? Anything below that will show with a less-than sign. Zero subjects
+will still show as “0”.</p>
 </dd></dl>
 
 </section>

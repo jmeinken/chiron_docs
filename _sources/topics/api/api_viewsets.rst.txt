@@ -195,6 +195,49 @@ QueryTools
 
 .. automethod:: chiron.api.viewsets.QueryToolsViewSet.export_csv
 
+
+
+AnalysisDefinitions
+-------------------
+
+/analysis_def/ (GET)
+^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.AnalysisDefViewSet.list
+
+/analysis_def/[snapshot_id]/ (GET)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.AnalysisDefViewSet.retrieve
+
+.. _api-analysis-def-post:
+
+/analysis_def/ (POST)
+^^^^^^^^^^^^^^^^^^^^^
+
+For an overview of how to build a transformation dict, see section :ref:`transforming-analysis-defs`.
+
+.. automethod:: chiron.api.viewsets.AnalysisDefViewSet.create
+
+
+
+
+AnalysisTools
+-------------
+
+
+/analysis_tools/run_analysis/ (GET, POST)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.AnalysisToolsViewSet.run_analysis
+
+/analysis_tools/export_csv/ (GET, POST)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.AnalysisToolsViewSet.export_csv
+
+
+
 .. _api-endpoints-projects:
 
 Projects
