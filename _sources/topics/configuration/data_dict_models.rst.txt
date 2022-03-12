@@ -12,8 +12,7 @@ Processor Model
 .. autoclass:: chiron.models.Processor
    :noindex:
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :exclude-members: instantiate, is_custom
 
 Collection Model
 ----------------
@@ -21,8 +20,10 @@ Collection Model
 .. autoclass:: chiron.models.Collection
    :noindex:
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :exclude-members: get_mongo_subcollection_name, get_name_plural,
+      instantiate, get_event_type, check_event_permission_group,
+      check_event_user_access_level, user_can_view_collection,
+      get_viewable_collections, DoesNotExist, MultipleObjectsReturned
    
 SourceCollection Model
 ----------------------
@@ -30,8 +31,15 @@ SourceCollection Model
 .. autoclass:: chiron.models.SourceCollection
    :noindex:
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :exclude-members: get_processor, DoesNotExist, MultipleObjectsReturned
+
+SourceCollectionProcessorArgument Model
+---------------------------------------
+
+.. autoclass:: chiron.models.SourceCollectionProcessorArgument
+   :noindex:
+   :members:
+   :exclude-members: DoesNotExist,MultipleObjectsReturned
    
 Concept Model
 -------------
@@ -39,17 +47,32 @@ Concept Model
 .. autoclass:: chiron.models.Concept
    :noindex:
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :exclude-members: references_mongo_id_field, get_category_hierarchy, get_name_plural,
+     get_full_mongo_field_name, check_permission_group, check_user_access_level,
+     user_can_query_concept, get_etl_processor, get_cohort_def_processor_without_user,
+     get_cohort_def_processor, get_collection_prefilters, prefilter_required,
+     get_display_processor, get_summary_statistics, get_data_type, DoesNotExist,
+     MultipleObjectsReturned
+
+ConceptProcessorArgument Model
+------------------------------
+
+.. autoclass:: chiron.models.ConceptProcessorArgument
+   :noindex:
+   :members:
+   :exclude-members: DoesNotExist,MultipleObjectsReturned
    
 Category Model
 --------------
 
-.. autoclass:: chiron.models.Concept
+.. autoclass:: chiron.models.Category
    :noindex:
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :exclude-members: get_ancestors, get_ancestor_names, get_level, get_top_level_parent,
+     get_level_indent_string, check_permission_group, DoesNotExist, MultipleObjectsReturned
+
+
+
    
 AutoImportedField Model
 -----------------------
@@ -57,6 +80,5 @@ AutoImportedField Model
 .. autoclass:: chiron.models.AutoImportedField
    :noindex:
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :exclude-members: get_name, get_created_cohorts, get_created_tables, get_viewable_reports, list_permission_groups, list_concepts_for_allowed_subjects, DoesNotExist, MultipleObjectsReturned
    

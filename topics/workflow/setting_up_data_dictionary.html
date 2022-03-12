@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. Set Up the Data Dictionary &mdash; Chiron 3.0.0 documentation</title>
+  <title>2. Set Up the Data Dictionary &mdash; Chiron 3.0.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -15,6 +15,8 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -43,7 +45,9 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installing.html">1. Install Chiron</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2. Set Up the Data Dictionary</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#data-dictionary-overview">Data Dictionary Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#understanding-data-dictionary-components">Understanding Data Dictionary Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#understanding-the-data-model">Understanding the Data Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#understanding-the-etl-process">Understanding the ETL Process</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#autocreate-the-data-dictionary">Autocreate the Data Dictionary</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#step-1-create-a-model-tree-file">Step 1: Create a model tree file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#step-2-define-how-the-models-will-map-to-chiron-collections">Step 2: Define how the models will map to Chiron collections</a></li>
@@ -90,10 +94,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="set-up-the-data-dictionary">
+  <section id="set-up-the-data-dictionary">
 <h1>2. Set Up the Data Dictionary<a class="headerlink" href="#set-up-the-data-dictionary" title="Permalink to this headline"></a></h1>
-<section id="data-dictionary-overview">
-<h2>Data Dictionary Overview<a class="headerlink" href="#data-dictionary-overview" title="Permalink to this headline"></a></h2>
+<section id="understanding-data-dictionary-components">
+<h2>Understanding Data Dictionary Components<a class="headerlink" href="#understanding-data-dictionary-components" title="Permalink to this headline"></a></h2>
 <p><strong>Collections</strong></p>
 <p>Collections in the data dictionary represent literal MongoDB collections. If you’re not familiar with MongoDB, you can think of a collection as a table.</p>
 <p>Every data dictionary will have one subject collection (flagged with <code class="docutils literal notranslate"><span class="pre">is_root_collection=True</span></code>) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for data that is 1:many with the subject.</p>
@@ -107,6 +111,45 @@
 <p><strong>Categories</strong></p>
 <p>Categories define a hierarchical structure for users to browse concepts. They have no effect on queries or how the data is stored in MongoDB.</p>
 </section>
+<section id="understanding-the-data-model">
+<h2>Understanding the Data Model<a class="headerlink" href="#understanding-the-data-model" title="Permalink to this headline"></a></h2>
+<p>Your MongoDB database has a simple data model with the subject (root) collection at the core and any number of 0:many subcollections linked to it:</p>
+<div class="mermaid">
+                erDiagram
+        Subject ||--o{ Medication : &quot;&quot;
+        Subject ||--o{ Biospecimen : &quot;&quot;
+        Subject ||--o{ Encounter : &quot;&quot;
+        Subject ||--o{ Procedure : &quot;&quot;
+        </div><p>Starting in Chiron version 3.1, you can also associate subcollection records with each other using the CollectionRelationship model. This will help Chiron when trying to merge data from multiple subcollections and should be used when it makes sense.</p>
+<p>Here is the above example again with Procedures and Biospecimen linked to their associated encounters.</p>
+<div class="mermaid">
+                erDiagram
+        Subject ||--o{ Medication : &quot;&quot;
+        Subject ||--o{ Biospecimen : &quot;&quot;
+        Subject ||--o{ Encounter : &quot;&quot;
+        Subject ||--o{ Procedure : &quot;&quot;
+        Encounter ||--o{ Biospecimen : &quot;collected during&quot;
+        Encounter ||--o{ Procedure : &quot;performed during&quot;
+        </div></section>
+<section id="understanding-the-etl-process">
+<h2>Understanding the ETL Process<a class="headerlink" href="#understanding-the-etl-process" title="Permalink to this headline"></a></h2>
+<p>The ETL process is managed by Chiron and will be based on your data dictionary. The work of getting source records is carried out by the SourceCollection processor, and the work of getting individual concept values out of a source record is carried out by the ETL Processors. Here is what the ETL workflow looks like:</p>
+<div class="mermaid">
+                sequenceDiagram
+        participant Chiron
+        participant Med SourceCollection
+        participant Med Name ETLProcessor
+        participant Med Type ETLProcessor
+        participant MongoDB Med Collection
+        Chiron-&gt;&gt;Med SourceCollection: Request first medication record
+        Med SourceCollection-&gt;&gt;Chiron: Return medication record
+        Chiron-&gt;&gt;Med Name ETLProcessor: Pass first medication record
+        Med Name ETLProcessor-&gt;&gt;Chiron: Return medication name
+        Chiron-&gt;&gt;Med Type ETLProcessor: Pass first medication record
+        Med Type ETLProcessor-&gt;&gt;Chiron: Return medication type
+        Chiron-&gt;&gt;MongoDB Med Collection: Write first medication doc {name: &quot;Tylenol&quot;, type: &quot;fever reducer&quot;}
+        Chiron-&gt;&gt;Med SourceCollection: Request second medication record
+        </div></section>
 <section id="autocreate-the-data-dictionary">
 <h2>Autocreate the Data Dictionary<a class="headerlink" href="#autocreate-the-data-dictionary" title="Permalink to this headline"></a></h2>
 <p>If the data you’re using is coming from the Django ORM, you can autocreate a data dictionary and then edit as needed from there. For any other data source, you have to create the data dictionary from scratch.</p>

@@ -2,8 +2,65 @@
 Users and User Permissions
 ==========================
 
-You can control which concepts can be accessed and which subjects can be accessed based on the
-user. You can also hide PHI based on the user or even limit a user to only aggregated views of
-the data.
+There are two systems for managing a user's access to data: access levels and permission groups.
 
-More documentation on users coming soon.
+Access Levels
+-------------
+
+Access levels control the type of data a user is allowed to see. Each Chiron user has one of three access levels:
+
+- **phi** - Users will be able to see patient-level data, including concepts that are flagged as PHI.
+- **deid** - Users will be able to see patient-level data, but will not have access to PHI.
+- **agg** - Users can only see aggregated data. They do not have access to PHI and do not have access to patient-level values.
+
+**Settings relevant to PHI access**
+
+- Concepts containing PHI should have the has_phi flag set to True.
+- Additionally, flagged concepts can set values for cohort_def_processor_deid_alt and display_processor_deid_alt. These can be set to special processor classes that allow the user to interact with the concept without seeing PHI. If these flags aren't set, the concept will be hidden from the user.
+
+**Settings relevant to aggregated access**
+
+- Concepts that shouldn't be shown in aggregated view should have the exclude_from_aggregated flag set to True. For example, you might want to hide a text field containing detailed comments specific to a patient.
+- django setting CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT gives the minimum patient count that should be given. For example, if set to the default of 5, any patient counts less than 5 will show as "<5" rather than the actual number.
+
+
+Permission Groups
+-----------------
+
+Permission groups limit users' access to specific groups of subjects or specific groups of concepts. This is useful, for example, if you have data coming from multiple different studies and want to limit some users' access to only data from specific studies.
+
+If you don't need permission groups on your project, simply leave the PermissionGroups table empty.
+
+Once you have any permission groups defined, every user must belong to at least one permission group or they won't be able to see any data. If a user belongs to multiple permission groups, their access level will be the union of all the groups. In other words, they will be able to see a subject or concept if at least one of their permission groups grants them access.
+
+How do access levels work with permission groups?
+-------------------------------------------------
+
+Both access levels and permission groups restrict access to concepts. If a concept is blocked by either system, the user will not be able to see it.
+
+Default Permissions for AutoCreated Users
+-----------------------------------------
+
+a Chiron user will be autocreated if Django setting CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True. The permission levels for autocreated users will be controlled by these settings:
+
+- In the PermissionGroup table, any permission group with `default_set_for_new_autocreated_users=True` will be applied to new Chiron users.
+- settings.CHIRON_DEFAULT_ACCESS_LEVEL
+- settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_WORKSPACE
+- settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS
+
+ChironUser Model
+----------------
+
+.. autoclass:: chiron.models.ChironUser
+   :noindex:
+   :members:
+   :exclude-members: list_allowed_concepts, list_allowed_data_categories,
+      list_concepts_for_allowed_subjects, DoesNotExist, MultipleObjectsReturned
+
+PermissionGroup Model
+-----------------------
+
+.. autoclass:: chiron.models.PermissionGroup
+   :noindex:
+   :members:
+   :exclude-members: site_uses_permission_groups, DoesNotExist, MultipleObjectsReturned
