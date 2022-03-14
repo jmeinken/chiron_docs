@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding the Data Dictionary &mdash; Chiron 3.0.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Site Deployment Workflow" href="workflow.html" />
+    <link rel="prev" title="System Overview" href="system_overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Understanding the Data Dictionary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-mongodb-data-model">The MongoDB Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-dictionary-components">Data Dictionary Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processor-classes">Processor Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-etl-process">The ETL Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Chiron Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Chiron API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Understanding the Data Dictionary</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/topics/data_dict.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="understanding-the-data-dictionary">
+<h1>Understanding the Data Dictionary<a class="headerlink" href="#understanding-the-data-dictionary" title="Permalink to this headline"></a></h1>
+<p>The Chiron data dictionary contains all the metadata about your research data. Chiron will use the data dictionary to build the MongoDB database and import the data automatically.</p>
+<section id="the-mongodb-data-model">
+<h2>The MongoDB Data Model<a class="headerlink" href="#the-mongodb-data-model" title="Permalink to this headline"></a></h2>
+<p>Your MongoDB database has a simple data model with a single subject (root) collection at the core and any number of 0:many subcollections linked to it:</p>
+<div class="mermaid">
+                erDiagram
+        Subject ||--o{ Medication : &quot;&quot;
+        Subject ||--o{ Biospecimen : &quot;&quot;
+        Subject ||--o{ Encounter : &quot;&quot;
+        Subject ||--o{ Procedure : &quot;&quot;
+        </div><p>Starting in Chiron version 3.1, you can also associate subcollection records with each other using the CollectionRelationship model. This will help when Chiron is generating a dataset from multiple subcollections and should be used when it makes sense.</p>
+<p>Here is the above example again with Procedures and Biospecimen linked to their associated encounters.</p>
+<div class="mermaid">
+                erDiagram
+        Subject ||--o{ Medication : &quot;&quot;
+        Subject ||--o{ Biospecimen : &quot;&quot;
+        Subject ||--o{ Encounter : &quot;&quot;
+        Subject ||--o{ Procedure : &quot;&quot;
+        Encounter ||--o{ Biospecimen : &quot;collected during&quot;
+        Encounter ||--o{ Procedure : &quot;performed during&quot;
+        </div></section>
+<section id="data-dictionary-components">
+<h2>Data Dictionary Components<a class="headerlink" href="#data-dictionary-components" title="Permalink to this headline"></a></h2>
+<p><strong>Collections</strong></p>
+<p>Collections in the data dictionary represent literal MongoDB collections. If you’re not familiar with MongoDB, you can think of a collection as a table.</p>
+<p>Every data dictionary will have one subject collection (flagged with <code class="docutils literal notranslate"><span class="pre">is_root_collection=True</span></code>) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for data that is 1:many with the subject.</p>
+<p>The only relationships are between your subject collection and sub-collections. Sub-collections cannot have other sub-collections, and you cannot have relationships between sub-collections (though this might be added in the future).</p>
+<p><strong>Concepts</strong></p>
+<p>Each collection can have any number of concepts. The subject collection could have concepts like birthdate and gender. A biospecimen collection could have concepts like collection date and sample amount.</p>
+<p><strong>SourceCollections</strong></p>
+<p>A SourceCollection is a dataset to load into Chiron. It can be anything that can be iterated to get records that correspond to the collection it’s being loaded into.</p>
+<p>For example, a SubjectDemographics table in a database could be a SourceCollection for the Subject collection. A CSV file with one row per patient medication could be a SourceCollection for a Medication collection.</p>
+<p>Chiron manages the ETL process from your SourceCollections into MongoDB. There’s built-in support for data coming from a database through the Django ORM or from CSV files. If you have data coming from other types of sources, you can write your own SourceCollection processor class to enable Chiron to consume it.</p>
+<p><strong>Categories</strong></p>
+<p>Categories define a hierarchical structure for users to browse concepts. They have no effect on queries or how the data is stored in MongoDB.</p>
+</section>
+<section id="processor-classes">
+<h2>Processor Classes<a class="headerlink" href="#processor-classes" title="Permalink to this headline"></a></h2>
+<p>Various behavior in Chiron is controlled by processor classes. Processor classes are a powerful way to get custom behavior without modifying Chiron code directly. There are built-in processor classes for common needs, or you can write your own.</p>
+<p>The processors to use are specified in the data dictionary. There are 3 types of processors for Concepts and 1 type of processor for Source Collections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">SourceCollection Processor</dt>
+<dd class="field-odd"><p><em>(associated with a source collection)</em> During the ETL, the source
+collection processor class provides a standardized interface for retrieving records from a data source.</p>
+</dd>
+<dt class="field-even">ETL Processor</dt>
+<dd class="field-even"><p><em>(associated with a concept)</em> During the ETL, the ETL processor will take a whole record provided
+by the source collection processor and return a specific value to store in MongoDB for that
+concept.</p>
+</dd>
+<dt class="field-odd">CohortDef Processor</dt>
+<dd class="field-odd"><p><em>(associated with a concept)</em> The cohort def processor controls how a concept gets applied to
+queries. It also helps with getting summary statistics for the concept.</p>
+</dd>
+<dt class="field-even">Display Processor</dt>
+<dd class="field-even"><p><em>(associated with a concept)</em> The display processor controls how stored values for a concept
+are aggregated, displayed and sorted in reports.</p>
+</dd>
+</dl>
+</section>
+<section id="the-etl-process">
+<h2>The ETL Process<a class="headerlink" href="#the-etl-process" title="Permalink to this headline"></a></h2>
+<p>The ETL process is managed by Chiron and will be based on your data dictionary. The work of fetching source records is carried out by the SourceCollection processor, and the work of fetching individual concept values out of a source record is carried out by the ETL Processors.</p>
+<p>Here is a simplified overview of the ETL process showing what SourceCollection processors and ETL processors do:</p>
+<div class="mermaid">
+                sequenceDiagram
+        participant Chiron
+        participant Med SourceCollection
+        participant Med Name ETLProcessor
+        participant Med Type ETLProcessor
+        participant MongoDB Med Collection
+        Chiron-&gt;&gt;Med SourceCollection: Request first medication record
+        Med SourceCollection-&gt;&gt;Chiron: Return medication record
+        Chiron-&gt;&gt;Med Name ETLProcessor: Pass first medication record
+        Med Name ETLProcessor-&gt;&gt;Chiron: Return medication name
+        Chiron-&gt;&gt;Med Type ETLProcessor: Pass first medication record
+        Med Type ETLProcessor-&gt;&gt;Chiron: Return medication type
+        Chiron-&gt;&gt;MongoDB Med Collection: Write first medication doc {name: &quot;Tylenol&quot;, type: &quot;fever reducer&quot;}
+        Chiron-&gt;&gt;Med SourceCollection: Request second medication record
+        </div></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="system_overview.html" class="btn btn-neutral float-left" title="System Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="workflow.html" class="btn btn-neutral float-right" title="Site Deployment Workflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

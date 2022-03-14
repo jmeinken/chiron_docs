@@ -37,6 +37,7 @@ EHR dataset.
    :caption: Contents:
    
    topics/system_overview.rst
+   topics/data_dict.md
    topics/workflow.rst
    topics/configuration.rst
    topics/api.rst

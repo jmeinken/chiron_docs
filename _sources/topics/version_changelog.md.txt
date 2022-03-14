@@ -1,6 +1,10 @@
 
 # Version Changelog
 
+## Version 3.X (New changes coming soon)
+
+1. New `CollectionRelationship` table in the data dictionary allows you to define 1:many and many:many relationships between subcollections.
+
 ## Version 3.0.0 (released 2/11/2022)
 
 1. Added Analysis view 

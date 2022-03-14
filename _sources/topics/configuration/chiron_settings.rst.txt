@@ -6,8 +6,44 @@ Chiron Global Settings
 
 All of these settings can be defined in your django settings file.
 
+Website and API Settings
+------------------------
 
 .. automodule:: chiron.chiron_settings
-   :members:
-   :show-inheritance:
+   :members: CHIRON_SITE_TITLE, CHIRON_FOOTER_TEMPLATE, CHIRON_EXTRA_NAVBAR_ITEMS, CHIRON_INFOBAR, CHIRON_INFOBAR_TYPE, CHIRON_LOGOUT_URL, CHIRON_SHOW_ANALYSIS_VIEW
+
+Data Dictionary Settings
+------------------------
+
+.. automodule:: chiron.chiron_settings
+   :noindex:
+   :members: CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF, CHIRON_SUBJECT_ID_FIELDS, CHIRON_EVENT_CONCEPT_TYPE
+
+Mongo Database Settings
+-----------------------
+
+.. automodule:: chiron.chiron_settings
+   :noindex:
+   :members: CHIRON_MONGO_CONNECTION_SETTINGS, CHIRON_MONGO_DATABASE_NAME, CHIRON_USE_STAGING_DURING_ETL, CHIRON_USE_MONGO_MOCK, CHIRON_TEST_MONGO_CLIENT
+
+File Location Settings
+----------------------
+
+.. automodule:: chiron.chiron_settings
+   :noindex:
+   :members: CHIRON_DATA_DICT_FIXTURE_PATH, CHIRON_DATA_SUMMARY_FUNCTION_PATH, CHIRON_AUTOCREATE_DD_MODULE_PATH, CHIRON_PROCESSOR_MODULES, CHIRON_SOURCE_DATA_DIRECTORY
+
+User and Permission Settings
+----------------------------
+
+.. automodule:: chiron.chiron_settings
+   :noindex:
+   :members: CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS, CHIRON_DEFAULT_ACCESS_LEVEL, CHIRON_AUTOCREATED_USERS_CAN_VIEW_WORKSPACE, CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS, CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT
+
+Performance and Cache Settings
+------------------------------
+
+.. automodule:: chiron.chiron_settings
+   :noindex:
+   :members: CHIRON_USE_CACHES, MAX_CACHED_SUBJECT_IDS, CHIRON_PRINT_QUERY_INFO
 

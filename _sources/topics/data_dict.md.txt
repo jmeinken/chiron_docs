@@ -1,0 +1,107 @@
+
+
+# Understanding the Data Dictionary
+
+The Chiron data dictionary contains all the metadata about your research data. Chiron will use the data dictionary to build the MongoDB database and import the data automatically.
+
+## The MongoDB Data Model
+
+Your MongoDB database has a simple data model with a single subject (root) collection at the core and any number of 0:many subcollections linked to it:
+
+```{mermaid}
+
+    erDiagram
+        Subject ||--o{ Medication : ""
+        Subject ||--o{ Biospecimen : ""
+        Subject ||--o{ Encounter : ""
+        Subject ||--o{ Procedure : ""
+```
+
+Starting in Chiron version 3.1, you can also associate subcollection records with each other using the CollectionRelationship model. This will help when Chiron is generating a dataset from multiple subcollections and should be used when it makes sense.
+
+Here is the above example again with Procedures and Biospecimen linked to their associated encounters.
+
+```{mermaid}
+
+    erDiagram
+        Subject ||--o{ Medication : ""
+        Subject ||--o{ Biospecimen : ""
+        Subject ||--o{ Encounter : ""
+        Subject ||--o{ Procedure : ""
+        Encounter ||--o{ Biospecimen : "collected during"
+        Encounter ||--o{ Procedure : "performed during"
+```
+
+## Data Dictionary Components
+
+**Collections**
+
+Collections in the data dictionary represent literal MongoDB collections. If you're not familiar with MongoDB, you can think of a collection as a table.
+
+Every data dictionary will have one subject collection (flagged with `is_root_collection=True`) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for data that is 1:many with the subject.
+
+The only relationships are between your subject collection and sub-collections. Sub-collections cannot have other sub-collections, and you cannot have relationships between sub-collections (though this might be added in the future).
+
+**Concepts**
+
+Each collection can have any number of concepts. The subject collection could have concepts like birthdate and gender. A biospecimen collection could have concepts like collection date and sample amount.
+
+**SourceCollections**
+
+A SourceCollection is a dataset to load into Chiron. It can be anything that can be iterated to get records that correspond to the collection it's being loaded into.
+
+For example, a SubjectDemographics table in a database could be a SourceCollection for the Subject collection. A CSV file with one row per patient medication could be a SourceCollection for a Medication collection.
+
+Chiron manages the ETL process from your SourceCollections into MongoDB. There's built-in support for data coming from a database through the Django ORM or from CSV files. If you have data coming from other types of sources, you can write your own SourceCollection processor class to enable Chiron to consume it.
+
+**Categories**
+
+Categories define a hierarchical structure for users to browse concepts. They have no effect on queries or how the data is stored in MongoDB.
+
+## Processor Classes
+
+Various behavior in Chiron is controlled by processor classes. Processor classes are a powerful way to get custom behavior without modifying Chiron code directly. There are built-in processor classes for common needs, or you can write your own.
+
+The processors to use are specified in the data dictionary. There are 3 types of processors for Concepts and 1 type of processor for Source Collections.
+
+```{eval-rst}
+:SourceCollection Processor:
+   *(associated with a source collection)* During the ETL, the source
+   collection processor class provides a standardized interface for retrieving records from a data source.
+
+:ETL Processor:
+   *(associated with a concept)* During the ETL, the ETL processor will take a whole record provided
+   by the source collection processor and return a specific value to store in MongoDB for that
+   concept.
+
+:CohortDef Processor:
+   *(associated with a concept)* The cohort def processor controls how a concept gets applied to
+   queries. It also helps with getting summary statistics for the concept.
+
+:Display Processor:
+   *(associated with a concept)* The display processor controls how stored values for a concept
+   are aggregated, displayed and sorted in reports.
+```
+
+## The ETL Process
+
+The ETL process is managed by Chiron and will be based on your data dictionary. The work of fetching source records is carried out by the SourceCollection processor, and the work of fetching individual concept values out of a source record is carried out by the ETL Processors.
+
+Here is a simplified overview of the ETL process showing what SourceCollection processors and ETL processors do:
+
+```{mermaid}
+    sequenceDiagram
+        participant Chiron
+        participant Med SourceCollection
+        participant Med Name ETLProcessor
+        participant Med Type ETLProcessor
+        participant MongoDB Med Collection
+        Chiron->>Med SourceCollection: Request first medication record
+        Med SourceCollection->>Chiron: Return medication record
+        Chiron->>Med Name ETLProcessor: Pass first medication record
+        Med Name ETLProcessor->>Chiron: Return medication name
+        Chiron->>Med Type ETLProcessor: Pass first medication record
+        Med Type ETLProcessor->>Chiron: Return medication type
+        Chiron->>MongoDB Med Collection: Write first medication doc {name: "Tylenol", type: "fever reducer"}
+        Chiron->>Med SourceCollection: Request second medication record
+```
