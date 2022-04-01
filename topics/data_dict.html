@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Understanding the Data Dictionary &mdash; Chiron 3.0.2 documentation</title>
+  <title>Understanding the Data Dictionary &mdash; Chiron 3.0.3 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -83,7 +83,7 @@
 <h1>Understanding the Data Dictionary<a class="headerlink" href="#understanding-the-data-dictionary" title="Permalink to this headline"></a></h1>
 <p>The Chiron data dictionary contains all the metadata about your research data. Chiron will use the data dictionary to build the MongoDB database and import the data automatically.</p>
 <section id="the-mongodb-data-model">
-<h2>The MongoDB Data Model<a class="headerlink" href="#the-mongodb-data-model" title="Permalink to this headline"></a></h2>
+<span id="data-model-explainer"></span><h2>The MongoDB Data Model<a class="headerlink" href="#the-mongodb-data-model" title="Permalink to this headline"></a></h2>
 <p>Your MongoDB database has a simple data model with a single subject (root) collection at the core and any number of 0:many subcollections linked to it:</p>
 <div class="mermaid">
                 erDiagram

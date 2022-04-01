@@ -4,6 +4,7 @@
 
 The Chiron data dictionary contains all the metadata about your research data. Chiron will use the data dictionary to build the MongoDB database and import the data automatically.
 
+(data-model-explainer)=
 ## The MongoDB Data Model
 
 Your MongoDB database has a simple data model with a single subject (root) collection at the core and any number of 0:many subcollections linked to it:

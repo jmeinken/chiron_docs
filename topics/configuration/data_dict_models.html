@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Dictionary &mdash; Chiron 3.0.2 documentation</title>
+  <title>Data Dictionary &mdash; Chiron 3.0.3 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -50,6 +50,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Data Dictionary</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#processor-model">Processor Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collection-model">Collection Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collectionrelationship-model">CollectionRelationship Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sourcecollection-model">SourceCollection Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sourcecollectionprocessorargument-model">SourceCollectionProcessorArgument Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#concept-model">Concept Model</a></li>
@@ -248,6 +249,55 @@ one root collection per dataset.</p>
 events that can take place over multiple days. Leave empty for events that always take place
 within a single day.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_relationships_as_pk</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Returns list of subcollection to subcollection relationships where this collection is
+playing the role of primary key side.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_relationships_as_fk</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Returns list of subcollection to subcollection relationships where this collection is
+playing the role of foreign key side.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="collectionrelationship-model">
+<span id="collection-relationship-model"></span><h2>CollectionRelationship Model<a class="headerlink" href="#collectionrelationship-model" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">CollectionRelationship</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>All subcollections automatically have a many:1 relationship with the root collection.
+You can also define a relationship between subcollections, for example
+a diagnosis that’s associated with an encounter.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">pk_concept</span></span></dt>
+<dd><p>The concept that will play the primary key role. This should be a unique ID to 
+represent a record in the associated collection.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">fk_concept</span></span></dt>
+<dd><p>The concept that will play the foreign key role, referencing the values in your
+pk_concept. For many:many relationships, the value can be an array of pk_concept values.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

@@ -24,7 +24,20 @@ Collection Model
       instantiate, get_event_type, check_event_permission_group,
       check_event_user_access_level, user_can_view_collection,
       get_viewable_collections, DoesNotExist, MultipleObjectsReturned
-   
+
+.. _collection-relationship-model:
+
+CollectionRelationship Model
+----------------------------
+
+.. autoclass:: chiron.models.CollectionRelationship
+   :noindex:
+   :members:
+   :exclude-members: get_pk_collection, get_fk_collection,
+      get_pk_concept_name, get_fk_concept_name, get_pk_collection_name,
+      get_fk_collection_name
+
+
 SourceCollection Model
 ----------------------
 

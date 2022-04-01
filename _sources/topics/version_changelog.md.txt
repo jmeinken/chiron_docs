@@ -1,9 +1,12 @@
 
 # Version Changelog
 
-## Version 3.X (New changes coming soon)
+## Version 3.1.0
 
 1. New `CollectionRelationship` table in the data dictionary allows you to define 1:many and many:many relationships between subcollections.
+   - See {ref}`data-model-explainer` for explanation of subcollection relationships and see the new data dictionary model {ref}`collection-relationship-model`.
+2. The collections API flags collections with dates defined using new "has_event" property. 
+3. New API endpoint to get the Chiron version number.
 
 ## Version 3.0.0 (released 2/11/2022)
 
