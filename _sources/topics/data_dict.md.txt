@@ -18,6 +18,18 @@ Your MongoDB database has a simple data model with a single subject (root) colle
         Subject ||--o{ Procedure : ""
 ```
 
+Starting in Chiron Version 4.0, you can have multiple unrelated datasets loaded into a single chiron instance. This is useful if you have a lot of datasets and don't want to maintain a separate chiron instance for each one. User permissions for each dataset are distinct, and a user can only interact with one dataset at a time. There's no way to do queries across multiple datasets.
+
+```{mermaid}
+
+    erDiagram
+        Dataset1_Subject ||--o{ Medication : ""
+        Dataset1_Subject ||--o{ Biospecimen : ""
+        Dataset1_Subject ||--o{ Encounter : ""
+        Dataset2_Subject ||--o{ Survey : ""
+        Dataset2_Subject ||--o{ Sample : ""
+```
+
 Starting in Chiron version 3.1, you can also associate subcollection records with each other using the CollectionRelationship model. This will help when Chiron is generating a dataset from multiple subcollections and should be used when it makes sense.
 
 Here is the above example again with Procedures and Biospecimen linked to their associated encounters.
@@ -35,13 +47,19 @@ Here is the above example again with Procedures and Biospecimen linked to their 
 
 ## Data Dictionary Components
 
+**Datasets**
+
+Datasets are a top-level way of separating unrelated data into separate buckets. Each dataset will have its own MongoDB database, and will not have any relationships to the other datasets. In the user interface, users access a single dataset at a time, and a user can have different permissions on different datasets.
+
+For chiron instances with only 1 dataset, most of the dataset functionality will be hidden.
+
 **Collections**
 
 Collections in the data dictionary represent literal MongoDB collections. If you're not familiar with MongoDB, you can think of a collection as a table.
 
-Every data dictionary will have one subject collection (flagged with `is_root_collection=True`) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for data that is 1:many with the subject.
+Every dataset will have one subject collection (flagged with `is_root_collection=True`) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for a dataset that is 1:many with the subject.
 
-The only relationships are between your subject collection and sub-collections. Sub-collections cannot have other sub-collections, and you cannot have relationships between sub-collections (though this might be added in the future).
+There is always a 1:many relationship between your subject collection and each sub-collection.
 
 **Concepts**
 
@@ -49,7 +67,7 @@ Each collection can have any number of concepts. The subject collection could ha
 
 **SourceCollections**
 
-A SourceCollection is a dataset to load into Chiron. It can be anything that can be iterated to get records that correspond to the collection it's being loaded into.
+A SourceCollection is a dataset to load into Chiron. It can be any Python iterable that returns records that correspond to the collection it's being loaded into.
 
 For example, a SubjectDemographics table in a database could be a SourceCollection for the Subject collection. A CSV file with one row per patient medication could be a SourceCollection for a Medication collection.
 
@@ -83,6 +101,17 @@ The processors to use are specified in the data dictionary. There are 3 types of
    *(associated with a concept)* The display processor controls how stored values for a concept
    are aggregated, displayed and sorted in reports.
 ```
+
+## Concept Handler Classes
+
+There are three types of processors associated with a concept - ELT, CohortDef, and Display. There can
+also be alternative CohortDef and Display processors for a concept that provide deidentifed access
+to the data. And processors take various arguments to allow customization as well. 
+
+Because of all the complexity around processors for concepts, we create logical bundles of processors in a 
+single class called a ConceptHandler. The Concept handler is a light wrapper around the different
+processors for a concept. It provides an abstraction layer that makes it simpler to change the
+behavior or data type of a concept in the data dictionary.
 
 ## The ETL Process
 

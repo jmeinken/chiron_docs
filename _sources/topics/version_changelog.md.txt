@@ -1,7 +1,17 @@
 
 # Version Changelog
 
-## Version 3.1.0
+## Version 4.0.0 (coming soon)
+
+1. A single Chiron instance can now have multiple datasets. This is achieved using a Dataset
+    model - each collection belongs to a Dataset.
+2. Processors and processor arguments for concepts are no longer defined in the Concept model
+    directly. Instead, they are bundled into a ConceptHandler class, and the concept model
+    defines the concept handler to use.
+3. Autocreating the data dictionary now uses source lists instead of modeltree text files. A
+    source list is a Python list with each entry defining a source collection to create.
+
+## Version 3.1.0 (released 4/1/2022)
 
 1. New `CollectionRelationship` table in the data dictionary allows you to define 1:many and many:many relationships between subcollections.
    - See {ref}`data-model-explainer` for explanation of subcollection relationships and see the new data dictionary model {ref}`collection-relationship-model`.

@@ -10,4 +10,5 @@ Chiron Configuration
    configuration/users.rst
    configuration/data_dict_models.rst
    configuration/built_in_processors.rst
-   configuration/making_custom_processor.rst
+   configuration/built_in_concept_handlers.rst
+   configuration/making_custom_processor.md

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Users and User Permissions &mdash; Chiron 3.0.3 documentation</title>
+  <title>Users and User Permissions &mdash; Chiron 3.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -51,13 +51,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#permission-groups">Permission Groups</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-do-access-levels-work-with-permission-groups">How do access levels work with permission groups?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#default-permissions-for-autocreated-users">Default Permissions for AutoCreated Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-permissions-with-multiple-datasets">User Permissions With Multiple Datasets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#chironuser-model">ChironUser Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#permissiongroup-model">PermissionGroup Model</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="data_dict_models.html">Data Dictionary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_concept_handlers.html">Built-In Concept Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="making_custom_processor.html">Custom Processors and Concept Handlers</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
@@ -131,15 +133,28 @@
 <li><p>settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS</p></li>
 </ul>
 </section>
+<section id="user-permissions-with-multiple-datasets">
+<h2>User Permissions With Multiple Datasets<a class="headerlink" href="#user-permissions-with-multiple-datasets" title="Permalink to this headline"></a></h2>
+<p>A Django User will have a separate ChironUser entry for each dataset they need to access. So their permissions can be different for each dataset.</p>
+</section>
 <section id="chironuser-model">
 <h2>ChironUser Model<a class="headerlink" href="#chironuser-model" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">ChironUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">can_view_workspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">can_view_subject_details</span></span></em><span class="sig-paren">)</span></dt>
-<dd><dl class="py attribute">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">ChironUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Defines access for a Django user to a single Chiron dataset.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">dataset</span></span></dt>
+<dd><p>The associated dataset. Each ChironUser defines permissions for one Django user on one 
+dataset.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">user</span></span></dt>
-<dd><p>The associated Django user. This is a 1:1 relationship.</p>
+<dd><p>The associated Django user. This is a 1:1 relationship if there is only 1 dataset,
+otherwise a Django user can have a different ChironUser for each dataset.</p>
 </dd></dl>
 
 <dl class="py attribute">

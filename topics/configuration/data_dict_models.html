@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Dictionary &mdash; Chiron 3.0.3 documentation</title>
+  <title>Data Dictionary &mdash; Chiron 3.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -48,19 +48,23 @@
 <li class="toctree-l2"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="users.html">Users and User Permissions</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Data Dictionary</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#processor-model">Processor Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dataset-model">Dataset Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defaulttabledefconcept-model">DefaultTableDefConcept Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collection-model">Collection Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collectionrelationship-model">CollectionRelationship Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sourcecollection-model">SourceCollection Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#processor-model">Processor Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sourcecollectionprocessorargument-model">SourceCollectionProcessorArgument Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#concept-model">Concept Model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#conceptprocessorargument-model">ConceptProcessorArgument Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concepthandler-model">ConceptHandler Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concepthandlerarg-model">ConceptHandlerArg Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#category-model">Category Model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#autoimportedfield-model">AutoImportedField Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autocreatedfield-model">AutocreatedField Model</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_concept_handlers.html">Built-In Concept Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="making_custom_processor.html">Custom Processors and Concept Handlers</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
@@ -94,86 +98,62 @@
              
   <section id="data-dictionary">
 <h1>Data Dictionary<a class="headerlink" href="#data-dictionary" title="Permalink to this headline"></a></h1>
-<section id="processor-model">
-<h2>Processor Model<a class="headerlink" href="#processor-model" title="Permalink to this headline"></a></h2>
+<section id="dataset-model">
+<h2>Dataset Model<a class="headerlink" href="#dataset-model" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Chiron has 4 types of processors classes that handle activity during the ETL into MongoDB
-and on the website. This table stores references to those classes and allows processors
-to be associated with specific SourceCollections and Concepts in the data dictionary.</p>
-<p>Use the ProcessorRegistry tool to add custom processors to your project. Registered processors
-will automatically get an entry in this table, so there’s no need to edit this table
-manually.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>A related group of data collections all sharing the same subject (root) collection.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">name</span></span></dt>
-<dd><p>Should be the name of the Python class</p>
+<dd><p>A display name for this dataset.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">required_args</span></span></dt>
-<dd><p>List arguments that need to be provided when this class is instantiated.</p>
+<span class="sig-name descname"><span class="pre">mongo_database_name</span></span></dt>
+<dd><p>Each dataset is stored in its own separate MongoDB database.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">optional_args</span></span></dt>
-<dd><p>List arguments that can optionally be provided when this class is instantiated.</p>
+<span class="sig-name descname"><span class="pre">root_collection</span></span></dt>
+<dd><p>The root collection (also called subject collection) represents the core thing you’re
+collecting data about - typically a patient or study subject.
+Each dataset should have one and only one subject (root) collection</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">is_source_collection_processor</span></span></dt>
-<dd><p>Set to true if this is a source collection processor</p>
+<span class="sig-name descname"><span class="pre">subject_id_fields_to_index</span></span></dt>
+<dd><p>The main collection has an _ids object field that can be used to match source records to
+existing subjects. This is the list of field names you are using inside _ids, and will be
+used to create indexes to speed up the ETL.</p>
+<p>Enter as a comma-separated list like “id,mrn,blinded_id”</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="defaulttabledefconcept-model">
+<h2>DefaultTableDefConcept Model<a class="headerlink" href="#defaulttabledefconcept-model" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">DefaultTableDefConcept</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>The specified concepts will show up as default fields in the results table. These fields can
+still be removed by the user.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">dataset</span></span></dt>
+<dd><p>The dataset to use</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">is_etl_processor</span></span></dt>
-<dd><p>Set to true if this is an ETL processor</p>
+<span class="sig-name descname"><span class="pre">concept</span></span></dt>
+<dd><p>The concept to include in empty table defs by default</p>
 </dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">is_cohort_def_processor</span></span></dt>
-<dd><p>Set to true if this is a cohort_def processor</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">is_display_processor</span></span></dt>
-<dd><p>Set to true if this is a display processor</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">is_permission_processor</span></span></dt>
-<dd><p>DEPRECATED: permission processors are no longer used.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">python_path</span></span></dt>
-<dd><p>The full Python path to this processor. ex. ‘path.to.MyProcessorClass’</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">description</span></span></dt>
-<dd><p>An optional description of this processor.</p>
-</dd></dl>
-
-<dl class="py exception">
-<dt class="sig sig-object py">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py exception">
-<dt class="sig sig-object py">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -193,6 +173,12 @@ subcollections. For example, you could have a Sample collection to store concept
 about samples that are associated with a subject.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">dataset</span></span></dt>
+<dd><p>The dataset this collection is associated with</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">permanent_id</span></span></dt>
 <dd><p>The unique ID that will be used to reference this collection in things like saved report
 definitions. It’s important that this ID doesn’t change in a production system.</p>
@@ -208,14 +194,6 @@ definitions. It’s important that this ID doesn’t change in a production syst
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">name_plural</span></span></dt>
 <dd><p>If not set, name + ‘s’ will be used.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">is_root_collection</span></span></dt>
-<dd><p>The root collection (also called subject collection) represents the core thing you’re
-collecting data about - typically a patient or study subject. There should be one and only
-one root collection per dataset.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -342,6 +320,80 @@ Sometimes a source collection can depend on a previous step so the load order ma
 </dd></dl>
 
 </section>
+<section id="processor-model">
+<h2>Processor Model<a class="headerlink" href="#processor-model" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Chiron has 4 types of processors classes that handle activity during the ETL into MongoDB
+and on the website. This table stores references to those classes and allows processors
+to be associated with specific SourceCollections and Concepts in the data dictionary.</p>
+<p>Use the ProcessorRegistry tool to add custom processors to your project. Registered processors
+will automatically get an entry in this table, so there’s no need to edit this table
+manually.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">name</span></span></dt>
+<dd><p>Should be the name of the Python class</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">required_args</span></span></dt>
+<dd><p>List arguments that need to be provided when this class is instantiated.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">optional_args</span></span></dt>
+<dd><p>List arguments that can optionally be provided when this class is instantiated.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">is_source_collection_processor</span></span></dt>
+<dd><p>Set to true if this is a source collection processor</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">is_etl_processor</span></span></dt>
+<dd><p>Set to true if this is an ETL processor</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">is_cohort_def_processor</span></span></dt>
+<dd><p>Set to true if this is a cohort_def processor</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">is_display_processor</span></span></dt>
+<dd><p>Set to true if this is a display processor</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">is_permission_processor</span></span></dt>
+<dd><p>DEPRECATED: permission processors are no longer used.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">python_path</span></span></dt>
+<dd><p>The full Python path to this processor. ex. ‘path.to.MyProcessorClass’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">description</span></span></dt>
+<dd><p>An optional description of this processor.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="sourcecollectionprocessorargument-model">
 <h2>SourceCollectionProcessorArgument Model<a class="headerlink" href="#sourcecollectionprocessorargument-model" title="Permalink to this headline"></a></h2>
 <dl class="py class">
@@ -406,12 +458,6 @@ definitions. It’s important that this ID doesn’t change in a production syst
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">collection</span></span></dt>
 <dd><p>The MongoDB collection this concept is a part of.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">source_collection</span></span></dt>
-<dd><p>The source collection this concept is loaded from during the ETL.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -484,6 +530,33 @@ and will still be allowed as part of a saved analysis def.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">has_phi</span></span></dt>
+<dd><p>Flag this concept if it contains PHI</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">exclude_from_aggregated</span></span></dt>
+<dd><p>Flag this concept if it shouldn’t be accessible to people with only access to aggregated
+data. Examples would be non-PHI ID fields and detailed comments fields.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">concept_handler</span></span></dt>
+<dd><p>The concept handler is a class that wraps a logical combination of etl, cohort def, and
+display processors along with appropriate settings. It will be a required field once
+fully implemented.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">source_collection</span></span></dt>
+<dd><p>The source collection this concept is loaded from during the ETL.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">etl_processor</span></span></dt>
 <dd><p>The ETL processor class used to fetch this value from a source collection record during
 the ETL into MongoDB.</p>
@@ -503,19 +576,6 @@ the ETL into MongoDB.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">has_phi</span></span></dt>
-<dd><p>Flag this concept if it contains PHI</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">exclude_from_aggregated</span></span></dt>
-<dd><p>Flag this concept if it shouldn’t be accessible to people with only access to aggregated
-data. Examples would be non-PHI ID fields and detailed comments fields.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">cohort_def_processor_deid_alt</span></span></dt>
 <dd><p>If has_phi is True, can specify an alternative cohort_def processor that hides PHI.</p>
 </dd></dl>
@@ -529,48 +589,62 @@ data. Examples would be non-PHI ID fields and detailed comments fields.</p>
 </dd></dl>
 
 </section>
-<section id="conceptprocessorargument-model">
-<h2>ConceptProcessorArgument Model<a class="headerlink" href="#conceptprocessorargument-model" title="Permalink to this headline"></a></h2>
+<section id="concepthandler-model">
+<h2>ConceptHandler Model<a class="headerlink" href="#concepthandler-model" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">ConceptProcessorArgument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>An argument to pass to an ETL, cohort_def, or display processor when initializing.
-Arguments are always passed as strings, though this might be changed in a future version of
-Chiron.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">ConceptHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>A wrapper class that provides an abstraction layer for the three types of processors
+for Concepts (ETL, CohortDef, and Display).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">name</span></span></dt>
+<dd><p>The name of the ConceptHandler class</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">python_path</span></span></dt>
+<dd><p>The full python path to the concept handler class; ex. “path.to.MyHandlerClass</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">description</span></span></dt>
+<dd><p>An optional description of this ConceptHandler</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="concepthandlerarg-model">
+<h2>ConceptHandlerArg Model<a class="headerlink" href="#concepthandlerarg-model" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">ConceptHandlerArg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>An argument that will be passed when the ConceptHandler is instantiated.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">concept</span></span></dt>
-<dd><p>The concept this argument is associated with</p>
+<dd><p>The associated concept</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">name</span></span></dt>
-<dd><p>The variable name of the parameter</p>
+<dd><p>The variable name of the argument</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">data_type</span></span></dt>
+<dd><p>What data type is the argument value?</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">value</span></span></dt>
-<dd><p>The value of the argument (will be passed as a string)</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">send_to_etl_processor</span></span></dt>
-<dd><p>Pass this argument to the ETL processor for this concept</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">send_to_cohort_def_processor</span></span></dt>
-<dd><p>Pass this argument to the cohort_def processor for this concept</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">send_to_display_processor</span></span></dt>
-<dd><p>Pass this argument to the display processor for this concept</p>
+<dd><p>The value to pass to the argument</p>
 </dd></dl>
 
 </dd></dl>
@@ -580,8 +654,14 @@ Chiron.</p>
 <h2>Category Model<a class="headerlink" href="#category-model" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em><span class="sig-paren">)</span></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em><span class="sig-paren">)</span></dt>
 <dd><dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">dataset</span></span></dt>
+<dd><p>The dataset this category is associated with</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">parent</span></span></dt>
 <dd><p>The parent category or null if this is a top-level category</p>
@@ -608,30 +688,36 @@ Chiron.</p>
 </dd></dl>
 
 </section>
-<section id="autoimportedfield-model">
-<h2>AutoImportedField Model<a class="headerlink" href="#autoimportedfield-model" title="Permalink to this headline"></a></h2>
+<section id="autocreatedfield-model">
+<h2>AutocreatedField Model<a class="headerlink" href="#autocreatedfield-model" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">AutoImportedField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Keep track of which Django fields have already been auto-imported, so that they are not
-imported again when auto-import is rerun. This table has absolutely no effect on anything
-besides auto-import.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">AutocreatedField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Keep track of which Django fields have already been autocreated, so that they are not
+created again when <cite>python manage.py chiron_autocreate_dd</cite> is rerun. This table has
+absolutely no effect on anything besides autocreate.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">app</span></span></dt>
-<dd><p>The app name for the auto-imported field</p>
+<dd><p>The app name for the autocreated field</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">model</span></span></dt>
-<dd><p>The model name for the auto-imported field</p>
+<dd><p>The model name for the autocreated field</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">field</span></span></dt>
-<dd><p>The field name for the auto-imported field</p>
+<dd><p>The field name for the autocreated field</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">unique_source_id</span></span></dt>
+<dd><p>Autocreates coming from a source other than the Django ORM will have a unique_source_id</p>
 </dd></dl>
 
 <dl class="py attribute">

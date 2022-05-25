@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transforming Table Definitions &mdash; Chiron 3.0.3 documentation</title>
+  <title>Transforming Table Definitions &mdash; Chiron 3.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -97,7 +97,7 @@ table definition. In the API, this is done using endpoint <a class="reference in
 <span id="table-def-transformations-add-entry"></span><h2>add_entry (table def)<a class="headerlink" href="#add-entry-table-def" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Add or edit an entry on the table definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -127,7 +127,7 @@ aggregation</p>
 <h2>delete_entry (table def)<a class="headerlink" href="#delete-entry-table-def" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_delete_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_delete_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Deletes an entry from the table def with the provided entry_id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -144,7 +144,7 @@ aggregation</p>
 <h2>resort_columns<a class="headerlink" href="#resort-columns" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_resort_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_resort_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Change the sort order of the table def entries (affects how columns in results table are
 sorted).</p>
 <dl class="field-list simple">
@@ -162,7 +162,7 @@ sorted).</p>
 <h2>add_sort_entry<a class="headerlink" href="#add-sort-entry" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_sort_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_sort_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Select a column to sort by (affects how rows are sorted in the results table).
 To reverse sort, do two add_sort_entry transformations on the same column.</p>
 <dl class="field-list simple">
@@ -180,7 +180,7 @@ To reverse sort, do two add_sort_entry transformations on the same column.</p>
 <h2>bulk_add_entries<a class="headerlink" href="#bulk-add-entries" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_bulk_add_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_bulk_add_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Add multiple entries to table definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -197,7 +197,7 @@ To reverse sort, do two add_sort_entry transformations on the same column.</p>
 <h2>add_category<a class="headerlink" href="#add-category" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Add a new category on the table definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>

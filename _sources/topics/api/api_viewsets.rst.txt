@@ -30,8 +30,8 @@ Me
 .. automethod:: chiron.api.viewsets.MeViewSet.list
 
 
-Collection
-----------
+Collections
+-----------
 
 /collections/ (GET)
 ^^^^^^^^^^^^^^^^^^^
@@ -283,6 +283,14 @@ Reports
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. automethod:: chiron.api.viewsets.ReportViewSet.flag
+
+Version
+-------
+
+/version/ (GET)
+^^^^^^^^^^^^^^^
+
+.. automethod:: chiron.api.viewsets.VersionViewSet.list
 
 
 

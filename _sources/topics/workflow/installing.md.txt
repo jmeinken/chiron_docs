@@ -46,9 +46,6 @@ INSTALLED_APPS = [
 # add chiron context processors
 TEMPLATES[0]['OPTIONS']['context_processors'].append('chiron.context_processors.chiron_globals')
 
-# add info for connecting to the Mongo database
-CHIRON_MONGO_DATABASE_NAME = 'myprojectname'
-
 # for unsecured install on localhost:
 CHIRON_MONGO_CONNECTION_SETTINGS = {
    'host' : 'localhost',

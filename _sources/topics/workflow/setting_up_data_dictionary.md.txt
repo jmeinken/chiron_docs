@@ -4,118 +4,145 @@
 
 ## Autocreate the Data Dictionary
 
-If the data you're using is coming from the Django ORM, you can autocreate a data dictionary and then edit as needed from there. For any other data source, you have to create the data dictionary from scratch. 
+Creating a data dictionary by hand when you have a lot of fields is tedious. So we have a script that
+can autocreate a data dictionary for you. You will define a list of sources you want to import, then
+the script will inspect the fields in those sources and create a full data dictionary turning each
+field into a concept.
 
-### Step 1: Create a model tree file
+The autocreation tool is intentionally limited in how much it can be customized. The goal isn't to
+give a perfect, complete data dictionary. The goal is to quickly get to a starting point that can then
+be further customized as needed. You will only run this script once to get started. Then you will not
+need to run it again unless you have new sources/fields that you want to import.
 
-You need to create a text file that shows how your Django model relationships are set up. This file can go anywhere, but a good place to store it is `[YOUR PROJECT DIR]/chiron_config/autocreate/modeltree_[dataset name].txt`. 
+Currently the autocomplete script supports data coming from the Django ORM or from CSV files.
 
-Start with a single model (if you have a subject model, start with that). Then list all models with a direct relationship to the first model with a single hyphen. The type of relationship (1:1, 1:many, many:1, many:many) doesn’t matter. Then under each of those list any relationships with a double hyphen. Continue until all your models are listed. This is your model tree.
+### Source List Overview
 
-You must specify the Django app for at least the first model as `my_app.my_model`. All children will be assumed to be in the same app as their parent. For any models where that is not true, specify the Django app.
+Your source list will have one entry for each source collection you want to create. A source collection
+can be any Python iterable, but for autocreate it will either be a Django model or a CSV file.
 
-```
-# Lines starting with pound sign are ignored.
-# In this example, the Subject model has a 1:1 relationship with Demographics, a 1:many relationship with biospecimen, and a many:many relationship with medications.
-# Then the Demographics model has a RaceLookup table allowing a subject to have more than one race.
-# The Biospecimen model has a many:1 relationsip with FreezerLocation and then the FreezerLocation has a many:1 relationship with BuildingLocation.
+You can make a single source list for your chiron instance, or separate into multiple lists to
+keep things logically separated.
 
-my_django_app.Subject
--Demographics
---RaceLookup
--Biospecimen
---FreezerLocation
----BuildingLocation
--Medications
+A source list has the following structure:
 
-```
+```python
 
-### Step 2: Define how the models will map to Chiron collections
+from chiron.autocreate.csv_autocreate import CsvFileAutocreate
+from chiron.autocreate.django_autocreate import DjangoOrmAutocreate
 
-You can use asterisks to mark models you want converted into collections. Each model marked with an asterisk will get its own collection. Models not marked with an asterisk will go into the closest parent collection.
+my_source_list = {
 
-Use a double asterisk to add something to the subject collection.
-
-```
-# Subject, Demographics and RaceLookup fields will all be added to the Subject collection.
-# Biospecimen, FreezerLocation, and BuildingLocation fields will all go into a new collection called Biospecimen.
-# Medication fields will go into a new collection called Medications.
-
-my_django_app.Subject**
--Demographics
---RaceLookup
--Biospecimen*
---FreezerLocation
----BuildingLocation
--Medications*
-
-```
-
-**Rarer situations**
-
-Sometimes if the source data is modeled poorly, you might want to associate a model with the collection above the parent collection. This often comes up with REDCap longitudinal projects. Use a carat symbol.
-
-```
-# Demographics is 1:1 with Subject but is associated with SurveyEvents in the source database.
-# In this example, Demographics fields will be added to the Subject collection. WeeklyReport fields will be added to the SurveyEvents collection.
-
-my_django_app.Subject**
--SurveyEvents*
---Demographics^
---WeeklyReport
-```
-
-### Step 3: Define how the models will map to Chiron categories
-
-By default, a new category will be created for each model. If you don't want to create a category for a model, put an `@` mark next to it. The fields will instead go into the nearest parent.
-
-```
-# Subject and Demographics categories will be created. RaceLookup fields will go into the Demographics category.
-# A Biospecimen category will be created and all Biospecimen, FreezerLocation, and BuildingLocation fields will go into it.
-# A medications category will be created.
-
-my_django_app.Subject**
--Demographics
---RaceLookup@
--Biospecimen*
---FreezerLocation@
----BuildingLocation@
--Medications*
-
-```
-
-### Step 4: Tell Chiron where your modeltree text files are
-
-The autocreate_dd_config list tells Chiron where all your modeltree text files are. By default, Chiron will look for this list in chiron_config/autocreate/autocreate.py.
-
-```
-# file location chiron_config/autocreate/autocreate.py
-
-autocreate_dd_config = [
-    {
-        'source_id' : 'myapp',              # this can be any unique ID you want
-        'modeltree_path' : 'chiron_config/autocreate/modeltree_myapp.txt',
+    # Specify the autocreate class to use, either CsvFileAutocreate or DjangoOrmAutocreate
+    "autocreate_tool": CsvFileAutocreate,
+    
+    # optionally set default values for this list, they will automatically be added to 
+    # each item in the list unless that item specfies a different value
+    "defaults": {
+        # any arguments you want to use for all list entries
     },
-]
+    
+    # create one entry for each Django Model or CSV file you want to import
+    "list": [
+        {
+            "unique_source_id": "demographics",
+            # additional optional and required arguments
+        },
+        {
+            "unique_source_id": "encounters",
+            # additional optional and required arguments
+        },
+        ...
+    ],
+}
+
 ```
 
-Now you can run the autocreate management command. If your autocreate_dd_config file isn’t in the standard location, you can specify the Python module in Django settings using CHIRON_AUTOCREATE_DD_MODULE_PATH, or you can pass it as an argument using –module.
+### Source List Arguments for CSV Files (CsvFileAutocreate)
 
+NOTE: Your CSV files must have a header row with the name of each field.
+
+- **unique_source_id** *(str, required)*
+    - This ID will be used in the AutocreatedField table to track whether this source has already been loaded. As long as this name doesn't change, fields will not be reloaded multiple times even if the filename changes.
+- **filename** *(str, required)* 
+    - If CHIRON_SOURCE_DATA_DIRECTORY defined in Django settings, the relative filepath from that. Otherwise, the full filepath.
+- **dataset** *(str, required if your system has >1 dataset)* 
+    - The dataset as specified in Dataset.name
+- **load_to_root** *(bool, default=False)* 
+    - Each dataset has only one root (subject) collection. Set to True to load data to this collection (i.e. if this data is 1:1 with a subject).
+- **collection** *(str, optional)* 
+    - The permanent ID of the collection you want to load into. If `load_to_root=True`, this value will be ignored. If this value is not set, the `unique_source_id` will be used.
+- **category** *(str, optional)* 
+    - The name of the category to associate these fields with. If this value is not set, the `unique_source_id` will be used.
+- **subject_id_field** (str, required) 
+    - The header name of the field that identifies the subject.
+- **collection_id_field** (str, optional) 
+    - The header name of the field that identifies a unique record in this collection. If this is a subject collection (i.e. `load_to_root=True`), this value is ignored. If not set, a collection ID will be autogenerated.
+  
+### Source List Arguments for Django Models (DjangoOrmAutocreate)
+
+- **app** *(str, required)*
+    - The name of the app for the model you want to load.
+- **model** *(str, required)*
+    - The name of the model class you want to load.
+- **source_name** *(str, optional)*
+    - Provide a name to call the source collection. Default value is the model name.
+- **dataset** *(str, required if your system has >1 dataset)* 
+    - The dataset as specified in Dataset.name
+- **load_to_root** *(bool, default=False)* 
+    - Each dataset has only one root (subject) collection. Set to True to load data to this collection (i.e. if this data is 1:1 with a subject).
+- **collection** *(str, optional)* 
+    - The permanent ID of the collection you want to load into. If `load_to_root=True`, this value will be ignored. If this value is not set, the `source_name` will be used.
+- **category** *(str, optional)* 
+    - The name of the category to associate these fields with. If this value is not set, the `source_name` will be used.
+- **subject_id_field** (str, required) 
+    - The model field for the subject ID. Foreign keys can be followed into other models using Django's double-underscore notation (ex "patient__patient_id").
+- **collection_id_field** (str, optional) 
+    - The model field that identifies a unique record in this collection. Foreign keys can be followed into other models using Django's double-underscore notation (ex "patient__patient_id"). If this is a subject collection (i.e. `load_to_root=True`), this value is ignored. The default value is the primary key for the model. If you want to autogenerate a random collection ID instead, you should explicitly set this value to None.
+- **join_models** (list of dicts, optional)
+    - You can take advantage of Django model relationships to join multiple models that will load together into a single collection.
+    - In general, anything you add here through joins should be something you expect to be 1:1 with the main source model. 
+    - For example, if you're loading a model Visit into a Chiron visit collection, you could join in another model like VisitQuestionnaire assuming that there's only one questionnaire per visit. 
+    - You wouldn't want to join in something 1:many with visit like VisitDiagnosis - that should instead be set up as a separate source with its own dedicated diagnosis collection.
+    - Each dict entry will have 3 values:
+      - **app** (str, optional) - The app name where this model is. Default value is same as the main source model.
+      - **model** (str, required) - The name of the model class you want to join.
+      - **join_path** - The lookup path from the main source model to this model. This should use [Django's lookup notation](https://docs.djangoproject.com/en/4.0/topics/db/queries/#lookups-that-span-relationships-1). You can traverse any type of relationship (1:1, many:1, 1:many, many:many) and cross multiple relationships using a double underscore.
+        - *example 1*: You have a Patient model and a Demographics model. The Demographics model has a ForeignKey field `patient` pointing to the Patient model. If your main source model is the Patient model, you could join in the demographics model using the join path `demographics_set`. If you don't understand where the "_set" suffix is coming from, see Django's documentation on [related names](https://docs.djangoproject.com/en/4.0/ref/models/relations/).
+        - *example 2*: Continuing with the setup from example 1, if Demographics has a field `race` that has a many:many relationship to model RaceLookup, you could also join RaceLookup into Patient using the join path `deographics_set__race`. 
+  
+### How to run the autocreate script
+
+Once your source list(s) are set up, you are ready to run the autocreate script. First collect
+all your source lists together into one dictionary. The key values can be anything you want:
+
+```python
+autocreate_source_lists = {
+  "system1": system1_source_list,
+  "system2": system2_source_list,
+}
 ```
+
+Then you can use the Django setting CHIRON_AUTOCREATE_SOURCE_LISTS to tell Chiron the Python path where your
+variable is stored. The default value is `chiron_config.autocreate.autocreate_source_lists`.
+
+Then run the script:
+
+```python
+# check to see if your source lists are configured correctly without modifying anything
+python manage.py chiron_autocreate_dd --test-run
+
+# run the script
 python manage.py chiron_autocreate_dd
 ```
 
-### Step 5: Cleanup DD
-
 ### Rerunning Autocreate After Changes
 
-There is a dedicated model AutoImportedField to keep track of all fields that have been loaded through autocreate. Any fields that have been imported are tracked in this model and will not be imported again, even if the associated Concepts have been modified or deleted. So it is safe to rerun chiron_autocreate_dd after adding new modeltrees, models, or fields.
+There is a dedicated model `AutocreatedField` to keep track of all fields that have been loaded through autocreate. Any fields that have been imported are tracked in this model and will not be imported again, even if the associated Concepts have been modified or deleted. So it is safe to rerun chiron_autocreate_dd to autocreate concepts from new models, CSV files, or fields. It will not re-create any fields that have already been created.
 
 If you actually want to reload previously loaded concepts (for example, if you deleted something by accident), you can remove the fields you wish to re-import from AutoImportedField, then run chiron_autocreate_dd again.
 
 ## Manually Create/Edit the Data Dictionary
 
-
 See the full data dictionary for all configuration options - {doc}`../configuration/data_dict_models`
-
 

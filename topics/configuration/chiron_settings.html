@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chiron Global Settings &mdash; Chiron 3.0.3 documentation</title>
+  <title>Chiron Global Settings &mdash; Chiron 3.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -57,7 +57,8 @@
 <li class="toctree-l2"><a class="reference internal" href="users.html">Users and User Permissions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_dict_models.html">Data Dictionary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="making_custom_processor.html">Creating Your Own Processors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_concept_handlers.html">Built-In Concept Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="making_custom_processor.html">Custom Processors and Concept Handlers</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
@@ -108,7 +109,7 @@
 
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_EXTRA_NAVBAR_ITEMS">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_EXTRA_NAVBAR_ITEMS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'main/extra_navbar.html'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_EXTRA_NAVBAR_ITEMS" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_EXTRA_NAVBAR_ITEMS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_EXTRA_NAVBAR_ITEMS" title="Permalink to this definition"></a></dt>
 <dd><p>For the built-in website, allows a custom django template to use for the page footer.</p>
 </dd></dl>
 
@@ -153,21 +154,6 @@ by color:</p>
 <h2>Data Dictionary Settings<a class="headerlink" href="#data-dictionary-settings" title="Permalink to this headline"></a></h2>
 <dl class="py data">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_SUBJECT_ID_FIELDS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id']</span></em></dt>
-<dd><p>The main collection has an _ids object field that can be used to match source records to existing
-subjects. This is the list of field names you are using inside _ids, and will be used to
-create indexes to speed up the ETL.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em></dt>
-<dd><p>List permanent IDs for any concepts you want to show up as default fields in the results table.
-These fields can still be removed by the user.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_EVENT_CONCEPT_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'date'</span></em></dt>
 <dd><p>The event query system allows date concepts to be associated with specific collections (using
 collection.event_date_field and collection.event_end_date_field) indicating when an event occurred.
@@ -189,30 +175,12 @@ type of value. Set that type here.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_MONGO_DATABASE_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'chiron_demo'</span></em></dt>
-<dd><p>All your patient data will be stored in a single MongoDB database.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_USE_STAGING_DURING_ETL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em></dt>
 <dd><p>Applies to <cite>python manage.py chiron_run_etl</cite> command. Normally, existing MongoDB collection(s) are
 deleted at the start of the ETL process and repopulated. If this setting is True, data will be
 loaded into separate staging tables and existing MongoDB collection(s) will be kept until the end
 of the ETL process. Upon successful completion of the ETL, the old collections will be replaced
 by the staging collections.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_USE_MONGO_MOCK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em></dt>
-<dd><p>Can turn on mongomock for testing purposes</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_TEST_MONGO_CLIENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em></dt>
-<dd><p>If CHIRON_USE_MONGO_MOCK=True, the mongo client to use</p>
 </dd></dl>
 
 </section>
@@ -227,8 +195,8 @@ and chiron_restore_dd), where should the fixture file be stored.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATE_DD_MODULE_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'chiron_config.autocreate.autocreate'</span></em></dt>
-<dd><p>The module where your autocreate_dd_config list is stored.</p>
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATE_SOURCE_LISTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'chiron_config.autocreate.autocreate_source_lists'</span></em></dt>
+<dd><p>The path to where you dictionary of autocreate source lists is stored.</p>
 </dd></dl>
 
 <dl class="py data">

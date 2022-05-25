@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transforming Analysis Definitions &mdash; Chiron 3.0.3 documentation</title>
+  <title>Transforming Analysis Definitions &mdash; Chiron 3.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -96,7 +96,7 @@ analysis definition. In the API, this is done using endpoint <a class="reference
 <span id="analysis-def-transformations-add-entry"></span><h2>add_entry (analysis def)<a class="headerlink" href="#add-entry-analysis-def" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.analysis_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_analysis_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.analysis_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_analysis_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Add or edit an entry on the analysis definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -119,7 +119,7 @@ analysis definition. In the API, this is done using endpoint <a class="reference
 <h2>delete_entry (analysis def)<a class="headerlink" href="#delete-entry-analysis-def" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.analysis_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_delete_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_analysis_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.analysis_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_delete_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_analysis_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Deletes an entry from the analysis def with the provided entry_id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -136,7 +136,7 @@ analysis definition. In the API, this is done using endpoint <a class="reference
 <h2>move_entry (analysis def)<a class="headerlink" href="#move-entry-analysis-def" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.analysis_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_move_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_analysis_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.analysis_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_move_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_analysis_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Move an entry from one role to another or change index position within the same role</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -159,7 +159,7 @@ analysis definition. In the API, this is done using endpoint <a class="reference
 <h2>swap_rows_and_cols<a class="headerlink" href="#swap-rows-and-cols" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.analysis_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_swap_rows_and_cols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_analysis_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.analysis_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_swap_rows_and_cols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_analysis_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Switches rows and column roles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -173,7 +173,7 @@ analysis definition. In the API, this is done using endpoint <a class="reference
 <h2>clear_all<a class="headerlink" href="#clear-all" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.analysis_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_clear_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_analysis_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.analysis_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_clear_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_analysis_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Creates empty analysis def</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>

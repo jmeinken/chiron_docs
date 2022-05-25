@@ -17,21 +17,21 @@ Data Dictionary Settings
 
 .. automodule:: chiron.chiron_settings
    :noindex:
-   :members: CHIRON_DEFAULT_CONCEPTS_FOR_TABLE_DEF, CHIRON_SUBJECT_ID_FIELDS, CHIRON_EVENT_CONCEPT_TYPE
+   :members: CHIRON_EVENT_CONCEPT_TYPE
 
 Mongo Database Settings
 -----------------------
 
 .. automodule:: chiron.chiron_settings
    :noindex:
-   :members: CHIRON_MONGO_CONNECTION_SETTINGS, CHIRON_MONGO_DATABASE_NAME, CHIRON_USE_STAGING_DURING_ETL, CHIRON_USE_MONGO_MOCK, CHIRON_TEST_MONGO_CLIENT
+   :members: CHIRON_MONGO_CONNECTION_SETTINGS, CHIRON_USE_STAGING_DURING_ETL
 
 File Location Settings
 ----------------------
 
 .. automodule:: chiron.chiron_settings
    :noindex:
-   :members: CHIRON_DATA_DICT_FIXTURE_PATH, CHIRON_DATA_SUMMARY_FUNCTION_PATH, CHIRON_AUTOCREATE_DD_MODULE_PATH, CHIRON_PROCESSOR_MODULES, CHIRON_SOURCE_DATA_DIRECTORY
+   :members: CHIRON_DATA_DICT_FIXTURE_PATH, CHIRON_AUTOCREATE_SOURCE_LISTS, CHIRON_DATA_SUMMARY_FUNCTION_PATH, CHIRON_PROCESSOR_MODULES, CHIRON_SOURCE_DATA_DIRECTORY
 
 User and Permission Settings
 ----------------------------
@@ -46,4 +46,3 @@ Performance and Cache Settings
 .. automodule:: chiron.chiron_settings
    :noindex:
    :members: CHIRON_USE_CACHES, MAX_CACHED_SUBJECT_IDS, CHIRON_PRINT_QUERY_INFO
-

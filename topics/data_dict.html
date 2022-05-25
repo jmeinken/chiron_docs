@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Understanding the Data Dictionary &mdash; Chiron 3.0.3 documentation</title>
+  <title>Understanding the Data Dictionary &mdash; Chiron 3.1.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -46,6 +46,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#the-mongodb-data-model">The MongoDB Data Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-dictionary-components">Data Dictionary Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#processor-classes">Processor Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#concept-handler-classes">Concept Handler Classes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-etl-process">The ETL Process</a></li>
 </ul>
 </li>
@@ -91,6 +92,14 @@
         Subject ||--o{ Biospecimen : &quot;&quot;
         Subject ||--o{ Encounter : &quot;&quot;
         Subject ||--o{ Procedure : &quot;&quot;
+        </div><p>Starting in Chiron Version 4.0, you can have multiple unrelated datasets loaded into a single chiron instance. This is useful if you have a lot of datasets and don’t want to maintain a separate chiron instance for each one. User permissions for each dataset are distinct, and a user can only interact with one dataset at a time. There’s no way to do queries across multiple datasets.</p>
+<div class="mermaid">
+                erDiagram
+        Dataset1_Subject ||--o{ Medication : &quot;&quot;
+        Dataset1_Subject ||--o{ Biospecimen : &quot;&quot;
+        Dataset1_Subject ||--o{ Encounter : &quot;&quot;
+        Dataset2_Subject ||--o{ Survey : &quot;&quot;
+        Dataset2_Subject ||--o{ Sample : &quot;&quot;
         </div><p>Starting in Chiron version 3.1, you can also associate subcollection records with each other using the CollectionRelationship model. This will help when Chiron is generating a dataset from multiple subcollections and should be used when it makes sense.</p>
 <p>Here is the above example again with Procedures and Biospecimen linked to their associated encounters.</p>
 <div class="mermaid">
@@ -104,14 +113,17 @@
         </div></section>
 <section id="data-dictionary-components">
 <h2>Data Dictionary Components<a class="headerlink" href="#data-dictionary-components" title="Permalink to this headline"></a></h2>
+<p><strong>Datasets</strong></p>
+<p>Datasets are a top-level way of separating unrelated data into separate buckets. Each dataset will have its own MongoDB database, and will not have any relationships to the other datasets. In the user interface, users access a single dataset at a time, and a user can have different permissions on different datasets.</p>
+<p>For chiron instances with only 1 dataset, most of the dataset functionality will be hidden.</p>
 <p><strong>Collections</strong></p>
 <p>Collections in the data dictionary represent literal MongoDB collections. If you’re not familiar with MongoDB, you can think of a collection as a table.</p>
-<p>Every data dictionary will have one subject collection (flagged with <code class="docutils literal notranslate"><span class="pre">is_root_collection=True</span></code>) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for data that is 1:many with the subject.</p>
-<p>The only relationships are between your subject collection and sub-collections. Sub-collections cannot have other sub-collections, and you cannot have relationships between sub-collections (though this might be added in the future).</p>
+<p>Every dataset will have one subject collection (flagged with <code class="docutils literal notranslate"><span class="pre">is_root_collection=True</span></code>) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for a dataset that is 1:many with the subject.</p>
+<p>There is always a 1:many relationship between your subject collection and each sub-collection.</p>
 <p><strong>Concepts</strong></p>
 <p>Each collection can have any number of concepts. The subject collection could have concepts like birthdate and gender. A biospecimen collection could have concepts like collection date and sample amount.</p>
 <p><strong>SourceCollections</strong></p>
-<p>A SourceCollection is a dataset to load into Chiron. It can be anything that can be iterated to get records that correspond to the collection it’s being loaded into.</p>
+<p>A SourceCollection is a dataset to load into Chiron. It can be any Python iterable that returns records that correspond to the collection it’s being loaded into.</p>
 <p>For example, a SubjectDemographics table in a database could be a SourceCollection for the Subject collection. A CSV file with one row per patient medication could be a SourceCollection for a Medication collection.</p>
 <p>Chiron manages the ETL process from your SourceCollections into MongoDB. There’s built-in support for data coming from a database through the Django ORM or from CSV files. If you have data coming from other types of sources, you can write your own SourceCollection processor class to enable Chiron to consume it.</p>
 <p><strong>Categories</strong></p>
@@ -140,6 +152,16 @@ queries. It also helps with getting summary statistics for the concept.</p>
 are aggregated, displayed and sorted in reports.</p>
 </dd>
 </dl>
+</section>
+<section id="concept-handler-classes">
+<h2>Concept Handler Classes<a class="headerlink" href="#concept-handler-classes" title="Permalink to this headline"></a></h2>
+<p>There are three types of processors associated with a concept - ELT, CohortDef, and Display. There can
+also be alternative CohortDef and Display processors for a concept that provide deidentifed access
+to the data. And processors take various arguments to allow customization as well.</p>
+<p>Because of all the complexity around processors for concepts, we create logical bundles of processors in a
+single class called a ConceptHandler. The Concept handler is a light wrapper around the different
+processors for a concept. It provides an abstraction layer that makes it simpler to change the
+behavior or data type of a concept in the data dictionary.</p>
 </section>
 <section id="the-etl-process">
 <h2>The ETL Process<a class="headerlink" href="#the-etl-process" title="Permalink to this headline"></a></h2>

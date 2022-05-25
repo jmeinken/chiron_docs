@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Install Chiron &mdash; Chiron 3.0.3 documentation</title>
+  <title>1. Install Chiron &mdash; Chiron 3.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -128,9 +128,6 @@ to get started, but you do need access to a running Mongo installation.</p>
 
 <span class="c1"># add chiron context processors</span>
 <span class="n">TEMPLATES</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;OPTIONS&#39;</span><span class="p">][</span><span class="s1">&#39;context_processors&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;chiron.context_processors.chiron_globals&#39;</span><span class="p">)</span>
-
-<span class="c1"># add info for connecting to the Mongo database</span>
-<span class="n">CHIRON_MONGO_DATABASE_NAME</span> <span class="o">=</span> <span class="s1">&#39;myprojectname&#39;</span>
 
 <span class="c1"># for unsecured install on localhost:</span>
 <span class="n">CHIRON_MONGO_CONNECTION_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>

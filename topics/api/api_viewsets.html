@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Endpoints &mdash; Chiron 3.0.3 documentation</title>
+  <title>API Endpoints &mdash; Chiron 3.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -56,7 +56,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#me-get">/me/ (GET)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#collection">Collection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#collections">Collections</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#collections-get">/collections/ (GET)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#collections-permanent-id-get">/collections/[permanent_id]/ (GET)</a></li>
 </ul>
@@ -111,6 +111,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#reports">Reports</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#reports-get">/reports/ (GET)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reports-report-id-flag-post">/reports/[report_id]/flag/ (POST)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#version">Version</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#version-get">/version/ (GET)</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#reporttools">ReportTools</a><ul>
@@ -228,8 +232,8 @@ last_name, email</p>
 
 </section>
 </section>
-<section id="collection">
-<h2>Collection<a class="headerlink" href="#collection" title="Permalink to this headline"></a></h2>
+<section id="collections">
+<h2>Collections<a class="headerlink" href="#collections" title="Permalink to this headline"></a></h2>
 <section id="collections-get">
 <h3>/collections/ (GET)<a class="headerlink" href="#collections-get" title="Permalink to this headline"></a></h3>
 <dl class="py method">
@@ -288,7 +292,7 @@ criteria_set_event_options</p>
 <h4>Additional data returned if include_criteria_set_event_options is True<a class="headerlink" href="#additional-data-returned-if-include-criteria-set-event-options-is-true" title="Permalink to this headline"></a></h4>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.api.viewsets.CollectionViewSet._get_criteria_set_event_options">
-<span class="sig-prename descclassname"><span class="pre">CollectionViewSet.</span></span><span class="sig-name descname"><span class="pre">_get_criteria_set_event_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CollectionViewSet._get_criteria_set_event_options" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">CollectionViewSet.</span></span><span class="sig-name descname"><span class="pre">_get_criteria_set_event_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.CollectionViewSet._get_criteria_set_event_options" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><p>A list of dicts representing options for manipulating a criteria set event rule:</p>
@@ -1320,6 +1324,17 @@ viewed by the current user</p>
 </dd>
 </dl>
 </dd></dl>
+
+</section>
+</section>
+<section id="version">
+<h2>Version<a class="headerlink" href="#version" title="Permalink to this headline"></a></h2>
+<section id="version-get">
+<h3>/version/ (GET)<a class="headerlink" href="#version-get" title="Permalink to this headline"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.api.viewsets.VersionViewSet.list">
+<span class="sig-prename descclassname"><span class="pre">VersionViewSet.</span></span><span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.VersionViewSet.list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </section>
 </section>

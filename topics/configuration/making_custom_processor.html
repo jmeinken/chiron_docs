@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creating Your Own Processors &mdash; Chiron 3.0.3 documentation</title>
+  <title>Custom Processors and Concept Handlers &mdash; Chiron 3.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Chiron API" href="../api.html" />
-    <link rel="prev" title="Built-In Processors" href="built_in_processors.html" /> 
+    <link rel="prev" title="Built-In Concept Handlers" href="built_in_concept_handlers.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,13 +49,20 @@
 <li class="toctree-l2"><a class="reference internal" href="users.html">Users and User Permissions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_dict_models.html">Data Dictionary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Creating Your Own Processors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-make-a-custom-processor-class">How to make a custom processor class</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#register-your-processor-class-with-chiron">Register your processor class with Chiron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_concept_handlers.html">Built-In Concept Handlers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Custom Processors and Concept Handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started-with-custom-processors">Getting Started With Custom Processors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tips-for-creating-custom-processors">Tips for Creating Custom Processors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#common-scenarios">Common scenarios</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#registering-custom-processors">Registering Custom Processors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-custom-processors-in-your-data-dictionary">Using Custom Processors in Your Data Dictionary</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#abstract-processors">Abstract Processors</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#sourcecollectionprocessor-abstract">SourceCollectionProcessor (abstract)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#etlprocessor-abstract">EtlProcessor (abstract)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cohortdefprocessor-abstract">CohortDefProcessor (abstract)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cohortdefprocessorbuiltinuimixin">CohortDefProcessorBuiltInUiMixin</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#displayprocessor-abstract">DisplayProcessor (abstract)</a></li>
 </ul>
 </li>
@@ -102,9 +109,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../configuration.html">Chiron Configuration</a> &raquo;</li>
-      <li>Creating Your Own Processors</li>
+      <li>Custom Processors and Concept Handlers</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/topics/configuration/making_custom_processor.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/topics/configuration/making_custom_processor.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -112,51 +119,94 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="creating-your-own-processors">
-<h1>Creating Your Own Processors<a class="headerlink" href="#creating-your-own-processors" title="Permalink to this headline"></a></h1>
+  <section id="custom-processors-and-concept-handlers">
+<h1>Custom Processors and Concept Handlers<a class="headerlink" href="#custom-processors-and-concept-handlers" title="Permalink to this headline"></a></h1>
 <p>The <strong>processor classes</strong> control how data is loaded into MongoDB from data sources and how it is
-displayed and queried. Chiron has a variety of <a class="reference internal" href="built_in_processors.html#built-in-processors"><span class="std std-ref">Built-In Processors</span></a> that you can use
+displayed and queried. Chiron has a variety of :ref:<code class="docutils literal notranslate"><span class="pre">built-in-processors</span></code> that you can use
 without writing any code. However, if you need customized behavior beyond what’s already provided,
 you can create your own processors.</p>
-<section id="how-to-make-a-custom-processor-class">
-<h2>How to make a custom processor class<a class="headerlink" href="#how-to-make-a-custom-processor-class" title="Permalink to this headline"></a></h2>
-<p>The code for your processor class can go anywhere, but we recommend creating a root-level package
-in your project called <code class="docutils literal notranslate"><span class="pre">chiron_config</span></code> and create an additional package inside that called
-<code class="docutils literal notranslate"><span class="pre">processors</span></code> to store your custom processors. <strong>Do not</strong> put them directly inside the chiron app,
+<section id="getting-started-with-custom-processors">
+<h2>Getting Started With Custom Processors<a class="headerlink" href="#getting-started-with-custom-processors" title="Permalink to this headline"></a></h2>
+<p>Custom processors are classes that you will write in your code. These classes can go anywhere, but
+we recommend creating a root-level package in your project called chiron_config and create an
+additional package inside that called processors. Do not put them directly inside the chiron app,
 as that will make it harder to update chiron in the future.</p>
-<dl class="simple">
-<dt>::</dt><dd><p>cd myproject
-mkdir chiron_config
-cd chiron_config
-touch __init__.py
-mkdir processors
-cd processors
-touch __init__.py</p>
-</dd>
-</dl>
-<p>Your processors can extend any of the chiron abstract processors in
-<code class="docutils literal notranslate"><span class="pre">chiron.processors.abstract</span></code> or built-in processors in <code class="docutils literal notranslate"><span class="pre">chiron.processors</span></code>.</p>
-<p>Once your processor code is ready, use the Processor model to include your processor in the
-data dictionary. Once added, you can set any processors in your SourceCollection or Concept
-models to use your custom processor.</p>
+<p>Once your custom processors are written, you need to register them with Chiron. Source collection
+processors are registered with Chiron directly. The other three types of processors (ETL,
+cohort def, and display) need to first be added to a concept handler. Then the concept handler
+is registered with Chiron.</p>
+<p>After a custom source collection processor is registered, it can be associated with any source
+collection using the field <code class="docutils literal notranslate"><span class="pre">SourceCollection.processor</span></code>. Custom concept handlers can be
+associated with any concept using the field <code class="docutils literal notranslate"><span class="pre">Concept.concept_handler</span></code>.</p>
 </section>
-<section id="register-your-processor-class-with-chiron">
-<h2>Register your processor class with Chiron<a class="headerlink" href="#register-your-processor-class-with-chiron" title="Permalink to this headline"></a></h2>
-<p>You must register a processor class with Chiron to start using it.</p>
-<p>Step 1: Register the class in code</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
+<section id="tips-for-creating-custom-processors">
+<h2>Tips for Creating Custom Processors<a class="headerlink" href="#tips-for-creating-custom-processors" title="Permalink to this headline"></a></h2>
+<p>Your custom processor can extend any of the chiron abstract processors in <code class="docutils literal notranslate"><span class="pre">chiron.processors.abstract</span></code>. Or if your processor is similar to an existing processor, it can extend one of the built-in processors in <code class="docutils literal notranslate"><span class="pre">chiron.processors</span></code>. The abstract processors have detailed comments that are hopefully useful.</p>
+<section id="common-scenarios">
+<h3>Common scenarios<a class="headerlink" href="#common-scenarios" title="Permalink to this headline"></a></h3>
+<p><strong>Getting data from a non-standard source such as an API</strong></p>
+<ul class="simple">
+<li><p>Create a custom source collection processor</p></li>
+<li><p>If your custor processor returns records as dictionaries, it can be registered and used with any of the built-in concept handlers that work with dictionaries.</p></li>
+</ul>
+<p><strong>Generating a calculated field while loading data</strong></p>
+<ul class="simple">
+<li><p>Create a custom ETL processor. You will do the calculation in the <code class="docutils literal notranslate"><span class="pre">pull_record_data_from_source()</span></code> method.</p></li>
+<li><p>Create a custom concept handler that extends a similar built-in concept handler. Use the <code class="docutils literal notranslate"><span class="pre">set_etl_processor()</span></code> method to add your custom ETL processor to it.</p></li>
+<li><p>Register your new concept handler with the source collection processor it will be used with.</p></li>
+</ul>
+<p><strong>Generating a calculated field that depends on multiple data sources</strong></p>
+<p>Sometimes you might want a caculated field that can only be determined by looking at data from multiple source collections. The solution here is to load the relevant source collections first, then iterate your MongoDB collection itself to do the calculation.</p>
+<ul class="simple">
+<li><p>You should already have your data dictionary configured to load any relevant input data you’ll need.</p></li>
+<li><p>Add a new SourceCollection to your data dictionary that uses either the SourceSelf or SourceSelfSubdoc processors. Set the execution order value to run it later in the ETL process after relevant input data will have already been loaded.</p></li>
+<li><p>Create a custom ETL processor. See the SourceSelf and SourceSelfSubdoc processor notes to understand the format of returned records.</p></li>
+<li><p>Add your custom ETL processor to a concept handler, then register your concept handler.</p></li>
+<li><p>Now you can create a new Concept and associate your custom ETL processor and your new source collection.</p></li>
+</ul>
+</section>
+</section>
+<section id="registering-custom-processors">
+<h2>Registering Custom Processors<a class="headerlink" href="#registering-custom-processors" title="Permalink to this headline"></a></h2>
+<p>Source collection processors are registered with Chiron directly. The other three types of processors (ETL,
+cohort def, and display) need to first be added to a concept handler. Then the concept handler
+is registered with Chiron.</p>
+<p>Registration is done in pairs. Each entry will include a source collection processor and concept handler that are allowed to be used together. For example, it you have a custom concept handler that can be used with the built-in SourceDjangoModel processor, you would register them together like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration2</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
+<span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">SourceDjangoModel</span>
 
-<span class="n">ProcessorRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">MyProcessorClass</span><span class="p">)</span>
+<span class="n">ProcessorRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">SourceDjangoModel</span><span class="p">,</span> <span class="n">MyCustomHandler</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Step 2: Tell Chiron in which modules your processors are registered. This can be done using the
-CHIRON_PROCESSOR_MODULES setting. The default is to load the built-in Chiron processors, and any
-processors in <cite>chiron_config.processors.__init__.py</cite></p>
+<p>As a shorthand, you can register multiple source collection processors and multiple concept handlers at the same time. In this case, every source collection processor will be associated with every concept handler.</p>
+<p>For example, if you have a custom source collection processor that returns records as Python dictionaries, you could do this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration2</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
+<span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">DictCategoryHandler</span><span class="p">,</span> <span class="n">DictTextHandler</span><span class="p">,</span> <span class="n">DictDateHandler</span><span class="p">,</span> <span class="n">DictFloatHandler</span><span class="p">,</span> <span class="n">DictIntegerHandler</span>
+
+<span class="n">ProcessorRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">MySourceProcessor</span><span class="p">,</span> <span class="p">[</span>
+   <span class="n">DictCategoryHandler</span><span class="p">,</span>
+   <span class="n">DictTextHandler</span><span class="p">,</span>
+   <span class="n">DictDateHandler</span><span class="p">,</span>
+   <span class="n">DictFloatHandler</span><span class="p">,</span>
+   <span class="n">DictIntegerHandler</span><span class="p">,</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>Tell Chiron in which modules your processors are registered. This can be done using the
+CHIRON_PROCESSOR_MODULES setting. The default is to load the built-in Chiron processors. So you
+will need to add the path to the package/module where your custom processors are:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CHIRON_PROCESSOR_MODULES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chiron.processors&quot;</span><span class="p">,</span> <span class="s2">&quot;chiron_config.processors&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Note: If you include a module path, that module will be checked. If you include a package path,
-the <cite>__init__.py</cite> of the package will be checked, but child modules will not be checked.</p>
+the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> of the package will be checked, but child modules will not be checked.</p>
+</section>
+<section id="using-custom-processors-in-your-data-dictionary">
+<h2>Using Custom Processors in Your Data Dictionary<a class="headerlink" href="#using-custom-processors-in-your-data-dictionary" title="Permalink to this headline"></a></h2>
+<p>Once registered, your custom processors should become available in the data dictionary the
+next time you run any python management command.</p>
+<p>Use a custom source collection processor by setting it in <code class="docutils literal notranslate"><span class="pre">SourceCollection.processor</span></code>. Use a
+custom handler by setting it in <code class="docutils literal notranslate"><span class="pre">Concept.concept_handler</span></code>.</p>
 </section>
 <section id="abstract-processors">
 <h2>Abstract Processors<a class="headerlink" href="#abstract-processors" title="Permalink to this headline"></a></h2>
@@ -264,7 +314,7 @@ subject in MongoDB.</p>
 </div>
 <p>Finally, there may be instances where a source collection record needs to be associated
 with multiple subjects (ex. m2m relationships). To do this, you can return a list of match
-definitions (or special values) and they ETL loaded will use all of them.</p>
+definitions (or special values) and the ETL loaded will use all of them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the match_def</p>
@@ -439,7 +489,7 @@ will return None</p>
 <span id="cohort-def-processor-abstract"></span><h3>CohortDefProcessor (abstract)<a class="headerlink" href="#cohortdefprocessor-abstract" title="Permalink to this headline"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">CohortDefProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">CohortDefProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oDataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Handles how a concept gets applied in queries. It is associated with a concept in the data
 dictionary using the <code class="docutils literal notranslate"><span class="pre">Concept.cohort_def_processor</span></code> field.</p>
@@ -703,8 +753,9 @@ after all the data is loaded, so it can query MongoDB to include patient data va
 
 </dd></dl>
 
+</section>
 <section id="cohortdefprocessorbuiltinuimixin">
-<h4>CohortDefProcessorBuiltInUiMixin<a class="headerlink" href="#cohortdefprocessorbuiltinuimixin" title="Permalink to this headline"></a></h4>
+<h3>CohortDefProcessorBuiltInUiMixin<a class="headerlink" href="#cohortdefprocessorbuiltinuimixin" title="Permalink to this headline"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">CohortDefProcessorBuiltInUiMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin" title="Permalink to this definition"></a></dt>
@@ -722,12 +773,11 @@ API, your processors don’t need this mixin.</p>
 </dd></dl>
 
 </section>
-</section>
 <section id="displayprocessor-abstract">
 <span id="display-processor-abstract"></span><h3>DisplayProcessor (abstract)<a class="headerlink" href="#displayprocessor-abstract" title="Permalink to this headline"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.processors.abstract.DisplayProcessor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">DisplayProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oUser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">DisplayProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.DisplayProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Manages how a concept is incorporated into output datasets. It is associated with a concept in
 the data dictionary using the <code class="docutils literal notranslate"><span class="pre">Concept.display_processor</span></code> field.</p>
@@ -913,7 +963,7 @@ processor or create your own by extending the AggregationMethod abstract class.<
 <p>Subclasses need to set an id, label, and group property in their __init__ method.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod.get_inputs">
-<span class="sig-name descname"><span class="pre">get_inputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_inputs" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_inputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">td_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod.get_inputs" title="Permalink to this definition"></a></dt>
 <dd><p>returns a list of dicts that define custom settings for this aggregation option</p>
 <dl class="field-list simple">
 <dt class="field-odd">Id</dt>
@@ -1064,7 +1114,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.Average">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">Average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'average'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'average'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.Average" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>List distinct values in same cell as semicolon-separated string.</p>
+<p>Calculate average value of a set of numbers.</p>
 </dd></dl>
 
 </section>
@@ -1074,7 +1124,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.CountAll">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">CountAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'count_all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'count</span> <span class="pre">all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.CountAll" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>Aggregate by combining into a semicolon-separated list</p>
+<p>Count all non-null values, including duplicates.</p>
 </dd></dl>
 
 </section>
@@ -1084,7 +1134,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.CountDistinct">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">CountDistinct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'count_distinct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'count</span> <span class="pre">distinct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.CountDistinct" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>Aggregate by counting distinct non-null values</p>
+<p>Count distinct non-null values</p>
 </dd></dl>
 
 </section>
@@ -1094,7 +1144,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.Earliest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">Earliest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'earliest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'earliest</span> <span class="pre">value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.Earliest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>Aggregate by getting miniumum value only</p>
+<p>Get the earliest value based on the event_date_field for the collection.</p>
 </dd></dl>
 
 </section>
@@ -1104,7 +1154,10 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.HasValue">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">HasValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'has_value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'has</span> <span class="pre">value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.HasValue" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>Aggregate by getting miniumum value only</p>
+<p>Check for the existence of a value in the list. This can return a boolean
+result, a count of the number of matches, the date of the first or last
+match (based on the event_date_field for the collection), or all dates
+where this value occurred (again based on the event_date_field).</p>
 </dd></dl>
 
 </section>
@@ -1114,7 +1167,10 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.HasValueText">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">HasValueText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'has_value_text'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'has</span> <span class="pre">value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.HasValueText" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>Aggregate by getting miniumum value only</p>
+<p>Check for the existence of a value in the list. This can return a boolean
+result, a count of the number of matches, the date of the first or last
+match (based on the event_date_field for the collection), or all dates
+where this value occurred (again based on the event_date_field).</p>
 </dd></dl>
 
 </section>
@@ -1124,7 +1180,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.Latest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">Latest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'latest</span> <span class="pre">value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.Latest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>Aggregate by getting miniumum value only</p>
+<p>Get the latest value (most recent) based on the event_date_field for the collection.</p>
 </dd></dl>
 
 </section>
@@ -1134,7 +1190,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.ListAll">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">ListAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'list_all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'list</span> <span class="pre">all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'list'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.ListAll" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>Aggregate by combining into a semicolon-separated list</p>
+<p>List all values (including repeats) in same cell as semicolon-separated string.</p>
 </dd></dl>
 
 </section>
@@ -1164,7 +1220,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.MaxDate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">MaxDate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'max_date'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.MaxDate" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>Aggregate by getting maximim value only</p>
+<p>Aggregate a date by getting maximum value only (i.e. the latest date)</p>
 </dd></dl>
 
 </section>
@@ -1174,7 +1230,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.Median">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">Median</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'median'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'median'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.Median" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>List distinct values in same cell as semicolon-separated string.</p>
+<p>Calculate the median value of a group of numbers.</p>
 </dd></dl>
 
 </section>
@@ -1194,7 +1250,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.MinDate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">MinDate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'min_date'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'earliest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.MinDate" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>Aggregate by getting maximim value only</p>
+<p>Aggregate a date by getting minimum value only (i.e. the earliest date)</p>
 </dd></dl>
 
 </section>
@@ -1204,7 +1260,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.MostFrequent">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">MostFrequent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'most_frequent'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'most</span> <span class="pre">frequent</span> <span class="pre">value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.MostFrequent" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>Aggregate by getting miniumum value only</p>
+<p>Can get for the most frequent value and how many times it occurred</p>
 </dd></dl>
 
 </section>
@@ -1214,7 +1270,7 @@ remove duplicate records.</p>
 <dt class="sig sig-object py" id="chiron.processors.display.aggregation.StdDev">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.display.aggregation.</span></span><span class="sig-name descname"><span class="pre">StdDev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'std_dev'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'standard</span> <span class="pre">deviation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggregate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation.StdDev" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#chiron.processors.display.aggregation._base.AggregationMethod" title="chiron.processors.display.aggregation._base.AggregationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.display.aggregation._base.AggregationMethod</span></code></a></p>
-<p>List distinct values in same cell as semicolon-separated string.</p>
+<p>Calculate the standard deviation of a set of numbers</p>
 </dd></dl>
 
 </section>
@@ -1225,7 +1281,7 @@ remove duplicate records.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="built_in_processors.html" class="btn btn-neutral float-left" title="Built-In Processors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="built_in_concept_handlers.html" class="btn btn-neutral float-left" title="Built-In Concept Handlers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../api.html" class="btn btn-neutral float-right" title="Chiron API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

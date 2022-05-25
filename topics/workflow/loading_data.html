@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Load data into MongoDB &mdash; Chiron 3.0.3 documentation</title>
+  <title>3. Load data into MongoDB &mdash; Chiron 3.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -82,11 +82,15 @@
              
   <section id="load-data-into-mongodb">
 <h1>3. Load data into MongoDB<a class="headerlink" href="#load-data-into-mongodb" title="Permalink to this headline"></a></h1>
-<p>Once the data dictionary is set up, you can load data anytime with the following command:</p>
+<p>Once the data dictionary is set up, you can load data from your sources into MongoDB anytime. The process
+is guided by the SourceCollection model, and sources will be loaded in order according to <code class="docutils literal notranslate"><span class="pre">SourceCollection.execution_order</span></code>.</p>
+<p>The MongoDB connection is defined in your Django settings. The database name for each dataset
+is defined in your Dataset table.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_run_etl</span>
 </pre></div>
 </div>
-<p>This command fully erases the existing data and reloads everything from scratch.</p>
+<p>This command fully erases the existing data and reloads everything from scratch. If your system has
+multiple datasets you will be prompted to select one.</p>
 <p><strong>Partial Loading</strong></p>
 <p>SourceCollections have an exclude_from_etl option. Set to True for the source collections you wish to skip and then run <code class="docutils literal notranslate"><span class="pre">chiron_run_etl</span></code> as usual. Any fields those SourceCollections load into will show as having no data.</p>
 <p>You can also load data from a single SourceCollection, but it doesn’t always work correctly, so it’s not recommended for production.</p>

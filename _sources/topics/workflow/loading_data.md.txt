@@ -1,12 +1,19 @@
 # 3. Load data into MongoDB
 
-Once the data dictionary is set up, you can load data anytime with the following command:
+
+
+Once the data dictionary is set up, you can load data from your sources into MongoDB anytime. The process
+is guided by the SourceCollection model, and sources will be loaded in order according to `SourceCollection.execution_order`.
+
+The MongoDB connection is defined in your Django settings. The database name for each dataset
+is defined in your Dataset table.
 
 ```
 python manage.py chiron_run_etl
 ```
 
-This command fully erases the existing data and reloads everything from scratch.
+This command fully erases the existing data and reloads everything from scratch. If your system has 
+multiple datasets you will be prompted to select one.
 
 **Partial Loading**
 

@@ -48,6 +48,11 @@ a Chiron user will be autocreated if Django setting CHIRON_AUTOCREATE_USERS_FROM
 - settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_WORKSPACE
 - settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS
 
+User Permissions With Multiple Datasets
+---------------------------------------
+
+A Django User will have a separate ChironUser entry for each dataset they need to access. So their permissions can be different for each dataset.
+
 ChironUser Model
 ----------------
 
