@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chiron Global Settings &mdash; Chiron 3.1.1 documentation</title>
+  <title>Chiron Global Settings &mdash; Chiron 4.0.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -181,6 +181,16 @@ deleted at the start of the ETL process and repopulated. If this setting is True
 loaded into separate staging tables and existing MongoDB collection(s) will be kept until the end
 of the ETL process. Upon successful completion of the ETL, the old collections will be replaced
 by the staging collections.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_MONGO_DATABASE_NAME_OVERRIDE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em></dt>
+<dd><p>Each dataset gets stored in its own MongoDB database. The database name is defined in the data
+dictionary <cite>Dataset.mongo_database_name</cite> field. If you want a particular Chiron deployment to
+use something different from what is defined in the data dictionary, you can use this setting.
+The dict key will be the dataset name and the dict value will be the desired MongoDB database
+name.</p>
 </dd></dl>
 
 </section>

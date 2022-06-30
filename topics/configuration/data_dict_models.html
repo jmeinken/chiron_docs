@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Dictionary &mdash; Chiron 3.1.1 documentation</title>
+  <title>Data Dictionary &mdash; Chiron 4.0.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -131,6 +131,13 @@ Each dataset should have one and only one subject (root) collection</p>
 existing subjects. This is the list of field names you are using inside _ids, and will be
 used to create indexes to speed up the ETL.</p>
 <p>Enter as a comma-separated list like “id,mrn,blinded_id”</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_actual_mongo_database_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>If a database name for this dataset is set in settings.CHIRON_MONGO_DATABASE_NAME_OVERRIDE,
+returns that. Otherwise, returns self.mongo_database_name value.</p>
 </dd></dl>
 
 </dd></dl>

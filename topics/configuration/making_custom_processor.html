@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Processors and Concept Handlers &mdash; Chiron 3.1.1 documentation</title>
+  <title>Custom Processors and Concept Handlers &mdash; Chiron 4.0.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -167,12 +167,12 @@ associated with any concept using the field <code class="docutils literal notran
 </section>
 </section>
 <section id="registering-custom-processors">
-<h2>Registering Custom Processors<a class="headerlink" href="#registering-custom-processors" title="Permalink to this headline"></a></h2>
+<span id="id1"></span><h2>Registering Custom Processors<a class="headerlink" href="#registering-custom-processors" title="Permalink to this headline"></a></h2>
 <p>Source collection processors are registered with Chiron directly. The other three types of processors (ETL,
 cohort def, and display) need to first be added to a concept handler. Then the concept handler
 is registered with Chiron.</p>
 <p>Registration is done in pairs. Each entry will include a source collection processor and concept handler that are allowed to be used together. For example, it you have a custom concept handler that can be used with the built-in SourceDjangoModel processor, you would register them together like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration2</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
 <span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">SourceDjangoModel</span>
 
 <span class="n">ProcessorRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">SourceDjangoModel</span><span class="p">,</span> <span class="n">MyCustomHandler</span><span class="p">)</span>
@@ -180,7 +180,7 @@ is registered with Chiron.</p>
 </div>
 <p>As a shorthand, you can register multiple source collection processors and multiple concept handlers at the same time. In this case, every source collection processor will be associated with every concept handler.</p>
 <p>For example, if you have a custom source collection processor that returns records as Python dictionaries, you could do this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration2</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
 <span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">DictCategoryHandler</span><span class="p">,</span> <span class="n">DictTextHandler</span><span class="p">,</span> <span class="n">DictDateHandler</span><span class="p">,</span> <span class="n">DictFloatHandler</span><span class="p">,</span> <span class="n">DictIntegerHandler</span>
 
 <span class="n">ProcessorRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">MySourceProcessor</span><span class="p">,</span> <span class="p">[</span>
@@ -217,9 +217,8 @@ custom handler by setting it in <code class="docutils literal notranslate"><span
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">SourceCollectionProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSourceCollection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Generates an iterable of data to import into MongoDB.</p>
-<p>Must be associated with either the StandardLoadMixin or the BatchLoadMixin. If both mixins
-are used, the BatchLoadMixin will be used unless get_subject_match_defs() method returns
-None</p>
+<p>Must be associated with the StandardLoadMixin. There used to be another mixin for loading,
+but it has been removed.</p>
 <p>It is associated with a SourceCollection in the data dictionary using the
 <code class="docutils literal notranslate"><span class="pre">SourceCollection.processor</span></code> field.</p>
 <dl class="py method">
@@ -323,98 +322,6 @@ definitions (or special values) and the ETL loaded will use all of them.</p>
 <dd class="field-even"><p>python dict, str, integer, None, False, python list</p>
 </dd>
 </dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="batchloadmixin">
-<h4>BatchLoadMixin<a class="headerlink" href="#batchloadmixin" title="Permalink to this headline"></a></h4>
-<dl class="py class">
-<dt class="sig sig-object py" id="chiron.processors.abstract.BatchLoadMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">BatchLoadMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Instead of loading one source collection record at a time, loads all the records for each
-subject at once. Sometimes this is more time efficient.</p>
-<p>Can’t use batches if:</p>
-<ul class="simple">
-<li><dl class="simple">
-<dt>you can’t generate a unique list of subject IDs/match defs ahead of time.</dt><dd><p>ex. you’re reading out of a CSV file and the subject ID’s are not sorted</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>this is on the root collection</dt><dd><p>Source collections loading into the root collection already load once per subject.</p>
-</dd>
-</dl>
-</li>
-<li><p>one source record could match multiple subjects (i.e. m2m relationships)</p></li>
-<li><dl class="simple">
-<dt>During the ETL process, another data source has already been loaded to this subcollection</dt><dd><p>Ex. You have two data sources with different data about samples and you need to match them
-up using a sample ID. The first data source could be loaded in batches, but the second
-can’t.</p>
-</dd>
-</dl>
-</li>
-</ul>
-<dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.BatchLoadMixin.get_subject_match_defs">
-<span class="sig-name descname"><span class="pre">get_subject_match_defs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin.get_subject_match_defs" title="Permalink to this definition"></a></dt>
-<dd><p>Returns all subject match definitions as a list.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Match_rule</dt>
-<dd class="field-odd"><p>A Python dict that gives the $match definition for this subject</p>
-</dd>
-<dt class="field-even">Add_ids</dt>
-<dd class="field-even"><p>A dict of additional IDs to store in MongoDB for the subject. These will get
-added inside a dict field <cite>_ids</cite>. Then they can be referenced the match_rule for
-subsequent source collections.</p>
-</dd>
-<dt class="field-odd">If_no_match</dt>
-<dd class="field-odd"><p>create/skip (default: create) - what to do if there are no existing subjects
-that match the match_rule</p>
-</dd>
-</dl>
-<p>SPECIAL VALUES YOU CAN RETURN:</p>
-<p>If a simple ID value (string, integer):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;match_rule&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="s2">&quot;_ids.id&quot;</span> <span class="p">:</span> <span class="n">value</span><span class="p">},</span>
-    <span class="s2">&quot;add_ids&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span> <span class="p">:</span> <span class="n">value</span><span class="p">},</span>
-    <span class="s2">&quot;if_no_match&quot;</span> <span class="p">:</span> <span class="s2">&quot;create&quot;</span><span class="p">,</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>If None, a new subject record will be created:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;match_rule&quot;</span> <span class="p">:</span> <span class="p">{},</span>
-    <span class="s2">&quot;add_ids&quot;</span> <span class="p">:</span> <span class="p">{},</span>
-    <span class="s2">&quot;if_no_match&quot;</span> <span class="p">:</span> <span class="s2">&quot;create&quot;</span><span class="p">,</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>If False, the record will be skipped:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;match_rule&quot;</span> <span class="p">:</span> <span class="p">{},</span>
-    <span class="s2">&quot;add_ids&quot;</span> <span class="p">:</span> <span class="p">{},</span>
-    <span class="s2">&quot;if_no_match&quot;</span> <span class="p">:</span> <span class="s2">&quot;skip&quot;</span><span class="p">,</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the match_def</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>list of: python dict, str, integer, None, False</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.BatchLoadMixin.get_source_collection_batch">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_source_collection_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject_match_def</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.BatchLoadMixin.get_source_collection_batch" title="Permalink to this definition"></a></dt>
-<dd><p>Returns all source collection entries associated with the subject corresponding to the
-subject_match_def</p>
 </dd></dl>
 
 </dd></dl>

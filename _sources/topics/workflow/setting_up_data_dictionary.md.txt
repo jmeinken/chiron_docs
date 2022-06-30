@@ -1,7 +1,7 @@
 # 2. Set Up the Data Dictionary
 
 
-
+(autocreate-the-data-dictionary)=
 ## Autocreate the Data Dictionary
 
 Creating a data dictionary by hand when you have a lot of fields is tedious. So we have a script that

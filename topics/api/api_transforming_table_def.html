@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transforming Table Definitions &mdash; Chiron 3.1.1 documentation</title>
+  <title>Transforming Table Definitions &mdash; Chiron 4.0.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -53,6 +53,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#delete-entry-table-def">delete_entry (table def)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#resort-columns">resort_columns</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-sort-entry">add_sort_entry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clear-sort-entries">clear_sort_entries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bulk-add-entries">bulk_add_entries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-category">add_category</a></li>
 </ul>
@@ -146,7 +147,8 @@ aggregation</p>
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_resort_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Change the sort order of the table def entries (affects how columns in results table are
-sorted).</p>
+sorted).
+This is also used to reset current table def by submitting a blank set of entry IDs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>“resort_columns”</p>
@@ -171,6 +173,21 @@ To reverse sort, do two add_sort_entry transformations on the same column.</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry_id of the entry to sort by.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="clear-sort-entries">
+<h2>clear_sort_entries<a class="headerlink" href="#clear-sort-entries" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">chiron.api.utils.table_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_clear_sort_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_table_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Apply Transformation Clear Sort</p>
+<p>Clear sort definition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>“clear_sort_entries”</p>
 </dd>
 </dl>
 </dd></dl>

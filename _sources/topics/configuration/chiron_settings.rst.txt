@@ -24,7 +24,7 @@ Mongo Database Settings
 
 .. automodule:: chiron.chiron_settings
    :noindex:
-   :members: CHIRON_MONGO_CONNECTION_SETTINGS, CHIRON_USE_STAGING_DURING_ETL
+   :members: CHIRON_MONGO_CONNECTION_SETTINGS, CHIRON_USE_STAGING_DURING_ETL, CHIRON_MONGO_DATABASE_NAME_OVERRIDE
 
 File Location Settings
 ----------------------

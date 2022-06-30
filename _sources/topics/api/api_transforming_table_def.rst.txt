@@ -47,6 +47,15 @@ add_sort_entry
    :members: apply_transformation_add_sort_entry
    :undoc-members:
 
+clear_sort_entries
+------------------
+
+.. automodule:: chiron.api.utils.table_def
+   :noindex:
+   :show-inheritance:
+   :members: apply_transformation_clear_sort_entries
+   :undoc-members:
+
 bulk_add_entries
 ----------------
 
