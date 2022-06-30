@@ -3,12 +3,12 @@
 
 ## Version 4.0.0 (released 6/30/2022)
 
-1. A single Chiron instance can now have multiple datasets. This is achieved using a Dataset
+1. *(beta feature)* A single Chiron instance can now have multiple datasets. This is achieved using a Dataset
     model - each collection belongs to a Dataset.
 2. Processors and processor arguments for concepts are no longer defined in the Concept model
     directly. Instead, they are bundled into a ConceptHandler class, and the concept model
     defines the concept handler to use.
-    - If you have custom processors, you need to see new notes on {ref}`registering-custom-processors`.
+    - If you have custom processors, you have to upgrade to the new way to register them. See new notes on {ref}`registering-custom-processors`.
 3. Autocreating the data dictionary now uses source lists instead of modeltree text files. A
     source list is a Python list with each entry defining a source collection to create.
     - See {ref}`autocreate-the-data-dictionary`
