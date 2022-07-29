@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Built-In Concept Handlers &mdash; Chiron 4.0.0 documentation</title>
+  <title>Built-In Concept Handlers &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -44,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../configuration.html">Chiron Configuration</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="users.html">Users and User Permissions</a></li>
@@ -365,12 +367,16 @@ Python dictionaries.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">set_deid_cohort_def_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefilter_value</span></span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Optionally define an alternative cohort def processor that can hide PHI.
+ex. a date processor that only allows you to view/query data by year</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">set_deid_display_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concept</span></span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Optionally define an alternative display processor that can hide PHI.
+ex. a date processor that always converts a date to year before displaying</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -644,12 +650,16 @@ Django queryset.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">set_deid_cohort_def_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefilter_value</span></span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Optionally define an alternative cohort def processor that can hide PHI.
+ex. a date processor that only allows you to view/query data by year</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">set_deid_display_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concept</span></span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Optionally define an alternative display processor that can hide PHI.
+ex. a date processor that always converts a date to year before displaying</p>
+</dd></dl>
 
 </dd></dl>
 

@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Processors and Concept Handlers &mdash; Chiron 4.0.0 documentation</title>
+  <title>Custom Processors and Concept Handlers &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -44,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../configuration.html">Chiron Configuration</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="users.html">Users and User Permissions</a></li>
@@ -123,7 +125,7 @@
 <h1>Custom Processors and Concept Handlers<a class="headerlink" href="#custom-processors-and-concept-handlers" title="Permalink to this headline"></a></h1>
 <p>The <strong>processor classes</strong> control how data is loaded into MongoDB from data sources and how it is
 displayed and queried. Chiron has a variety of :ref:<code class="docutils literal notranslate"><span class="pre">built-in-processors</span></code> that you can use
-without writing any code. However, if you need customized behavior beyond what’s already provided,
+without writing any code. However, if you need customized behavior beyond what's already provided,
 you can create your own processors.</p>
 <section id="getting-started-with-custom-processors">
 <h2>Getting Started With Custom Processors<a class="headerlink" href="#getting-started-with-custom-processors" title="Permalink to this headline"></a></h2>
@@ -158,7 +160,7 @@ associated with any concept using the field <code class="docutils literal notran
 <p><strong>Generating a calculated field that depends on multiple data sources</strong></p>
 <p>Sometimes you might want a caculated field that can only be determined by looking at data from multiple source collections. The solution here is to load the relevant source collections first, then iterate your MongoDB collection itself to do the calculation.</p>
 <ul class="simple">
-<li><p>You should already have your data dictionary configured to load any relevant input data you’ll need.</p></li>
+<li><p>You should already have your data dictionary configured to load any relevant input data you'll need.</p></li>
 <li><p>Add a new SourceCollection to your data dictionary that uses either the SourceSelf or SourceSelfSubdoc processors. Set the execution order value to run it later in the ETL process after relevant input data will have already been loaded.</p></li>
 <li><p>Create a custom ETL processor. See the SourceSelf and SourceSelfSubdoc processor notes to understand the format of returned records.</p></li>
 <li><p>Add your custom ETL processor to a concept handler, then register your concept handler.</p></li>
@@ -270,7 +272,7 @@ to MongoDB one record at a time.</p>
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_source_collection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_source_collection" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the entire source dataset as an iterable. Each entry in this iterable should
 corresponds to the associated <code class="docutils literal notranslate"><span class="pre">Collection</span></code>. For example, a source data collection
-associated with a “sample” collection should return an iterable of samples.</p>
+associated with a &quot;sample&quot; collection should return an iterable of samples.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>an iterable dataset</p>
@@ -345,7 +347,7 @@ field.</p>
 <dd><p>Retrieves or calculates the value to store in MongoDB from a source collection record.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>record</strong> (<em>various</em>) – a single entry returned by <code class="docutils literal notranslate"><span class="pre">SourceCollection.get_source_collection()</span></code></p>
+<dd class="field-odd"><p><strong>record</strong> (<em>various</em>) -- a single entry returned by <code class="docutils literal notranslate"><span class="pre">SourceCollection.get_source_collection()</span></code></p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the value to store in MongoDB</p>
@@ -362,16 +364,16 @@ field.</p>
 <dd><p>UTILITY FUNCTION
 Returns only unique, non-null values from provided data_list.</p>
 <p>Chiron allows multiple values to be stored in a single concept entry as a list.
-This is useful when you have multiple values for a concept, but don’t want
-to create a whole new Collection for that one concept. Typically it’s better to store the
+This is useful when you have multiple values for a concept, but don't want
+to create a whole new Collection for that one concept. Typically it's better to store the
 unique set of values rather than a repetitive
 list.</p>
-<p>IN: [‘Hispanic’, ‘Caucasian’, ‘Caucasian’, None, ‘Caucasian’, None]
-OUT: [‘Hispanic’, ‘Caucasian’]</p>
-<p>IN: [‘Caucasian’, None]
-OUT: ‘Caucasian’</p>
-<p>IN: [‘Caucasian’, ‘Caucasian’, ‘Caucasian’]
-OUT: ‘Caucasian’</p>
+<p>IN: ['Hispanic', 'Caucasian', 'Caucasian', None, 'Caucasian', None]
+OUT: ['Hispanic', 'Caucasian']</p>
+<p>IN: ['Caucasian', None]
+OUT: 'Caucasian'</p>
+<p>IN: ['Caucasian', 'Caucasian', 'Caucasian']
+OUT: 'Caucasian'</p>
 <p>IN: []
 OUT: None</p>
 <p>IN: [None, None, None, None]
@@ -429,11 +431,11 @@ dictionary using the <code class="docutils literal notranslate"><span class="pre
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.preprocess_statistics">
 <span class="sig-name descname"><span class="pre">preprocess_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.preprocess_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>If there is data needed to render the cohort def form, it can be retrieved/calculated here.
-NOTE: Don’t access directly! Instead, use <code class="docutils literal notranslate"><span class="pre">self.get_statistics()</span></code> which will
+NOTE: Don't access directly! Instead, use <code class="docutils literal notranslate"><span class="pre">self.get_statistics()</span></code> which will
 manage caching of this data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) -- the cohort definition to use</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>key/value pairs of data</p>
@@ -448,12 +450,12 @@ manage caching of this data.</p>
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.get_statistics">
 <span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
-There shouldn’t be any need to override this method.
+There shouldn't be any need to override this method.
 note: There is no cache implemented yet, so just returns preprocess_statistics()
 results directly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) -- the cohort definition to use</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>key/value pairs of data</p>
@@ -484,7 +486,7 @@ when you use the <cite>get_statistics()</cite> method.</p>
 Data returned by this will be passed to the form as JSON data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>get_data</strong> (<em>dict</em>) – the HTTP GET arguments from the client</p>
+<dd class="field-odd"><p><strong>get_data</strong> (<em>dict</em>) -- the HTTP GET arguments from the client</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the response to be returned to the client</p>
@@ -502,7 +504,7 @@ Data returned by this will be passed to the form as JSON data.</p>
 streaming HTTP</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>get_data</strong> (<em>dict</em>) – the HTTP GET arguments from the client</p>
+<dd class="field-odd"><p><strong>get_data</strong> (<em>dict</em>) -- the HTTP GET arguments from the client</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the response(s) to be returned to the client</p>
@@ -521,7 +523,7 @@ needed to generate a cohort def entry. If validation fails, returns False and ad
 error message strings to self.errors list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) – the HTTP POST arguments from the client</p>
+<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) -- the HTTP POST arguments from the client</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>whether form validated</p>
@@ -545,8 +547,8 @@ NOTE: This should only be run after validate_form has successfully run.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to add this entry to</p></li>
-<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) – cohort def entry if editing existing</p></li>
+<li><p><strong>cd</strong> (<em>list of dicts</em>) -- the cohort definition to add this entry to</p></li>
+<li><p><strong>existing_cd_entry</strong> (<em>dict</em>) -- cohort def entry if editing existing</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -564,7 +566,7 @@ NOTE: This should only be run after validate_form has successfully run.</p>
 <dd><p>Converts cd_entry dict into a human-readable string</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p>
+<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) -- the cohort def entry to convert</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the human-readable string (<strong>cannot</strong> contain HTML formatting tags)</p>
@@ -590,13 +592,13 @@ NOTE: This should only be run after validate_form has successfully run.</p>
 <span class="sig-name descname"><span class="pre">display_entry_as_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abbreviation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.display_entry_as_html" title="Permalink to this definition"></a></dt>
 <dd><p>Converts cd_entry dict into a human-readable HTML-formatted string</p>
 <dl class="simple">
-<dt>SECURITY: This string should be displayable as HTML without risk of XSS, etc.</dt><dd><p>If the string incorporates user-input text that hasn’t already been sanitized/
+<dt>SECURITY: This string should be displayable as HTML without risk of XSS, etc.</dt><dd><p>If the string incorporates user-input text that hasn't already been sanitized/
 escaped, it should be dealt with here.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p>
+<dd class="field-odd"><p><strong>cd_entry</strong> (<em>dict</em>) -- the cohort def entry to convert</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the human-readable string (<strong>can</strong> contain HTML formatting tags)</p>
@@ -610,12 +612,12 @@ escaped, it should be dealt with here.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_mongo_match_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem_match</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.get_mongo_match_def" title="Permalink to this definition"></a></dt>
-<dd><p>Converts this CD entry into something that can be embedded in a Mongo ‘$match’ definition.</p>
+<dd><p>Converts this CD entry into something that can be embedded in a Mongo '$match' definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cd_entry</strong> (<em>dict</em>) – the cohort def entry to convert</p></li>
-<li><p><strong>elem_match</strong> (<em>boolean</em>) – whether this def will be embedded inside an $elemMatch block</p></li>
+<li><p><strong>cd_entry</strong> (<em>dict</em>) -- the cohort def entry to convert</p></li>
+<li><p><strong>elem_match</strong> (<em>boolean</em>) -- whether this def will be embedded inside an $elemMatch block</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -647,7 +649,7 @@ after all the data is loaded, so it can query MongoDB to include patient data va
 <dd><p>Generates a universal base that can be used by self.generate_cohort_def_entry()</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>additional_args</strong> (<em>dict</em>) – concept-specific values to include in cd_entry</p>
+<dd class="field-odd"><p><strong>additional_args</strong> (<em>dict</em>) -- concept-specific values to include in cd_entry</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a cd_entry with concept_id and entry_id set</p>
@@ -656,6 +658,13 @@ after all the data is loaded, so it can query MongoDB to include patient data va
 <dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.CohortDefProcessor.can_run_deid_query">
+<span class="sig-name descname"><span class="pre">can_run_deid_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessor.can_run_deid_query" title="Permalink to this definition"></a></dt>
+<dd><p>Only for fields that are used as deid alternatives. Determines if the specified cd_entry
+can be applied to the query in a deidentified fashion.</p>
 </dd></dl>
 
 </dd></dl>
@@ -668,7 +677,7 @@ after all the data is loaded, so it can query MongoDB to include patient data va
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">CohortDefProcessorBuiltInUiMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.CohortDefProcessorBuiltInUiMixin" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>CohortDefProcessor functionality needed by the built-in UI. If you are only using the
-API, your processors don’t need this mixin.</p>
+API, your processors don't need this mixin.</p>
 <p>Needed properties:
 - self.form_html_template
 - self.form_js_template (optional)</p>
@@ -747,7 +756,7 @@ needed to generate a table def entry. If validation fails, returns False and add
 error message strings to self.errors list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) – the HTTP POST arguments from the client</p>
+<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) -- the HTTP POST arguments from the client</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>whether form validated</p>
@@ -839,7 +848,7 @@ This is used to generate a data dictionary.</p>
 <dd><p>Generates a universal base that can be used by self.generate_cohort_def_entry()</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>additional_args</strong> (<em>dict</em>) – concept-specific values to include in cd_entry</p>
+<dd class="field-odd"><p><strong>additional_args</strong> (<em>dict</em>) -- concept-specific values to include in cd_entry</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a cd_entry with concept_id and entry_id set</p>
@@ -880,14 +889,14 @@ processor or create your own by extending the AggregationMethod abstract class.<
 <dd class="field-even"><p>(str) the human-readable label for this input</p>
 </dd>
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>(str) “select” for HTML select and “ajax_select” for select tool that must lookup
+<dd class="field-odd"><p>(str) &quot;select&quot; for HTML select and &quot;ajax_select&quot; for select tool that must lookup
 options</p>
 </dd>
 <dt class="field-even">Options</dt>
-<dd class="field-even"><p>(list of tuples) for type=”select”; id/value pairs for options</p>
+<dd class="field-even"><p>(list of tuples) for type=&quot;select&quot;; id/value pairs for options</p>
 </dd>
 <dt class="field-odd">Options_callback</dt>
-<dd class="field-odd"><p>(str) for type=”ajax_select”; the url where options can be looked up</p>
+<dd class="field-odd"><p>(str) for type=&quot;ajax_select&quot;; the url where options can be looked up</p>
 </dd>
 <dt class="field-even">Selected</dt>
 <dd class="field-even"><p>(str) value that should be selected by default</p>
@@ -915,8 +924,8 @@ to the table def entry</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>oConcept</strong> (<em>model object</em>) – the concept being aggregated</p></li>
-<li><p><strong>td_entry</strong> (<em>dict</em>) – the column definition</p></li>
+<li><p><strong>oConcept</strong> (<em>model object</em>) -- the concept being aggregated</p></li>
+<li><p><strong>td_entry</strong> (<em>dict</em>) -- the column definition</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -961,11 +970,11 @@ which report column this field is in.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>display_processor_sort_value_func</strong> (<em>python function</em>) – The function that would normally be used to
+<li><p><strong>display_processor_sort_value_func</strong> (<em>python function</em>) -- The function that would normally be used to
 sort the non-aggregated value.</p></li>
-<li><p><strong>column_index</strong> (<em>integer</em>) – The index position of this column in the report</p></li>
-<li><p><strong>reverse</strong> (<em>boolean</em>) – In some instances, sort key might work differently if reverse sorting</p></li>
-<li><p><strong>aggregation_settings</strong> (<em>python dict</em>) – Any settings included in the td_entry</p></li>
+<li><p><strong>column_index</strong> (<em>integer</em>) -- The index position of this column in the report</p></li>
+<li><p><strong>reverse</strong> (<em>boolean</em>) -- In some instances, sort key might work differently if reverse sorting</p></li>
+<li><p><strong>aggregation_settings</strong> (<em>python dict</em>) -- Any settings included in the td_entry</p></li>
 </ul>
 </dd>
 </dl>

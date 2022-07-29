@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Load data into MongoDB &mdash; Chiron 4.0.0 documentation</title>
+  <title>3. Load data into MongoDB &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -50,6 +51,7 @@
 <li class="toctree-l2"><a class="reference internal" href="deploying_to_production.html">4. Deploy to Production</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
@@ -93,7 +95,7 @@ is defined in your Dataset table.</p>
 multiple datasets you will be prompted to select one.</p>
 <p><strong>Partial Loading</strong></p>
 <p>SourceCollections have an exclude_from_etl option. Set to True for the source collections you wish to skip and then run <code class="docutils literal notranslate"><span class="pre">chiron_run_etl</span></code> as usual. Any fields those SourceCollections load into will show as having no data.</p>
-<p>You can also load data from a single SourceCollection, but it doesn’t always work correctly, so it’s not recommended for production.</p>
+<p>You can also load data from a single SourceCollection, but it doesn't always work correctly, so it's not recommended for production.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># good for a quick test, but not recommended for production systems</span>
 <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_run_etl</span> <span class="o">--</span><span class="n">source</span><span class="o">=</span><span class="n">my_source_collection_id</span>
 </pre></div>

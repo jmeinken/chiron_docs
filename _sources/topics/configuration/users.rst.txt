@@ -41,12 +41,12 @@ Both access levels and permission groups restrict access to concepts. If a conce
 Default Permissions for AutoCreated Users
 -----------------------------------------
 
-a Chiron user will be autocreated if Django setting CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True. The permission levels for autocreated users will be controlled by these settings:
+a Chiron user will be autocreated if Django setting Dataset.autocreate_chiron_user is True. The permission levels for autocreated users will be controlled by these fields:
 
-- In the PermissionGroup table, any permission group with `default_set_for_new_autocreated_users=True` will be applied to new Chiron users.
-- settings.CHIRON_DEFAULT_ACCESS_LEVEL
-- settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_WORKSPACE
-- settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS
+- Dataset.auto_access_level
+- Dataset.auto_can_view_workspace
+- Dataset.auto_can_view_subject_details
+- In the DefaultPermissionGroup model, any permission groups associated with this Dataset.
 
 User Permissions With Multiple Datasets
 ---------------------------------------

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Views &mdash; Chiron 4.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Django Management Commands" href="management_commands.html" />
+    <link rel="prev" title="Site Admin Utilities" href="../utilities.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Admin Views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-django-admin">The Django Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etl-logs">ETL Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#query-troubleshooting">Query Troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-report">User Report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="management_commands.html">Django Management Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../utilities.html">Site Admin Utilities</a> &raquo;</li>
+      <li>Admin Views</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/utilities/admin_views.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="admin-views">
+<h1>Admin Views<a class="headerlink" href="#admin-views" title="Permalink to this headline"></a></h1>
+<p>The built-in Chiron UI has a variety of views for admin users to help with managing the
+data dictionary and troubleshooting problems.</p>
+<p>Even if you don't use the built-in UI for your production site, it is good to have it available
+for you as a site admin. Most of these utilities are only available through the UI and don't have
+corresponding API endpoints.</p>
+<p>Admin views are available for all Django Staff users (<code class="docutils literal notranslate"><span class="pre">Users.is_staff=True</span></code> or
+<code class="docutils literal notranslate"><span class="pre">Users.is_superuser=True</span></code>). From the Chiron site, click your username in the top right corner
+to access these views.</p>
+<p><strong>NOTE: These views bypass normal data access rules and should not be made
+available to standard users.</strong></p>
+<section id="the-django-admin">
+<h2>The Django Admin<a class="headerlink" href="#the-django-admin" title="Permalink to this headline"></a></h2>
+<p>Chiron makes extensive use of Django's built-in admin views. You can view and modify most Chiron models
+here. This is a much more user-friendly way to access your data than trying to access the database
+directly.</p>
+</section>
+<section id="etl-logs">
+<h2>ETL Logs<a class="headerlink" href="#etl-logs" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="chiron.views.views_backend.etl_logs">
+<span class="sig-prename descclassname"><span class="pre">chiron.views.views_backend.</span></span><span class="sig-name descname"><span class="pre">etl_logs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.views.views_backend.etl_logs" title="Permalink to this definition"></a></dt>
+<dd><p>Each time the ETL process is run (<cite>python manage.py chiron_run_etl</cite>), log records are created
+and listed here. You can click on a log record to drill down to get more details.</p>
+<p>This is a great place to troubleshoot problems with how your data is loading.</p>
+<p>There are a couple customization options that will affect what information is collected
+during the etl:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Don&#39;t track this ETL in the log</span>
+python manage.py chiron_run_etl --no-log
+
+<span class="c1"># Collects extensive information about how each record is loaded, allowing much more</span>
+<span class="c1"># detailed drill-down. On large systems, this shouldn&#39;t be set every time because it can</span>
+<span class="c1"># result in a large number of log records.</span>
+python manage.py chiron_run_etl --track-subject-matching
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="query-troubleshooting">
+<h2>Query Troubleshooting<a class="headerlink" href="#query-troubleshooting" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="chiron.views.views_backend.query_troubleshooting">
+<span class="sig-prename descclassname"><span class="pre">chiron.views.views_backend.</span></span><span class="sig-name descname"><span class="pre">query_troubleshooting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.views.views_backend.query_troubleshooting" title="Permalink to this definition"></a></dt>
+<dd><p>This is the landing page for a collection of query troubleshooting views. It shows the
+relevant active query definitions and the full data processing pipeline for several
+types of queries run on the site.</p>
+</dd></dl>
+
+</section>
+<section id="user-report">
+<h2>User Report<a class="headerlink" href="#user-report" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="chiron.views.views_backend.user_report">
+<span class="sig-prename descclassname"><span class="pre">chiron.views.views_backend.</span></span><span class="sig-name descname"><span class="pre">user_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.views.views_backend.user_report" title="Permalink to this definition"></a></dt>
+<dd><p>An admin view that gives information about data access permissions and activity of each user.</p>
+<p>If the <cite>ViewSiteAsOtherUser</cite> middleware is installed, it will also allow you to temporarily
+log in as another user to test what the Chiron site looks like for them.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../utilities.html" class="btn btn-neutral float-left" title="Site Admin Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="management_commands.html" class="btn btn-neutral float-right" title="Django Management Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

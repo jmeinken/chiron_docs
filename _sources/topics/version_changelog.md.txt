@@ -1,6 +1,10 @@
 
 # Version Changelog
 
+## Version 4.0.1 (released 7/18/2022)
+
+1. Patch for major bug causing all analysis view queries to fail.
+
 ## Version 4.0.0 (released 6/30/2022)
 
 1. *(beta feature)* A single Chiron instance can now have multiple datasets. This is achieved using a Dataset

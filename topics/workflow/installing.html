@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Install Chiron &mdash; Chiron 4.0.0 documentation</title>
+  <title>1. Install Chiron &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -57,6 +58,7 @@
 <li class="toctree-l2"><a class="reference internal" href="deploying_to_production.html">4. Deploy to Production</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
@@ -90,7 +92,7 @@
   <section id="install-chiron">
 <h1>1. Install Chiron<a class="headerlink" href="#install-chiron" title="Permalink to this headline"></a></h1>
 <p>Chiron is built as a Django app. You must have a basic familiarity with Python and the Django
-framework. Chiron stores patient data in MongoDB. You don’t need to be proficient with MongoDB
+framework. Chiron stores patient data in MongoDB. You don't need to be proficient with MongoDB
 to get started, but you do need access to a running Mongo installation.</p>
 <section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline"></a></h2>
@@ -162,7 +164,7 @@ to get started, but you do need access to a running Mongo installation.</p>
 <section id="step-3-add-your-chiron-tables-to-the-database">
 <h2>Step 3: Add your Chiron tables to the database<a class="headerlink" href="#step-3-add-your-chiron-tables-to-the-database" title="Permalink to this headline"></a></h2>
 <p>Although Chiron uses MongoDB to store your patient/research data, all other data related to
-Chiron configuration go into whichever relational database you’re using for Django.</p>
+Chiron configuration go into whichever relational database you're using for Django.</p>
 <p>create Chiron database tables:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
 </pre></div>

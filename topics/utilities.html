@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>System Overview &mdash; Chiron 4.0.1 documentation</title>
+  <title>Site Admin Utilities &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Understanding the Data Dictionary" href="data_dict.html" />
-    <link rel="prev" title="Welcome to Chiron&#39;s documentation!" href="../index.html" /> 
+    <link rel="next" title="Admin Views" href="utilities/admin_views.html" />
+    <link rel="prev" title="4. Deploy to Production" href="workflow/deploying_to_production.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,14 +42,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">System Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#code-architecture">Code Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#database-architecture">Database Architecture</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Site Deployment Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Site Admin Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utilities/admin_views.html">Admin Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities/management_commands.html">Django Management Commands</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Chiron API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
@@ -69,9 +69,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>System Overview</li>
+      <li>Site Admin Utilities</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/topics/system_overview.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/topics/utilities.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -79,40 +79,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="system-overview">
-<h1>System Overview<a class="headerlink" href="#system-overview" title="Permalink to this headline"></a></h1>
-<a class="reference internal image-reference" href="../_images/system_architecture.png"><img alt="Chiron system architecture" src="../_images/system_architecture.png" style="width: 600px;" /></a>
-<section id="code-architecture">
-<h2>Code Architecture<a class="headerlink" href="#code-architecture" title="Permalink to this headline"></a></h2>
-<p>Chiron is a Django app. It can be embedded in a larger Django project or set up as a standalone system in a dedicated Django project.</p>
-<p>There are a variety of ways to customize your Chiron instance:</p>
-<ul class="simple">
-<li><p>Global chiron settings can be customized in your django settings file.</p></li>
-<li><p>The Chiron data dictionary is stored in the database, and many basic modifications can be made here.</p></li>
-<li><p>Chiron uses Processor classes to perform many of its data-related tasks. For more advanced customization, you can write your own processor classes for specific datasets or fields.</p></li>
+  <section id="site-admin-utilities">
+<h1>Site Admin Utilities<a class="headerlink" href="#site-admin-utilities" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="utilities/admin_views.html">Admin Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities/management_commands.html">Django Management Commands</a></li>
 </ul>
-<p>You should avoid editing the Chiron code directly, as this makes it difficult to update as new versions are released. Your custom processor classes will be stored outside of the Chiron codebase.</p>
-</section>
-<section id="database-architecture">
-<h2>Database Architecture<a class="headerlink" href="#database-architecture" title="Permalink to this headline"></a></h2>
-<p>Django requires a relational database, with a wide variety of systems supported. The relational database
-is used to store Django system tables. Chiron also uses the relational database to store the chiron data dictionary,
-user info, and user-created content.</p>
-<p>Chiron stores all patient/research data in a MongoDB database. Even if your patient data is already
-in Django models, it must first be pulled into MongoDB before Chiron can present it to the user.</p>
-<p>Django does not have any built-in
-support for MongoDB, so Chiron uses the pymongo library for connecting to MongoDB.
-The Chiron app handles populating and querying the MongoDB database,
-so you do not need to know much about MongoDB to get started.</p>
-</section>
+</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to Chiron&#39;s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="data_dict.html" class="btn btn-neutral float-right" title="Understanding the Data Dictionary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="workflow/deploying_to_production.html" class="btn btn-neutral float-left" title="4. Deploy to Production" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utilities/admin_views.html" class="btn btn-neutral float-right" title="Admin Views" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

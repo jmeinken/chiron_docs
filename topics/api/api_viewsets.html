@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Endpoints &mdash; Chiron 4.0.0 documentation</title>
+  <title>API Endpoints &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -44,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">Chiron API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">API Endpoints</a><ul>
@@ -203,7 +205,7 @@ last_name, email</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.api.viewsets.MeViewSet.list">
 <span class="sig-prename descclassname"><span class="pre">MeViewSet.</span></span><span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.MeViewSet.list" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the current logged-in user’s information</p>
+<dd><p>Returns the current logged-in user's information</p>
 <p>RESPONSE:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Id</dt>
@@ -250,13 +252,13 @@ last_name, email</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The current cohort definition for determining criteria set options and
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- The current cohort definition for determining criteria set options and
 criteria set event options. if None then the active cohort definition will be used.</p></li>
-<li><p><strong>include_criteria_set_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include options for modifying a criteria set in the
+<li><p><strong>include_criteria_set_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) -- include options for modifying a criteria set in the
 cohort definition</p></li>
-<li><p><strong>include_criteria_set_event_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include options for modifying a criteria set
+<li><p><strong>include_criteria_set_event_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) -- include options for modifying a criteria set
 event rule in the cohort definition</p></li>
-<li><p><strong>criteria_set_entry_id</strong> (<em>str</em><em>, </em><em>optional</em>) – If editing a criteria set in the cohort definition, the
+<li><p><strong>criteria_set_entry_id</strong> (<em>str</em><em>, </em><em>optional</em>) -- If editing a criteria set in the cohort definition, the
 entry_id of that criteria set. Required if include_criteria_set_options is True or
 include_criteria_set_event_options is True</p></li>
 </ul>
@@ -322,11 +324,11 @@ criteria_set_event_options</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>collection</strong> (<em>string</em><em>, </em><em>optional</em>) – permanent_id for a collection to filter concepts</p></li>
-<li><p><strong>category</strong> (<em>int</em><em>, </em><em>optional</em>) – id for a category to filter concepts</p></li>
-<li><p><strong>search</strong> (<em>search Concepts by name</em><em>, </em><em>name plural</em><em>, </em><em>and description</em>) – search Concepts by name, name plural, and description</p></li>
-<li><p><strong>show_unpublished</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – set this to “true” to return concepts that are not published</p></li>
-<li><p><strong>concept_type</strong> (<em>string</em><em>, </em><em>cohort</em><em>|</em><em>table</em><em>, </em><em>default=None</em>) – filter based on the concept type</p></li>
+<li><p><strong>collection</strong> (<em>string</em><em>, </em><em>optional</em>) -- permanent_id for a collection to filter concepts</p></li>
+<li><p><strong>category</strong> (<em>int</em><em>, </em><em>optional</em>) -- id for a category to filter concepts</p></li>
+<li><p><strong>search</strong> (<em>search Concepts by name</em><em>, </em><em>name plural</em><em>, </em><em>and description</em>) -- search Concepts by name, name plural, and description</p></li>
+<li><p><strong>show_unpublished</strong> (<em>boolean</em><em>, </em><em>default=False</em>) -- set this to &quot;true&quot; to return concepts that are not published</p></li>
+<li><p><strong>concept_type</strong> (<em>string</em><em>, </em><em>cohort</em><em>|</em><em>table</em><em>, </em><em>default=None</em>) -- filter based on the concept type</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -347,18 +349,18 @@ criteria_set_event_options</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>include_statistics</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include statistical analysis of concept</p></li>
-<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – the current cohort definition for calculating statistics, if None
+<li><p><strong>include_statistics</strong> (<em>boolean</em><em>, </em><em>default=False</em>) -- include statistical analysis of concept</p></li>
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- the current cohort definition for calculating statistics, if None
 then the active cohort definition will be used</p></li>
-<li><p><strong>show_all_data</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – When calculating statistics, ignore the cohort_def and return stats
+<li><p><strong>show_all_data</strong> (<em>boolean</em><em>, </em><em>default=False</em>) -- When calculating statistics, ignore the cohort_def and return stats
 about data for all subjects</p></li>
-<li><p><strong>include_cohort_def_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include options for creating a cohort def entry</p></li>
-<li><p><strong>include_table_def_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – include options for creating a table def entry</p></li>
-<li><p><strong>cohort_def_entry_id</strong> (<em>int</em><em>, </em><em>optional</em>) – if editing an existing cohort def entry, the entry_id to use
+<li><p><strong>include_cohort_def_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) -- include options for creating a cohort def entry</p></li>
+<li><p><strong>include_table_def_options</strong> (<em>boolean</em><em>, </em><em>default=False</em>) -- include options for creating a table def entry</p></li>
+<li><p><strong>cohort_def_entry_id</strong> (<em>int</em><em>, </em><em>optional</em>) -- if editing an existing cohort def entry, the entry_id to use
 whengenerating cohort def options</p></li>
-<li><p><strong>table_def_entry_id</strong> (<em>int</em><em>, </em><em>optional</em>) – if editing an existing table def entry, the entry_id to use when
+<li><p><strong>table_def_entry_id</strong> (<em>int</em><em>, </em><em>optional</em>) -- if editing an existing table def entry, the entry_id to use when
 generating table def options</p></li>
-<li><p><strong>callback</strong> (<em>boolean</em><em>, </em><em>default=False</em>) – run callback method for concept</p></li>
+<li><p><strong>callback</strong> (<em>boolean</em><em>, </em><em>default=False</em>) -- run callback method for concept</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -380,12 +382,12 @@ callback_data</p>
 <dt class="sig sig-object py" id="chiron.processors.CohortDefBoolean.get_statistics">
 <span class="sig-prename descclassname"><span class="pre">CohortDefBoolean.</span></span><span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefBoolean.get_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
-There shouldn’t be any need to override this method.
+There shouldn't be any need to override this method.
 note: There is no cache implemented yet, so just returns preprocess_statistics()
 results directly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) -- the cohort definition to use</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>key/value pairs of data</p>
@@ -400,12 +402,12 @@ results directly.</p>
 <dt class="sig sig-object py" id="chiron.processors.CohortDefCategory.get_statistics">
 <span class="sig-prename descclassname"><span class="pre">CohortDefCategory.</span></span><span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefCategory.get_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
-There shouldn’t be any need to override this method.
+There shouldn't be any need to override this method.
 note: There is no cache implemented yet, so just returns preprocess_statistics()
 results directly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) -- the cohort definition to use</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>key/value pairs of data</p>
@@ -420,12 +422,12 @@ results directly.</p>
 <dt class="sig sig-object py" id="chiron.processors.CohortDefDate.get_statistics">
 <span class="sig-prename descclassname"><span class="pre">CohortDefDate.</span></span><span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDate.get_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
-There shouldn’t be any need to override this method.
+There shouldn't be any need to override this method.
 note: There is no cache implemented yet, so just returns preprocess_statistics()
 results directly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) -- the cohort definition to use</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>key/value pairs of data</p>
@@ -440,12 +442,12 @@ results directly.</p>
 <dt class="sig sig-object py" id="chiron.processors.CohortDefNumber.get_statistics">
 <span class="sig-prename descclassname"><span class="pre">CohortDefNumber.</span></span><span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefNumber.get_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
-There shouldn’t be any need to override this method.
+There shouldn't be any need to override this method.
 note: There is no cache implemented yet, so just returns preprocess_statistics()
 results directly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) -- the cohort definition to use</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>key/value pairs of data</p>
@@ -460,12 +462,12 @@ results directly.</p>
 <dt class="sig sig-object py" id="chiron.processors.CohortDefText.get_statistics">
 <span class="sig-prename descclassname"><span class="pre">CohortDefText.</span></span><span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefText.get_statistics" title="Permalink to this definition"></a></dt>
 <dd><p>Will decide when to use cache vs when to run preprocess_statistics() method.
-There shouldn’t be any need to override this method.
+There shouldn't be any need to override this method.
 note: There is no cache implemented yet, so just returns preprocess_statistics()
 results directly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) – the cohort definition to use</p>
+<dd class="field-odd"><p><strong>cd</strong> (<em>list of dicts</em>) -- the cohort definition to use</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>key/value pairs of data</p>
@@ -507,16 +509,16 @@ results directly.</p>
 <span class="sig-prename descclassname"><span class="pre">CohortDefDate.</span></span><span class="sig-name descname"><span class="pre">get_form_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_cd_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.CohortDefDate.get_form_options" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Query_type</dt>
-<dd class="field-odd"><p>“date_range” (default) or “relative_to_today”</p>
+<dd class="field-odd"><p>&quot;date_range&quot; (default) or &quot;relative_to_today&quot;</p>
 </dd>
 <dt class="field-even">Existing_min</dt>
-<dd class="field-even"><p>for editing query_type=”date_range”, min date filter as date string</p>
+<dd class="field-even"><p>for editing query_type=&quot;date_range&quot;, min date filter as date string</p>
 </dd>
 <dt class="field-odd">Existing_max</dt>
-<dd class="field-odd"><p>for editing query_type=”date_range”, max date filter as date string</p>
+<dd class="field-odd"><p>for editing query_type=&quot;date_range&quot;, max date filter as date string</p>
 </dd>
 <dt class="field-even">Days_ago</dt>
-<dd class="field-even"><p>for editing query_type=”relative_to_today”, days ago filter as integer</p>
+<dd class="field-even"><p>for editing query_type=&quot;relative_to_today&quot;, days ago filter as integer</p>
 </dd>
 <dt class="field-odd">Exclude_selected</dt>
 <dd class="field-odd"><p>if editing existing cd_entry, True if exclude_selected is checked</p>
@@ -533,10 +535,10 @@ results directly.</p>
 <dt class="field-odd">Include_null_and_missing</dt>
 <dd class="field-odd"><p></p></dd>
 <dt class="field-even">Existing_min</dt>
-<dd class="field-even"><p>for editing query_type=”date_range”, min date filter as date string</p>
+<dd class="field-even"><p>for editing query_type=&quot;date_range&quot;, min date filter as date string</p>
 </dd>
 <dt class="field-odd">Existing_max</dt>
-<dd class="field-odd"><p>for editing query_type=”date_range”, max date filter as date string</p>
+<dd class="field-odd"><p>for editing query_type=&quot;date_range&quot;, max date filter as date string</p>
 </dd>
 <dt class="field-even">Exclude_selected</dt>
 <dd class="field-even"><p>if editing existing cd_entry, True if exclude_selected is checked</p>
@@ -569,17 +571,17 @@ results directly.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.api.viewsets.ConceptCategoryViewSet.list">
 <span class="sig-prename descclassname"><span class="pre">ConceptCategoryViewSet.</span></span><span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ConceptCategoryViewSet.list" title="Permalink to this definition"></a></dt>
-<dd><p>Returns all top-level categories and concepts (i.e. categories that don’t have parents
-and concepts that don’t have a category). Results are filtered based on user permissions.</p>
+<dd><p>Returns all top-level categories and concepts (i.e. categories that don't have parents
+and concepts that don't have a category). Results are filtered based on user permissions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>concept_type</strong> (<em>string</em><em>, </em><em>cohort</em><em>|</em><em>table</em><em>, </em><em>default=None</em>) – filter based on the concept type</p>
+<dd class="field-odd"><p><strong>concept_type</strong> (<em>string</em><em>, </em><em>cohort</em><em>|</em><em>table</em><em>, </em><em>default=None</em>) -- filter based on the concept type</p>
 </dd>
 </dl>
 <p>RESPONSE:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Category_id</dt>
-<dd class="field-odd"><p>“top”</p>
+<dd class="field-odd"><p>&quot;top&quot;</p>
 </dd>
 <dt class="field-even">Categories</dt>
 <dd class="field-even"><p>(list) all categories without a parent</p>
@@ -600,7 +602,7 @@ and concepts that don’t have a category). Results are filtered based on user p
 filtered based on user permissions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>concept_type</strong> (<em>string</em><em>, </em><em>cohort</em><em>|</em><em>table</em><em>, </em><em>default=None</em>) – filter based on the concept type</p>
+<dd class="field-odd"><p><strong>concept_type</strong> (<em>string</em><em>, </em><em>cohort</em><em>|</em><em>table</em><em>, </em><em>default=None</em>) -- filter based on the concept type</p>
 </dd>
 </dl>
 <p>RESPONSE:</p>
@@ -699,8 +701,8 @@ definition. If no cohort_def is provided, the active cohort def is used.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>transformation</strong> (<em>dict</em>) – the transformation definition</p></li>
-<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – the cohort definition; if not provided, active cohort def will be used</p></li>
+<li><p><strong>transformation</strong> (<em>dict</em>) -- the transformation definition</p></li>
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- the cohort definition; if not provided, active cohort def will be used</p></li>
 </ul>
 </dd>
 </dl>
@@ -830,8 +832,8 @@ definition. If no table_def is provided, the active table def is used.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>transformation</strong> (<em>dict</em>) – the transformation definition</p></li>
-<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) – the table definition; if not provided, active table def will be used</p></li>
+<li><p><strong>transformation</strong> (<em>dict</em>) -- the transformation definition</p></li>
+<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- the table definition; if not provided, active table def will be used</p></li>
 </ul>
 </dd>
 </dl>
@@ -890,7 +892,7 @@ definition. If no table_def is provided, the active table def is used.</p>
 same as the GET method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def or an
+<dd class="field-odd"><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- The cohort def to use. If not provided, the active cohort_def or an
 empty cohort def will be used.</p>
 </dd>
 </dl>
@@ -917,13 +919,13 @@ same as the GET method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- The cohort def to use. If not provided, the active cohort_def
 will be used if available or an empty cohort def.</p></li>
-<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The table_def to use. If not provided, the active table_def
+<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- The table_def to use. If not provided, the active table_def
 will be used if available or an empty table_def.</p></li>
-<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>default=&quot;json&quot;</em>) – how output data should be formatted, options are “html”, “json”, “csv”</p></li>
-<li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
-<li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
+<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>default=&quot;json&quot;</em>) -- how output data should be formatted, options are &quot;html&quot;, &quot;json&quot;, &quot;csv&quot;</p></li>
+<li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) -- How many records per page when paginating</p></li>
+<li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) -- The page number to fetch</p></li>
 </ul>
 </dd>
 </dl>
@@ -947,7 +949,7 @@ previous_page, next_page, last_page, total_records</p>
 </dd>
 <dt class="field-even">Data</dt>
 <dd class="field-even"><p>(2D array of strings) The records returned for this page;  if a value is also
-associated with a link, a concept return a dict with “link” and “value” instead of a
+associated with a link, a concept return a dict with &quot;link&quot; and &quot;value&quot; instead of a
 string</p>
 </dd>
 </dl>
@@ -980,9 +982,9 @@ same as the GET method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- The cohort def to use. If not provided, the active cohort_def
 will be used if available or an empty cohort def.</p></li>
-<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The table_def to use. If not provided, the active table_def
+<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- The table_def to use. If not provided, the active table_def
 will be used if available or an empty table_def.</p></li>
 </ul>
 </dd>
@@ -1077,8 +1079,8 @@ definition. If no analysis_def is provided, the active analysis def is used.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>transformation</strong> (<em>dict</em>) – the transformation definition</p></li>
-<li><p><strong>analysis_def</strong> (<em>list</em><em>, </em><em>optional</em>) – the analysis def; if not provided, active analysis def will be used</p></li>
+<li><p><strong>transformation</strong> (<em>dict</em>) -- the transformation definition</p></li>
+<li><p><strong>analysis_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- the analysis def; if not provided, active analysis def will be used</p></li>
 </ul>
 </dd>
 </dl>
@@ -1138,9 +1140,9 @@ same as the GET method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def or an
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- The cohort def to use. If not provided, the active cohort_def or an
 empty cohort def will be used.</p></li>
-<li><p><strong>analysis_def</strong> (<em>dict</em><em>, </em><em>optional</em>) – The analysis def to use. If not provided, the active analysis_def or
+<li><p><strong>analysis_def</strong> (<em>dict</em><em>, </em><em>optional</em>) -- The analysis def to use. If not provided, the active analysis_def or
 an empty analysis_def def will be used.</p></li>
 </ul>
 </dd>
@@ -1171,9 +1173,9 @@ same as the GET method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The cohort def to use. If not provided, the active cohort_def
+<li><p><strong>cohort_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- The cohort def to use. If not provided, the active cohort_def
 will be used if available or an empty cohort def.</p></li>
-<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) – The table_def to use. If not provided, the active table_def
+<li><p><strong>table_def</strong> (<em>list</em><em>, </em><em>optional</em>) -- The table_def to use. If not provided, the active table_def
 will be used if available or an empty table_def.</p></li>
 </ul>
 </dd>
@@ -1237,7 +1239,7 @@ viewed by the current user</p>
 <dd><p>Create a new project.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>name</strong> (<em>string</em>) – the name of the project to create</p>
+<dd class="field-odd"><p><strong>name</strong> (<em>string</em>) -- the name of the project to create</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1252,8 +1254,8 @@ viewed by the current user</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> (<em>integer</em>) – the ID of the project to edit</p></li>
-<li><p><strong>name</strong> (<em>string</em>) – the name of the project to create</p></li>
+<li><p><strong>id</strong> (<em>integer</em>) -- the ID of the project to edit</p></li>
+<li><p><strong>name</strong> (<em>string</em>) -- the name of the project to create</p></li>
 </ul>
 </dd>
 </dl>
@@ -1268,7 +1270,7 @@ viewed by the current user</p>
 <dd><p>Delete an existing project.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> (<em>integer</em>) – the ID of the project to delete</p>
+<dd class="field-odd"><p><strong>id</strong> (<em>integer</em>) -- the ID of the project to delete</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1286,10 +1288,10 @@ viewed by the current user</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>state</strong> (<em>string</em><em>, </em><em>optional</em>) – additional filtering, “shared_only”, “public_only”, “mine”</p></li>
-<li><p><strong>project_id</strong> (<em>integer</em><em>, </em><em>optional</em>) – filter by report project</p></li>
-<li><p><strong>search</strong> (<em>string</em><em>, </em><em>optional</em>) – search for report using search string</p></li>
-<li><p><strong>page_size</strong> (<em>int</em><em>, </em><em>default=1000</em><em>, </em><em>max=10</em><em>,</em><em>000</em>) – page size for response</p></li>
+<li><p><strong>state</strong> (<em>string</em><em>, </em><em>optional</em>) -- additional filtering, &quot;shared_only&quot;, &quot;public_only&quot;, &quot;mine&quot;</p></li>
+<li><p><strong>project_id</strong> (<em>integer</em><em>, </em><em>optional</em>) -- filter by report project</p></li>
+<li><p><strong>search</strong> (<em>string</em><em>, </em><em>optional</em>) -- search for report using search string</p></li>
+<li><p><strong>page_size</strong> (<em>int</em><em>, </em><em>default=1000</em><em>, </em><em>max=10</em><em>,</em><em>000</em>) -- page size for response</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1311,9 +1313,9 @@ viewed by the current user</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>chiron_user_id</strong> (<em>int</em><em>, </em><em>optional</em>) – user to add flag for (default is current user)</p></li>
-<li><p><strong>flag_type</strong> (<em>string</em><em>, </em><em>optional</em>) – type of flag to add (default is ContentFlag.FLAG_TYPE_STAR)</p></li>
-<li><p><strong>add_or_remove</strong> (<em>string</em><em>, </em><em>optional</em>) – “add” (default) or “remove” the flag</p></li>
+<li><p><strong>chiron_user_id</strong> (<em>int</em><em>, </em><em>optional</em>) -- user to add flag for (default is current user)</p></li>
+<li><p><strong>flag_type</strong> (<em>string</em><em>, </em><em>optional</em>) -- type of flag to add (default is ContentFlag.FlagType.STAR)</p></li>
+<li><p><strong>add_or_remove</strong> (<em>string</em><em>, </em><em>optional</em>) -- &quot;add&quot; (default) or &quot;remove&quot; the flag</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1346,8 +1348,8 @@ viewed by the current user</p>
 <dt class="sig sig-object py" id="chiron.api.viewsets.ReportToolsViewSet.share">
 <span class="sig-prename descclassname"><span class="pre">ReportToolsViewSet.</span></span><span class="sig-name descname"><span class="pre">share</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ReportToolsViewSet.share" title="Permalink to this definition"></a></dt>
 <dd><p>Pass an array of all ChironUser IDs to share with. Any preexisting sharing will be erased.</p>
-<p>Note that reports set to “public” are automatically shared with everyone regardless of
-what’s set with sharing.</p>
+<p>Note that reports set to &quot;public&quot; are automatically shared with everyone regardless of
+what's set with sharing.</p>
 </dd></dl>
 
 </section>
@@ -1356,7 +1358,7 @@ what’s set with sharing.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.api.viewsets.ReportToolsViewSet.load_as_active">
 <span class="sig-prename descclassname"><span class="pre">ReportToolsViewSet.</span></span><span class="sig-name descname"><span class="pre">load_as_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.api.viewsets.ReportToolsViewSet.load_as_active" title="Permalink to this definition"></a></dt>
-<dd><p>Will set this report’s cohort def and table def as the active snapshot in the
+<dd><p>Will set this report's cohort def and table def as the active snapshot in the
 CohortDefSnapshot and TableDefSnapshot models. It will also erase the snapshot history
 in both tables.</p>
 </dd></dl>
@@ -1371,11 +1373,11 @@ in both tables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sort_field</strong> (<em>string</em><em>, </em><em>optional</em>) – Ignore default sort order and sort by the field associated with the
+<li><p><strong>sort_field</strong> (<em>string</em><em>, </em><em>optional</em>) -- Ignore default sort order and sort by the field associated with the
 provided table def entry ID</p></li>
-<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>default=&quot;json&quot;</em>) – how output data should be formatted, options are “html”, “json”, “csv”</p></li>
-<li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) – How many records per page when paginating</p></li>
-<li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) – The page number to fetch</p></li>
+<li><p><strong>output_type</strong> (<em>str</em><em>, </em><em>default=&quot;json&quot;</em>) -- how output data should be formatted, options are &quot;html&quot;, &quot;json&quot;, &quot;csv&quot;</p></li>
+<li><p><strong>records_per_page</strong> (<em>int</em><em>, </em><em>default=10</em>) -- How many records per page when paginating</p></li>
+<li><p><strong>page</strong> (<em>int</em><em>, </em><em>default=1</em>) -- The page number to fetch</p></li>
 </ul>
 </dd>
 </dl>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Django Management Commands &mdash; Chiron 4.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Chiron Configuration" href="../configuration.html" />
+    <link rel="prev" title="Admin Views" href="admin_views.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="admin_views.html">Admin Views</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Django Management Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modify-the-data-dictionary">Modify the data dictionary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-autocreate-dd">chiron_autocreate_dd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-rename-processor">chiron_rename_processor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-drop-dataset">chiron_drop_dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#backup-restore-the-data-dictionary">Backup/restore the data dictionary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-backup-dd">chiron_backup_dd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-restore-dd">chiron_restore_dd</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#load-data-to-mongodb">Load data to MongoDB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-run-etl">chiron_run_etl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-test-etl">chiron_test_etl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-copy-permission-groups">chiron_copy_permission_groups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-create-concept-search">chiron_create_concept_search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb-indexes">MongoDB Indexes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-create-indexes">chiron_create_indexes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-view-indexes">chiron_view_indexes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-drop-indexes">chiron_drop_indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#data-caching">Data Caching</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-cache-concept-stats">chiron_cache_concept_stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-cache-reports">chiron_cache_reports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-clear-all-caches">chiron_clear_all_caches</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../utilities.html">Site Admin Utilities</a> &raquo;</li>
+      <li>Django Management Commands</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/utilities/management_commands.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="django-management-commands">
+<h1>Django Management Commands<a class="headerlink" href="#django-management-commands" title="Permalink to this headline"></a></h1>
+<p>Chiron uses Django's management command system to perform many tasks.</p>
+<p>You can get a list of all management commands with this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py
+</pre></div>
+</div>
+<p>You can get help on a specific management command with this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py command_name --help
+</pre></div>
+</div>
+<section id="modify-the-data-dictionary">
+<h2>Modify the data dictionary<a class="headerlink" href="#modify-the-data-dictionary" title="Permalink to this headline"></a></h2>
+<section id="chiron-autocreate-dd">
+<h3>chiron_autocreate_dd<a class="headerlink" href="#chiron-autocreate-dd" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_autocreate_dd.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_autocreate_dd.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_autocreate_dd.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Reads a dict of user-defined source lists to autocreate entries in the data dictionary. On
+rerun, it will update with new fields but ignore previously autocreated fields.</p>
+<dl class="field-list simple">
+<dt class="field-odd">--test-run</dt>
+<dd class="field-odd"><p>Don't make changes to the database</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_autocreate_dd [-h] [--test-run] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+
+Autocreates the data dictionary using autocreate lists
+
+options:
+  -h, --help            show this help message and exit
+  --test-run            Don't make changes to the database
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-rename-processor">
+<h3>chiron_rename_processor<a class="headerlink" href="#chiron-rename-processor" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_rename_processor.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_rename_processor.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_rename_processor.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Rename a processor class in the registry (run before renaming class in code).</p>
+<p>Processor classes are identified in the registry by the class name. If you just change the name
+of a processor in code, the system will think it's a new processor. Run this first to
+update the name in the registry, then rename your processor class in code.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py chiron_rename_processor OldName NewName
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_rename_processor [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] old_name new_name
+
+Rename a processor class in the registry (run before renaming class in code)
+
+positional arguments:
+  old_name
+  new_name
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-drop-dataset">
+<h3>chiron_drop_dataset<a class="headerlink" href="#chiron-drop-dataset" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_drop_dataset.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_drop_dataset.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_drop_dataset.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Drops a single dataset and all related data from the data dictionary. The easiest way to use
+is to run with no arguments and select the dataset when prompted.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_drop_dataset [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+
+Drops a single dataset and all related data from the data dictionary.
+
+positional arguments:
+  dataset_id            The dataset id, or 'all' to run all, or leave blank to select from a list
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+</section>
+<section id="backup-restore-the-data-dictionary">
+<h2>Backup/restore the data dictionary<a class="headerlink" href="#backup-restore-the-data-dictionary" title="Permalink to this headline"></a></h2>
+<section id="chiron-backup-dd">
+<h3>chiron_backup_dd<a class="headerlink" href="#chiron-backup-dd" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_backup_dd.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_backup_dd.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_backup_dd.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Backs up the chiron data dictionary to the filepath specified in
+<cite>chiron_settings.CHIRON_DATA_DICT_FIXTURE_PATH</cite>.</p>
+<p>PermissionGroups are included in the backup, but User and ChironUser (user permission
+settings) models are not. Log and cache models are also not backed up.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_backup_dd [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+
+Backs up the chiron data dictionary.
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-restore-dd">
+<h3>chiron_restore_dd<a class="headerlink" href="#chiron-restore-dd" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_restore_dd.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_restore_dd.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_restore_dd.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Truncates and reloads a data dictionary fixture that was backed up using the <cite>chiron_backup_dd</cite>
+command. It will look for the fixture in <cite>chiron_settings.CHIRON_DATA_DICT_FIXTURE_PATH</cite>.</p>
+<p>Links between ChironUser and PermissionGroup will be preserved as long the updated data
+dictionary contains a permission group with the same name.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_restore_dd [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+
+Reloads the data dictionary from a Django fixture
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+</section>
+<section id="load-data-to-mongodb">
+<h2>Load data to MongoDB<a class="headerlink" href="#load-data-to-mongodb" title="Permalink to this headline"></a></h2>
+<section id="chiron-run-etl">
+<h3>chiron_run_etl<a class="headerlink" href="#chiron-run-etl" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_run_etl.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_run_etl.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_run_etl.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Full truncate and reload of a dataset from sources into MongoDB. If there are multiple
+datasets, will prompt you to select a dataset.</p>
+<p>You can run a single source but it doesn't work correctly in all situations, so not
+appropriate for production:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py chiron_run_etl --source<span class="o">=[</span><span class="nb">source</span> name<span class="o">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">--no-log</dt>
+<dd class="field-odd"><p>default=False, don't add record of this to EtlLog table</p>
+</dd>
+<dt class="field-even">--enable-sharding</dt>
+<dd class="field-even"><p>default=False, Shard the collections</p>
+</dd>
+<dt class="field-odd">--abbreviated</dt>
+<dd class="field-odd"><p>default=False, run subset of the ETL, see chiron settings for
+configuration options</p>
+</dd>
+<dt class="field-even">--track-subject-matching</dt>
+<dd class="field-even"><p>default=False, Print and log detailed info about how subjects were
+matched for each record.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_run_etl [-h] [-s SOURCE] [--no-log] [--enable-sharding] [--track-subject-matching] [--abbreviated] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color]
+                                [--force-color] [--skip-checks]
+                                [dataset_id]
+
+Uses the Chiron data dictionary to populate a MongoDB database.
+
+positional arguments:
+  dataset_id            The dataset_id, or 'all' to run all, or leave blank to select from a list
+
+options:
+  -h, --help            show this help message and exit
+  -s SOURCE, --source SOURCE
+  --no-log              Don't create a log entry in EtlLog database table.
+  --enable-sharding     Configure the MongoDB database to allow sharding.
+  --track-subject-matching
+                        Print and log detailed info about how subjects were matched for each record.
+  --abbreviated         Only load a subset of the data in the ETL run.
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-test-etl">
+<h3>chiron_test_etl<a class="headerlink" href="#chiron-test-etl" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_test_etl.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_test_etl.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_test_etl.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the ETL is working for a single concept. Will run the corresponding source collection
+and output each value type and value to stdout. Does not modify the database.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py chiron_test_etl <span class="o">[</span>concept permanent_id<span class="o">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_test_etl [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] concept_id
+
+Check if the ETL is working for a single concept
+
+positional arguments:
+  concept_id
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-copy-permission-groups">
+<h3>chiron_copy_permission_groups<a class="headerlink" href="#chiron-copy-permission-groups" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_copy_permission_groups.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_copy_permission_groups.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_copy_permission_groups.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Copies permission groups to dedicated collections for a dataset. If there are multiple
+datasets, will prompt you to select a dataset.</p>
+<p>This action is also run as a part of <cite>chiron_run_etl</cite>.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_copy_permission_groups [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+
+Copies permission groups to dedicated collections
+
+positional arguments:
+  dataset_id            The dataset_id, or leave blank to select from a list
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-create-concept-search">
+<h3>chiron_create_concept_search<a class="headerlink" href="#chiron-create-concept-search" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_create_concept_search.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_create_concept_search.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_create_concept_search.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Creates the collection used to search for concepts by keywords for a dataset. If there are
+multiple datasets, will prompt you to select a dataset.</p>
+<p>This action is also run as a part of <cite>chiron_run_etl</cite>.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_create_concept_search [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+
+Creates the collection used to search for concepts by keywords.
+
+positional arguments:
+  dataset_id            The dataset_id, or leave blank to select from a list
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+</section>
+<section id="mongodb-indexes">
+<h2>MongoDB Indexes<a class="headerlink" href="#mongodb-indexes" title="Permalink to this headline"></a></h2>
+<section id="chiron-create-indexes">
+<h3>chiron_create_indexes<a class="headerlink" href="#chiron-create-indexes" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_create_indexes.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_create_indexes.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_create_indexes.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Creates MongoDB indexes on all collections. If there are multiple datasets, will prompt you to
+select a dataset.</p>
+<p>Attempts to index every concept. Indexes will help improve query performance. Some concepts
+may not be indexed if the index limit is reached. As of MongoDB 6.0, the maximum limit is 64
+indexes per collection.</p>
+<p>This action is also run as a part of <cite>chiron_run_etl</cite>.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_create_indexes [-h] [--only-text] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+
+Creates MongoDB indexes on all collections
+
+positional arguments:
+  dataset_id            The dataset_id, or leave blank to select from a list
+
+options:
+  -h, --help            show this help message and exit
+  --only-text           Only create indexes for text processors
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-view-indexes">
+<h3>chiron_view_indexes<a class="headerlink" href="#chiron-view-indexes" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_view_indexes.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_view_indexes.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_view_indexes.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Prints MongoDB indexes on all collections. If there are multiple datasets, will prompt you to
+select a dataset.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_view_indexes [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+
+Prints MongoDB indexes on all collections
+
+positional arguments:
+  dataset_id            The dataset_id, or leave blank to select from a list
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-drop-indexes">
+<h3>chiron_drop_indexes<a class="headerlink" href="#chiron-drop-indexes" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_drop_indexes.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_drop_indexes.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_drop_indexes.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Drops MongoDB indexes on all collections. If there are multiple datasets, will prompt you to
+select a dataset.</p>
+<p>It is not necessary to run this before <cite>chiron_run_etl</cite> because that script will delete indexes
+before starting.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_drop_indexes [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+
+Drops MongoDB indexes on all collections
+
+positional arguments:
+  dataset_id            The dataset_id, or leave blank to select from a list
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+</section>
+<section id="data-caching">
+<h2>Data Caching<a class="headerlink" href="#data-caching" title="Permalink to this headline"></a></h2>
+<section id="chiron-cache-concept-stats">
+<h3>chiron_cache_concept_stats<a class="headerlink" href="#chiron-cache-concept-stats" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_cache_concept_stats.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_cache_concept_stats.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_cache_concept_stats.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Loops through all of the current published concepts and caches the stats for an empty cohort
+def.</p>
+<p>If using permission groups, will create concept cache entries for every
+combination of permission groups that actually exists for at least one ChironUser. Does not
+do permission group combos that don't currently exist for any users (which would require 2^n
+cache entries where n = count of permission groups)</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_cache_concept_stats [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+
+Primes the cache for all of the published concepts.
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-cache-reports">
+<h3>chiron_cache_reports<a class="headerlink" href="#chiron-cache-reports" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_cache_reports.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_cache_reports.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_cache_reports.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Creates cache entries in CachedCohort for every saved report.</p>
+<p>When using permission groups - If the report is not shared or shared with everyone, will
+create a cache entry specific to the permission group settings of the owner. If the report is
+shared with specific users, will create caches for any permission group settings for
+those users as well.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_cache_reports [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+
+Updates caches using existing data.
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-clear-all-caches">
+<h3>chiron_clear_all_caches<a class="headerlink" href="#chiron-clear-all-caches" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_clear_all_caches.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_clear_all_caches.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_clear_all_caches.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Clears both caches of subject data (CachedConceptStats and CachedCohort)</p>
+<p>NOTE: These caches are already cleared every time chiron_run_etl is executed.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_clear_all_caches [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+
+Clears all caches of calculated patient data.
+
+options:
+  -h, --help            show this help message and exit
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="admin_views.html" class="btn btn-neutral float-left" title="Admin Views" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../configuration.html" class="btn btn-neutral float-right" title="Chiron Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

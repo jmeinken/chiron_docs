@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Users and User Permissions &mdash; Chiron 4.0.0 documentation</title>
+  <title>Users and User Permissions &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -44,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../configuration.html">Chiron Configuration</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Users and User Permissions</a><ul>
@@ -93,7 +95,7 @@
              
   <section id="users-and-user-permissions">
 <h1>Users and User Permissions<a class="headerlink" href="#users-and-user-permissions" title="Permalink to this headline"></a></h1>
-<p>There are two systems for managing a user’s access to data: access levels and permission groups.</p>
+<p>There are two systems for managing a user's access to data: access levels and permission groups.</p>
 <section id="access-levels">
 <h2>Access Levels<a class="headerlink" href="#access-levels" title="Permalink to this headline"></a></h2>
 <p>Access levels control the type of data a user is allowed to see. Each Chiron user has one of three access levels:</p>
@@ -105,19 +107,19 @@
 <p><strong>Settings relevant to PHI access</strong></p>
 <ul class="simple">
 <li><p>Concepts containing PHI should have the has_phi flag set to True.</p></li>
-<li><p>Additionally, flagged concepts can set values for cohort_def_processor_deid_alt and display_processor_deid_alt. These can be set to special processor classes that allow the user to interact with the concept without seeing PHI. If these flags aren’t set, the concept will be hidden from the user.</p></li>
+<li><p>Additionally, flagged concepts can set values for cohort_def_processor_deid_alt and display_processor_deid_alt. These can be set to special processor classes that allow the user to interact with the concept without seeing PHI. If these flags aren't set, the concept will be hidden from the user.</p></li>
 </ul>
 <p><strong>Settings relevant to aggregated access</strong></p>
 <ul class="simple">
-<li><p>Concepts that shouldn’t be shown in aggregated view should have the exclude_from_aggregated flag set to True. For example, you might want to hide a text field containing detailed comments specific to a patient.</p></li>
-<li><p>django setting CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT gives the minimum patient count that should be given. For example, if set to the default of 5, any patient counts less than 5 will show as “&lt;5” rather than the actual number.</p></li>
+<li><p>Concepts that shouldn't be shown in aggregated view should have the exclude_from_aggregated flag set to True. For example, you might want to hide a text field containing detailed comments specific to a patient.</p></li>
+<li><p>django setting CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT gives the minimum patient count that should be given. For example, if set to the default of 5, any patient counts less than 5 will show as &quot;&lt;5&quot; rather than the actual number.</p></li>
 </ul>
 </section>
 <section id="permission-groups">
 <h2>Permission Groups<a class="headerlink" href="#permission-groups" title="Permalink to this headline"></a></h2>
-<p>Permission groups limit users’ access to specific groups of subjects or specific groups of concepts. This is useful, for example, if you have data coming from multiple different studies and want to limit some users’ access to only data from specific studies.</p>
-<p>If you don’t need permission groups on your project, simply leave the PermissionGroups table empty.</p>
-<p>Once you have any permission groups defined, every user must belong to at least one permission group or they won’t be able to see any data. If a user belongs to multiple permission groups, their access level will be the union of all the groups. In other words, they will be able to see a subject or concept if at least one of their permission groups grants them access.</p>
+<p>Permission groups limit users' access to specific groups of subjects or specific groups of concepts. This is useful, for example, if you have data coming from multiple different studies and want to limit some users' access to only data from specific studies.</p>
+<p>If you don't need permission groups on your project, simply leave the PermissionGroups table empty.</p>
+<p>Once you have any permission groups defined, every user must belong to at least one permission group or they won't be able to see any data. If a user belongs to multiple permission groups, their access level will be the union of all the groups. In other words, they will be able to see a subject or concept if at least one of their permission groups grants them access.</p>
 </section>
 <section id="how-do-access-levels-work-with-permission-groups">
 <h2>How do access levels work with permission groups?<a class="headerlink" href="#how-do-access-levels-work-with-permission-groups" title="Permalink to this headline"></a></h2>
@@ -125,12 +127,12 @@
 </section>
 <section id="default-permissions-for-autocreated-users">
 <h2>Default Permissions for AutoCreated Users<a class="headerlink" href="#default-permissions-for-autocreated-users" title="Permalink to this headline"></a></h2>
-<p>a Chiron user will be autocreated if Django setting CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True. The permission levels for autocreated users will be controlled by these settings:</p>
+<p>a Chiron user will be autocreated if Django setting Dataset.autocreate_chiron_user is True. The permission levels for autocreated users will be controlled by these fields:</p>
 <ul class="simple">
-<li><p>In the PermissionGroup table, any permission group with <cite>default_set_for_new_autocreated_users=True</cite> will be applied to new Chiron users.</p></li>
-<li><p>settings.CHIRON_DEFAULT_ACCESS_LEVEL</p></li>
-<li><p>settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_WORKSPACE</p></li>
-<li><p>settings.CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS</p></li>
+<li><p>Dataset.auto_access_level</p></li>
+<li><p>Dataset.auto_can_view_workspace</p></li>
+<li><p>Dataset.auto_can_view_subject_details</p></li>
+<li><p>In the DefaultPermissionGroup model, any permission groups associated with this Dataset.</p></li>
 </ul>
 </section>
 <section id="user-permissions-with-multiple-datasets">
@@ -143,6 +145,12 @@
 <dt class="sig sig-object py">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">ChironUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Defines access for a Django user to a single Chiron dataset.</p>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AccessLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>An enumeration.</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">dataset</span></span></dt>
@@ -182,6 +190,13 @@ reports</p>
 <dd><p>The list of permission groups this user belongs to</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clean_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Clean all fields and raise a ValidationError containing a dict
+of all validation errors if any occur.</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -210,7 +225,7 @@ activated based on their permission groups.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">concept_for_allowed_subjects</span></span></dt>
-<dd><p>This permission group grants access to a subject if the subject’s value in this concept is
+<dd><p>This permission group grants access to a subject if the subject's value in this concept is
 true or truthy (uses MongoDB $toBool operator)</p>
 </dd></dl>
 
@@ -244,10 +259,12 @@ Collection, they will have various indirect access to collection info regardless
 of this setting.)</p>
 </dd></dl>
 
-<dl class="py attribute">
+<dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">default_set_for_new_autocreated_users</span></span></dt>
-<dd><p>If True, new ChironUsers will automatically be added to this permission group.</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataset_uses_permission_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>If any permission group records are set for this dataset, returns True.
+Sites that don't use permission groups will show all subjects and
+concept categories to all users (except PHI filters can still be applied).</p>
 </dd></dl>
 
 </dd></dl>

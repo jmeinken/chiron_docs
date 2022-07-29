@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Built-In Processors &mdash; Chiron 4.0.0 documentation</title>
+  <title>Built-In Processors &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -44,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../configuration.html">Chiron Configuration</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="users.html">Users and User Permissions</a></li>
@@ -161,15 +163,15 @@ by passing arguments when instantiating. These arguments can be defined in the d
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>app</strong> (<em>str</em>) – the Django app name where the model is located</p></li>
-<li><p><strong>model</strong> (<em>str</em>) – the Django model name</p></li>
-<li><p><strong>collection_id_field</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default is primary key for model</em><em>)</em>) – The name of the field where the collection_id is located</p></li>
+<li><p><strong>app</strong> (<em>str</em>) -- the Django app name where the model is located</p></li>
+<li><p><strong>model</strong> (<em>str</em>) -- the Django model name</p></li>
+<li><p><strong>collection_id_field</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default is primary key for model</em><em>)</em>) -- The name of the field where the collection_id is located</p></li>
 <li><p><strong>root_collection_id_field</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default is the collection_id_field parameter
-value</em><em>)</em>) – The name of the field where the root_collection_id is located</p></li>
-<li><p><strong>max_batch_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=10</em><em>,</em><em>000</em><em>)</em>) – The maximum number of model records that will be loaded at once</p></li>
-<li><p><strong>select_related</strong> (<em>str</em><em>, </em><em>optional</em>) – A comma separated list of models to pre-select</p></li>
-<li><p><strong>prefetch_related</strong> (<em>str</em><em>, </em><em>optional</em>) – A comma separated list of models to pre-fetch</p></li>
-<li><p><strong>filter_rules</strong> (<em>JSON str</em><em>, </em><em>optional</em><em> (</em><em>default is all records are returned</em><em>)</em>) – A JSON string of Django filter rules to limit model records returned</p></li>
+value</em><em>)</em>) -- The name of the field where the root_collection_id is located</p></li>
+<li><p><strong>max_batch_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=10</em><em>,</em><em>000</em><em>)</em>) -- The maximum number of model records that will be loaded at once</p></li>
+<li><p><strong>select_related</strong> (<em>str</em><em>, </em><em>optional</em>) -- A comma separated list of models to pre-select</p></li>
+<li><p><strong>prefetch_related</strong> (<em>str</em><em>, </em><em>optional</em>) -- A comma separated list of models to pre-fetch</p></li>
+<li><p><strong>filter_rules</strong> (<em>JSON str</em><em>, </em><em>optional</em><em> (</em><em>default is all records are returned</em><em>)</em>) -- A JSON string of Django filter rules to limit model records returned</p></li>
 </ul>
 </dd>
 </dl>
@@ -187,9 +189,9 @@ be Python dicts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filepath</strong> (<em>str</em>) – the file location</p></li>
-<li><p><strong>collection_id_field</strong> (<em>str</em>) – the header value for the collection id</p></li>
-<li><p><strong>root_collection_id_field</strong> (<em>str</em>) – the header value for the root collection id</p></li>
+<li><p><strong>filepath</strong> (<em>str</em>) -- the file location</p></li>
+<li><p><strong>collection_id_field</strong> (<em>str</em>) -- the header value for the collection id</p></li>
+<li><p><strong>root_collection_id_field</strong> (<em>str</em>) -- the header value for the root collection id</p></li>
 </ul>
 </dd>
 </dl>
@@ -220,8 +222,8 @@ Useful for generating calculated fields on existing Mongo records.
 Needs to be run later in execution order, when all the input fields
 it depends on have already been loaded.</p>
 <p>The subdocument is based on whichever Collection associated with this Source Collection.
-In the source data collection, each record will be a dictionary with “subdoc” for this
-specific sudocument record and “doc” for the entire document that the subdoc is in.</p>
+In the source data collection, each record will be a dictionary with &quot;subdoc&quot; for this
+specific sudocument record and &quot;doc&quot; for the entire document that the subdoc is in.</p>
 </dd></dl>
 
 </section>
@@ -239,10 +241,10 @@ model object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>django_field</strong> (<em>str</em>) – full path name from the source model to the Django field</p></li>
-<li><p><strong>cast_to_type</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>int</em><em>, </em><em>float</em><em>, </em><em>string</em><em>, </em><em>date</em><em>)</em>) – the Django field name</p></li>
-<li><p><strong>ignore_casting_errors</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) – If cast_to_type fails, returns None instead of throwing an error</p></li>
-<li><p><strong>ignore_model_mismatch</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) – </p></li>
+<li><p><strong>django_field</strong> (<em>str</em>) -- full path name from the source model to the Django field</p></li>
+<li><p><strong>cast_to_type</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>int</em><em>, </em><em>float</em><em>, </em><em>string</em><em>, </em><em>date</em><em>)</em>) -- the Django field name</p></li>
+<li><p><strong>ignore_casting_errors</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) -- If cast_to_type fails, returns None instead of throwing an error</p></li>
+<li><p><strong>ignore_model_mismatch</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) -- </p></li>
 </ul>
 </dd>
 </dl>
@@ -274,11 +276,11 @@ etc.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>field_name</strong> (<em>str</em>) – the key value for the field you want</p></li>
-<li><p><strong>cast_to_type</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>int</em><em>, </em><em>float</em><em>, </em><em>string</em><em>, </em><em>date</em><em>)</em>) – the Django field name</p></li>
-<li><p><strong>ignore_casting_errors</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) – If cast_to_type fails, returns None instead of throwing an error</p></li>
-<li><p><strong>convert_list_to_set</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – if field has a list of multiple values, only get distinct set</p></li>
-<li><p><strong>string_val_separator</strong> (<em>string</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – if field has a list of multiple values, only get distinct set</p></li>
+<li><p><strong>field_name</strong> (<em>str</em>) -- the key value for the field you want</p></li>
+<li><p><strong>cast_to_type</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>int</em><em>, </em><em>float</em><em>, </em><em>string</em><em>, </em><em>date</em><em>)</em>) -- the Django field name</p></li>
+<li><p><strong>ignore_casting_errors</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) -- If cast_to_type fails, returns None instead of throwing an error</p></li>
+<li><p><strong>convert_list_to_set</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) -- if field has a list of multiple values, only get distinct set</p></li>
+<li><p><strong>string_val_separator</strong> (<em>string</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) -- if field has a list of multiple values, only get distinct set</p></li>
 </ul>
 </dd>
 </dl>
@@ -300,8 +302,8 @@ treat_string_as_sequence=True to override.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>field_name</strong> (<em>str</em>) – the key value for the field you want</p></li>
-<li><p><strong>treat_string_as_sequence</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) – if string, return string length instead of 1</p></li>
+<li><p><strong>field_name</strong> (<em>str</em>) -- the key value for the field you want</p></li>
+<li><p><strong>treat_string_as_sequence</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) -- if string, return string length instead of 1</p></li>
 </ul>
 </dd>
 </dl>
@@ -321,9 +323,9 @@ treat_string_as_sequence=True to override.</p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should either be a string or null</p></li>
-<li><p>Don’t use if too many distinct values, use TextField instead</p></li>
-<li><p>don’t use if no values repeat (like IDs or free-text comments), use TextField instead</p></li>
-<li><p>don’t use if values are longer than one line of text</p></li>
+<li><p>Don't use if too many distinct values, use TextField instead</p></li>
+<li><p>don't use if no values repeat (like IDs or free-text comments), use TextField instead</p></li>
+<li><p>don't use if values are longer than one line of text</p></li>
 </ul>
 </dd></dl>
 
@@ -388,8 +390,8 @@ and statistics are calculated/displayed.</p></li>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should be numbers, strings or null.</p></li>
-<li><p>When importing during ETL, need to set cast_to_type “integer/string” or “float/string” which
-will store number values in Mongo as {“num”: 5} and string values as {“txt”: “my value”}</p></li>
+<li><p>When importing during ETL, need to set cast_to_type &quot;integer/string&quot; or &quot;float/string&quot; which
+will store number values in Mongo as {&quot;num&quot;: 5} and string values as {&quot;txt&quot;: &quot;my value&quot;}</p></li>
 </ul>
 <p>Optional arguments:</p>
 <ul class="simple">
@@ -411,7 +413,7 @@ and statistics are calculated/displayed.</p></li>
 <li><p>All values should either be a string or null</p></li>
 <li><p>If possible values are a limited number of categories, consider using CategoryField</p></li>
 <li><p>Good for IDs or free-text comments</p></li>
-<li><p>Not great for long, multi-line free text - like notes - but shouldn’t fail either</p></li>
+<li><p>Not great for long, multi-line free text - like notes - but shouldn't fail either</p></li>
 </ul>
 </dd></dl>
 
@@ -464,9 +466,9 @@ numeric sort value:</p>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should either be a string or null</p></li>
-<li><p>Don’t use if too many distinct values, use TextField instead</p></li>
-<li><p>don’t use if no values repeat (like IDs or free-text comments), use TextField instead</p></li>
-<li><p>don’t use if values are longer than one line of text</p></li>
+<li><p>Don't use if too many distinct values, use TextField instead</p></li>
+<li><p>don't use if no values repeat (like IDs or free-text comments), use TextField instead</p></li>
+<li><p>don't use if values are longer than one line of text</p></li>
 </ul>
 </dd></dl>
 
@@ -531,8 +533,8 @@ and statistics are calculated/displayed.</p></li>
 <p>When to use:</p>
 <ul class="simple">
 <li><p>All values should be numbers, strings or null.</p></li>
-<li><p>When importing during ETL, need to set cast_to_type “integer/string” or “float/string” which
-will store number values in Mongo as {“num”: 5} and string values as {“txt”: “my value”}</p></li>
+<li><p>When importing during ETL, need to set cast_to_type &quot;integer/string&quot; or &quot;float/string&quot; which
+will store number values in Mongo as {&quot;num&quot;: 5} and string values as {&quot;txt&quot;: &quot;my value&quot;}</p></li>
 </ul>
 <p>Optional arguments:</p>
 <ul class="simple">
@@ -554,7 +556,7 @@ and statistics are calculated/displayed.</p></li>
 <li><p>All values should either be a string or null</p></li>
 <li><p>If possible values are a limited number of categories, consider using CategoryField</p></li>
 <li><p>Good for IDs or free-text comments</p></li>
-<li><p>Not great for long, multi-line free text - like notes - but shouldn’t fail either</p></li>
+<li><p>Not great for long, multi-line free text - like notes - but shouldn't fail either</p></li>
 </ul>
 </dd></dl>
 

@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transforming Table Definitions &mdash; Chiron 4.0.0 documentation</title>
+  <title>Transforming Table Definitions &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -44,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">Chiron API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
@@ -102,7 +104,7 @@ table definition. In the API, this is done using endpoint <a class="reference in
 <dd><p>Add or edit an entry on the table definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“add_entry”</p>
+<dd class="field-odd"><p>&quot;add_entry&quot;</p>
 </dd>
 <dt class="field-even">Concept_id</dt>
 <dd class="field-even"><p>(str) the permanent_id of the Concept to add</p>
@@ -111,7 +113,7 @@ table definition. In the API, this is done using endpoint <a class="reference in
 <dd class="field-odd"><p>(str, default=None) if editing existing entry, the entry_id</p>
 </dd>
 <dt class="field-even">Position</dt>
-<dd class="field-even"><p>(default=”append”) append|prepend new entry, has no effect if editing existing</p>
+<dd class="field-even"><p>(default=&quot;append&quot;) append|prepend new entry, has no effect if editing existing</p>
 </dd>
 <dt class="field-odd">Aggregate</dt>
 <dd class="field-odd"><p>(default=False) stack/aggregate records for field</p>
@@ -132,7 +134,7 @@ aggregation</p>
 <dd><p>Deletes an entry from the table def with the provided entry_id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“delete_entry”</p>
+<dd class="field-odd"><p>&quot;delete_entry&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry_id of the table def entry to remove</p>
@@ -151,7 +153,7 @@ sorted).
 This is also used to reset current table def by submitting a blank set of entry IDs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“resort_columns”</p>
+<dd class="field-odd"><p>&quot;resort_columns&quot;</p>
 </dd>
 <dt class="field-even">Entry_ids</dt>
 <dd class="field-even"><p>The array of entry IDs sorted in the correct order.</p>
@@ -169,7 +171,7 @@ This is also used to reset current table def by submitting a blank set of entry 
 To reverse sort, do two add_sort_entry transformations on the same column.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“add_sort_entry”</p>
+<dd class="field-odd"><p>&quot;add_sort_entry&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry_id of the entry to sort by.</p>
@@ -187,7 +189,7 @@ To reverse sort, do two add_sort_entry transformations on the same column.</p>
 <p>Clear sort definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“clear_sort_entries”</p>
+<dd class="field-odd"><p>&quot;clear_sort_entries&quot;</p>
 </dd>
 </dl>
 </dd></dl>
@@ -201,7 +203,7 @@ To reverse sort, do two add_sort_entry transformations on the same column.</p>
 <dd><p>Add multiple entries to table definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“bulk_add_entries”</p>
+<dd class="field-odd"><p>&quot;bulk_add_entries&quot;</p>
 </dd>
 <dt class="field-even">Concept_id_list</dt>
 <dd class="field-even"><p>(list) the permanent_id of the Concept to add</p>
@@ -218,7 +220,7 @@ To reverse sort, do two add_sort_entry transformations on the same column.</p>
 <dd><p>Add a new category on the table definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“add_category”</p>
+<dd class="field-odd"><p>&quot;add_category&quot;</p>
 </dd>
 <dt class="field-even">Category_id</dt>
 <dd class="field-even"><p>(str) the unique_id of the Category to add</p>

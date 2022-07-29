@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4. Deploy to Production &mdash; Chiron 4.0.0 documentation</title>
+  <title>4. Deploy to Production &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +21,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Chiron Configuration" href="../configuration.html" />
+    <link rel="next" title="Site Admin Utilities" href="../utilities.html" />
     <link rel="prev" title="3. Load data into MongoDB" href="loading_data.html" /> 
 </head>
 
@@ -57,6 +58,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
@@ -92,7 +94,7 @@
 <section id="copying-the-data-dictionary">
 <h2>Copying the data dictionary<a class="headerlink" href="#copying-the-data-dictionary" title="Permalink to this headline"></a></h2>
 <p>The data dictionary can be copied into a JSON file (a Django fixture) in your development environment and restored in your production environment.</p>
-<p>Use the setting “CHIRON_DATA_DICT_FIXTURE_PATH” to specify a location, default is <code class="docutils literal notranslate"><span class="pre">chiron_config/fixtures.json</span></code>.</p>
+<p>Use the setting &quot;CHIRON_DATA_DICT_FIXTURE_PATH&quot; to specify a location, default is <code class="docutils literal notranslate"><span class="pre">chiron_config/fixtures.json</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># save database data dictionary to a django fixture</span>
 <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_backup_dd</span>
 
@@ -129,14 +131,14 @@
 <p>There are a few advantages to this:</p>
 <ul class="simple">
 <li><p>The website can continue to be used while the ETL is running.</p></li>
-<li><p>The original data will only be replaced if the ETL process completes successfully. If there’s any error during the ETL, you won’t be left with a half-finished database.</p></li>
+<li><p>The original data will only be replaced if the ETL process completes successfully. If there's any error during the ETL, you won't be left with a half-finished database.</p></li>
 </ul>
 <p><strong>NOTE:</strong>
-The staging system only works with unsharded databases. Currently MongoDB doesn’t allow sharded collections to be renamed.</p>
+The staging system only works with unsharded databases. Currently MongoDB doesn't allow sharded collections to be renamed.</p>
 </section>
 <section id="users-and-user-permissions">
 <h2>Users and user permissions<a class="headerlink" href="#users-and-user-permissions" title="Permalink to this headline"></a></h2>
-<p>Each user needs a Django user account. There is also a chiron_user model that is 1:1 with the Django user model. Chiron users are automatically created the first time Django users try to access Chiron (unless you’ve changed that behavior in your chiron settings).</p>
+<p>Each user needs a Django user account. There is also a chiron_user model that is 1:1 with the Django user model. Chiron users are automatically created the first time Django users try to access Chiron (unless you've changed that behavior in your chiron settings).</p>
 <p>There are <strong>a lot</strong> of options for customizing user access to Chiron and to specific concepts and patients. See the more detailed code documentation for details.</p>
 </section>
 </section>
@@ -146,7 +148,7 @@ The staging system only works with unsharded databases. Currently MongoDB doesn�
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="loading_data.html" class="btn btn-neutral float-left" title="3. Load data into MongoDB" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../configuration.html" class="btn btn-neutral float-right" title="Chiron Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../utilities.html" class="btn btn-neutral float-right" title="Site Admin Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

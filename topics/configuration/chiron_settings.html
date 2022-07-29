@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chiron Global Settings &mdash; Chiron 4.0.0 documentation</title>
+  <title>Chiron Global Settings &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -44,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../configuration.html">Chiron Configuration</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Chiron Global Settings</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#module-chiron.chiron_settings">Website and API Settings</a></li>
@@ -110,7 +112,7 @@
 <dl class="py data">
 <dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_EXTRA_NAVBAR_ITEMS">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_EXTRA_NAVBAR_ITEMS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_EXTRA_NAVBAR_ITEMS" title="Permalink to this definition"></a></dt>
-<dd><p>For the built-in website, allows a custom django template to use for the page footer.</p>
+<dd><p>For the built-in website, allows a custom django template to include addl links in nav menu.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -120,9 +122,9 @@
 that this is a test site. CHIRON_INFOBAR should have a string of the content to display and
 CHIRON_INFOBAR_TYPE should have the type of bar, which will usually be indicated
 by color:</p>
-<p>“info” -&gt; blue
-“warning” -&gt; orange
-“danger” -&gt; red</p>
+<p>&quot;info&quot; -&gt; blue
+&quot;warning&quot; -&gt; orange
+&quot;danger&quot; -&gt; red</p>
 </dd></dl>
 
 <dl class="py data">
@@ -132,9 +134,9 @@ by color:</p>
 that this is a test site. CHIRON_INFOBAR should have a string of the content to display and
 CHIRON_INFOBAR_TYPE should have the type of bar, which will usually be indicated
 by color:</p>
-<p>“info” -&gt; blue
-“warning” -&gt; orange
-“danger” -&gt; red</p>
+<p>&quot;info&quot; -&gt; blue
+&quot;warning&quot; -&gt; orange
+&quot;danger&quot; -&gt; red</p>
 </dd></dl>
 
 <dl class="py data">
@@ -161,7 +163,7 @@ Then users can do temporal queries at the collection level.
 In addition to date concepts, you can also substitute age in years (float) or age in days (int).
 However, since comparisons between collections are possible, all event concepts must use the same
 type of value. Set that type here.</p>
-<p>OPTIONS: “date”, “age_in_days”, “age_in_years”</p>
+<p>OPTIONS: &quot;date&quot;, &quot;age_in_days&quot;, &quot;age_in_years&quot;</p>
 </dd></dl>
 
 </section>
@@ -216,13 +218,13 @@ and chiron_restore_dd), where should the fixture file be stored.</p>
 here to ensure that they are loaded during registry updates.</p>
 <p>The recommended location for registering custom processors is in
 <cite>[your_project]/chiron_config/processors/__init__.py</cite>. Then this setting would need to be:</p>
-<p>CHIRON_PROCESSOR_MODULES = [“chiron.processors”, “chiron_config.processors”]</p>
+<p>CHIRON_PROCESSOR_MODULES = [&quot;chiron.processors&quot;, &quot;chiron_config.processors&quot;]</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_DATA_SUMMARY_FUNCTION_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'chiron.views.views.get_data_summary_string'</span></em></dt>
-<dd><p>You can customize what’s shown on the built-in home page. This function will take a request object
+<dd><p>You can customize what's shown on the built-in home page. This function will take a request object
 as an argument and should return an HTML string.</p>
 </dd></dl>
 
@@ -239,39 +241,10 @@ ex. ../../data/</p>
 <h2>User and Permission Settings<a class="headerlink" href="#user-and-permission-settings" title="Permalink to this headline"></a></h2>
 <dl class="py data">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em></dt>
-<dd><p>There is ChironUser model associated 1:1 with the Django User. If True, a ChironUser record
-will be created automatically the first time a user accesses any Chiron built-in views.
-TODO: might want the same functionality for users accessing Chiron through the API</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_DEFAULT_ACCESS_LEVEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'deid'</span></em></dt>
-<dd><p>If CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True, what access level should autocreated users
-have? Options are “phi”, “deid”, and “agg”.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATED_USERS_CAN_VIEW_WORKSPACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em></dt>
-<dd><p>If CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True, should autocreated users be allowed to
-view the built-in workspace sections by default.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AUTOCREATED_USERS_CAN_VIEW_SUBJECT_DETAILS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em></dt>
-<dd><p>If CHIRON_AUTOCREATE_USERS_FROM_DJANGO_USERS is True, should autocreated users be allowed to
-view the built-in subject details sections by default.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em></dt>
-<dd><p>For users with access_level=”agg” (only allowed to see aggregated data), what is the minimum
+<dd><p>For users with access_level=&quot;agg&quot; (only allowed to see aggregated data), what is the minimum
 subject count they can see? Anything below that will show with a less-than sign. Zero subjects
-will still show as “0”.</p>
+will still show as &quot;0&quot;.</p>
 </dd></dl>
 
 </section>
@@ -281,7 +254,7 @@ will still show as “0”.</p>
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_USE_CACHES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em></dt>
 <dd><p>Chiron can cache various patient data and stats to improve performance. Setting to True will
-improve performance, but might cause problems in a development environment where you’re actively
+improve performance, but might cause problems in a development environment where you're actively
 modifying the data dictionary.</p>
 </dd></dl>
 
@@ -298,6 +271,58 @@ If a saved Cohort Definition has more Subject IDs than this number then it will 
 <dd><p>The query engine can print various statements as stdout that help with debugging query
 problems. This includes the amount of time it takes for each query step to run and notifications
 when a cache was used. Set to true to turn these statements on.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_ABBREVIATED_ETL_DEFAULT_RECORD_COUNT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('read',</span> <span class="pre">100)</span></em></dt>
+<dd><p>A tuple with the count method and number of records to load for all source collections
+when using the abbreviated ETL.
+- (&quot;read&quot;, n)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Run until n records have been read, regardless of whether those records were loaded.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>(&quot;write&quot;, n) </dt><dd><ul>
+<li><p>Run until n records have been loaded.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>(&quot;match_full&quot;, n) </dt><dd><ul>
+<li><p>Only counts updates to an existing subject (i.e. adding data to a subject
+that was loaded in a previous step). Creation of new subjects can still happen
+(assuming <cite>if_no_match=&quot;create&quot;</cite>) but will not count toward the 100.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>(&quot;match_strict&quot;, n) </dt><dd><ul>
+<li><p>Same as match full, but will not bother to create new subjects even when 
+<cite>if_no_match=&quot;create&quot;</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_ABBREVIATED_ETL_RECORD_COUNTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em></dt>
+<dd><p>The specific source collection record counts to import</p>
+<p>ie:
+CHIRON_ABBREVIATED_ETL_RECORD_COUNTS = {</p>
+<blockquote>
+<div><p>&quot;my_source_collection&quot;: (&quot;read&quot;, 500),
+&quot;my_source_collection2&quot;: (&quot;match_strict&quot;, 12),</p>
+</div></blockquote>
+<p>}</p>
 </dd></dl>
 
 </section>

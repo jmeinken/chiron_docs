@@ -39,6 +39,7 @@ EHR dataset.
    topics/system_overview.rst
    topics/data_dict.md
    topics/workflow.rst
+   topics/utilities.rst
    topics/configuration.rst
    topics/api.rst
 

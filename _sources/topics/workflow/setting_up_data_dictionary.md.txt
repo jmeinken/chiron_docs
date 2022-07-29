@@ -67,7 +67,7 @@ NOTE: Your CSV files must have a header row with the name of each field.
 - **filename** *(str, required)* 
     - If CHIRON_SOURCE_DATA_DIRECTORY defined in Django settings, the relative filepath from that. Otherwise, the full filepath.
 - **dataset** *(str, required if your system has >1 dataset)* 
-    - The dataset as specified in Dataset.name
+    - The dataset as specified in Dataset.unique_id
 - **load_to_root** *(bool, default=False)* 
     - Each dataset has only one root (subject) collection. Set to True to load data to this collection (i.e. if this data is 1:1 with a subject).
 - **collection** *(str, optional)* 
@@ -88,7 +88,7 @@ NOTE: Your CSV files must have a header row with the name of each field.
 - **source_name** *(str, optional)*
     - Provide a name to call the source collection. Default value is the model name.
 - **dataset** *(str, required if your system has >1 dataset)* 
-    - The dataset as specified in Dataset.name
+    - The dataset as specified in Dataset.unique_id
 - **load_to_root** *(bool, default=False)* 
     - Each dataset has only one root (subject) collection. Set to True to load data to this collection (i.e. if this data is 1:1 with a subject).
 - **collection** *(str, optional)* 

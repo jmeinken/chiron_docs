@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transforming Cohort Definitions &mdash; Chiron 4.0.0 documentation</title>
+  <title>Transforming Cohort Definitions &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -44,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">Chiron API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
@@ -109,10 +111,10 @@ cohort definition. In the API, this is done using endpoint <a class="reference i
 <span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Add a new entry or edit an existing entry on the cohort definition.</p>
 <p>The options for the transformation definition will depend on the type of cohort def processor.
-However, these are the global options for all “add entry” transformations:</p>
+However, these are the global options for all &quot;add entry&quot; transformations:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“add_entry”</p>
+<dd class="field-odd"><p>&quot;add_entry&quot;</p>
 </dd>
 <dt class="field-even">Concept_id</dt>
 <dd class="field-even"><p>(str) the permanent_id of the Concept to add</p>
@@ -171,16 +173,16 @@ matching dates</p>
 <dd class="field-even"><p>(optional, default False)</p>
 </dd>
 <dt class="field-odd">Query_type</dt>
-<dd class="field-odd"><p>“date_range” or “relative_to_today”</p>
+<dd class="field-odd"><p>&quot;date_range&quot; or &quot;relative_to_today&quot;</p>
 </dd>
 <dt class="field-even">Cd_numeric_min</dt>
-<dd class="field-even"><p>if query_type=”date_range”, the minimum year as YYYY</p>
+<dd class="field-even"><p>if query_type=&quot;date_range&quot;, the minimum year as YYYY</p>
 </dd>
 <dt class="field-odd">Cd_numeric_max</dt>
-<dd class="field-odd"><p>if query_type=”date_range”, the maximum year as YYYY</p>
+<dd class="field-odd"><p>if query_type=&quot;date_range&quot;, the maximum year as YYYY</p>
 </dd>
 <dt class="field-even">Days_ago</dt>
-<dd class="field-even"><p>if query_type=”relative_to_today”, the number of days ago as an integer,
+<dd class="field-even"><p>if query_type=&quot;relative_to_today&quot;, the number of days ago as an integer,
 for deidentified date query must be a multiple of 365</p>
 </dd>
 </dl>
@@ -193,12 +195,12 @@ for deidentified date query must be a multiple of 365</p>
 <li><p><strong>exclude_selected</strong> - (optional, default False) invert the query by excluding
 matching dates</p></li>
 <li><p><strong>include_null_and_missing</strong> - (optional, default False)</p></li>
-<li><p><strong>query_type</strong> - “date_range” or “relative_to_today”</p></li>
-<li><p><strong>cd_numeric_min</strong> - if query_type=”date_range”, the minimum date (“MM/DD/YYYY” or any
+<li><p><strong>query_type</strong> - &quot;date_range&quot; or &quot;relative_to_today&quot;</p></li>
+<li><p><strong>cd_numeric_min</strong> - if query_type=&quot;date_range&quot;, the minimum date (&quot;MM/DD/YYYY&quot; or any
 valid date string</p></li>
-<li><p><strong>cd_numeric_max</strong> - if query_type=”date_range”, the maximum date (“MM/DD/YYYY” or any
+<li><p><strong>cd_numeric_max</strong> - if query_type=&quot;date_range&quot;, the maximum date (&quot;MM/DD/YYYY&quot; or any
 valid date string</p></li>
-<li><p><strong>days_ago</strong> - if query_type=”relative_to_today”, the number of days ago as an integer</p></li>
+<li><p><strong>days_ago</strong> - if query_type=&quot;relative_to_today&quot;, the number of days ago as an integer</p></li>
 </ul>
 </dd></dl>
 
@@ -233,7 +235,7 @@ matching dates</p>
 - include_null_and_missing: (optional, default False)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) – Form data to validate</p>
+<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) -- Form data to validate</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Validation pass or fail.</p>
@@ -252,7 +254,7 @@ needed to generate a cohort def entry. If validation fails, returns False and ad
 error message strings to self.errors list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) – the HTTP POST arguments from the client</p>
+<dd class="field-odd"><p><strong>form_data</strong> (<em>dict</em>) -- the HTTP POST arguments from the client</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>whether form validated</p>
@@ -273,7 +275,7 @@ error message strings to self.errors list.</p>
 <dd><p>Delete an entry from the cohort definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“delete_entry”</p>
+<dd class="field-odd"><p>&quot;delete_entry&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry_id of the cohort def entry to remove</p>
@@ -294,7 +296,7 @@ a criteria set, also delete the criteria set.</p>
 <dd><p>Add an empty criteria set to a cohort definition</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“add_criteria_set”</p>
+<dd class="field-odd"><p>&quot;add_criteria_set&quot;</p>
 </dd>
 <dt class="field-even">Collection_id</dt>
 <dd class="field-even"><p>The permanent_id of the Collection to add</p>
@@ -311,7 +313,7 @@ a criteria set, also delete the criteria set.</p>
 <dd><p>Delete a criteria set (and all its members) from the cohort definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“delete_criteria_set”</p>
+<dd class="field-odd"><p>&quot;delete_criteria_set&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry_id of the criteria set to remove</p>
@@ -325,11 +327,11 @@ a criteria set, also delete the criteria set.</p>
 <dl class="py function">
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_change_to_boolean_or</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Groups two cohort def entries into an “or” group. Both entries must be in the same criteria
+<dd><p>Groups two cohort def entries into an &quot;or&quot; group. Both entries must be in the same criteria
 set and adjacent.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“change_to_boolean_or”</p>
+<dd class="field-odd"><p>&quot;change_to_boolean_or&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>Pass the entry_id of the first entry. The second entry will be autodetected.</p>
@@ -344,13 +346,13 @@ set and adjacent.</p>
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_change_to_boolean_and</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
 <dd><dl class="simple">
-<dt>Separates two cd_entries already in an “or” group. The entries must be</dt><dd><p>adjacent. If any remaining “or” groups after the split have only one cd_entry, the “or”
+<dt>Separates two cd_entries already in an &quot;or&quot; group. The entries must be</dt><dd><p>adjacent. If any remaining &quot;or&quot; groups after the split have only one cd_entry, the &quot;or&quot;
 group will be eliminated altogether.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“change_to_boolean_and”</p>
+<dd class="field-odd"><p>&quot;change_to_boolean_and&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>the entry_id of the first entry. The second entry will be autodetected.</p>
@@ -367,7 +369,7 @@ group will be eliminated altogether.</p>
 <dd><p>Change how entries are sorted within a criteria set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“sort_cd_entries”</p>
+<dd class="field-odd"><p>&quot;sort_cd_entries&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry ID of the criteria set to be sorted</p>
@@ -396,13 +398,13 @@ new desired order.</p>
 <dd><p>Add or edit the count rule for an existing criteria set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“add_criteria_set_count_rule”</p>
+<dd class="field-odd"><p>&quot;add_criteria_set_count_rule&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry ID of the criteria set to be sorted</p>
 </dd>
 <dt class="field-odd">Rule_operator</dt>
-<dd class="field-odd"><p>“at least”, “at most”, or “exactly”</p>
+<dd class="field-odd"><p>&quot;at least&quot;, &quot;at most&quot;, or &quot;exactly&quot;</p>
 </dd>
 <dt class="field-even">Rule_count</dt>
 <dd class="field-even"><p>integer</p>
@@ -416,10 +418,10 @@ new desired order.</p>
 <dl class="py function">
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.api.utils.cohort_def.</span></span><span class="sig-name descname"><span class="pre">apply_transformation_create_event_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chironuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_cohort_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Creates a blank event rule for a criteria set “any date”.</p>
+<dd><p>Creates a blank event rule for a criteria set &quot;any date&quot;.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“create_event_rule”</p>
+<dd class="field-odd"><p>&quot;create_event_rule&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry_id of the criteria set</p>
@@ -436,7 +438,7 @@ new desired order.</p>
 <dd><p>Edit an existing event rule.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“modify_event_rule”</p>
+<dd class="field-odd"><p>&quot;modify_event_rule&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry_id of the criteria set the event rule is associated with</p>
@@ -459,7 +461,7 @@ new desired order.</p>
 <dd><p>Delete an event rule from a criteria set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“delete_event_rule”</p>
+<dd class="field-odd"><p>&quot;delete_event_rule&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry_id of the criteria set the event rule is associated with</p>

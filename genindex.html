@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Chiron 4.0.0 documentation</title>
+  <title>Index &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -41,6 +42,7 @@
 <li class="toctree-l1"><a class="reference internal" href="topics/system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topics/data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topics/workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topics/configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topics/api.html">Chiron API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topics/version_changelog.html">Version Changelog</a></li>
@@ -84,6 +86,7 @@
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#U"><strong>U</strong></a>
@@ -141,6 +144,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.calculate_aggregate_value">calculate_aggregate_value() (chiron.processors.abstract.DisplayProcessor method)</a>
 </li>
+      <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.can_run_deid_query">can_run_deid_query() (chiron.processors.abstract.CohortDefProcessor method)</a>
+</li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.EtlProcessor.cast">cast() (chiron.processors.abstract.EtlProcessor method)</a>
 </li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.DisplayProcessor.check_requires_event_dates">check_requires_event_dates() (chiron.processors.abstract.DisplayProcessor method)</a>
@@ -176,8 +181,6 @@
 </li>
       <li><a href="topics/configuration/built_in_processors.html#chiron.processors.CohortDefCategory">CohortDefCategory (class in chiron.processors)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="topics/configuration/built_in_processors.html#chiron.processors.CohortDefDate">CohortDefDate (class in chiron.processors)</a>
 </li>
       <li><a href="topics/configuration/built_in_processors.html#chiron.processors.CohortDefDateDeid">CohortDefDateDeid (class in chiron.processors)</a>
@@ -192,8 +195,42 @@
 </li>
       <li><a href="topics/configuration/built_in_processors.html#chiron.processors.CohortDefText">CohortDefText (class in chiron.processors)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="topics/configuration/built_in_processors.html#chiron.processors.CohortDefTextCustomSort">CohortDefTextCustomSort (class in chiron.processors)</a>
 </li>
+      <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_autocreate_dd.Command">Command (class in chiron.management.commands.chiron_autocreate_dd)</a>
+
+      <ul>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_backup_dd.Command">(class in chiron.management.commands.chiron_backup_dd)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_cache_concept_stats.Command">(class in chiron.management.commands.chiron_cache_concept_stats)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_cache_reports.Command">(class in chiron.management.commands.chiron_cache_reports)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_clear_all_caches.Command">(class in chiron.management.commands.chiron_clear_all_caches)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_copy_permission_groups.Command">(class in chiron.management.commands.chiron_copy_permission_groups)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_create_concept_search.Command">(class in chiron.management.commands.chiron_create_concept_search)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_create_indexes.Command">(class in chiron.management.commands.chiron_create_indexes)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_drop_dataset.Command">(class in chiron.management.commands.chiron_drop_dataset)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_drop_indexes.Command">(class in chiron.management.commands.chiron_drop_indexes)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_rename_processor.Command">(class in chiron.management.commands.chiron_rename_processor)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_restore_dd.Command">(class in chiron.management.commands.chiron_restore_dd)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_run_etl.Command">(class in chiron.management.commands.chiron_run_etl)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_test_etl.Command">(class in chiron.management.commands.chiron_test_etl)</a>
+</li>
+        <li><a href="topics/utilities/management_commands.html#chiron.management.commands.chiron_view_indexes.Command">(class in chiron.management.commands.chiron_view_indexes)</a>
+</li>
+      </ul></li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.CohortDefProcessor.concept_type">concept_type (chiron.processors.abstract.CohortDefProcessor attribute)</a>
 </li>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.abstract.EtlProcessor.convert_data_list_to_set">convert_data_list_to_set() (chiron.processors.abstract.EtlProcessor method)</a>
@@ -259,6 +296,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="topics/configuration/making_custom_processor.html#chiron.processors.display.aggregation.Earliest">Earliest (class in chiron.processors.display.aggregation)</a>
+</li>
+      <li><a href="topics/utilities/admin_views.html#chiron.views.views_backend.etl_logs">etl_logs() (in module chiron.views.views_backend)</a>
 </li>
       <li><a href="topics/configuration/built_in_processors.html#chiron.processors.EtlDjangoField">EtlDjangoField (class in chiron.processors)</a>
 </li>
@@ -484,6 +523,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="topics/utilities/admin_views.html#chiron.views.views_backend.query_troubleshooting">query_troubleshooting() (in module chiron.views.views_backend)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -555,6 +602,10 @@
         <li><a href="topics/api/api_viewsets.html#chiron.api.viewsets.ProjectViewSet.update">(chiron.api.viewsets.ProjectViewSet method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="topics/utilities/admin_views.html#chiron.views.views_backend.user_report">user_report() (in module chiron.views.views_backend)</a>
+</li>
   </ul></td>
 </tr></table>
 

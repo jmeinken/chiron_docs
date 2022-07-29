@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transforming Analysis Definitions &mdash; Chiron 4.0.0 documentation</title>
+  <title>Transforming Analysis Definitions &mdash; Chiron 4.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -44,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">Chiron API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="api_viewsets.html">API Endpoints</a></li>
@@ -100,13 +102,13 @@ analysis definition. In the API, this is done using endpoint <a class="reference
 <dd><p>Add or edit an entry on the analysis definition.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“add_entry”</p>
+<dd class="field-odd"><p>&quot;add_entry&quot;</p>
 </dd>
 <dt class="field-even">Concept_id</dt>
 <dd class="field-even"><p>(str) the permanent_id of the Concept to add</p>
 </dd>
 <dt class="field-odd">Def_component</dt>
-<dd class="field-odd"><p>(str, default=”row”) “rows” or “cols”</p>
+<dd class="field-odd"><p>(str, default=&quot;row&quot;) &quot;rows&quot; or &quot;cols&quot;</p>
 </dd>
 <dt class="field-even">Index</dt>
 <dd class="field-even"><p>(int/None, default=None) index position to add to, if None then appends to end</p>
@@ -123,7 +125,7 @@ analysis definition. In the API, this is done using endpoint <a class="reference
 <dd><p>Deletes an entry from the analysis def with the provided entry_id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“delete_entry”</p>
+<dd class="field-odd"><p>&quot;delete_entry&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry_id of the table def entry to remove</p>
@@ -140,13 +142,13 @@ analysis definition. In the API, this is done using endpoint <a class="reference
 <dd><p>Move an entry from one role to another or change index position within the same role</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“move_entry”</p>
+<dd class="field-odd"><p>&quot;move_entry&quot;</p>
 </dd>
 <dt class="field-even">Entry_id</dt>
 <dd class="field-even"><p>The entry_id of the analysis def entry to remove</p>
 </dd>
 <dt class="field-odd">Role</dt>
-<dd class="field-odd"><p>(str) “row” or “col”</p>
+<dd class="field-odd"><p>(str) &quot;row&quot; or &quot;col&quot;</p>
 </dd>
 <dt class="field-even">Index</dt>
 <dd class="field-even"><p>(int/None, default=None) index position to add to, if None then appends to end</p>
@@ -163,7 +165,7 @@ analysis definition. In the API, this is done using endpoint <a class="reference
 <dd><p>Switches rows and column roles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“swap_rows_and_cols”</p>
+<dd class="field-odd"><p>&quot;swap_rows_and_cols&quot;</p>
 </dd>
 </dl>
 </dd></dl>
@@ -177,7 +179,7 @@ analysis definition. In the API, this is done using endpoint <a class="reference
 <dd><p>Creates empty analysis def</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>“clear_all”</p>
+<dd class="field-odd"><p>&quot;clear_all&quot;</p>
 </dd>
 </dl>
 </dd></dl>
