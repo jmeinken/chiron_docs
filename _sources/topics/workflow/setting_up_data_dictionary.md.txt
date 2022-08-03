@@ -133,6 +133,8 @@ Then run the script:
 python manage.py chiron_autocreate_dd --test-run
 
 # run the script
+# If you have multiple source lists in your autocreate_source_lists dict, you will be prompted to 
+# select a source source list or run all source lists.
 python manage.py chiron_autocreate_dd
 ```
 

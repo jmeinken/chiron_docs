@@ -1,11 +1,22 @@
 
 # Version Changelog
 
-## Version 4.0.1 (released 7/18/2022)
+## Version 4.1.0 (coming soon)
+
+1. Deprecated code and model fields related to the old processor registry were removed.
+2. {ref}`admin-views` in the built-in UI were cleaned up and added to documentation.
+3. Support for datasets (previously in beta) is now stable and ready for production use.
+    - Home Page shows active dataset and lets you change the active dataset.
+    - Each dataset allows you to define whether new users can access automatically and what their default permissions should be.
+    - In admin, validation to make sure FK relationships are only between objects belonging to the same dataset.
+    - New fields in dataset to override global settings such as CHIRON_SITE_TITLE and CHIRON_FOOTER_TEMPLATE - gives better ability to customize how the site looks for each dataset
+
+
+## Version 4.0.1 (released 7/18/22)
 
 1. Patch for major bug causing all analysis view queries to fail.
 
-## Version 4.0.0 (released 6/30/2022)
+## Version 4.0.0 (released 6/30/22)
 
 1. *(beta feature)* A single Chiron instance can now have multiple datasets. This is achieved using a Dataset
     model - each collection belongs to a Dataset.
@@ -17,14 +28,14 @@
     source list is a Python list with each entry defining a source collection to create.
     - See {ref}`autocreate-the-data-dictionary`
    
-## Version 3.1.0 (released 4/1/2022)
+## Version 3.1.0 (released 4/1/22)
 
 1. New `CollectionRelationship` table in the data dictionary allows you to define 1:many and many:many relationships between subcollections.
    - See {ref}`data-model-explainer` for explanation of subcollection relationships and see the new data dictionary model {ref}`collection-relationship-model`.
 2. The collections API flags collections with dates defined using new "has_event" property. 
 3. New API endpoint to get the Chiron version number.
 
-## Version 3.0.0 (released 2/11/2022)
+## Version 3.0.0 (released 2/11/22)
 
 1. Added Analysis view 
    - This is a new tool that allows for the generation of pivot-table style datasets.
@@ -41,7 +52,7 @@
    - Caching can be turned on/off in settings. 
    - It is recommended to keep it off in development environments and on in production environments.
 
-## Version 2.1.3 (released 12/13/2021)
+## Version 2.1.3 (released 12/13/21)
 
 1. Updated to work with Pymongo v4
 
@@ -50,7 +61,7 @@ the latest snapshot. Now all should work the same - you can either pass the defi
 latest snapshot will be assumed.
 
 
-## Version 2.1.0 (released 11/15/2021)
+## Version 2.1.0 (released 11/15/21)
 
 1. Some minor changes to the database schema. Django migrations will need to be run.
 
@@ -69,12 +80,12 @@ latest snapshot will be assumed.
    - For cohort def with multiple criteria sets for the same collection, typically data matching any of them will be included when calculating aggregation value. With new option "aggregation_criteria_set" can specify a specific criteria set to limit results.
 
 
-## Version 2.0.0 (released 10/21/2021)
+## Version 2.0.0 (released 10/21/21)
 
 1. Major overhaul of the query engine. Instead of generating the full report in MongoDB, pulls the
 data it needs from MongoDB and does most of the report generation in Python.
 
-## Version 1.3.0 (released 6/18/2021)
+## Version 1.3.0 (released 6/18/21)
 
 1. There is a new model Project, and Reports can have a project associated with them. Projects
 at this point are only used to help group reports.
@@ -93,7 +104,7 @@ in. There is a new API endpoint for flagging reports.
 
 
 
-## Version 1.2.0 (released 4/29/2021)
+## Version 1.2.0 (released 4/29/21)
 
 1. In table definition entries, "aggregation_style" and "aggregation_method" are now "aggregate"
 (boolean) and "aggregation_method".

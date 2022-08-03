@@ -142,14 +142,14 @@ python manage.py command_name --help
 
 ## Data Caching
 
-### chiron_cache_concept_stats
+### chiron_cache_concepts
 
 ```{eval-rst}
-.. autoclass:: chiron.management.commands.chiron_cache_concept_stats.Command
+.. autoclass:: chiron.management.commands.chiron_cache_concepts.Command
 ```
 
 ```{eval-rst}
-.. djcommand:: chiron.management.commands.chiron_cache_concept_stats
+.. djcommand:: chiron.management.commands.chiron_cache_concepts
 ```
 
 ### chiron_cache_reports
@@ -162,13 +162,13 @@ python manage.py command_name --help
 .. djcommand:: chiron.management.commands.chiron_cache_reports
 ```
 
-### chiron_clear_all_caches
+### chiron_clear_caches
 
 ```{eval-rst}
-.. autoclass:: chiron.management.commands.chiron_clear_all_caches.Command
+.. autoclass:: chiron.management.commands.chiron_clear_caches.Command
 ```
 
 ```{eval-rst}
-.. djcommand:: chiron.management.commands.chiron_clear_all_caches
+.. djcommand:: chiron.management.commands.chiron_clear_caches
 ```
 

@@ -1,3 +1,4 @@
+(admin-views)=
 # Admin Views
 
 The built-in Chiron UI has a variety of views for admin users to help with managing the 

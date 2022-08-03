@@ -277,52 +277,36 @@ when a cache was used. Set to true to turn these statements on.</p>
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_ABBREVIATED_ETL_DEFAULT_RECORD_COUNT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('read',</span> <span class="pre">100)</span></em></dt>
 <dd><p>A tuple with the count method and number of records to load for all source collections
-when using the abbreviated ETL.
-- (&quot;read&quot;, n)</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Run until n records have been read, regardless of whether those records were loaded.</p></li>
-</ul>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>(&quot;write&quot;, n) </dt><dd><ul>
-<li><p>Run until n records have been loaded.</p></li>
-</ul>
+when using the abbreviated ETL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">(&quot;read&quot;, n)</dt>
+<dd class="field-odd"><p>Run until n records have been read, regardless of whether those records were loaded.</p>
 </dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>(&quot;match_full&quot;, n) </dt><dd><ul>
-<li><p>Only counts updates to an existing subject (i.e. adding data to a subject
+<dt class="field-even">(&quot;write&quot;, n)</dt>
+<dd class="field-even"><p>Run until n records have been loaded.</p>
+</dd>
+<dt class="field-odd">(&quot;match_full&quot;, n)</dt>
+<dd class="field-odd"><p>Only counts updates to an existing subject (i.e. adding data to a subject
 that was loaded in a previous step). Creation of new subjects can still happen
-(assuming <cite>if_no_match=&quot;create&quot;</cite>) but will not count toward the 100.</p></li>
-</ul>
+(assuming <cite>if_no_match=&quot;create&quot;</cite>) but will not count toward the 100.</p>
+</dd>
+<dt class="field-even">(&quot;match_strict&quot;, n)</dt>
+<dd class="field-even"><p>Same as match full, but will not bother to create new subjects even when 
+<cite>if_no_match=&quot;create&quot;</cite>.</p>
 </dd>
 </dl>
-</li>
-<li><dl class="simple">
-<dt>(&quot;match_strict&quot;, n) </dt><dd><ul>
-<li><p>Same as match full, but will not bother to create new subjects even when 
-<cite>if_no_match=&quot;create&quot;</cite>.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_ABBREVIATED_ETL_RECORD_COUNTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em></dt>
 <dd><p>The specific source collection record counts to import</p>
-<p>ie:
-CHIRON_ABBREVIATED_ETL_RECORD_COUNTS = {</p>
-<blockquote>
-<div><p>&quot;my_source_collection&quot;: (&quot;read&quot;, 500),
-&quot;my_source_collection2&quot;: (&quot;match_strict&quot;, 12),</p>
-</div></blockquote>
-<p>}</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CHIRON_ABBREVIATED_ETL_RECORD_COUNTS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;my_source_collection&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;read&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+    <span class="s2">&quot;my_source_collection2&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;match_strict&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

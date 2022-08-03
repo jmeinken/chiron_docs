@@ -73,9 +73,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#data-caching">Data Caching</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#chiron-cache-concept-stats">chiron_cache_concept_stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-cache-concepts">chiron_cache_concepts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#chiron-cache-reports">chiron_cache_reports</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#chiron-clear-all-caches">chiron_clear_all_caches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-clear-caches">chiron_clear_caches</a></li>
 </ul>
 </li>
 </ul>
@@ -141,12 +141,17 @@ rerun, it will update with new fields but ignore previously autocreated fields.<
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_autocreate_dd [-h] [--test-run] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_autocreate_dd [-h] [--all] [--test-run] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+                                      [source_list ...]
 
 Autocreates the data dictionary using autocreate lists
 
+positional arguments:
+  source_list           Only run the specified source list. Leave blank to be prompted to select.
+
 options:
   -h, --help            show this help message and exit
+  --all                 Don't prompt to select a source list and run all instead.
   --test-run            Don't make changes to the database
   --version             Show program's version number and exit.
   -v {0,1,2,3}, --verbosity {0,1,2,3}
@@ -330,8 +335,8 @@ matched for each record.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_run_etl [-h] [-s SOURCE] [--no-log] [--enable-sharding] [--track-subject-matching] [--abbreviated] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color]
-                                [--force-color] [--skip-checks]
+usage: manage.py chiron_run_etl [-h] [-s SOURCE] [--no-log] [--enable-sharding] [--track-subject-matching] [--abbreviated] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH]
+                                [--traceback] [--no-color] [--force-color] [--skip-checks]
                                 [dataset_id]
 
 Uses the Chiron data dictionary to populate a MongoDB database.
@@ -478,7 +483,8 @@ indexes per collection.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_create_indexes [-h] [--only-text] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+usage: manage.py chiron_create_indexes [-h] [--only-text] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+                                       [dataset_id]
 
 Creates MongoDB indexes on all collections
 
@@ -569,11 +575,11 @@ options:
 </section>
 <section id="data-caching">
 <h2>Data Caching<a class="headerlink" href="#data-caching" title="Permalink to this headline"></a></h2>
-<section id="chiron-cache-concept-stats">
-<h3>chiron_cache_concept_stats<a class="headerlink" href="#chiron-cache-concept-stats" title="Permalink to this headline"></a></h3>
+<section id="chiron-cache-concepts">
+<h3>chiron_cache_concepts<a class="headerlink" href="#chiron-cache-concepts" title="Permalink to this headline"></a></h3>
 <dl class="py class">
-<dt class="sig sig-object py" id="chiron.management.commands.chiron_cache_concept_stats.Command">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_cache_concept_stats.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_cache_concept_stats.Command" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_cache_concepts.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_cache_concepts.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_cache_concepts.Command" title="Permalink to this definition"></a></dt>
 <dd><p>Loops through all of the current published concepts and caches the stats for an empty cohort
 def.</p>
 <p>If using permission groups, will create concept cache entries for every
@@ -584,9 +590,12 @@ cache entries where n = count of permission groups)</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_cache_concept_stats [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_cache_concepts [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
 
 Primes the cache for all of the published concepts.
+
+positional arguments:
+  dataset_id            The dataset_id, or leave blank to select from a list
 
 options:
   -h, --help            show this help message and exit
@@ -616,9 +625,12 @@ those users as well.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_cache_reports [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_cache_reports [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
 
 Updates caches using existing data.
+
+positional arguments:
+  dataset_id            The dataset_id, or leave blank to select from a list
 
 options:
   -h, --help            show this help message and exit
@@ -634,20 +646,24 @@ options:
   --skip-checks         Skip system checks.
 </pre></div>
 </section>
-<section id="chiron-clear-all-caches">
-<h3>chiron_clear_all_caches<a class="headerlink" href="#chiron-clear-all-caches" title="Permalink to this headline"></a></h3>
+<section id="chiron-clear-caches">
+<h3>chiron_clear_caches<a class="headerlink" href="#chiron-clear-caches" title="Permalink to this headline"></a></h3>
 <dl class="py class">
-<dt class="sig sig-object py" id="chiron.management.commands.chiron_clear_all_caches.Command">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_clear_all_caches.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_clear_all_caches.Command" title="Permalink to this definition"></a></dt>
-<dd><p>Clears both caches of subject data (CachedConceptStats and CachedCohort)</p>
-<p>NOTE: These caches are already cleared every time chiron_run_etl is executed.</p>
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_clear_caches.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_clear_caches.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_clear_caches.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Clears both caches of subject data (CachedConceptStats and CachedCohort). Will prompt for
+a dataset or select &quot;all&quot; to clear caches for all datasets.</p>
+<p>NOTE: These caches are already cleared for a dataset every time chiron_run_etl is executed.</p>
 </dd></dl>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_clear_all_caches [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_clear_caches [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
 
 Clears all caches of calculated patient data.
+
+positional arguments:
+  dataset_id            The dataset_id, or leave blank to select from a list
 
 options:
   -h, --help            show this help message and exit

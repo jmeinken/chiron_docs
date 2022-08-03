@@ -48,15 +48,16 @@
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Chiron API</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Version Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#version-4-0-1-released-7-18-2022">Version 4.0.1 (released 7/18/2022)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-4-0-0-released-6-30-2022">Version 4.0.0 (released 6/30/2022)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-3-1-0-released-4-1-2022">Version 3.1.0 (released 4/1/2022)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-3-0-0-released-2-11-2022">Version 3.0.0 (released 2/11/2022)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-2-1-3-released-12-13-2021">Version 2.1.3 (released 12/13/2021)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-2-1-0-released-11-15-2021">Version 2.1.0 (released 11/15/2021)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-2-0-0-released-10-21-2021">Version 2.0.0 (released 10/21/2021)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-1-3-0-released-6-18-2021">Version 1.3.0 (released 6/18/2021)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-1-2-0-released-4-29-2021">Version 1.2.0 (released 4/29/2021)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-4-1-0-coming-soon">Version 4.1.0 (coming soon)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-4-0-1-released-7-18-22">Version 4.0.1 (released 7/18/22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-4-0-0-released-6-30-22">Version 4.0.0 (released 6/30/22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-1-0-released-4-1-22">Version 3.1.0 (released 4/1/22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3-0-0-released-2-11-22">Version 3.0.0 (released 2/11/22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-2-1-3-released-12-13-21">Version 2.1.3 (released 12/13/21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-2-1-0-released-11-15-21">Version 2.1.0 (released 11/15/21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-2-0-0-released-10-21-21">Version 2.0.0 (released 10/21/21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-1-3-0-released-6-18-21">Version 1.3.0 (released 6/18/21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-1-2-0-released-4-29-21">Version 1.2.0 (released 4/29/21)</a></li>
 </ul>
 </li>
 </ul>
@@ -87,14 +88,29 @@
              
   <section id="version-changelog">
 <h1>Version Changelog<a class="headerlink" href="#version-changelog" title="Permalink to this headline"></a></h1>
-<section id="version-4-0-1-released-7-18-2022">
-<h2>Version 4.0.1 (released 7/18/2022)<a class="headerlink" href="#version-4-0-1-released-7-18-2022" title="Permalink to this headline"></a></h2>
+<section id="version-4-1-0-coming-soon">
+<h2>Version 4.1.0 (coming soon)<a class="headerlink" href="#version-4-1-0-coming-soon" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Deprecated code and model fields related to the old processor registry were removed.</p></li>
+<li><p><a class="reference internal" href="utilities/admin_views.html#admin-views"><span class="std std-ref">Admin Views</span></a> in the built-in UI were cleaned up and added to documentation.</p></li>
+<li><p>Support for datasets (previously in beta) is now stable and ready for production use.</p>
+<ul class="simple">
+<li><p>Home Page shows active dataset and lets you change the active dataset.</p></li>
+<li><p>Each dataset allows you to define whether new users can access automatically and what their default permissions should be.</p></li>
+<li><p>In admin, validation to make sure FK relationships are only between objects belonging to the same dataset.</p></li>
+<li><p>New fields in dataset to override global settings such as CHIRON_SITE_TITLE and CHIRON_FOOTER_TEMPLATE - gives better ability to customize how the site looks for each dataset</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="version-4-0-1-released-7-18-22">
+<h2>Version 4.0.1 (released 7/18/22)<a class="headerlink" href="#version-4-0-1-released-7-18-22" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Patch for major bug causing all analysis view queries to fail.</p></li>
 </ol>
 </section>
-<section id="version-4-0-0-released-6-30-2022">
-<h2>Version 4.0.0 (released 6/30/2022)<a class="headerlink" href="#version-4-0-0-released-6-30-2022" title="Permalink to this headline"></a></h2>
+<section id="version-4-0-0-released-6-30-22">
+<h2>Version 4.0.0 (released 6/30/22)<a class="headerlink" href="#version-4-0-0-released-6-30-22" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p><em>(beta feature)</em> A single Chiron instance can now have multiple datasets. This is achieved using a Dataset
 model - each collection belongs to a Dataset.</p></li>
@@ -113,8 +129,8 @@ source list is a Python list with each entry defining a source collection to cre
 </li>
 </ol>
 </section>
-<section id="version-3-1-0-released-4-1-2022">
-<h2>Version 3.1.0 (released 4/1/2022)<a class="headerlink" href="#version-3-1-0-released-4-1-2022" title="Permalink to this headline"></a></h2>
+<section id="version-3-1-0-released-4-1-22">
+<h2>Version 3.1.0 (released 4/1/22)<a class="headerlink" href="#version-3-1-0-released-4-1-22" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>New <code class="docutils literal notranslate"><span class="pre">CollectionRelationship</span></code> table in the data dictionary allows you to define 1:many and many:many relationships between subcollections.</p>
 <ul class="simple">
@@ -125,8 +141,8 @@ source list is a Python list with each entry defining a source collection to cre
 <li><p>New API endpoint to get the Chiron version number.</p></li>
 </ol>
 </section>
-<section id="version-3-0-0-released-2-11-2022">
-<h2>Version 3.0.0 (released 2/11/2022)<a class="headerlink" href="#version-3-0-0-released-2-11-2022" title="Permalink to this headline"></a></h2>
+<section id="version-3-0-0-released-2-11-22">
+<h2>Version 3.0.0 (released 2/11/22)<a class="headerlink" href="#version-3-0-0-released-2-11-22" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Added Analysis view</p>
 <ul class="simple">
@@ -151,8 +167,8 @@ source list is a Python list with each entry defining a source collection to cre
 </li>
 </ol>
 </section>
-<section id="version-2-1-3-released-12-13-2021">
-<h2>Version 2.1.3 (released 12/13/2021)<a class="headerlink" href="#version-2-1-3-released-12-13-2021" title="Permalink to this headline"></a></h2>
+<section id="version-2-1-3-released-12-13-21">
+<h2>Version 2.1.3 (released 12/13/21)<a class="headerlink" href="#version-2-1-3-released-12-13-21" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Updated to work with Pymongo v4</p></li>
 <li><p>Some endpoints didn't allow you to pass a cohort_def/table_def, instead automatically using
@@ -160,8 +176,8 @@ the latest snapshot. Now all should work the same - you can either pass the defi
 latest snapshot will be assumed.</p></li>
 </ol>
 </section>
-<section id="version-2-1-0-released-11-15-2021">
-<h2>Version 2.1.0 (released 11/15/2021)<a class="headerlink" href="#version-2-1-0-released-11-15-2021" title="Permalink to this headline"></a></h2>
+<section id="version-2-1-0-released-11-15-21">
+<h2>Version 2.1.0 (released 11/15/21)<a class="headerlink" href="#version-2-1-0-released-11-15-21" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Some minor changes to the database schema. Django migrations will need to be run.</p></li>
 <li><p>Minor changes to cohort def:</p>
@@ -182,15 +198,15 @@ latest snapshot will be assumed.</p></li>
 </li>
 </ol>
 </section>
-<section id="version-2-0-0-released-10-21-2021">
-<h2>Version 2.0.0 (released 10/21/2021)<a class="headerlink" href="#version-2-0-0-released-10-21-2021" title="Permalink to this headline"></a></h2>
+<section id="version-2-0-0-released-10-21-21">
+<h2>Version 2.0.0 (released 10/21/21)<a class="headerlink" href="#version-2-0-0-released-10-21-21" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Major overhaul of the query engine. Instead of generating the full report in MongoDB, pulls the
 data it needs from MongoDB and does most of the report generation in Python.</p></li>
 </ol>
 </section>
-<section id="version-1-3-0-released-6-18-2021">
-<h2>Version 1.3.0 (released 6/18/2021)<a class="headerlink" href="#version-1-3-0-released-6-18-2021" title="Permalink to this headline"></a></h2>
+<section id="version-1-3-0-released-6-18-21">
+<h2>Version 1.3.0 (released 6/18/21)<a class="headerlink" href="#version-1-3-0-released-6-18-21" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>There is a new model Project, and Reports can have a project associated with them. Projects
 at this point are only used to help group reports.</p></li>
@@ -208,8 +224,8 @@ in. There is a new API endpoint for flagging reports.</p>
 <li><p>There is a small Django project with some dummy data for manual testing.</p></li>
 </ol>
 </section>
-<section id="version-1-2-0-released-4-29-2021">
-<h2>Version 1.2.0 (released 4/29/2021)<a class="headerlink" href="#version-1-2-0-released-4-29-2021" title="Permalink to this headline"></a></h2>
+<section id="version-1-2-0-released-4-29-21">
+<h2>Version 1.2.0 (released 4/29/21)<a class="headerlink" href="#version-1-2-0-released-4-29-21" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>In table definition entries, &quot;aggregation_style&quot; and &quot;aggregation_method&quot; are now &quot;aggregate&quot;
 (boolean) and &quot;aggregation_method&quot;.</p>

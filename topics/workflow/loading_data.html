@@ -47,7 +47,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installing.html">1. Install Chiron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setting_up_data_dictionary.html">2. Set Up the Data Dictionary</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Load data into MongoDB</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Load data into MongoDB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#partial-loading">Partial Loading</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="deploying_to_production.html">4. Deploy to Production</a></li>
 </ul>
 </li>
@@ -93,13 +96,26 @@ is defined in your Dataset table.</p>
 </div>
 <p>This command fully erases the existing data and reloads everything from scratch. If your system has
 multiple datasets you will be prompted to select one.</p>
-<p><strong>Partial Loading</strong></p>
+<section id="partial-loading">
+<h2>Partial Loading<a class="headerlink" href="#partial-loading" title="Permalink to this headline"></a></h2>
+<p><strong>Option 1:</strong> Exclude specific source lists from the ETL</p>
 <p>SourceCollections have an exclude_from_etl option. Set to True for the source collections you wish to skip and then run <code class="docutils literal notranslate"><span class="pre">chiron_run_etl</span></code> as usual. Any fields those SourceCollections load into will show as having no data.</p>
+<p><strong>Option 2:</strong> Load an abbreviated subset of data</p>
+<p>For quick testing, you can do an abbreviated run, which will load a small number of records from
+every source collection.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># abbreviated ETL</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_run_etl</span> <span class="o">--</span><span class="n">abbreviated</span>
+</pre></div>
+</div>
+<p>The settings CHIRON_ABBREVIATED_ETL_DEFAULT_RECORD_COUNT and CHIRON_ABBREVIATED_ETL_RECORD_COUNTS
+can be used to control how many records are loaded in an abbreviated run.</p>
+<p><strong>Option 3:</strong> Load a single source collection</p>
 <p>You can also load data from a single SourceCollection, but it doesn't always work correctly, so it's not recommended for production.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># good for a quick test, but not recommended for production systems</span>
 <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_run_etl</span> <span class="o">--</span><span class="n">source</span><span class="o">=</span><span class="n">my_source_collection_id</span>
 </pre></div>
 </div>
+</section>
 </section>
 
 
