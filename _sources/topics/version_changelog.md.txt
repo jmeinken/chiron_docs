@@ -1,7 +1,7 @@
 
 # Version Changelog
 
-## Version 4.1.0 (coming soon)
+## Version 4.1.0 (released 8/3/22)
 
 1. Deprecated code and model fields related to the old processor registry were removed.
 2. {ref}`admin-views` in the built-in UI were cleaned up and added to documentation.
@@ -10,6 +10,11 @@
     - Each dataset allows you to define whether new users can access automatically and what their default permissions should be.
     - In admin, validation to make sure FK relationships are only between objects belonging to the same dataset.
     - New fields in dataset to override global settings such as CHIRON_SITE_TITLE and CHIRON_FOOTER_TEMPLATE - gives better ability to customize how the site looks for each dataset
+   
+**Upgrade from 4.0.x**
+- Run django migrations `python manage.py migrate`
+- If you have custom processors, remove all references to ProcessorRegistryOld.
+
 
 
 ## Version 4.0.1 (released 7/18/22)

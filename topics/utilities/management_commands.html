@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Django Management Commands &mdash; Chiron 4.0.1 documentation</title>
+  <title>Django Management Commands &mdash; Chiron 4.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -141,8 +141,7 @@ rerun, it will update with new fields but ignore previously autocreated fields.<
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_autocreate_dd [-h] [--all] [--test-run] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
-                                      [source_list ...]
+usage: manage.py chiron_autocreate_dd [-h] [--all] [--test-run] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [source_list ...]
 
 Autocreates the data dictionary using autocreate lists
 
@@ -335,8 +334,8 @@ matched for each record.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_run_etl [-h] [-s SOURCE] [--no-log] [--enable-sharding] [--track-subject-matching] [--abbreviated] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH]
-                                [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_run_etl [-h] [-s SOURCE] [--no-log] [--enable-sharding] [--track-subject-matching] [--abbreviated] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color]
+                                [--force-color] [--skip-checks]
                                 [dataset_id]
 
 Uses the Chiron data dictionary to populate a MongoDB database.
@@ -483,8 +482,7 @@ indexes per collection.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_create_indexes [-h] [--only-text] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
-                                       [dataset_id]
+usage: manage.py chiron_create_indexes [-h] [--only-text] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
 
 Creates MongoDB indexes on all collections
 

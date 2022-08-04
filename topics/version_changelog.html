@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version Changelog &mdash; Chiron 4.0.1 documentation</title>
+  <title>Version Changelog &mdash; Chiron 4.1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -48,7 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Chiron API</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Version Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#version-4-1-0-coming-soon">Version 4.1.0 (coming soon)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-4-1-0-released-8-3-22">Version 4.1.0 (released 8/3/22)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-4-0-1-released-7-18-22">Version 4.0.1 (released 7/18/22)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-4-0-0-released-6-30-22">Version 4.0.0 (released 6/30/22)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-3-1-0-released-4-1-22">Version 3.1.0 (released 4/1/22)</a></li>
@@ -88,8 +88,8 @@
              
   <section id="version-changelog">
 <h1>Version Changelog<a class="headerlink" href="#version-changelog" title="Permalink to this headline"></a></h1>
-<section id="version-4-1-0-coming-soon">
-<h2>Version 4.1.0 (coming soon)<a class="headerlink" href="#version-4-1-0-coming-soon" title="Permalink to this headline"></a></h2>
+<section id="version-4-1-0-released-8-3-22">
+<h2>Version 4.1.0 (released 8/3/22)<a class="headerlink" href="#version-4-1-0-released-8-3-22" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Deprecated code and model fields related to the old processor registry were removed.</p></li>
 <li><p><a class="reference internal" href="utilities/admin_views.html#admin-views"><span class="std std-ref">Admin Views</span></a> in the built-in UI were cleaned up and added to documentation.</p></li>
@@ -102,6 +102,11 @@
 </ul>
 </li>
 </ol>
+<p><strong>Upgrade from 4.0.x</strong></p>
+<ul class="simple">
+<li><p>Run django migrations <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">migrate</span></code></p></li>
+<li><p>If you have custom processors, remove all references to ProcessorRegistryOld.</p></li>
+</ul>
 </section>
 <section id="version-4-0-1-released-7-18-22">
 <h2>Version 4.0.1 (released 7/18/22)<a class="headerlink" href="#version-4-0-1-released-7-18-22" title="Permalink to this headline"></a></h2>
