@@ -1,6 +1,22 @@
 
 # Version Changelog
 
+## Develop branch
+
+1. Added data issue tracking for during the ETL. Problems with data (ex. str input for a date
+   concept can't be parsed to a date) will generally be added to the log info instead of raising
+   an error and stopping the whole ETL process. Go to the "ETL Logs" backend view in the built-in
+   UI to browse data issues.
+
+**Upgrade from 4.1.x**
+- Changes to abstract ETL processor class will have to be applied to any custom ETL processors
+    - method `pull_record_data_from_source()` was renamed to `pull_concept_value_from_record()`
+    - method `cast()` was renamed to `_cast()`
+    - method `convert_data_list_to_set()` was renamed to `_convert_data_list_to_set()`
+    - `__init__()` method should initialize warnings `self.warnings=[]`
+- new setting `chiron_settings.CHIRON_AGG_DELIMITER`
+    - no action required but you can set this if you want something besides the default `; `
+
 ## Version 4.1.0 (released 8/3/22)
 
 1. Deprecated code and model fields related to the old processor registry were removed.

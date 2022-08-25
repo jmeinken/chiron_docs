@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Processors and Concept Handlers &mdash; Chiron 4.1.0 documentation</title>
+  <title>Custom Processors and Concept Handlers &mdash; Chiron 4.1.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -153,7 +153,7 @@ associated with any concept using the field <code class="docutils literal notran
 </ul>
 <p><strong>Generating a calculated field while loading data</strong></p>
 <ul class="simple">
-<li><p>Create a custom ETL processor. You will do the calculation in the <code class="docutils literal notranslate"><span class="pre">pull_record_data_from_source()</span></code> method.</p></li>
+<li><p>Create a custom ETL processor. You will do the calculation in the <code class="docutils literal notranslate"><span class="pre">pull_concept_value_from_record()</span></code> method.</p></li>
 <li><p>Create a custom concept handler that extends a similar built-in concept handler. Use the <code class="docutils literal notranslate"><span class="pre">set_etl_processor()</span></code> method to add your custom ETL processor to it.</p></li>
 <li><p>Register your new concept handler with the source collection processor it will be used with.</p></li>
 </ul>
@@ -342,8 +342,8 @@ MongoDB.</p>
 <p>It is associated with a Concept in the data dictionary using the <code class="docutils literal notranslate"><span class="pre">Concept.etl_processor</span></code>
 field.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor.pull_record_data_from_source">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pull_record_data_from_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.pull_record_data_from_source" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor.pull_concept_value_from_record">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pull_concept_value_from_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.pull_concept_value_from_record" title="Permalink to this definition"></a></dt>
 <dd><p>Retrieves or calculates the value to store in MongoDB from a source collection record.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -359,15 +359,29 @@ field.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor.convert_data_list_to_set">
-<span class="sig-name descname"><span class="pre">convert_data_list_to_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.convert_data_list_to_set" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor.pull_concept_value_from_record_with_warnings">
+<span class="sig-name descname"><span class="pre">pull_concept_value_from_record_with_warnings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.pull_concept_value_from_record_with_warnings" title="Permalink to this definition"></a></dt>
+<dd><p>Wrapper for <cite>pull_concept_value_from_record()</cite>. For custom ETL processors, you shouldn't
+need to modify this method.</p>
+<p>If the system is logging warnings about data issues, this method will be called instead
+of pull_concept_value_from_record.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor._add_warning">
+<span class="sig-name descname"><span class="pre">_add_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warning</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor._add_warning" title="Permalink to this definition"></a></dt>
+<dd><p>Pass the relevant input value and the warning about it</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor._convert_data_list_to_set">
+<span class="sig-name descname"><span class="pre">_convert_data_list_to_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor._convert_data_list_to_set" title="Permalink to this definition"></a></dt>
 <dd><p>UTILITY FUNCTION
 Returns only unique, non-null values from provided data_list.</p>
 <p>Chiron allows multiple values to be stored in a single concept entry as a list.
 This is useful when you have multiple values for a concept, but don't want
 to create a whole new Collection for that one concept. Typically it's better to store the
-unique set of values rather than a repetitive
-list.</p>
+unique set of values rather than a repetitive list.</p>
 <p>IN: ['Hispanic', 'Caucasian', 'Caucasian', None, 'Caucasian', None]
 OUT: ['Hispanic', 'Caucasian']</p>
 <p>IN: ['Caucasian', None]
@@ -381,8 +395,8 @@ OUT: None</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor.cast">
-<span class="sig-name descname"><span class="pre">cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.cast" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor._cast">
+<span class="sig-name descname"><span class="pre">_cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor._cast" title="Permalink to this definition"></a></dt>
 <dd><p>UTILITY FUNCTION
 Useful for converting data types of input values when necessary.</p>
 <p>There are two relevant object properties:

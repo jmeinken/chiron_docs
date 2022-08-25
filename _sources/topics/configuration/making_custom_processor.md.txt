@@ -32,7 +32,7 @@ Your custom processor can extend any of the chiron abstract processors in `chiro
 - If your custor processor returns records as dictionaries, it can be registered and used with any of the built-in concept handlers that work with dictionaries.
 
 **Generating a calculated field while loading data**
-- Create a custom ETL processor. You will do the calculation in the `pull_record_data_from_source()` method.
+- Create a custom ETL processor. You will do the calculation in the `pull_concept_value_from_record()` method.
 - Create a custom concept handler that extends a similar built-in concept handler. Use the `set_etl_processor()` method to add your custom ETL processor to it.
 - Register your new concept handler with the source collection processor it will be used with.
 

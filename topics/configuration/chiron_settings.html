@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chiron Global Settings &mdash; Chiron 4.1.0 documentation</title>
+  <title>Chiron Global Settings &mdash; Chiron 4.1.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -151,6 +151,12 @@ by color:</p>
 <dd><p>Include the analysis view on the built-in UI</p>
 </dd></dl>
 
+<dl class="py data">
+<dt class="sig sig-object py" id="chiron.chiron_settings.CHIRON_AGG_DELIMITER">
+<span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_AGG_DELIMITER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">';</span> <span class="pre">'</span></em><a class="headerlink" href="#chiron.chiron_settings.CHIRON_AGG_DELIMITER" title="Permalink to this definition"></a></dt>
+<dd><p>When aggregating result columns, use this delimiter for separating the values.</p>
+</dd></dl>
+
 </section>
 <section id="data-dictionary-settings">
 <h2>Data Dictionary Settings<a class="headerlink" href="#data-dictionary-settings" title="Permalink to this headline"></a></h2>
@@ -291,7 +297,7 @@ that was loaded in a previous step). Creation of new subjects can still happen
 (assuming <cite>if_no_match=&quot;create&quot;</cite>) but will not count toward the 100.</p>
 </dd>
 <dt class="field-even">(&quot;match_strict&quot;, n)</dt>
-<dd class="field-even"><p>Same as match full, but will not bother to create new subjects even when 
+<dd class="field-even"><p>Same as match full, but will not bother to create new subjects even when
 <cite>if_no_match=&quot;create&quot;</cite>.</p>
 </dd>
 </dl>
