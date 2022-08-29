@@ -3,12 +3,23 @@
 
 ## Develop branch
 
+**New features**
+- no changes from 4.2.0
+
+**Upgrade from 4.2.x**
+- no changes from 4.2.0
+    
+## Version 4.2.0 (released 8/29/2022)
+
+**New features**
 1. Added data issue tracking for during the ETL. Problems with data (ex. str input for a date
    concept can't be parsed to a date) will generally be added to the log info instead of raising
    an error and stopping the whole ETL process. Go to the "ETL Logs" backend view in the built-in
    UI to browse data issues.
+2. Can customize the delimiter for aggregated field in reports.
 
 **Upgrade from 4.1.x**
+- Need to run database migrations.
 - Changes to abstract ETL processor class will have to be applied to any custom ETL processors
     - method `pull_record_data_from_source()` was renamed to `pull_concept_value_from_record()`
     - method `cast()` was renamed to `_cast()`
