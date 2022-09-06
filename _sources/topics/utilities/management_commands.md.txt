@@ -66,6 +66,28 @@ python manage.py command_name --help
 .. djcommand:: chiron.management.commands.chiron_restore_dd
 ```
 
+(cmd-chiron-backup-dataset)=
+### chiron_backup_dataset
+
+```{eval-rst}
+.. autoclass:: chiron.management.commands.chiron_backup_dataset.Command
+```
+
+```{eval-rst}
+.. djcommand:: chiron.management.commands.chiron_backup_dataset
+```
+
+(cmd-chiron-restore-dataset)=
+### chiron_restore_dataset
+
+```{eval-rst}
+.. autoclass:: chiron.management.commands.chiron_restore_dataset.Command
+```
+
+```{eval-rst}
+.. djcommand:: chiron.management.commands.chiron_restore_dataset
+```
+
 ## Load data to MongoDB
 
 ### chiron_run_etl

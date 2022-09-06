@@ -57,6 +57,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#backup-restore-the-data-dictionary">Backup/restore the data dictionary</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#chiron-backup-dd">chiron_backup_dd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#chiron-restore-dd">chiron_restore_dd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-backup-dataset">chiron_backup_dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chiron-restore-dataset">chiron_restore_dataset</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#load-data-to-mongodb">Load data to MongoDB</a><ul>
@@ -141,8 +143,7 @@ rerun, it will update with new fields but ignore previously autocreated fields.<
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_autocreate_dd [-h] [--all] [--test-run] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
-                                      [source_list ...]
+usage: manage.py chiron_autocreate_dd [-h] [--all] [--test-run] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [source_list ...]
 
 Autocreates the data dictionary using autocreate lists
 
@@ -219,7 +220,7 @@ usage: manage.py chiron_drop_dataset [-h] [--version] [-v {0,1,2,3}] [--settings
 Drops a single dataset and all related data from the data dictionary.
 
 positional arguments:
-  dataset_id            The dataset id, or 'all' to run all, or leave blank to select from a list
+  dataset_id            The dataset (either Dataset.id integer or Dataset.unique_id slug), or 'all' to run all, or leave blank to select from a list
 
 options:
   -h, --help            show this help message and exit
@@ -243,20 +244,22 @@ options:
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.management.commands.chiron_backup_dd.Command">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_backup_dd.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_backup_dd.Command" title="Permalink to this definition"></a></dt>
-<dd><p>Backs up the chiron data dictionary to the filepath specified in
-<cite>chiron_settings.CHIRON_DATA_DICT_FIXTURE_PATH</cite>.</p>
+<dd><p>Backs up the chiron data dictionary to the directory specified in
+<cite>chiron_settings.CHIRON_DATA_DICT_BACKUP_DIR</cite> with name full_dd_backup.json.</p>
 <p>PermissionGroups are included in the backup, but User and ChironUser (user permission
 settings) models are not. Log and cache models are also not backed up.</p>
 </dd></dl>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_backup_dd [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_backup_dd [-h] [--backup-dir BACKUP_DIR] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
 
 Backs up the chiron data dictionary.
 
 options:
   -h, --help            show this help message and exit
+  --backup-dir BACKUP_DIR
+                        Specify the dir loc of your `full_dd.json` file if different from settings.CHIRON_DATA_DICT_BACKUP_DIR
   --version             Show program's version number and exit.
   -v {0,1,2,3}, --verbosity {0,1,2,3}
                         Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
@@ -275,19 +278,110 @@ options:
 <dt class="sig sig-object py" id="chiron.management.commands.chiron_restore_dd.Command">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_restore_dd.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_restore_dd.Command" title="Permalink to this definition"></a></dt>
 <dd><p>Truncates and reloads a data dictionary fixture that was backed up using the <cite>chiron_backup_dd</cite>
-command. It will look for the fixture in <cite>chiron_settings.CHIRON_DATA_DICT_FIXTURE_PATH</cite>.</p>
+command. It will look for the fixture named <cite>full_dd.json</cite> in
+<cite>chiron_settings.CHIRON_DATA_DICT_BACKUP_DIR</cite> (default is <cite>chiron_config/backups</cite>).</p>
 <p>Links between ChironUser and PermissionGroup will be preserved as long the updated data
 dictionary contains a permission group with the same name.</p>
 </dd></dl>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_restore_dd [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_restore_dd [-h] [--backup-dir BACKUP_DIR] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
 
 Reloads the data dictionary from a Django fixture
 
 options:
   -h, --help            show this help message and exit
+  --backup-dir BACKUP_DIR
+                        Specify the dir loc of your file if different from settings.CHIRON_DATA_DICT_BACKUP_DIR
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-backup-dataset">
+<span id="cmd-chiron-backup-dataset"></span><h3>chiron_backup_dataset<a class="headerlink" href="#chiron-backup-dataset" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_backup_dataset.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_backup_dataset.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_backup_dataset.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Backs up the chiron data dictionary for a single dataset to a JSON file.</p>
+<p>PermissionGroups are included in the backup, but User and ChironUser (user permission
+settings) models are not. Log and cache models are also not backed up.</p>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_backup_dataset [-h] [--filename FILENAME] [--backup-dir BACKUP_DIR] [--overwrite] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]
+                                       [--skip-checks]
+                                       [dataset_id]
+
+Backs up the chiron data dictionary for a dataset to a JSON file.
+
+positional arguments:
+  dataset_id            The dataset id, or 'all' to run all, or leave blank to select from a list
+
+options:
+  -h, --help            show this help message and exit
+  --filename FILENAME   Specify a file name to use (default is '{Dataset.unique_id}.json')
+  --backup-dir BACKUP_DIR
+                        Specify the dir loc of your file if different from settings.CHIRON_DATA_DICT_BACKUP_DIR
+  --overwrite           Overwrite backup file if one with the same name already exists.
+  --version             Show program's version number and exit.
+  -v {0,1,2,3}, --verbosity {0,1,2,3}
+                        Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
+  --settings SETTINGS   The Python path to a settings module, e.g. "myproject.settings.main". If this isn't provided, the DJANGO_SETTINGS_MODULE environment variable will be used.
+  --pythonpath PYTHONPATH
+                        A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".
+  --traceback           Raise on CommandError exceptions.
+  --no-color            Don't colorize the command output.
+  --force-color         Force colorization of the command output.
+  --skip-checks         Skip system checks.
+</pre></div>
+</section>
+<section id="chiron-restore-dataset">
+<span id="cmd-chiron-restore-dataset"></span><h3>chiron_restore_dataset<a class="headerlink" href="#chiron-restore-dataset" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.management.commands.chiron_restore_dataset.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_restore_dataset.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_restore_dataset.Command" title="Permalink to this definition"></a></dt>
+<dd><p>Restores a json data file saved using chiron_backup_dataset. Provide the name of the file
+to load.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># overwrite existing dataset &#39;foo&#39; from backup file</span>
+python manage.py chiron_restore_dataset foo.json --overwrite
+
+<span class="c1"># duplicate existing dataset &#39;foo&#39; as new dataset &#39;bar&#39;</span>
+python manage.py chiron_backup_dataset foo
+python manage.py chiron_restore_dataset foo.json --unique-id<span class="o">=</span>bar --handle-name-conflicts
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="admonition">
+<pre>
+usage: manage.py chiron_restore_dataset [-h] [--unique-id UNIQUE_ID] [--backup-dir BACKUP_DIR] [--handle-name-conflicts] [--overwrite] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback]
+                                        [--no-color] [--force-color] [--skip-checks]
+                                        filename
+
+Reloads the data dictionary for a dataset from a JSON file
+
+positional arguments:
+  filename              Provide the name of the file in chiron_config/backups/
+
+options:
+  -h, --help            show this help message and exit
+  --unique-id UNIQUE_ID
+                        Specify the unique_id to use for this dataset if different from the file name
+  --backup-dir BACKUP_DIR
+                        Specify the dir loc of your file if different from settings.CHIRON_DATA_DICT_BACKUP_DIR
+  --handle-name-conflicts
+                        Concept.permanent_id must be unique across the entire Chiron instance.Set this flag to modify conflicting names instead of raising an error.
+  --overwrite           If a dataset with the same name already exists, truncate and reload the data dictionary for that dataset.
   --version             Show program's version number and exit.
   -v {0,1,2,3}, --verbosity {0,1,2,3}
                         Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output
@@ -335,8 +429,8 @@ matched for each record.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_run_etl [-h] [-s SOURCE] [--no-log] [--enable-sharding] [--track-subject-matching] [--abbreviated] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH]
-                                [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_run_etl [-h] [-s SOURCE] [--no-log] [--enable-sharding] [--track-subject-matching] [--abbreviated] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color]
+                                [--force-color] [--skip-checks]
                                 [dataset_id]
 
 Uses the Chiron data dictionary to populate a MongoDB database.
@@ -483,8 +577,7 @@ indexes per collection.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_create_indexes [-h] [--only-text] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
-                                       [dataset_id]
+usage: manage.py chiron_create_indexes [-h] [--only-text] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
 
 Creates MongoDB indexes on all collections
 

@@ -4,10 +4,15 @@
 ## Develop branch
 
 **New features**
-- no changes from 4.2.0
+- new management commands {ref}`cmd-chiron-backup-dataset` and {ref}`cmd-chiron-restore-dataset`
 
 **Upgrade from 4.2.x**
-- no changes from 4.2.0
+- The setting CHIRON_DATA_DICT_FIXTURE_PATH has been removed. Please use CHIRON_DATA_DICT_BACKUP_DIR
+  instead. All backups from chiron_backup_dd and chiron_backup_dataset will go in this directory. The
+  default path is `chiron_config/backups/`.
+    - If you have your old fixture file at `chiron_config/fixtures.json`, you can move it to
+      `chiron_config/backups/full_dd.json`.
+  
     
 ## Version 4.2.0 (released 8/29/2022)
 

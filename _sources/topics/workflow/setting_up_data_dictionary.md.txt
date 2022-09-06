@@ -28,20 +28,20 @@ A source list has the following structure:
 
 ```python
 
-from chiron.autocreate.csv_autocreate import CsvFileAutocreate
-from chiron.autocreate.django_autocreate import DjangoOrmAutocreate
+from chiron.data_dictionary.csv_autocreate import CsvFileAutocreate
+from chiron.data_dictionary.django_autocreate import DjangoOrmAutocreate
 
 my_source_list = {
 
     # Specify the autocreate class to use, either CsvFileAutocreate or DjangoOrmAutocreate
     "autocreate_tool": CsvFileAutocreate,
-    
+
     # optionally set default values for this list, they will automatically be added to 
     # each item in the list unless that item specfies a different value
     "defaults": {
         # any arguments you want to use for all list entries
     },
-    
+
     # create one entry for each Django Model or CSV file you want to import
     "list": [
         {

@@ -94,11 +94,18 @@
 <h2>Develop branch<a class="headerlink" href="#develop-branch" title="Permalink to this headline"></a></h2>
 <p><strong>New features</strong></p>
 <ul class="simple">
-<li><p>no changes from 4.2.0</p></li>
+<li><p>new management commands <a class="reference internal" href="utilities/management_commands.html#cmd-chiron-backup-dataset"><span class="std std-ref">chiron_backup_dataset</span></a> and <a class="reference internal" href="utilities/management_commands.html#cmd-chiron-restore-dataset"><span class="std std-ref">chiron_restore_dataset</span></a></p></li>
 </ul>
 <p><strong>Upgrade from 4.2.x</strong></p>
 <ul class="simple">
-<li><p>no changes from 4.2.0</p></li>
+<li><p>The setting CHIRON_DATA_DICT_FIXTURE_PATH has been removed. Please use CHIRON_DATA_DICT_BACKUP_DIR
+instead. All backups from chiron_backup_dd and chiron_backup_dataset will go in this directory. The
+default path is <code class="docutils literal notranslate"><span class="pre">chiron_config/backups/</span></code>.</p>
+<ul>
+<li><p>If you have your old fixture file at <code class="docutils literal notranslate"><span class="pre">chiron_config/fixtures.json</span></code>, you can move it to
+<code class="docutils literal notranslate"><span class="pre">chiron_config/backups/full_dd.json</span></code>.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="version-4-2-0-released-8-29-2022">
