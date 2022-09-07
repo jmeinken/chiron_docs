@@ -12,6 +12,20 @@
   default path is `chiron_config/backups/`.
     - If you have your old fixture file at `chiron_config/fixtures.json`, you can move it to
       `chiron_config/backups/full_dd.json`.
+- The package `chiron.autocreate` was renamed to `chiron.data_dictionary`. If you use the
+  `chiron_autocreate_dd` feature, you probably have references to this in your `chiron_config`
+  that will need to be updated:
+  
+```python
+# old broken references
+from chiron.autocreate.csv_autocreate import CsvFileAutocreate
+from chiron.autocreate.django_autocreate import DjangoOrmAutocreate
+
+# update to
+from chiron.data_dictionary.csv_autocreate import CsvFileAutocreate
+from chiron.data_dictionary.django_autocreate import DjangoOrmAutocreate
+```
+
   
     
 ## Version 4.2.0 (released 8/29/2022)

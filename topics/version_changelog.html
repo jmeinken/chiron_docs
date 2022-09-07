@@ -106,7 +106,19 @@ default path is <code class="docutils literal notranslate"><span class="pre">chi
 <code class="docutils literal notranslate"><span class="pre">chiron_config/backups/full_dd.json</span></code>.</p></li>
 </ul>
 </li>
+<li><p>The package <code class="docutils literal notranslate"><span class="pre">chiron.autocreate</span></code> was renamed to <code class="docutils literal notranslate"><span class="pre">chiron.data_dictionary</span></code>. If you use the
+<code class="docutils literal notranslate"><span class="pre">chiron_autocreate_dd</span></code> feature, you probably have references to this in your <code class="docutils literal notranslate"><span class="pre">chiron_config</span></code>
+that will need to be updated:</p></li>
 </ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># old broken references</span>
+<span class="kn">from</span> <span class="nn">chiron.autocreate.csv_autocreate</span> <span class="kn">import</span> <span class="n">CsvFileAutocreate</span>
+<span class="kn">from</span> <span class="nn">chiron.autocreate.django_autocreate</span> <span class="kn">import</span> <span class="n">DjangoOrmAutocreate</span>
+
+<span class="c1"># update to</span>
+<span class="kn">from</span> <span class="nn">chiron.data_dictionary.csv_autocreate</span> <span class="kn">import</span> <span class="n">CsvFileAutocreate</span>
+<span class="kn">from</span> <span class="nn">chiron.data_dictionary.django_autocreate</span> <span class="kn">import</span> <span class="n">DjangoOrmAutocreate</span>
+</pre></div>
+</div>
 </section>
 <section id="version-4-2-0-released-8-29-2022">
 <h2>Version 4.2.0 (released 8/29/2022)<a class="headerlink" href="#version-4-2-0-released-8-29-2022" title="Permalink to this headline"></a></h2>
