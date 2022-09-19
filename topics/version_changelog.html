@@ -98,6 +98,9 @@
 </ul>
 <p><strong>Upgrade from 4.2.x</strong></p>
 <ul class="simple">
+<li><p>The setting CHIRON_RUNNING_ETL has been removed. Management commands involved with the ETL
+process will use a singleton for the MongoDB client (to avoid 30 minute inactivity timeout
+error), and any other commands will start a new client each time.</p></li>
 <li><p>The setting CHIRON_DATA_DICT_FIXTURE_PATH has been removed. Please use CHIRON_DATA_DICT_BACKUP_DIR
 instead. All backups from chiron_backup_dd and chiron_backup_dataset will go in this directory. The
 default path is <code class="docutils literal notranslate"><span class="pre">chiron_config/backups/</span></code>.</p>

@@ -7,6 +7,9 @@
 - new management commands {ref}`cmd-chiron-backup-dataset` and {ref}`cmd-chiron-restore-dataset`
 
 **Upgrade from 4.2.x**
+- The setting CHIRON_RUNNING_ETL has been removed. Management commands involved with the ETL
+    process will use a singleton for the MongoDB client (to avoid 30 minute inactivity timeout
+    error), and any other commands will start a new client each time.
 - The setting CHIRON_DATA_DICT_FIXTURE_PATH has been removed. Please use CHIRON_DATA_DICT_BACKUP_DIR
   instead. All backups from chiron_backup_dd and chiron_backup_dataset will go in this directory. The
   default path is `chiron_config/backups/`.
