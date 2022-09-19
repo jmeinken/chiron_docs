@@ -7,6 +7,8 @@
 - new management commands {ref}`cmd-chiron-backup-dataset` and {ref}`cmd-chiron-restore-dataset`
 
 **Upgrade from 4.2.x**
+- There were changes to the static files. You should rerun `python manage.py collectstatic` in
+  your production environment. 
 - The setting CHIRON_RUNNING_ETL has been removed. Management commands involved with the ETL
     process will use a singleton for the MongoDB client (to avoid 30 minute inactivity timeout
     error), and any other commands will start a new client each time.
