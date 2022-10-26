@@ -35,5 +35,11 @@ support for MongoDB, so Chiron uses the pymongo library for connecting to MongoD
 The Chiron app handles populating and querying the MongoDB database, 
 so you do not need to know much about MongoDB to get started.
 
+Using DocumentDB in Place of MongoDB
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As of Version 4.3.0, Chiron offers full support for DocumentDB. In our tests, MongoDB gives
+slightly better performance than DocumentDB.
+
 
 

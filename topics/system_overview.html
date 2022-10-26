@@ -44,7 +44,10 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">System Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#code-architecture">Code Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#database-architecture">Database Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#database-architecture">Database Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-documentdb-in-place-of-mongodb">Using DocumentDB in Place of MongoDB</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict.html">Understanding the Data Dictionary</a></li>
@@ -104,6 +107,11 @@ in Django models, it must first be pulled into MongoDB before Chiron can present
 support for MongoDB, so Chiron uses the pymongo library for connecting to MongoDB.
 The Chiron app handles populating and querying the MongoDB database,
 so you do not need to know much about MongoDB to get started.</p>
+<section id="using-documentdb-in-place-of-mongodb">
+<h3>Using DocumentDB in Place of MongoDB<a class="headerlink" href="#using-documentdb-in-place-of-mongodb" title="Permalink to this headline"></a></h3>
+<p>As of Version 4.3.0, Chiron offers full support for DocumentDB. In our tests, MongoDB gives
+slightly better performance than DocumentDB.</p>
+</section>
 </section>
 </section>
 
