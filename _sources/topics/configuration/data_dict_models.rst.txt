@@ -46,10 +46,10 @@ CollectionRelationship Model
       get_fk_collection_name
 
 
-SourceCollection Model
+Source Model
 ----------------------
 
-.. autoclass:: chiron.models.SourceCollection
+.. autoclass:: chiron.models.Source
    :noindex:
    :members:
    :exclude-members: get_processor, DoesNotExist, MultipleObjectsReturned
@@ -62,10 +62,10 @@ Processor Model
    :members:
    :exclude-members: instantiate, is_custom, DoesNotExist,MultipleObjectsReturned
 
-SourceCollectionProcessorArgument Model
+SourceProcessorArg Model
 ---------------------------------------
 
-.. autoclass:: chiron.models.SourceCollectionProcessorArgument
+.. autoclass:: chiron.models.SourceProcessorArg
    :noindex:
    :members:
    :exclude-members: DoesNotExist,MultipleObjectsReturned

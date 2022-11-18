@@ -1,6 +1,25 @@
 
 # Version Changelog
 
+## develop-5 branch (will become version 5.0.0)
+
+**Upgrade from 4.3.X**
+- Need to run database migrations
+	- Some source processor arg names will be automatically changed in this database migration. This is unlikely to cause problems, but just FYI:
+		- `root_collection_id_field` -> `subject_matching_source_id_field`
+		- `subject_id_delimiter` -> `subject_matching_source_id_delimiter`
+- If you keep a JSON backup of your data dictionary:
+    - rerun management commands `chiron_backup_dd` and/or `chiron_backup_dataset` to create backup(s) on the latest data schema
+- If you have any custom ETL processors:
+	- a variety of internal changes were made to ETL processors
+- If you have any custom source collection processors:
+	- The name `SourceCollection` has been changed to `Source` everywhere
+	- `chiron.processors.abstract.SourceCollectionProcessor` was moved to `chiron.processors.abstract.SourceProcessor`
+	- a variety of internal changes were made to SourceProcessors
+	- there are two new optional methods to help with tracking subject matching:
+		- `get_subject_id_fields_used_for_matching()`
+		- `get_subject_id_fields_added()`
+
 ## develop branch
 
 *no breaking changes since version 4.3*
@@ -90,7 +109,7 @@ from chiron.data_dictionary.django_autocreate import DjangoOrmAutocreate
     defines the concept handler to use.
     - If you have custom processors, you have to upgrade to the new way to register them. See new notes on {ref}`registering-custom-processors`.
 3. Autocreating the data dictionary now uses source lists instead of modeltree text files. A
-    source list is a Python list with each entry defining a source collection to create.
+    source list is a Python list with each entry defining a source to create.
     - See {ref}`autocreate-the-data-dictionary`
    
 ## Version 3.1.0 (released 4/1/22)

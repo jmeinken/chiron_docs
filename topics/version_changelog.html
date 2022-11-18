@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version Changelog &mdash; Chiron 4.2.0 documentation</title>
+  <title>Version Changelog &mdash; Chiron 4.3.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -48,6 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Chiron API</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Version Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#develop-5-branch-will-become-version-5-0-0">develop-5 branch (will become version 5.0.0)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#develop-branch">develop branch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-4-3-0-released-10-27-2022">Version 4.3.0 (released 10/27/2022)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-4-2-0-released-8-29-2022">Version 4.2.0 (released 8/29/2022)</a></li>
@@ -91,6 +92,45 @@
              
   <section id="version-changelog">
 <h1>Version Changelog<a class="headerlink" href="#version-changelog" title="Permalink to this headline"></a></h1>
+<section id="develop-5-branch-will-become-version-5-0-0">
+<h2>develop-5 branch (will become version 5.0.0)<a class="headerlink" href="#develop-5-branch-will-become-version-5-0-0" title="Permalink to this headline"></a></h2>
+<p><strong>Upgrade from 4.3.X</strong></p>
+<ul class="simple">
+<li><p>Need to run database migrations</p>
+<ul>
+<li><p>Some source processor arg names will be automatically changed in this database migration. This is unlikely to cause problems, but just FYI:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">root_collection_id_field</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">subject_matching_source_id_field</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subject_id_delimiter</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">subject_matching_source_id_delimiter</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>If you keep a JSON backup of your data dictionary:</p>
+<ul>
+<li><p>rerun management commands <code class="docutils literal notranslate"><span class="pre">chiron_backup_dd</span></code> and/or <code class="docutils literal notranslate"><span class="pre">chiron_backup_dataset</span></code> to create backup(s) on the latest data schema</p></li>
+</ul>
+</li>
+<li><p>If you have any custom ETL processors:</p>
+<ul>
+<li><p>a variety of internal changes were made to ETL processors</p></li>
+</ul>
+</li>
+<li><p>If you have any custom source collection processors:</p>
+<ul>
+<li><p>The name <code class="docutils literal notranslate"><span class="pre">SourceCollection</span></code> has been changed to <code class="docutils literal notranslate"><span class="pre">Source</span></code> everywhere</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chiron.processors.abstract.SourceCollectionProcessor</span></code> was moved to <code class="docutils literal notranslate"><span class="pre">chiron.processors.abstract.SourceProcessor</span></code></p></li>
+<li><p>a variety of internal changes were made to SourceProcessors</p></li>
+<li><p>there are two new optional methods to help with tracking subject matching:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_subject_id_fields_used_for_matching()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_subject_id_fields_added()</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <section id="develop-branch">
 <h2>develop branch<a class="headerlink" href="#develop-branch" title="Permalink to this headline"></a></h2>
 <p><em>no breaking changes since version 4.3</em></p>
@@ -204,7 +244,7 @@ defines the concept handler to use.</p>
 </ul>
 </li>
 <li><p>Autocreating the data dictionary now uses source lists instead of modeltree text files. A
-source list is a Python list with each entry defining a source collection to create.</p>
+source list is a Python list with each entry defining a source to create.</p>
 <ul class="simple">
 <li><p>See <a class="reference internal" href="workflow/setting_up_data_dictionary.html#autocreate-the-data-dictionary"><span class="std std-ref">Autocreate the Data Dictionary</span></a></p></li>
 </ul>

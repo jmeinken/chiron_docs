@@ -18,7 +18,7 @@ simpler to change the behavior or data type of a concept in the data dictionary.
 Dictionary Concept Handlers
 ---------------------------
 
-Dictionary concept handlers will work with source collections that return records as
+Dictionary concept handlers will work with sources that return records as
 Python dictionaries.
 
 .. automodule:: chiron.processors.concept_handlers.dict_concept_handlers
@@ -30,7 +30,7 @@ Python dictionaries.
 Django Concept Handlers
 -----------------------
 
-Django concept handlers will work with source collections that return records as a
+Django concept handlers will work with sources that return records as a
 Django queryset.
 
 .. automodule:: chiron.processors.concept_handlers.django_concept_handlers

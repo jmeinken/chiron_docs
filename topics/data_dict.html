@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Understanding the Data Dictionary &mdash; Chiron 4.2.0 documentation</title>
+  <title>Understanding the Data Dictionary &mdash; Chiron 4.3.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -124,25 +124,25 @@
 <p>There is always a 1:many relationship between your subject collection and each sub-collection.</p>
 <p><strong>Concepts</strong></p>
 <p>Each collection can have any number of concepts. The subject collection could have concepts like birthdate and gender. A biospecimen collection could have concepts like collection date and sample amount.</p>
-<p><strong>SourceCollections</strong></p>
-<p>A SourceCollection is a dataset to load into Chiron. It can be any Python iterable that returns records that correspond to the collection it's being loaded into.</p>
-<p>For example, a SubjectDemographics table in a database could be a SourceCollection for the Subject collection. A CSV file with one row per patient medication could be a SourceCollection for a Medication collection.</p>
-<p>Chiron manages the ETL process from your SourceCollections into MongoDB. There's built-in support for data coming from a database through the Django ORM or from CSV files. If you have data coming from other types of sources, you can write your own SourceCollection processor class to enable Chiron to consume it.</p>
+<p><strong>Sources</strong></p>
+<p>A Source is a dataset to load into Chiron. It can be any Python iterable that returns records that correspond to the collection it's being loaded into.</p>
+<p>For example, a SubjectDemographics table in a database could be a Source for the Subject collection. A CSV file with one row per patient medication could be a Source for a Medication collection.</p>
+<p>Chiron manages the ETL process from your Sources into MongoDB. There's built-in support for data coming from a database through the Django ORM or from CSV files. If you have data coming from other types of sources, you can write your own Source processor class to enable Chiron to consume it.</p>
 <p><strong>Categories</strong></p>
 <p>Categories define a hierarchical structure for users to browse concepts. They have no effect on queries or how the data is stored in MongoDB.</p>
 </section>
 <section id="processor-classes">
 <h2>Processor Classes<a class="headerlink" href="#processor-classes" title="Permalink to this headline"></a></h2>
 <p>Various behavior in Chiron is controlled by processor classes. Processor classes are a powerful way to get custom behavior without modifying Chiron code directly. There are built-in processor classes for common needs, or you can write your own.</p>
-<p>The processors to use are specified in the data dictionary. There are 3 types of processors for Concepts and 1 type of processor for Source Collections.</p>
+<p>The processors to use are specified in the data dictionary. There are 3 types of processors for Concepts and 1 type of processor for Sources.</p>
 <dl class="field-list simple">
-<dt class="field-odd">SourceCollection Processor</dt>
-<dd class="field-odd"><p><em>(associated with a source collection)</em> During the ETL, the source
+<dt class="field-odd">Source Processor</dt>
+<dd class="field-odd"><p><em>(associated with a source)</em> During the ETL, the source
 collection processor class provides a standardized interface for retrieving records from a data source.</p>
 </dd>
 <dt class="field-even">ETL Processor</dt>
 <dd class="field-even"><p><em>(associated with a concept)</em> During the ETL, the ETL processor will take a whole record provided
-by the source collection processor and return a specific value to store in MongoDB for that
+by the source processor and return a specific value to store in MongoDB for that
 concept.</p>
 </dd>
 <dt class="field-odd">CohortDef Processor</dt>
@@ -167,23 +167,23 @@ behavior or data type of a concept in the data dictionary.</p>
 </section>
 <section id="the-etl-process">
 <h2>The ETL Process<a class="headerlink" href="#the-etl-process" title="Permalink to this headline"></a></h2>
-<p>The ETL process is managed by Chiron and will be based on your data dictionary. The work of fetching source records is carried out by the SourceCollection processor, and the work of fetching individual concept values out of a source record is carried out by the ETL Processors.</p>
-<p>Here is a simplified overview of the ETL process showing what SourceCollection processors and ETL processors do:</p>
+<p>The ETL process is managed by Chiron and will be based on your data dictionary. The work of fetching source records is carried out by the Source processor, and the work of fetching individual concept values out of a source record is carried out by the ETL Processors.</p>
+<p>Here is a simplified overview of the ETL process showing what Source processors and ETL processors do:</p>
 <div class="mermaid">
                 sequenceDiagram
         participant Chiron
-        participant Med SourceCollection
+        participant Med Source
         participant Med Name ETLProcessor
         participant Med Type ETLProcessor
         participant MongoDB Med Collection
-        Chiron-&gt;&gt;Med SourceCollection: Request first medication record
-        Med SourceCollection-&gt;&gt;Chiron: Return medication record
+        Chiron-&gt;&gt;Med Source: Request first medication record
+        Med Source-&gt;&gt;Chiron: Return medication record
         Chiron-&gt;&gt;Med Name ETLProcessor: Pass first medication record
         Med Name ETLProcessor-&gt;&gt;Chiron: Return medication name
         Chiron-&gt;&gt;Med Type ETLProcessor: Pass first medication record
         Med Type ETLProcessor-&gt;&gt;Chiron: Return medication type
         Chiron-&gt;&gt;MongoDB Med Collection: Write first medication doc {name: &quot;Tylenol&quot;, type: &quot;fever reducer&quot;}
-        Chiron-&gt;&gt;Med SourceCollection: Request second medication record
+        Chiron-&gt;&gt;Med Source: Request second medication record
         </div></section>
 </section>
 

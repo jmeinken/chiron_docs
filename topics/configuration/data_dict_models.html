@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Dictionary &mdash; Chiron 4.2.0 documentation</title>
+  <title>Data Dictionary &mdash; Chiron 4.3.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -54,9 +54,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#defaulttabledefconcept-model">DefaultTableDefConcept Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collection-model">Collection Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collectionrelationship-model">CollectionRelationship Model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sourcecollection-model">SourceCollection Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#source-model">Source Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#processor-model">Processor Model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sourcecollectionprocessorargument-model">SourceCollectionProcessorArgument Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sourceprocessorarg-model">SourceProcessorArg Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#concept-model">Concept Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#concepthandler-model">ConceptHandler Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#concepthandlerarg-model">ConceptHandlerArg Model</a></li>
@@ -369,15 +369,15 @@ pk_concept. For many:many relationships, the value can be an array of pk_concept
 </dd></dl>
 
 </section>
-<section id="sourcecollection-model">
-<h2>SourceCollection Model<a class="headerlink" href="#sourcecollection-model" title="Permalink to this headline"></a></h2>
+<section id="source-model">
+<h2>Source Model<a class="headerlink" href="#source-model" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">SourceCollection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_from_etl</span></span></em><span class="sig-paren">)</span></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_from_etl</span></span></em><span class="sig-paren">)</span></dt>
 <dd><dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">name</span></span></dt>
-<dd><p>A display name for this source collection.</p>
+<dd><p>A display name for this source.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -389,21 +389,21 @@ pk_concept. For many:many relationships, the value can be an array of pk_concept
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">processor</span></span></dt>
-<dd><p>The source collection processor that handles fetching the dataset during the ETL
+<dd><p>The source processor that handles fetching the dataset during the ETL
 into MongoDB.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">execution_order</span></span></dt>
-<dd><p>Source collections will be loaded during the ETL from lowest to highest execution_order.
-Sometimes a source collection can depend on a previous step so the load order matters.</p>
+<dd><p>Sources will be loaded during the ETL from lowest to highest execution_order.
+Sometimes a source can depend on a previous step so the load order matters.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">exclude_from_etl</span></span></dt>
-<dd><p>Skip loading this source collection during the ETL.</p>
+<dd><p>Skip loading this source during the ETL.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -416,6 +416,19 @@ that the &quot;save&quot; must be an SQL insert or update (or equivalent for
 non-SQL backends), respectively. Normally, they should not be set.</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_relevant_subject_ids</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>When a source is loaded, the source processor matches each source record to the
+corresponding subject using a subject ID. Some projects may have multiple subject IDs</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">count_concepts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>How many concepts are associated with this source?</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -426,7 +439,7 @@ non-SQL backends), respectively. Normally, they should not be set.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">Processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Chiron has 4 types of processors classes that handle activity during the ETL into MongoDB
 and on the website. This table stores references to those classes and allows processors
-to be associated with specific SourceCollections and Concepts in the data dictionary.</p>
+to be associated with specific Sources and Concepts in the data dictionary.</p>
 <p>Use the ProcessorRegistry tool to add custom processors to your project. Registered processors
 will automatically get an entry in this table, so there's no need to edit this table
 manually.</p>
@@ -450,8 +463,8 @@ manually.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">is_source_collection_processor</span></span></dt>
-<dd><p>Set to true if this is a source collection processor</p>
+<span class="sig-name descname"><span class="pre">is_source_processor</span></span></dt>
+<dd><p>Set to true if this is a source processor</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -493,24 +506,36 @@ manually.</p>
 </dd></dl>
 
 </section>
-<section id="sourcecollectionprocessorargument-model">
-<h2>SourceCollectionProcessorArgument Model<a class="headerlink" href="#sourcecollectionprocessorargument-model" title="Permalink to this headline"></a></h2>
+<section id="sourceprocessorarg-model">
+<h2>SourceProcessorArg Model<a class="headerlink" href="#sourceprocessorarg-model" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">SourceCollectionProcessorArgument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>An argument to pass to a source collection processor when initializing.
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.models.</span></span><span class="sig-name descname"><span class="pre">SourceProcessorArg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>An argument to pass to a source processor when initializing.
 Arguments are always passed as strings, though this might be changed in a future version of
 Chiron.</p>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DataType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>An enumeration.</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">source_collection</span></span></dt>
-<dd><p>The source collection this argument is associated with</p>
+<span class="sig-name descname"><span class="pre">source</span></span></dt>
+<dd><p>The source this argument is associated with</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">name</span></span></dt>
 <dd><p>The variable name of the parameter</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">data_type</span></span></dt>
+<dd><p>What data type is the argument value?</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -561,8 +586,8 @@ definitions. It’s important that this ID doesn’t change in a production syst
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">source_collection</span></span></dt>
-<dd><p>The source collection this concept is loaded from during the ETL.</p>
+<span class="sig-name descname"><span class="pre">source</span></span></dt>
+<dd><p>The source this concept is loaded from during the ETL.</p>
 </dd></dl>
 
 <dl class="py attribute">

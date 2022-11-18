@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Processors and Concept Handlers &mdash; Chiron 4.2.0 documentation</title>
+  <title>Custom Processors and Concept Handlers &mdash; Chiron 4.3.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -61,7 +61,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#registering-custom-processors">Registering Custom Processors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-custom-processors-in-your-data-dictionary">Using Custom Processors in Your Data Dictionary</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#abstract-processors">Abstract Processors</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#sourcecollectionprocessor-abstract">SourceCollectionProcessor (abstract)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sourceprocessor-abstract">SourceProcessor (abstract)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#etlprocessor-abstract">EtlProcessor (abstract)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cohortdefprocessor-abstract">CohortDefProcessor (abstract)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cohortdefprocessorbuiltinuimixin">CohortDefProcessorBuiltInUiMixin</a></li>
@@ -133,12 +133,12 @@ you can create your own processors.</p>
 we recommend creating a root-level package in your project called chiron_config and create an
 additional package inside that called processors. Do not put them directly inside the chiron app,
 as that will make it harder to update chiron in the future.</p>
-<p>Once your custom processors are written, you need to register them with Chiron. Source collection
+<p>Once your custom processors are written, you need to register them with Chiron. Source
 processors are registered with Chiron directly. The other three types of processors (ETL,
 cohort def, and display) need to first be added to a concept handler. Then the concept handler
 is registered with Chiron.</p>
-<p>After a custom source collection processor is registered, it can be associated with any source
-collection using the field <code class="docutils literal notranslate"><span class="pre">SourceCollection.processor</span></code>. Custom concept handlers can be
+<p>After a custom source processor is registered, it can be associated with any source
+collection using the field <code class="docutils literal notranslate"><span class="pre">Source.processor</span></code>. Custom concept handlers can be
 associated with any concept using the field <code class="docutils literal notranslate"><span class="pre">Concept.concept_handler</span></code>.</p>
 </section>
 <section id="tips-for-creating-custom-processors">
@@ -148,40 +148,40 @@ associated with any concept using the field <code class="docutils literal notran
 <h3>Common scenarios<a class="headerlink" href="#common-scenarios" title="Permalink to this headline"></a></h3>
 <p><strong>Getting data from a non-standard source such as an API</strong></p>
 <ul class="simple">
-<li><p>Create a custom source collection processor</p></li>
+<li><p>Create a custom source processor</p></li>
 <li><p>If your custor processor returns records as dictionaries, it can be registered and used with any of the built-in concept handlers that work with dictionaries.</p></li>
 </ul>
 <p><strong>Generating a calculated field while loading data</strong></p>
 <ul class="simple">
 <li><p>Create a custom ETL processor. You will do the calculation in the <code class="docutils literal notranslate"><span class="pre">pull_concept_value_from_record()</span></code> method.</p></li>
 <li><p>Create a custom concept handler that extends a similar built-in concept handler. Use the <code class="docutils literal notranslate"><span class="pre">set_etl_processor()</span></code> method to add your custom ETL processor to it.</p></li>
-<li><p>Register your new concept handler with the source collection processor it will be used with.</p></li>
+<li><p>Register your new concept handler with the source processor it will be used with.</p></li>
 </ul>
 <p><strong>Generating a calculated field that depends on multiple data sources</strong></p>
-<p>Sometimes you might want a caculated field that can only be determined by looking at data from multiple source collections. The solution here is to load the relevant source collections first, then iterate your MongoDB collection itself to do the calculation.</p>
+<p>Sometimes you might want a caculated field that can only be determined by looking at data from multiple sources. The solution here is to load the relevant sources first, then iterate your MongoDB collection itself to do the calculation.</p>
 <ul class="simple">
 <li><p>You should already have your data dictionary configured to load any relevant input data you'll need.</p></li>
-<li><p>Add a new SourceCollection to your data dictionary that uses either the SourceSelf or SourceSelfSubdoc processors. Set the execution order value to run it later in the ETL process after relevant input data will have already been loaded.</p></li>
+<li><p>Add a new Source to your data dictionary that uses either the SourceSelf or SourceSelfSubdoc processors. Set the execution order value to run it later in the ETL process after relevant input data will have already been loaded.</p></li>
 <li><p>Create a custom ETL processor. See the SourceSelf and SourceSelfSubdoc processor notes to understand the format of returned records.</p></li>
 <li><p>Add your custom ETL processor to a concept handler, then register your concept handler.</p></li>
-<li><p>Now you can create a new Concept and associate your custom ETL processor and your new source collection.</p></li>
+<li><p>Now you can create a new Concept and associate your custom ETL processor and your new source.</p></li>
 </ul>
 </section>
 </section>
 <section id="registering-custom-processors">
 <span id="id1"></span><h2>Registering Custom Processors<a class="headerlink" href="#registering-custom-processors" title="Permalink to this headline"></a></h2>
-<p>Source collection processors are registered with Chiron directly. The other three types of processors (ETL,
+<p>Source processors are registered with Chiron directly. The other three types of processors (ETL,
 cohort def, and display) need to first be added to a concept handler. Then the concept handler
 is registered with Chiron.</p>
-<p>Registration is done in pairs. Each entry will include a source collection processor and concept handler that are allowed to be used together. For example, it you have a custom concept handler that can be used with the built-in SourceDjangoModel processor, you would register them together like this:</p>
+<p>Registration is done in pairs. Each entry will include a source processor and concept handler that are allowed to be used together. For example, it you have a custom concept handler that can be used with the built-in SourceDjangoModel processor, you would register them together like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
 <span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">SourceDjangoModel</span>
 
 <span class="n">ProcessorRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">SourceDjangoModel</span><span class="p">,</span> <span class="n">MyCustomHandler</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>As a shorthand, you can register multiple source collection processors and multiple concept handlers at the same time. In this case, every source collection processor will be associated with every concept handler.</p>
-<p>For example, if you have a custom source collection processor that returns records as Python dictionaries, you could do this:</p>
+<p>As a shorthand, you can register multiple source processors and multiple concept handlers at the same time. In this case, every source processor will be associated with every concept handler.</p>
+<p>For example, if you have a custom source processor that returns records as Python dictionaries, you could do this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
 <span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">DictCategoryHandler</span><span class="p">,</span> <span class="n">DictTextHandler</span><span class="p">,</span> <span class="n">DictDateHandler</span><span class="p">,</span> <span class="n">DictFloatHandler</span><span class="p">,</span> <span class="n">DictIntegerHandler</span>
 
@@ -207,28 +207,28 @@ the <code class="docutils literal notranslate"><span class="pre">__init__.py</sp
 <h2>Using Custom Processors in Your Data Dictionary<a class="headerlink" href="#using-custom-processors-in-your-data-dictionary" title="Permalink to this headline"></a></h2>
 <p>Once registered, your custom processors should become available in the data dictionary the
 next time you run any python management command.</p>
-<p>Use a custom source collection processor by setting it in <code class="docutils literal notranslate"><span class="pre">SourceCollection.processor</span></code>. Use a
+<p>Use a custom source processor by setting it in <code class="docutils literal notranslate"><span class="pre">Source.processor</span></code>. Use a
 custom handler by setting it in <code class="docutils literal notranslate"><span class="pre">Concept.concept_handler</span></code>.</p>
 </section>
 <section id="abstract-processors">
 <h2>Abstract Processors<a class="headerlink" href="#abstract-processors" title="Permalink to this headline"></a></h2>
-<section id="sourcecollectionprocessor-abstract">
-<h3>SourceCollectionProcessor (abstract)<a class="headerlink" href="#sourcecollectionprocessor-abstract" title="Permalink to this headline"></a></h3>
+<section id="sourceprocessor-abstract">
+<h3>SourceProcessor (abstract)<a class="headerlink" href="#sourceprocessor-abstract" title="Permalink to this headline"></a></h3>
 <dl class="py class">
-<dt class="sig sig-object py" id="chiron.processors.abstract.SourceCollectionProcessor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">SourceCollectionProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSourceCollection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.processors.abstract.SourceProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">SourceProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSource</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Generates an iterable of data to import into MongoDB.</p>
 <p>Must be associated with the StandardLoadMixin. There used to be another mixin for loading,
 but it has been removed.</p>
-<p>It is associated with a SourceCollection in the data dictionary using the
-<code class="docutils literal notranslate"><span class="pre">SourceCollection.processor</span></code> field.</p>
+<p>It is associated with a Source in the data dictionary using the
+<code class="docutils literal notranslate"><span class="pre">Source.processor</span></code> field.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.SourceCollectionProcessor.get_collection_id">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_collection_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_collection_id" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.processors.abstract.SourceProcessor.get_collection_id">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_collection_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceProcessor.get_collection_id" title="Permalink to this definition"></a></dt>
 <dd><p>Reads one record from the source data collection and returns a unique ID for the record.</p>
-<p>For example, if this is a source collection of samples, could return a sample ID. If you
-had sample data in multiple source collections, that sample ID could be used to merge
+<p>For example, if this is a source of samples, could return a sample ID. If you
+had sample data in multiple sources, that sample ID could be used to merge
 data for the same sample.</p>
 <p>Collection IDs only apply to subcollections This method has no effect on a collection
 associated with the subject (root) collection.</p>
@@ -250,9 +250,9 @@ subdocument.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.SourceCollectionProcessor.get_data_last_updated_date">
-<span class="sig-name descname"><span class="pre">get_data_last_updated_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceCollectionProcessor.get_data_last_updated_date" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the datetime when this source collection was last updated.
+<dt class="sig sig-object py" id="chiron.processors.abstract.SourceProcessor.get_data_last_updated_date">
+<span class="sig-name descname"><span class="pre">get_data_last_updated_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.SourceProcessor.get_data_last_updated_date" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the datetime when this source was last updated.
 If this is a live data source, that will be now. If this is an archived data source, it
 will be whatever is the date last updated.</p>
 </dd></dl>
@@ -265,11 +265,11 @@ will be whatever is the date last updated.</p>
 <dt class="sig sig-object py" id="chiron.processors.abstract.StandardLoadMixin">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">StandardLoadMixin</span></span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Retrieves an entire source collection as an iterable and processes/loads
+<p>Retrieves an entire source as an iterable and processes/loads
 to MongoDB one record at a time.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.StandardLoadMixin.get_source_collection">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_source_collection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_source_collection" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="chiron.processors.abstract.StandardLoadMixin.get_source">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_source</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_source" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the entire source dataset as an iterable. Each entry in this iterable should
 corresponds to the associated <code class="docutils literal notranslate"><span class="pre">Collection</span></code>. For example, a source data collection
 associated with a &quot;sample&quot; collection should return an iterable of samples.</p>
@@ -313,7 +313,7 @@ subject in MongoDB.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Finally, there may be instances where a source collection record needs to be associated
+<p>Finally, there may be instances where a source record needs to be associated
 with multiple subjects (ex. m2m relationships). To do this, you can return a list of match
 definitions (or special values) and the ETL loaded will use all of them.</p>
 <dl class="field-list simple">
@@ -322,6 +322,38 @@ definitions (or special values) and the ETL loaded will use all of them.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>python dict, str, integer, None, False, python list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.StandardLoadMixin.get_subject_id_fields_used_for_matching">
+<span class="sig-name descname"><span class="pre">get_subject_id_fields_used_for_matching</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_subject_id_fields_used_for_matching" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the names of any subject ID fields used to match records from this source
+to the correct subject. This is not required but can be useful for troubleshooting
+subject matching issues on datasets with many sources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>subject_id_fields</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>string, list of strings, or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.StandardLoadMixin.get_subject_id_fields_added">
+<span class="sig-name descname"><span class="pre">get_subject_id_fields_added</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.get_subject_id_fields_added" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the names of any subject ID fields added to Chiron _ids when these subjects
+are loaded. This is not required but can be useful for troubleshooting
+subject matching issues on datasets with many sources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>subject_id_fields</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>string, list of strings, or None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -337,17 +369,17 @@ definitions (or special values) and the ETL loaded will use all of them.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.abstract.</span></span><span class="sig-name descname"><span class="pre">EtlProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oConcept</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>An ETL Processor is for a concept. During the ETL in to MongoDB, the ETLProcessor gets
-a record from the source collection and returns the value to store for this concept in
+a record from the source and returns the value to store for this concept in
 MongoDB.</p>
 <p>It is associated with a Concept in the data dictionary using the <code class="docutils literal notranslate"><span class="pre">Concept.etl_processor</span></code>
 field.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor.pull_concept_value_from_record">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pull_concept_value_from_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor.pull_concept_value_from_record" title="Permalink to this definition"></a></dt>
-<dd><p>Retrieves or calculates the value to store in MongoDB from a source collection record.</p>
+<dd><p>Retrieves or calculates the value to store in MongoDB from a source record.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>record</strong> (<em>various</em>) -- a single entry returned by <code class="docutils literal notranslate"><span class="pre">SourceCollection.get_source_collection()</span></code></p>
+<dd class="field-odd"><p><strong>record</strong> (<em>various</em>) -- a single entry returned by <code class="docutils literal notranslate"><span class="pre">Source.get_source()</span></code></p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the value to store in MongoDB</p>
@@ -371,38 +403,6 @@ of pull_concept_value_from_record.</p>
 <dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor._add_warning">
 <span class="sig-name descname"><span class="pre">_add_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warning</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor._add_warning" title="Permalink to this definition"></a></dt>
 <dd><p>Pass the relevant input value and the warning about it</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor._convert_data_list_to_set">
-<span class="sig-name descname"><span class="pre">_convert_data_list_to_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor._convert_data_list_to_set" title="Permalink to this definition"></a></dt>
-<dd><p>UTILITY FUNCTION
-Returns only unique, non-null values from provided data_list.</p>
-<p>Chiron allows multiple values to be stored in a single concept entry as a list.
-This is useful when you have multiple values for a concept, but don't want
-to create a whole new Collection for that one concept. Typically it's better to store the
-unique set of values rather than a repetitive list.</p>
-<p>IN: ['Hispanic', 'Caucasian', 'Caucasian', None, 'Caucasian', None]
-OUT: ['Hispanic', 'Caucasian']</p>
-<p>IN: ['Caucasian', None]
-OUT: 'Caucasian'</p>
-<p>IN: ['Caucasian', 'Caucasian', 'Caucasian']
-OUT: 'Caucasian'</p>
-<p>IN: []
-OUT: None</p>
-<p>IN: [None, None, None, None]
-OUT: None</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="chiron.processors.abstract.EtlProcessor._cast">
-<span class="sig-name descname"><span class="pre">_cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.EtlProcessor._cast" title="Permalink to this definition"></a></dt>
-<dd><p>UTILITY FUNCTION
-Useful for converting data types of input values when necessary.</p>
-<p>There are two relevant object properties:
-self.cast_to_type - string that specifies the desired type
-self.ignore_casting_errors - If True, errors in casting will be ignored and the method
-will return None</p>
 </dd></dl>
 
 </dd></dl>
@@ -1033,6 +1033,14 @@ remove duplicate records.</p>
 <span class="n">make_ordinal</span><span class="p">(</span><span class="mi">213</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="s1">&#39;213th&#39;</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.display.aggregation._base.AggregationMethod._merge_duplicates_for_different_subjects">
+<span class="sig-name descname"><span class="pre">_merge_duplicates_for_different_subjects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">concept_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.display.aggregation._base.AggregationMethod._merge_duplicates_for_different_subjects" title="Permalink to this definition"></a></dt>
+<dd><p>For subcollections that are m:m with subject, might have duplicate subcollection records
+with different _subject_id values. This will remove _subject_id and merge any
+duplicates found.</p>
 </dd></dl>
 
 </dd></dl>

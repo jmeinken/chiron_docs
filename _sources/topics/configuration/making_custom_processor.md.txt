@@ -12,13 +12,13 @@ we recommend creating a root-level package in your project called chiron_config 
 additional package inside that called processors. Do not put them directly inside the chiron app,
 as that will make it harder to update chiron in the future.
 
-Once your custom processors are written, you need to register them with Chiron. Source collection
+Once your custom processors are written, you need to register them with Chiron. Source
 processors are registered with Chiron directly. The other three types of processors (ETL,
 cohort def, and display) need to first be added to a concept handler. Then the concept handler
 is registered with Chiron.
 
-After a custom source collection processor is registered, it can be associated with any source
-collection using the field `SourceCollection.processor`. Custom concept handlers can be
+After a custom source processor is registered, it can be associated with any source
+collection using the field `Source.processor`. Custom concept handlers can be
 associated with any concept using the field `Concept.concept_handler`.
 
 ## Tips for Creating Custom Processors
@@ -28,32 +28,32 @@ Your custom processor can extend any of the chiron abstract processors in `chiro
 ### Common scenarios
 
 **Getting data from a non-standard source such as an API**
-- Create a custom source collection processor
+- Create a custom source processor
 - If your custor processor returns records as dictionaries, it can be registered and used with any of the built-in concept handlers that work with dictionaries.
 
 **Generating a calculated field while loading data**
 - Create a custom ETL processor. You will do the calculation in the `pull_concept_value_from_record()` method.
 - Create a custom concept handler that extends a similar built-in concept handler. Use the `set_etl_processor()` method to add your custom ETL processor to it.
-- Register your new concept handler with the source collection processor it will be used with.
+- Register your new concept handler with the source processor it will be used with.
 
 **Generating a calculated field that depends on multiple data sources**
 
-Sometimes you might want a caculated field that can only be determined by looking at data from multiple source collections. The solution here is to load the relevant source collections first, then iterate your MongoDB collection itself to do the calculation.
+Sometimes you might want a caculated field that can only be determined by looking at data from multiple sources. The solution here is to load the relevant sources first, then iterate your MongoDB collection itself to do the calculation.
 
 - You should already have your data dictionary configured to load any relevant input data you'll need.
-- Add a new SourceCollection to your data dictionary that uses either the SourceSelf or SourceSelfSubdoc processors. Set the execution order value to run it later in the ETL process after relevant input data will have already been loaded.
+- Add a new Source to your data dictionary that uses either the SourceSelf or SourceSelfSubdoc processors. Set the execution order value to run it later in the ETL process after relevant input data will have already been loaded.
 - Create a custom ETL processor. See the SourceSelf and SourceSelfSubdoc processor notes to understand the format of returned records.
 - Add your custom ETL processor to a concept handler, then register your concept handler.
-- Now you can create a new Concept and associate your custom ETL processor and your new source collection.
+- Now you can create a new Concept and associate your custom ETL processor and your new source.
 
 (registering-custom-processors)=
 ## Registering Custom Processors
 
-Source collection processors are registered with Chiron directly. The other three types of processors (ETL,
+Source processors are registered with Chiron directly. The other three types of processors (ETL,
 cohort def, and display) need to first be added to a concept handler. Then the concept handler
 is registered with Chiron.
 
-Registration is done in pairs. Each entry will include a source collection processor and concept handler that are allowed to be used together. For example, it you have a custom concept handler that can be used with the built-in SourceDjangoModel processor, you would register them together like this:
+Registration is done in pairs. Each entry will include a source processor and concept handler that are allowed to be used together. For example, it you have a custom concept handler that can be used with the built-in SourceDjangoModel processor, you would register them together like this:
 
 ```python
 from chiron.processors.registration import ProcessorRegistry
@@ -62,9 +62,9 @@ from chiron.processors import SourceDjangoModel
 ProcessorRegistry.register(SourceDjangoModel, MyCustomHandler)
 ```
 
-As a shorthand, you can register multiple source collection processors and multiple concept handlers at the same time. In this case, every source collection processor will be associated with every concept handler.
+As a shorthand, you can register multiple source processors and multiple concept handlers at the same time. In this case, every source processor will be associated with every concept handler.
 
-For example, if you have a custom source collection processor that returns records as Python dictionaries, you could do this:
+For example, if you have a custom source processor that returns records as Python dictionaries, you could do this:
 
 ```python
 from chiron.processors.registration import ProcessorRegistry
@@ -95,16 +95,16 @@ the `__init__.py` of the package will be checked, but child modules will not be 
 Once registered, your custom processors should become available in the data dictionary the
 next time you run any python management command.
 
-Use a custom source collection processor by setting it in `SourceCollection.processor`. Use a
+Use a custom source processor by setting it in `Source.processor`. Use a
 custom handler by setting it in `Concept.concept_handler`.
 
 
 ## Abstract Processors
 
-### SourceCollectionProcessor (abstract)
+### SourceProcessor (abstract)
 
 ```{eval-rst}
-.. autoclass:: chiron.processors.abstract.SourceCollectionProcessor
+.. autoclass:: chiron.processors.abstract.SourceProcessor
    :members:
    :private-members:
    :undoc-members:

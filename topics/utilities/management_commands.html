@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Django Management Commands &mdash; Chiron 4.2.0 documentation</title>
+  <title>Django Management Commands &mdash; Chiron 4.3.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -353,6 +353,11 @@ options:
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_restore_dataset.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_restore_dataset.Command" title="Permalink to this definition"></a></dt>
 <dd><p>Restores a json data file saved using chiron_backup_dataset. Provide the name of the file
 to load.</p>
+<p>When overwriting an existing dataset, much of the context for that dataset will be preserved.
+The ChironUsers associated with the dataset will stay in place, along with any
+PermissionGroups they have. And reports will also be preserved. Be aware that if your new
+data dictionary deletes collections/concepts or changes their permanent_id values, you may
+end up with broken references as a result.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># overwrite existing dataset &#39;foo&#39; from backup file</span>
 python manage.py chiron_restore_dataset foo.json --overwrite
 
@@ -464,7 +469,7 @@ options:
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.management.commands.chiron_test_etl.Command">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_test_etl.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_test_etl.Command" title="Permalink to this definition"></a></dt>
-<dd><p>Check if the ETL is working for a single concept. Will run the corresponding source collection
+<dd><p>Check if the ETL is working for a single concept. Will run the corresponding source
 and output each value type and value to stdout. Does not modify the database.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py chiron_test_etl <span class="o">[</span>concept permanent_id<span class="o">]</span>
 </pre></div>
@@ -499,7 +504,7 @@ options:
 <dl class="py class">
 <dt class="sig sig-object py" id="chiron.management.commands.chiron_copy_permission_groups.Command">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.management.commands.chiron_copy_permission_groups.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.management.commands.chiron_copy_permission_groups.Command" title="Permalink to this definition"></a></dt>
-<dd><p>Copies permission groups to dedicated collections for a dataset. If there are multiple
+<dd><p>Copies permission groups to subcollections for a dataset. If there are multiple
 datasets, will prompt you to select a dataset.</p>
 <p>This action is also run as a part of <cite>chiron_run_etl</cite>.</p>
 </dd></dl>
@@ -508,7 +513,7 @@ datasets, will prompt you to select a dataset.</p>
 <pre>
 usage: manage.py chiron_copy_permission_groups [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
 
-Copies permission groups to dedicated collections
+Copies permission groups to subcollections
 
 positional arguments:
   dataset_id            The dataset_id, or leave blank to select from a list

@@ -7,14 +7,14 @@ Built-In Processors
 The **processor classes** control how data is loaded into MongoDB from data sources and how it is
 displayed and queried. There are four types of processor classes.
 
-:SourceCollection Processor:
-   *(associated with a source collection)* During the ETL, the source
+:Source Processor:
+   *(associated with a source)* During the ETL, the source
    collection processor class provides a standardized interface for retrieving records from the
-   source collection.
+   source.
 
 :ETL Processor:
    *(associated with a concept)* During the ETL, the ETL processor will take a whole record provided
-   by the source collection processor and return a specific value to store in MongoDB for that
+   by the source processor and return a specific value to store in MongoDB for that
    concept.
 
 :CohortDef Processor:
@@ -33,7 +33,7 @@ of built-in processors that are ready to use. They can typically be customized i
 by passing arguments when instantiating. These arguments can be defined in the data dictionary.
 
 
-SourceCollection Processors
+Source Processors
 ---------------------------
 
 
