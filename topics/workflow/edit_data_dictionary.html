@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. Manually Edit the Data Dictionary &mdash; Chiron 4.3.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Load data into MongoDB" href="loading_data.html" />
+    <link rel="prev" title="3. Autocreate the Data Dictionary" href="autocreate_data_dictionary.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installing.html">1. Install Chiron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_schema.html">2. Plan your Data Schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autocreate_data_dictionary.html">3. Autocreate the Data Dictionary</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Manually Edit the Data Dictionary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#define-concept-relationships">Define Concept Relationships</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-calculated-fields">Create Calculated Fields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#single-source">1. Single source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mutiple-sources">2. Mutiple sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="loading_data.html">3. Load data into MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploying_to_production.html">4. Deploy to Production</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">How-To Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../workflow.html">Site Deployment Workflow</a> &raquo;</li>
+      <li>4. Manually Edit the Data Dictionary</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/workflow/edit_data_dictionary.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="manually-edit-the-data-dictionary">
+<h1>4. Manually Edit the Data Dictionary<a class="headerlink" href="#manually-edit-the-data-dictionary" title="Permalink to this headline"></a></h1>
+<p>Here are some more things you might want to do after autocreating your dataset.</p>
+<hr>
+<section id="define-concept-relationships">
+<h2>Define Concept Relationships<a class="headerlink" href="#define-concept-relationships" title="Permalink to this headline"></a></h2>
+<p>By default, every subcollection you create in your dataset will have a many:1 or many:many relationship to
+the subject collection.</p>
+<p>But there can also be relationships between subcollections. For example, you might have a <code class="docutils literal notranslate"><span class="pre">visit</span></code>
+collection and a <code class="docutils literal notranslate"><span class="pre">procedure</span></code> collection where every procedure is associated with one visit. Use the
+<code class="docutils literal notranslate"><span class="pre">ConceptRelationship</span></code> model to define these relationships. They must be set manually, they do not get autocreated.</p>
+<hr>
+</section>
+<section id="create-calculated-fields">
+<h2>Create Calculated Fields<a class="headerlink" href="#create-calculated-fields" title="Permalink to this headline"></a></h2>
+<p>Follow this guideline to choose how to implement a calculated field.</p>
+<section id="single-source">
+<h3>1. Single source<a class="headerlink" href="#single-source" title="Permalink to this headline"></a></h3>
+<p><strong>Is all of the input data you need for your calculated concept coming from the same source in the same record?</strong></p>
+<p>Use a custom ETL processor associated with the same source collection as your input data.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example1.html#example1"><span class="std std-ref">calculated concept - single source</span></a></p>
+</section>
+<section id="mutiple-sources">
+<h3>2. Mutiple sources<a class="headerlink" href="#mutiple-sources" title="Permalink to this headline"></a></h3>
+<p>If the input data for your calculated concept is coming from multiple sources, the approach in
+step 1 won't work because no source will have all the data you need.</p>
+<p>Instead, we load all the sources containing our input data first, then we will create a new source
+that iterates a Chiron collection itself and loads the calculated value back into the collection.
+This new source has to run after our input data sources so that the data is already loaded.</p>
+<p><strong>Are all of the input concepts in the subject collection?</strong></p>
+<p>After the sources for the input concepts are loaded, we can use the <code class="docutils literal notranslate"><span class="pre">SourceSelf</span></code> processor to iterate the subject
+colection.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example2.html#example2"><span class="std std-ref">calculated concept - multiple sources, subject data</span></a></p>
+<p><strong>Are all of the input concepts going into a subcollection (and associated subject)?</strong></p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">SourceSelfSubdoc</span></code> processor to iterate the subcollection. For each subcollection
+record, it will also grab the related subject document from the subject collection.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example3.html#example3"><span class="std std-ref">calculated concept - multiple sources, subcollection data</span></a></p>
+<p>In some situations, the calculated field might actually be comparing data longitudinally. For example,
+you might want to calculate whether a patient's condition has improved or worsened by comparing each
+visit to the previous visit. Again we can use the <code class="docutils literal notranslate"><span class="pre">SourceSelfSubdoc</span></code> processor, but we need to
+provide the additional argument <code class="docutils literal notranslate"><span class="pre">include_related_subdocs=True</span></code>.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example4.html#example4"><span class="std std-ref">calculated concept - multiple sources, subcollection data, longitudinal</span></a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="autocreate_data_dictionary.html" class="btn btn-neutral float-left" title="3. Autocreate the Data Dictionary" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="loading_data.html" class="btn btn-neutral float-right" title="3. Load data into MongoDB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

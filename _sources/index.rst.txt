@@ -42,7 +42,7 @@ EHR dataset.
    topics/utilities.rst
    topics/configuration.rst
    topics/api.rst
-
+   topics/examples.md
    topics/version_changelog.md
    
    

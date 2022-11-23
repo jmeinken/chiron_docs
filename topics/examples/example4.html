@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>calculated concept - multiple sources, subcollection data, longitudinal &mdash; Chiron 4.3.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Version Changelog" href="../version_changelog.html" />
+    <link rel="prev" title="calculated concept - multiple sources, subcollection data" href="example3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">How-To Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="example1.html">calculated concept - single source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example2.html">calculated concept - multiple sources, subject data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example3.html">calculated concept - multiple sources, subcollection data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">calculated concept - multiple sources, subcollection data, longitudinal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">How-To Examples</a> &raquo;</li>
+      <li>calculated concept - multiple sources, subcollection data, longitudinal</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/examples/example4.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="calculated-concept-multiple-sources-subcollection-data-longitudinal">
+<span id="example4"></span><h1>calculated concept - multiple sources, subcollection data, longitudinal<a class="headerlink" href="#calculated-concept-multiple-sources-subcollection-data-longitudinal" title="Permalink to this headline"></a></h1>
+<p>EXAMPLE: calculate condition_change (IMPROVED, WORSENED, UNCHANGED) for a visit by comparing to the previous visit.
+The input value will be <code class="docutils literal notranslate"><span class="pre">condition_severity</span></code> which has a value of 1 to 10, with 10 being the worst.</p>
+<hr>
+<p>The tricky thing about this one is that we can't look at a single visit record. We need to get the
+previous visit record as well and compare <code class="docutils literal notranslate"><span class="pre">condition_severity</span></code> to see if it increased, decreased, or stayed the same.</p>
+<p>We will load visit data into Chiron database first, and
+then iterate the visit subcollection itself as a source in order to calculate <code class="docutils literal notranslate"><span class="pre">condition_change</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Set up the data dictionary to load source <code class="docutils literal notranslate"><span class="pre">visit</span></code>. This will get the <code class="docutils literal notranslate"><span class="pre">condition_severity</span></code> concept into Chiron.</p></li>
+<li><p>In the data dictionary, we're going to add a new source for iterating the visit subcollection in the Chiron database:</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">name</dt>
+<dd class="field-odd"><p>give any name you want, ex. &quot;mongo_visit_iterator&quot;</p>
+</dd>
+<dt class="field-even">collection</dt>
+<dd class="field-even"><p>visit</p>
+</dd>
+<dt class="field-odd">processor</dt>
+<dd class="field-odd"><p>SourceSelfSubdoc</p>
+</dd>
+<dt class="field-even">execution_order</dt>
+<dd class="field-even"><p>must be run after sources <cite>demographics</cite> and <cite>visit</cite> so that the input fields are already loaded</p>
+</dd>
+</dl>
+<p>By default, SourceSelfSubdoc will only return data for a single visit with each iteration. But we also need to see other visits
+for the patient to make our comparison. We can tell Chiron we want this with a SourceProcessorArg:</p>
+<dl class="field-list simple">
+<dt class="field-odd">name</dt>
+<dd class="field-odd"><p>&quot;include_related_subdocs&quot;</p>
+</dd>
+<dt class="field-even">data_type</dt>
+<dd class="field-even"><p>&quot;boolean/null&quot;</p>
+</dd>
+<dt class="field-odd">value</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+<ol class="arabic simple" start="3">
+<li><p>Create an ETL processor and associated ConceptHandler</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">EtlDjangoField</span>
+<span class="kn">from</span> <span class="nn">chiron</span> <span class="kn">import</span> <span class="n">processors</span>
+
+<span class="k">class</span> <span class="nc">EtlConditionChange</span><span class="p">(</span><span class="n">EtlDjangoField</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; calculate condition_change (IMPROVED, WORSENED, UNCHANGED) for a visit by comparing condition_severity to the previous visit &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">pull_concept_value_from_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used with SourceSelfSubdoc. Each record will be a dict with values:</span>
+<span class="sd">        - subdoc: a document from the visit subcollection</span>
+<span class="sd">        - doc: the document from the subject collection for the associated subject</span>
+<span class="sd">        - subdocs: a list of all the other visits for this subject</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># get the input concept values</span>
+        <span class="n">visit_date</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s2">&quot;subdoc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;visit_date_xilvrwgfyn&quot;</span><span class="p">)</span>
+        <span class="n">severity</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s2">&quot;subdoc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;condition_severity_aqfqqblpvq&quot;</span><span class="p">)</span>
+        <span class="n">previous_severity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_previous_condition_severity</span><span class="p">(</span><span class="n">visit_date</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="s2">&quot;subdocs&quot;</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="n">severity</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">previous_severity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        
+        <span class="k">if</span> <span class="n">severity</span> <span class="o">&gt;</span> <span class="n">previous_severity</span><span class="p">:</span>
+            <span class="n">severity_change</span> <span class="o">=</span> <span class="s2">&quot;WORSENED&quot;</span>
+        <span class="k">elif</span> <span class="n">severity</span> <span class="o">&lt;</span> <span class="n">previous_severity</span><span class="p">:</span>
+            <span class="n">severity_change</span> <span class="o">=</span> <span class="s2">&quot;IMPROVED&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">severity_change</span> <span class="o">=</span> <span class="s2">&quot;UNCHANGED&quot;</span>
+        <span class="k">return</span> <span class="n">severity_change</span>
+    
+    <span class="k">def</span> <span class="nf">_find_previous_condition_severity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">visit_date</span><span class="p">,</span> <span class="n">subdocs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; find the previous visit_date and get the condition_severity &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">visit_date</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">subdocs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        
+        <span class="c1"># find the previous visit closest in time to visit_date</span>
+        <span class="n">previous_doc</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">previous_doc_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">1900</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">subdocs</span><span class="p">:</span>
+            <span class="n">doc_date</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;visit_date_xilvrwgfyn&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">doc_date</span> <span class="ow">and</span> <span class="n">doc_date</span> <span class="o">&lt;</span> <span class="n">visit_date</span> <span class="ow">and</span> <span class="n">doc_date</span> <span class="o">&gt;</span> <span class="n">previous_doc_date</span><span class="p">:</span>
+                <span class="n">previous_doc</span> <span class="o">=</span> <span class="n">doc</span>
+                <span class="n">previous_doc_date</span> <span class="o">=</span> <span class="n">doc_date</span>
+                
+        <span class="c1"># return none if no previous visits were found</span>
+        <span class="k">if</span> <span class="n">previous_doc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        
+        <span class="k">return</span> <span class="n">previous_doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;condition_severity&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">ConditionChangeHandler</span><span class="p">(</span><span class="n">processors</span><span class="o">.</span><span class="n">DjangoCategoryHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_etl_processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concept</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">etl_processor</span> <span class="o">=</span> <span class="n">EtlConditionChange</span><span class="p">(</span><span class="n">concept</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Register the processor with Chiron in <code class="docutils literal notranslate"><span class="pre">chiron_config/processors/__init__.py</span></code></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
+<span class="kn">from</span> <span class="nn">chiron</span> <span class="kn">import</span> <span class="n">processors</span>
+<span class="kn">from</span> <span class="nn">chiron_config.processors.my_etl_processors</span> <span class="kn">import</span> <span class="n">ConditionChangeHandler</span>
+
+<span class="n">ProcessorRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">processors</span><span class="o">.</span><span class="n">SourceSelfSubdoc</span><span class="p">,</span> <span class="n">ConditionChangeHandler</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>In the data dictionary, create a concept for our condition_change</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">permanent_id</dt>
+<dd class="field-odd"><p>give any name you want, ex. &quot;condition_change&quot;</p>
+</dd>
+<dt class="field-even">name</dt>
+<dd class="field-even"><p>&quot;condition change from previous visit&quot;</p>
+</dd>
+<dt class="field-odd">source</dt>
+<dd class="field-odd"><p>select the source you created in step 2</p>
+</dd>
+<dt class="field-even">concept_handler</dt>
+<dd class="field-even"><p>ConditionChangeHandler</p>
+</dd>
+<dt class="field-odd">collection</dt>
+<dd class="field-odd"><p>select the collection the calculated field will go in, i.e. the visit collection</p>
+</dd>
+</dl>
+<p>The remaining fields can be filled in as you wish, and there are no ConceptHandlerArgs for
+our custom concept handler.</p>
+<ol class="arabic simple" start="6">
+<li><p>That should be it. The next time you run the ETL, your new self-referential source should run
+at the end and populate your new calculated concept.</p></li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example3.html" class="btn btn-neutral float-left" title="calculated concept - multiple sources, subcollection data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../version_changelog.html" class="btn btn-neutral float-right" title="Version Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

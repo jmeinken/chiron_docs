@@ -1,8 +1,6 @@
-# 2. Set Up the Data Dictionary
-
 
 (autocreate-the-data-dictionary)=
-## Autocreate the Data Dictionary
+# 3. Autocreate the Data Dictionary
 
 Creating a data dictionary by hand when you have a lot of fields is tedious. So we have a script that
 can autocreate a data dictionary for you. You will define a list of sources you want to import, then
@@ -16,7 +14,7 @@ need to run it again unless you have new sources/fields that you want to import.
 
 Currently the autocomplete script supports data coming from the Django ORM or from CSV files.
 
-### Source List Overview
+## Source List Overview
 
 Your source list will have one entry for each source you want to create. A source
 can be any Python iterable, but for autocreate it will either be a Django model or a CSV file.
@@ -58,7 +56,7 @@ my_source_list = {
 
 ```
 
-### Source List Arguments for CSV Files (CsvFileAutocreate)
+## Source List Arguments for CSV Files (CsvFileAutocreate)
 
 NOTE: Your CSV files must have a header row with the name of each field.
 
@@ -107,7 +105,7 @@ NOTE: Your CSV files must have a header row with the name of each field.
         - **destination_id_field** *(str, default="id")*
             - The name of the subject ID field that will get stored in MongoDB.
   
-### Source List Arguments for Django Models (DjangoOrmAutocreate)
+## Source List Arguments for Django Models (DjangoOrmAutocreate)
 
 - **app** *(str, required)*
     - The name of the app for the model you want to load.
@@ -161,7 +159,7 @@ NOTE: Your CSV files must have a header row with the name of each field.
         - *example 1*: You have a Patient model and a Demographics model. The Demographics model has a ForeignKey field `patient` pointing to the Patient model. If your main source model is the Patient model, you could join in the demographics model using the join path `demographics_set`. If you don't understand where the "_set" suffix is coming from, see Django's documentation on [related names](https://docs.djangoproject.com/en/4.0/ref/models/relations/).
         - *example 2*: Continuing with the setup from example 1, if Demographics has a field `race` that has a many:many relationship to model RaceLookup, you could also join RaceLookup into Patient using the join path `deographics_set__race`. 
   
-### How to run the autocreate script
+## How to run the autocreate script
 
 Once your source list(s) are set up, you are ready to run the autocreate script. First collect
 all your source lists together into one dictionary. The key values can be anything you want:
@@ -188,13 +186,11 @@ python manage.py chiron_autocreate_dd --test-run
 python manage.py chiron_autocreate_dd
 ```
 
-### Rerunning Autocreate After Changes
+## Rerunning Autocreate After Changes
 
 There is a dedicated model `AutocreatedField` to keep track of all fields that have been loaded through autocreate. Any fields that have been imported are tracked in this model and will not be imported again, even if the associated Concepts have been modified or deleted. So it is safe to rerun chiron_autocreate_dd to autocreate concepts from new models, CSV files, or fields. It will not re-create any fields that have already been created.
 
 If you actually want to reload previously loaded concepts (for example, if you deleted something by accident), you can remove the fields you wish to re-import from AutoImportedField, then run chiron_autocreate_dd again.
 
-## Manually Create/Edit the Data Dictionary
 
-See the full data dictionary for all configuration options - {doc}`../configuration/data_dict_models`
 

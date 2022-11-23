@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Plan your Data Schema &mdash; Chiron 4.3.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Autocreate the Data Dictionary" href="autocreate_data_dictionary.html" />
+    <link rel="prev" title="1. Install Chiron" href="installing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installing.html">1. Install Chiron</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Plan your Data Schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autocreate_data_dictionary.html">3. Autocreate the Data Dictionary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit_data_dictionary.html">4. Manually Edit the Data Dictionary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_data.html">3. Load data into MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploying_to_production.html">4. Deploy to Production</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">How-To Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../workflow.html">Site Deployment Workflow</a> &raquo;</li>
+      <li>2. Plan your Data Schema</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/workflow/data_schema.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="plan-your-data-schema">
+<h1>2. Plan your Data Schema<a class="headerlink" href="#plan-your-data-schema" title="Permalink to this headline"></a></h1>
+<p>Collections will be set up based on the actual cardinality of your data. There are objectively wrong ways to do it, and setting it up wrong will lead to unintuitive or incorrect results when your users start to run queries.</p>
+<p>Don't try to use Collections to customize how Concepts are grouped in the UI. If you need your data organized a specific way in your UI, that's what Categories are for. Unlike Collections, Categories can be organized any way you like with zero effect on how the data is stored or queried.</p>
+<p><strong>1. Any data that's 1:1 with subject should go in the subject collection.</strong></p>
+<p>It doesn't matter if the data is coming from different sources or related to different domains. The subject collection can be as wide as you need it to be.</p>
+<p><strong>2. If you have <em>single concepts</em> that are many:1 with the subject, they can still go into the subject collection.</strong></p>
+<p>For example, &quot;race&quot; might be allowed to have multiple values. You can incorporate &quot;race&quot; directly into the subject collection and people with multiple races will have an array of values stored.<br><br>If &quot;race&quot; from your source data is repetitive, the data will be simplified to a set of distinct, non-null values before being stored. For example, if someone has source race values of <code class="docutils literal notranslate"><span class="pre">[&quot;white&quot;,</span> <span class="pre">&quot;white&quot;,</span> <span class="pre">&quot;white&quot;,</span> <span class="pre">null,</span> <span class="pre">&quot;asian&quot;]</span></code>, that would be stored in Chiron as <code class="docutils literal notranslate"><span class="pre">[&quot;white&quot;,</span> <span class="pre">&quot;asian&quot;]</span></code>.</p>
+<p><strong>3. If you have <em>2 or more concept</em> that are many:1 with the subject as a cohesive group, they must go into a subcollection.</strong></p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">procedure</span> <span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">procedure</span> <span class="pre">date</span></code> would need their own collection.</p>
+<p>You cannot just put them into the subject collection as arrays like we did in step 2, because the relationship between each name and date would be lost. For example, if a person had 5 different procedures with 5 different dates, this would show up in the output as a cartesian product of 25 values because Chiron will store two arrays (one for the names and one for the dates) that it doesn't understand how to pair up.</p>
+<p><strong>4. you will have one subcollection for each cohesive group of values that are many:1 with subjects.</strong></p>
+<p>For example, if subjects can have 0:many encounters, then any concepts 1:1 with encounter will go into an <code class="docutils literal notranslate"><span class="pre">encounter</span></code> subcollection. If encounters in turn can have 0:many associated procedures, you will want a separate <code class="docutils literal notranslate"><span class="pre">procedure</span></code> subcollection to store any concepts that are 1:1 with procedures.</p>
+<p>A good question to ask is &quot;What does a single document in my subcollection represent?&quot; If you can't answer this, there's a good chance your subcollection isn't defined correctly.</p>
+<p>Just like with the subject collection, the one exception to this rule is <em>single concepts</em> that are many:1 with the subcollection. For example, if an encounter has a <code class="docutils literal notranslate"><span class="pre">reason_for_visit</span></code> concept that can list any number of reasons, that single concept can be included in the <code class="docutils literal notranslate"><span class="pre">encounter</span></code> collection as an array rather than making a whole new subcollection for it.</p>
+<p><strong>5. Chiron also allows subcollections that are many:many with the subject.</strong></p>
+<p>For example, you might have a <code class="docutils literal notranslate"><span class="pre">primary_care_provider</span></code> subcollection with one document per provider. Rather than a provider being associated with a single subject, each provider could be associated with any number of subjects.</p>
+<p>Nothing special needs to be done to set this up. If the <code class="docutils literal notranslate"><span class="pre">get_subject_match_def()</span></code> method on your source processor returns multiple subject IDs, then a many:many relationship with subjects will automatically be set up.</p>
+<p><strong>6. Once you have all your collections configured, the last step is to set up any relationships between subcollections.</strong></p>
+<p>For example, if procedures are always associated with encounters, it's good to define that relationship. Using the <code class="docutils literal notranslate"><span class="pre">CollectionRelationship</span></code> model, you would define the primary key as the <code class="docutils literal notranslate"><span class="pre">encounter_id</span></code> concept in the <code class="docutils literal notranslate"><span class="pre">encounter</span></code> collection, and the foreign key as the <code class="docutils literal notranslate"><span class="pre">encounter_id</span></code> concept in the <code class="docutils literal notranslate"><span class="pre">procedure</span></code> collection.</p>
+<p>Chiron will not break if these relationships are not defined, but they help avoid cartesian products in results (because they tell Chiron how data from different subcollections can be paired together). So subcollection relationships should be used whenever they are appropriate.</p>
+<p><strong>7. In a more rare situation, you might have a many:many relationship between subcollections.</strong></p>
+<p>For example biospecimen might be associated with multiple studies, and each study can have any number of biospecimen. In this case, your primary key will be set up the same, but your foreign key field will need to be stored as an array of values. Your primary key could be the <code class="docutils literal notranslate"><span class="pre">biospecimen_id</span></code> in the <code class="docutils literal notranslate"><span class="pre">biospecimen</span></code> collection. And your foreign key could be <code class="docutils literal notranslate"><span class="pre">biospecimen_ids</span></code> in the <code class="docutils literal notranslate"><span class="pre">study</span></code> collection, which can contain an array when a study is associated with mulitple biospecimen.</p>
+<p>Also note that for many:many, it doesn't matter which side the primary/foreign key goes on. We could just as easily achieve the same results with the primary key as the <code class="docutils literal notranslate"><span class="pre">study_id</span></code> in the <code class="docutils literal notranslate"><span class="pre">study</span></code> collection, and the foreign key as <code class="docutils literal notranslate"><span class="pre">study_ids</span></code> array concept in the <code class="docutils literal notranslate"><span class="pre">biospecimen</span></code> collection.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installing.html" class="btn btn-neutral float-left" title="1. Install Chiron" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="autocreate_data_dictionary.html" class="btn btn-neutral float-right" title="3. Autocreate the Data Dictionary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

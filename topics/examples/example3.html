@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>calculated concept - multiple sources, subcollection data &mdash; Chiron 4.3.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="calculated concept - multiple sources, subcollection data, longitudinal" href="example4.html" />
+    <link rel="prev" title="calculated concept - multiple sources, subject data" href="example2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">How-To Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="example1.html">calculated concept - single source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example2.html">calculated concept - multiple sources, subject data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">calculated concept - multiple sources, subcollection data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example4.html">calculated concept - multiple sources, subcollection data, longitudinal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">How-To Examples</a> &raquo;</li>
+      <li>calculated concept - multiple sources, subcollection data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/examples/example3.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="calculated-concept-multiple-sources-subcollection-data">
+<span id="example3"></span><h1>calculated concept - multiple sources, subcollection data<a class="headerlink" href="#calculated-concept-multiple-sources-subcollection-data" title="Permalink to this headline"></a></h1>
+<p>EXAMPLE: Calculate age at time of visit using <code class="docutils literal notranslate"><span class="pre">DOB</span></code> in the subject collection and <code class="docutils literal notranslate"><span class="pre">visit_date</span></code>
+in the visit subcollection. The <code class="docutils literal notranslate"><span class="pre">DOB</span></code> concept comes from source <code class="docutils literal notranslate"><span class="pre">demographics</span></code>
+our of their EMR, and the <code class="docutils literal notranslate"><span class="pre">visit_date</span></code> concept comes from source <code class="docutils literal notranslate"><span class="pre">visit</span></code> out of a REDCap instrument.</p>
+<hr>
+<p>Since there's more than one source, we have to load both input concepts into Chiron database first, and
+then iterate the visit subcollection itself as a source in order to calculate <code class="docutils literal notranslate"><span class="pre">age_at_visit</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Set up the data dictionary to load sources <code class="docutils literal notranslate"><span class="pre">demographics</span></code> and <code class="docutils literal notranslate"><span class="pre">visit</span></code>. This will get both
+input concepts for our calculated field into Chiron.</p></li>
+<li><p>In the data dictionary, we're going to add a new source for iterating the visit subcollection in the Chiron database:</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">name</dt>
+<dd class="field-odd"><p>give any name you want, ex. &quot;mongo_visit_iterator&quot;</p>
+</dd>
+<dt class="field-even">collection</dt>
+<dd class="field-even"><p>visit</p>
+</dd>
+<dt class="field-odd">processor</dt>
+<dd class="field-odd"><p>SourceSelfSubdoc</p>
+</dd>
+<dt class="field-even">execution_order</dt>
+<dd class="field-even"><p>must be run after sources <cite>demographics</cite> and <cite>visit</cite> so that the input fields are already loaded</p>
+</dd>
+</dl>
+<ol class="arabic simple" start="3">
+<li><p>Create an ETL processor and associated ConceptHandler</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">EtlDjangoField</span>
+<span class="kn">from</span> <span class="nn">chiron</span> <span class="kn">import</span> <span class="n">processors</span>
+
+<span class="k">class</span> <span class="nc">EtlAgeAtVisit</span><span class="p">(</span><span class="n">EtlDjangoField</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; calculates age at time of visit &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">pull_concept_value_from_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used with SourceSelfSubdoc. Each record will be a dict with values:</span>
+<span class="sd">        - subdoc: a document from the visit subcollection</span>
+<span class="sd">        - doc: the document from the subject collection for the associated subject</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># get the input concept values</span>
+        <span class="n">dob</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s2">&quot;doc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dob_xilvrwgfyn&quot;</span><span class="p">)</span>
+        <span class="n">visit_date</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s2">&quot;subdoc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;visit_date_aqfqqblpvq&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># set to None if input values are missing</span>
+        <span class="k">if</span> <span class="n">dob</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">visit_date</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+           <span class="k">return</span> <span class="kc">None</span>
+        
+        <span class="c1"># calculate age at time of visit</span>
+        <span class="k">return</span> <span class="n">visit_date</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="n">dob</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="p">((</span><span class="n">visit_date</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">visit_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">dob</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">dob</span><span class="o">.</span><span class="n">day</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">AgeAtVisitHandler</span><span class="p">(</span><span class="n">processors</span><span class="o">.</span><span class="n">DjangoIntegerHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_etl_processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concept</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">etl_processor</span> <span class="o">=</span> <span class="n">EtlAgeAtVisit</span><span class="p">(</span><span class="n">concept</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Register the processor with Chiron in <code class="docutils literal notranslate"><span class="pre">chiron_config/processors/__init__.py</span></code></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
+<span class="kn">from</span> <span class="nn">chiron</span> <span class="kn">import</span> <span class="n">processors</span>
+<span class="kn">from</span> <span class="nn">chiron_config.processors.my_etl_processors</span> <span class="kn">import</span> <span class="n">AgeAtVisitHandler</span>
+
+<span class="n">ProcessorRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">processors</span><span class="o">.</span><span class="n">SourceSelfSubdoc</span><span class="p">,</span> <span class="n">AgeAtVisitHandler</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>In the data dictionary, create a concept for our age_at_visit</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">permanent_id</dt>
+<dd class="field-odd"><p>give any name you want, ex. &quot;age_at_visit&quot;</p>
+</dd>
+<dt class="field-even">name</dt>
+<dd class="field-even"><p>&quot;age at visit&quot;</p>
+</dd>
+<dt class="field-odd">source</dt>
+<dd class="field-odd"><p>select the source you created in step 2</p>
+</dd>
+<dt class="field-even">concept_handler</dt>
+<dd class="field-even"><p>AgeAtVisitHandler</p>
+</dd>
+<dt class="field-odd">collection</dt>
+<dd class="field-odd"><p>select the collection the calculated field will go in, i.e. the visit collection</p>
+</dd>
+</dl>
+<p>The remaining fields can be filled in as you wish, and there are no ConceptHandlerArgs for
+our custom concept handler.</p>
+<ol class="arabic simple" start="6">
+<li><p>That should be it. The next time you run the ETL, your new self-referential source should run
+at the end and populate your new calculated concept.</p></li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example2.html" class="btn btn-neutral float-left" title="calculated concept - multiple sources, subject data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example4.html" class="btn btn-neutral float-right" title="calculated concept - multiple sources, subcollection data, longitudinal" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

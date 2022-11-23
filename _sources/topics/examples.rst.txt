@@ -1,0 +1,12 @@
+How-To Examples
+===============
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   examples/example1.md
+   examples/example2.md
+   examples/example3.md
+   examples/example4.md
+

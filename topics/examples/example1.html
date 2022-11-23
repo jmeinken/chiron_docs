@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>calculated concept - single source &mdash; Chiron 4.3.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="calculated concept - multiple sources, subject data" href="example2.html" />
+    <link rel="prev" title="How-To Examples" href="../examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">How-To Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">calculated concept - single source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example2.html">calculated concept - multiple sources, subject data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example3.html">calculated concept - multiple sources, subcollection data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example4.html">calculated concept - multiple sources, subcollection data, longitudinal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">How-To Examples</a> &raquo;</li>
+      <li>calculated concept - single source</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/examples/example1.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="calculated-concept-single-source">
+<span id="example1"></span><h1>calculated concept - single source<a class="headerlink" href="#calculated-concept-single-source" title="Permalink to this headline"></a></h1>
+<p>EXAMPLE: We're importing lab results. Each record has a <code class="docutils literal notranslate"><span class="pre">value</span></code> along with a <code class="docutils literal notranslate"><span class="pre">min_value</span></code> and <code class="docutils literal notranslate"><span class="pre">max_value</span></code>,
+and we want a calculated concept that will flag the value as LOW, HIGH, or NORMAL.</p>
+<hr>
+<ol class="arabic simple">
+<li><p>Create a custom ETL processor to calculate the value.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">EtlDjangoField</span>
+<span class="kn">from</span> <span class="nn">chiron</span> <span class="kn">import</span> <span class="n">processors</span>
+
+<span class="k">class</span> <span class="nc">EtlNormalFlag</span><span class="p">(</span><span class="n">EtlDjangoField</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pull_concept_value_from_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="n">lab_result</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">numeric_value</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">max_value</span>
+        <span class="n">min_value</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">min_value</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">lab_result</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">max_value</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">min_value</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">lab_result</span> <span class="o">&gt;</span> <span class="n">max_value</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;HIGH&quot;</span>
+        <span class="k">elif</span> <span class="n">lab_result</span> <span class="o">&lt;</span> <span class="n">min_value</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;LOW&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;NORMAL&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">NormalFlagHandler</span><span class="p">(</span><span class="n">processors</span><span class="o">.</span><span class="n">DjangoTextHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_etl_processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concept</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">etl_processor</span> <span class="o">=</span> <span class="n">EtlNormalFlag</span><span class="p">(</span><span class="n">concept</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Register the processor with Chiron in <code class="docutils literal notranslate"><span class="pre">chiron_config/processors/__init__.py</span></code></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
+<span class="kn">from</span> <span class="nn">chiron</span> <span class="kn">import</span> <span class="n">processors</span>
+<span class="kn">from</span> <span class="nn">chiron_config.processors.my_etl_processors</span> <span class="kn">import</span> <span class="n">NormalFlagHandler</span>
+
+<span class="n">ProcessorRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">processors</span><span class="o">.</span><span class="n">SourceDjangoModel</span><span class="p">,</span> <span class="n">NormalFlagHandler</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Create a Concept in your data dictionary for this new concept.</p>
+<ul class="simple">
+<li><p>The input data comes from the lab_results source, so it will be associated with that source.</p></li>
+<li><p>The calculated concept will be 1:1 with a lab result, so it will be associated with that collection.</p></li>
+<li><p>It will use the new ETL processor we just created.</p></li>
+<li><p>We hard-coded all the input values and behavior in our ETL processor, so we don't need any Concept Handler Args.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../examples.html" class="btn btn-neutral float-left" title="How-To Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example2.html" class="btn btn-neutral float-right" title="calculated concept - multiple sources, subject data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

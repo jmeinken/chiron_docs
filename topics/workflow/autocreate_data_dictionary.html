@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. Set Up the Data Dictionary &mdash; Chiron 4.3.0 documentation</title>
+  <title>3. Autocreate the Data Dictionary &mdash; Chiron 4.3.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3. Load data into MongoDB" href="loading_data.html" />
-    <link rel="prev" title="1. Install Chiron" href="installing.html" /> 
+    <link rel="next" title="4. Manually Edit the Data Dictionary" href="edit_data_dictionary.html" />
+    <link rel="prev" title="2. Plan your Data Schema" href="data_schema.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,18 +46,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installing.html">1. Install Chiron</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Set Up the Data Dictionary</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#autocreate-the-data-dictionary">Autocreate the Data Dictionary</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#source-list-overview">Source List Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#source-list-arguments-for-csv-files-csvfileautocreate">Source List Arguments for CSV Files (CsvFileAutocreate)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#source-list-arguments-for-django-models-djangoormautocreate">Source List Arguments for Django Models (DjangoOrmAutocreate)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#how-to-run-the-autocreate-script">How to run the autocreate script</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#rerunning-autocreate-after-changes">Rerunning Autocreate After Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_schema.html">2. Plan your Data Schema</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Autocreate the Data Dictionary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#source-list-overview">Source List Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#source-list-arguments-for-csv-files-csvfileautocreate">Source List Arguments for CSV Files (CsvFileAutocreate)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#source-list-arguments-for-django-models-djangoormautocreate">Source List Arguments for Django Models (DjangoOrmAutocreate)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-run-the-autocreate-script">How to run the autocreate script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rerunning-autocreate-after-changes">Rerunning Autocreate After Changes</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#manually-create-edit-the-data-dictionary">Manually Create/Edit the Data Dictionary</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="edit_data_dictionary.html">4. Manually Edit the Data Dictionary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="loading_data.html">3. Load data into MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deploying_to_production.html">4. Deploy to Production</a></li>
 </ul>
@@ -65,6 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">How-To Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
 </ul>
 
@@ -83,9 +82,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../workflow.html">Site Deployment Workflow</a> &raquo;</li>
-      <li>2. Set Up the Data Dictionary</li>
+      <li>3. Autocreate the Data Dictionary</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/topics/workflow/setting_up_data_dictionary.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/topics/workflow/autocreate_data_dictionary.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -93,10 +92,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="set-up-the-data-dictionary">
-<h1>2. Set Up the Data Dictionary<a class="headerlink" href="#set-up-the-data-dictionary" title="Permalink to this headline"></a></h1>
-<section id="autocreate-the-data-dictionary">
-<span id="id1"></span><h2>Autocreate the Data Dictionary<a class="headerlink" href="#autocreate-the-data-dictionary" title="Permalink to this headline"></a></h2>
+  <section id="autocreate-the-data-dictionary">
+<span id="id1"></span><h1>3. Autocreate the Data Dictionary<a class="headerlink" href="#autocreate-the-data-dictionary" title="Permalink to this headline"></a></h1>
 <p>Creating a data dictionary by hand when you have a lot of fields is tedious. So we have a script that
 can autocreate a data dictionary for you. You will define a list of sources you want to import, then
 the script will inspect the fields in those sources and create a full data dictionary turning each
@@ -107,7 +104,7 @@ be further customized as needed. You will only run this script once to get start
 need to run it again unless you have new sources/fields that you want to import.</p>
 <p>Currently the autocomplete script supports data coming from the Django ORM or from CSV files.</p>
 <section id="source-list-overview">
-<h3>Source List Overview<a class="headerlink" href="#source-list-overview" title="Permalink to this headline"></a></h3>
+<h2>Source List Overview<a class="headerlink" href="#source-list-overview" title="Permalink to this headline"></a></h2>
 <p>Your source list will have one entry for each source you want to create. A source
 can be any Python iterable, but for autocreate it will either be a Django model or a CSV file.</p>
 <p>You can make a single source list for your chiron instance, or separate into multiple lists to
@@ -146,7 +143,7 @@ keep things logically separated.</p>
 </div>
 </section>
 <section id="source-list-arguments-for-csv-files-csvfileautocreate">
-<h3>Source List Arguments for CSV Files (CsvFileAutocreate)<a class="headerlink" href="#source-list-arguments-for-csv-files-csvfileautocreate" title="Permalink to this headline"></a></h3>
+<h2>Source List Arguments for CSV Files (CsvFileAutocreate)<a class="headerlink" href="#source-list-arguments-for-csv-files-csvfileautocreate" title="Permalink to this headline"></a></h2>
 <p>NOTE: Your CSV files must have a header row with the name of each field.</p>
 <ul class="simple">
 <li><p><strong>unique_source_id</strong> <em>(str, required)</em></p>
@@ -253,7 +250,7 @@ to do this in a situation where a later source will match on the added ID(s).</p
 </ul>
 </section>
 <section id="source-list-arguments-for-django-models-djangoormautocreate">
-<h3>Source List Arguments for Django Models (DjangoOrmAutocreate)<a class="headerlink" href="#source-list-arguments-for-django-models-djangoormautocreate" title="Permalink to this headline"></a></h3>
+<h2>Source List Arguments for Django Models (DjangoOrmAutocreate)<a class="headerlink" href="#source-list-arguments-for-django-models-djangoormautocreate" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p><strong>app</strong> <em>(str, required)</em></p>
 <ul>
@@ -372,7 +369,7 @@ to do this in a situation where a later source will match on the added ID(s).</p
 </ul>
 </section>
 <section id="how-to-run-the-autocreate-script">
-<h3>How to run the autocreate script<a class="headerlink" href="#how-to-run-the-autocreate-script" title="Permalink to this headline"></a></h3>
+<h2>How to run the autocreate script<a class="headerlink" href="#how-to-run-the-autocreate-script" title="Permalink to this headline"></a></h2>
 <p>Once your source list(s) are set up, you are ready to run the autocreate script. First collect
 all your source lists together into one dictionary. The key values can be anything you want:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">autocreate_source_lists</span> <span class="o">=</span> <span class="p">{</span>
@@ -395,14 +392,9 @@ variable is stored. The default value is <code class="docutils literal notransla
 </div>
 </section>
 <section id="rerunning-autocreate-after-changes">
-<h3>Rerunning Autocreate After Changes<a class="headerlink" href="#rerunning-autocreate-after-changes" title="Permalink to this headline"></a></h3>
+<h2>Rerunning Autocreate After Changes<a class="headerlink" href="#rerunning-autocreate-after-changes" title="Permalink to this headline"></a></h2>
 <p>There is a dedicated model <code class="docutils literal notranslate"><span class="pre">AutocreatedField</span></code> to keep track of all fields that have been loaded through autocreate. Any fields that have been imported are tracked in this model and will not be imported again, even if the associated Concepts have been modified or deleted. So it is safe to rerun chiron_autocreate_dd to autocreate concepts from new models, CSV files, or fields. It will not re-create any fields that have already been created.</p>
 <p>If you actually want to reload previously loaded concepts (for example, if you deleted something by accident), you can remove the fields you wish to re-import from AutoImportedField, then run chiron_autocreate_dd again.</p>
-</section>
-</section>
-<section id="manually-create-edit-the-data-dictionary">
-<h2>Manually Create/Edit the Data Dictionary<a class="headerlink" href="#manually-create-edit-the-data-dictionary" title="Permalink to this headline"></a></h2>
-<p>See the full data dictionary for all configuration options - <a class="reference internal" href="../configuration/data_dict_models.html"><span class="doc">Data Dictionary</span></a></p>
 </section>
 </section>
 
@@ -410,8 +402,8 @@ variable is stored. The default value is <code class="docutils literal notransla
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="installing.html" class="btn btn-neutral float-left" title="1. Install Chiron" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="loading_data.html" class="btn btn-neutral float-right" title="3. Load data into MongoDB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="data_schema.html" class="btn btn-neutral float-left" title="2. Plan your Data Schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="edit_data_dictionary.html" class="btn btn-neutral float-right" title="4. Manually Edit the Data Dictionary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
