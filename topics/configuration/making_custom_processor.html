@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Processors and Concept Handlers &mdash; Chiron 4.3.0 documentation</title>
+  <title>Custom Processors and Concept Handlers &mdash; Chiron 4.3.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Chiron API" href="../api.html" />
-    <link rel="prev" title="Built-In Concept Handlers" href="built_in_concept_handlers.html" /> 
+    <link rel="prev" title="Built-In Concept Handlers" href="built_in_handlers.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,8 +50,8 @@
 <li class="toctree-l2"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="users.html">Users and User Permissions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_dict_models.html">Data Dictionary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="built_in_concept_handlers.html">Built-In Concept Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_processors.html">Built-In Source Processors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_handlers.html">Built-In Concept Handlers</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Custom Processors and Concept Handlers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#getting-started-with-custom-processors">Getting Started With Custom Processors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tips-for-creating-custom-processors">Tips for Creating Custom Processors</a><ul>
@@ -184,14 +184,14 @@ is registered with Chiron.</p>
 <p>As a shorthand, you can register multiple source processors and multiple concept handlers at the same time. In this case, every source processor will be associated with every concept handler.</p>
 <p>For example, if you have a custom source processor that returns records as Python dictionaries, you could do this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chiron.processors.registration</span> <span class="kn">import</span> <span class="n">ProcessorRegistry</span>
-<span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">DictCategoryHandler</span><span class="p">,</span> <span class="n">DictTextHandler</span><span class="p">,</span> <span class="n">DictDateHandler</span><span class="p">,</span> <span class="n">DictFloatHandler</span><span class="p">,</span> <span class="n">DictIntegerHandler</span>
+<span class="kn">from</span> <span class="nn">chiron.processors</span> <span class="kn">import</span> <span class="n">CategoryHandler</span><span class="p">,</span> <span class="n">TextHandler</span><span class="p">,</span> <span class="n">DateHandler</span><span class="p">,</span> <span class="n">FloatHandler</span><span class="p">,</span> <span class="n">IntegerHandler</span>
 
 <span class="n">ProcessorRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">MySourceProcessor</span><span class="p">,</span> <span class="p">[</span>
-   <span class="n">DictCategoryHandler</span><span class="p">,</span>
-   <span class="n">DictTextHandler</span><span class="p">,</span>
-   <span class="n">DictDateHandler</span><span class="p">,</span>
-   <span class="n">DictFloatHandler</span><span class="p">,</span>
-   <span class="n">DictIntegerHandler</span><span class="p">,</span>
+   <span class="n">CategoryHandler</span><span class="p">,</span>
+   <span class="n">TextHandler</span><span class="p">,</span>
+   <span class="n">DateHandler</span><span class="p">,</span>
+   <span class="n">FloatHandler</span><span class="p">,</span>
+   <span class="n">IntegerHandler</span><span class="p">,</span>
 <span class="p">])</span>
 </pre></div>
 </div>
@@ -282,6 +282,16 @@ associated with a &quot;sample&quot; collection should return an iterable of sam
 <dd class="field-even"><p>various</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chiron.processors.abstract.StandardLoadMixin.check_source_format">
+<span class="sig-name descname"><span class="pre">check_source_format</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.abstract.StandardLoadMixin.check_source_format" title="Permalink to this definition"></a></dt>
+<dd><p>What is the format of the source iterable that gets returned</p>
+<p>The method get_source() must return an iterable, but that is the only restriction. This
+method can be used to describe that iterable. This allows code that uses source data to
+know what it's getting and modify its behavior accordingly.</p>
+<p>ex. &quot;list of dicts&quot;, &quot;queryset&quot;, &quot;chiron subject collection&quot;</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1220,7 +1230,7 @@ where this value occurred (again based on the event_date_field).</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="built_in_concept_handlers.html" class="btn btn-neutral float-left" title="Built-In Concept Handlers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="built_in_handlers.html" class="btn btn-neutral float-left" title="Built-In Concept Handlers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../api.html" class="btn btn-neutral float-right" title="Chiron API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

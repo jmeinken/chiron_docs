@@ -68,14 +68,14 @@ For example, if you have a custom source processor that returns records as Pytho
 
 ```python
 from chiron.processors.registration import ProcessorRegistry
-from chiron.processors import DictCategoryHandler, DictTextHandler, DictDateHandler, DictFloatHandler, DictIntegerHandler
+from chiron.processors import CategoryHandler, TextHandler, DateHandler, FloatHandler, IntegerHandler
 
 ProcessorRegistry.register(MySourceProcessor, [
-   DictCategoryHandler,
-   DictTextHandler,
-   DictDateHandler,
-   DictFloatHandler,
-   DictIntegerHandler,
+   CategoryHandler,
+   TextHandler,
+   DateHandler,
+   FloatHandler,
+   IntegerHandler,
 ])
 ```
 

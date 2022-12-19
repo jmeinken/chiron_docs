@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>calculated concept - single source &mdash; Chiron 4.3.0 documentation</title>
+  <title>calculated concept - single source &mdash; Chiron 4.3.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -53,6 +53,12 @@
 <li class="toctree-l2"><a class="reference internal" href="example2.html">calculated concept - multiple sources, subject data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example3.html">calculated concept - multiple sources, subcollection data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example4.html">calculated concept - multiple sources, subcollection data, longitudinal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example5.html">deidentified subject ID from PHI subject ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example6.html">subject ID when your source data doesn't have one</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example7.html">subject ID concept from Chiron subject ID field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example8.html">create a subcollection ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example9.html">create current age field from birth/death dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example10.html">create detailed age field from birth date and event date</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
@@ -108,7 +114,7 @@ and we want a calculated concept that will flag the value as LOW, HIGH, or NORMA
         <span class="k">return</span> <span class="s2">&quot;NORMAL&quot;</span>
 
 
-<span class="k">class</span> <span class="nc">NormalFlagHandler</span><span class="p">(</span><span class="n">processors</span><span class="o">.</span><span class="n">DjangoTextHandler</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">NormalFlagHandler</span><span class="p">(</span><span class="n">processors</span><span class="o">.</span><span class="n">TextHandler</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">set_etl_processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concept</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">etl_processor</span> <span class="o">=</span> <span class="n">EtlNormalFlag</span><span class="p">(</span><span class="n">concept</span><span class="p">)</span>
 </pre></div>

@@ -98,7 +98,7 @@ class EtlConditionChange(EtlDjangoField):
         
         return previous_doc.get("condition_severity")
 
-class ConditionChangeHandler(processors.DjangoCategoryHandler):
+class ConditionChangeHandler(processors.CategoryHandler):
     def set_etl_processor(self, concept):
         self.etl_processor = EtlConditionChange(concept)
 ```
@@ -130,6 +130,11 @@ ProcessorRegistry.register(processors.SourceSelfSubdoc, ConditionChangeHandler)
 
 :collection:
    select the collection the calculated field will go in, i.e. the visit collection
+   
+:Concept-concept dependencies:
+    include `visit_date_xilvrwgfyn` and `condition_severity_aqfqqblpvq` (if Chiron knows this
+    concept depends on those concepts, it will help protect you from doing something stupid like
+    loading them in the wrong order)
 ```
 
 The remaining fields can be filled in as you wish, and there are no ConceptHandlerArgs for

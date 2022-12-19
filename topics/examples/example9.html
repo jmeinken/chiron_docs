@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>create current age field from birth/death dates &mdash; Chiron 4.3.2 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="create detailed age field from birth date and event date" href="example10.html" />
+    <link rel="prev" title="create a subcollection ID" href="example8.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Site Deployment Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Chiron Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">How-To Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="example1.html">calculated concept - single source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example2.html">calculated concept - multiple sources, subject data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example3.html">calculated concept - multiple sources, subcollection data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example4.html">calculated concept - multiple sources, subcollection data, longitudinal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example5.html">deidentified subject ID from PHI subject ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example6.html">subject ID when your source data doesn't have one</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example7.html">subject ID concept from Chiron subject ID field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example8.html">create a subcollection ID</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">create current age field from birth/death dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example10.html">create detailed age field from birth date and event date</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">How-To Examples</a> &raquo;</li>
+      <li>create current age field from birth/death dates</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/examples/example9.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="create-current-age-field-from-birth-death-dates">
+<span id="example9"></span><h1>create current age field from birth/death dates<a class="headerlink" href="#create-current-age-field-from-birth-death-dates" title="Permalink to this headline"></a></h1>
+<p>EXAMPLE: We have concepts for DOB and DOD in the Chiron subject collection. We want to use these to generate
+a deidentified age concept.</p>
+<hr>
+<p>The concept handler we will use for this is <code class="docutils literal notranslate"><span class="pre">CurrentAgeFromDobHandler</span></code>. We must provide it
+with an input date of birth and optionally a date of death. We will load the DOB and DOD as concepts first, and then
+create a new source at the end that iterates the Chiron subject collection to generate our calculated fields.</p>
+<ol class="arabic simple">
+<li><p>Set up the data dictionary to load the sources that create concepts for our DOB and DOD.</p></li>
+<li><p>In the data dictionary, we're going to add a new source for iterating the subject collection in the Chiron database:</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">name</dt>
+<dd class="field-odd"><p>give any name you want, ex. &quot;chiron_subject_collection&quot;</p>
+</dd>
+<dt class="field-even">collection</dt>
+<dd class="field-even"><p>select the subject collection</p>
+</dd>
+<dt class="field-odd">processor</dt>
+<dd class="field-odd"><p>SourceSelf</p>
+</dd>
+<dt class="field-even">execution_order</dt>
+<dd class="field-even"><p>must be run after all our input data (DOB, DOD) is loaded</p>
+</dd>
+</dl>
+<ol class="arabic simple" start="3">
+<li><p>In the data dictionary, create a concept for our procedure ID</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">permanent_id</dt>
+<dd class="field-odd"><p>give any name you want, ex. &quot;current_age&quot;</p>
+</dd>
+<dt class="field-even">name</dt>
+<dd class="field-even"><p>&quot;subject age&quot;</p>
+</dd>
+<dt class="field-odd">source</dt>
+<dd class="field-odd"><p>select the source you created in step 2</p>
+</dd>
+<dt class="field-even">concept_handler</dt>
+<dd class="field-even"><p>CurrentAgeFromDobHandler</p>
+</dd>
+<dt class="field-odd">collection</dt>
+<dd class="field-odd"><p>select the collection the calculated field will go in, i.e. the subject collection</p>
+</dd>
+<dt class="field-even">Concept handler args</dt>
+<dd class="field-even"><p>Give the concept permanent IDs for the input fields
+field_name = &quot;dob_xrvwavsftu&quot;
+death_date_field_name = &quot;dod_xctwybwqxh&quot;</p>
+</dd>
+<dt class="field-odd">Concept-concept dependencies</dt>
+<dd class="field-odd"><p>include <cite>dob_xrvwavsftu</cite>, <cite>dod_xctwybwqxh</cite> (if Chiron knows this concept
+depends on these date concepts, it will help protect you from doing something stupid like loading
+them in the wrong order)</p>
+</dd>
+</dl>
+<p>The remaining fields can be filled in as you wish.</p>
+<ol class="arabic simple" start="4">
+<li><p>That should be it. The next time you run the ETL, your new self-referential source should run
+at the end and populate your new calculated concept.</p></li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example8.html" class="btn btn-neutral float-left" title="create a subcollection ID" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example10.html" class="btn btn-neutral float-right" title="create detailed age field from birth date and event date" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

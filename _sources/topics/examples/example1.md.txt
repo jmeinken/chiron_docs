@@ -26,7 +26,7 @@ class EtlNormalFlag(EtlDjangoField):
         return "NORMAL"
 
 
-class NormalFlagHandler(processors.DjangoTextHandler):
+class NormalFlagHandler(processors.TextHandler):
     def set_etl_processor(self, concept):
         self.etl_processor = EtlNormalFlag(concept)
 ```

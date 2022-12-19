@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version Changelog &mdash; Chiron 4.3.0 documentation</title>
+  <title>Version Changelog &mdash; Chiron 4.3.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="calculated concept - multiple sources, subcollection data, longitudinal" href="examples/example4.html" /> 
+    <link rel="prev" title="create detailed age field from birth date and event date" href="examples/example10.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,20 +49,39 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">Chiron API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">How-To Examples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Version Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#develop-5-branch-will-become-version-5-0-0">develop-5 branch (will become version 5.0.0)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#develop-branch">develop branch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-4-3-0-released-10-27-2022">Version 4.3.0 (released 10/27/2022)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-4-2-0-released-8-29-2022">Version 4.2.0 (released 8/29/2022)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-4-1-0-released-8-3-22">Version 4.1.0 (released 8/3/22)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-4-0-1-released-7-18-22">Version 4.0.1 (released 7/18/22)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-4-0-0-released-6-30-22">Version 4.0.0 (released 6/30/22)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-3-1-0-released-4-1-22">Version 3.1.0 (released 4/1/22)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-3-0-0-released-2-11-22">Version 3.0.0 (released 2/11/22)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-2-1-3-released-12-13-21">Version 2.1.3 (released 12/13/21)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-2-1-0-released-11-15-21">Version 2.1.0 (released 11/15/21)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-2-0-0-released-10-21-21">Version 2.0.0 (released 10/21/21)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-1-3-0-released-6-18-21">Version 1.3.0 (released 6/18/21)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version-1-2-0-released-4-29-21">Version 1.2.0 (released 4/29/21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#version-5-beta">Version 5 (beta)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#develop-5-branch-will-become-version-5-0-0">develop-5 branch (will become version 5.0.0)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#version-4">Version 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#develop-branch">develop branch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#version-4-3-2-released-12-19-2022">Version 4.3.2 (released 12/19/2022)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-3-1-released-12-13-22">Version 4.3.1 (released 12/13/22)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-3-0-released-10-27-22">Version 4.3.0 (released 10/27/22)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-2-0-released-8-29-22">Version 4.2.0 (released 8/29/22)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-1-0-released-8-3-22">Version 4.1.0 (released 8/3/22)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-0-1-released-7-18-22">Version 4.0.1 (released 7/18/22)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-0-0-released-6-30-22">Version 4.0.0 (released 6/30/22)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#version-3">Version 3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-3-1-0-released-4-1-22">Version 3.1.0 (released 4/1/22)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-3-0-0-released-2-11-22">Version 3.0.0 (released 2/11/22)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#version-2">Version 2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-2-1-3-released-12-13-21">Version 2.1.3 (released 12/13/21)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-2-1-0-released-11-15-21">Version 2.1.0 (released 11/15/21)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-2-0-0-released-10-21-21">Version 2.0.0 (released 10/21/21)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#version-1">Version 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-1-3-0-released-6-18-21">Version 1.3.0 (released 6/18/21)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-1-2-0-released-4-29-21">Version 1.2.0 (released 4/29/21)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -93,13 +112,15 @@
              
   <section id="version-changelog">
 <h1>Version Changelog<a class="headerlink" href="#version-changelog" title="Permalink to this headline"></a></h1>
+<section id="version-5-beta">
+<h2>Version 5 (beta)<a class="headerlink" href="#version-5-beta" title="Permalink to this headline"></a></h2>
 <section id="develop-5-branch-will-become-version-5-0-0">
-<h2>develop-5 branch (will become version 5.0.0)<a class="headerlink" href="#develop-5-branch-will-become-version-5-0-0" title="Permalink to this headline"></a></h2>
+<h3>develop-5 branch (will become version 5.0.0)<a class="headerlink" href="#develop-5-branch-will-become-version-5-0-0" title="Permalink to this headline"></a></h3>
 <p><strong>Upgrade from 4.3.X</strong></p>
 <ul class="simple">
 <li><p>Need to run database migrations</p>
 <ul>
-<li><p>Some source processor arg names will be automatically changed in this database migration. This is unlikely to cause problems, but just FYI:</p>
+<li><p>Some source processor arg names will be changed in this database migration. This should work automatically, but just FYI:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">root_collection_id_field</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">subject_matching_source_id_field</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">subject_id_delimiter</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">subject_matching_source_id_delimiter</span></code></p></li>
@@ -130,14 +151,54 @@
 </li>
 </ul>
 </li>
+<li><p>New type of field detailed_age, recommend to use on any age fields that are more specific
+than just the year.</p>
+<ul>
+<li><p>For source data that's already an age, change concept handler to DetailedAgeHandler
+and specify in ConceptHandlerArgs source_format = &quot;age in days&quot;
+(default) or source_format = &quot;year float&quot;.</p></li>
+<li><p>If you want to calculate a detailed age using DOB and an event date, use the concept handler
+DetailedAgeFromDatesHandler.</p></li>
+<li><p>Chiron setting CHIRON_EVENT_CONCEPT_TYPE should be changed to either &quot;dates&quot; or
+&quot;detailed_age&quot;.</p></li>
+</ul>
+</li>
 </ul>
 </section>
-<section id="develop-branch">
-<h2>develop branch<a class="headerlink" href="#develop-branch" title="Permalink to this headline"></a></h2>
-<p><em>no breaking changes since version 4.3</em></p>
 </section>
-<section id="version-4-3-0-released-10-27-2022">
-<h2>Version 4.3.0 (released 10/27/2022)<a class="headerlink" href="#version-4-3-0-released-10-27-2022" title="Permalink to this headline"></a></h2>
+<section id="version-4">
+<h2>Version 4<a class="headerlink" href="#version-4" title="Permalink to this headline"></a></h2>
+<section id="develop-branch">
+<h3>develop branch<a class="headerlink" href="#develop-branch" title="Permalink to this headline"></a></h3>
+<p><em>no breaking changes since version 4.3.2</em></p>
+</section>
+</section>
+<section id="version-4-3-2-released-12-19-2022">
+<h2>Version 4.3.2 (released 12/19/2022)<a class="headerlink" href="#version-4-3-2-released-12-19-2022" title="Permalink to this headline"></a></h2>
+<p><strong>bug fixes</strong></p>
+<ul class="simple">
+<li><p>MongoDB subcollections were not getting populated fully when there were no permission groups,
+resulting in a KeyError during queries.</p></li>
+</ul>
+<section id="version-4-3-1-released-12-13-22">
+<h3>Version 4.3.1 (released 12/13/22)<a class="headerlink" href="#version-4-3-1-released-12-13-22" title="Permalink to this headline"></a></h3>
+<p><strong>New features</strong></p>
+<ul class="simple">
+<li><p>beta support for M2M subcollections now ready for production (allows M2M relationship between
+a subcollection and subject)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chiron_restore_dataset</span></code> management command preserves existing user created content (reports)
+when updating an existing dataset</p></li>
+</ul>
+<p><strong>bug fixes</strong></p>
+<ul class="simple">
+<li><p>fixed several incorrect references to Django user instead of chironuser (affected report API endpoints)</p></li>
+<li><p>fixed outdated broken references in number_with_categories cohort def processor</p></li>
+<li><p>fixed error on name clashes between different datasets (same name should be allowed on all entities
+except concept.permanent_id)</p></li>
+</ul>
+</section>
+<section id="version-4-3-0-released-10-27-22">
+<h3>Version 4.3.0 (released 10/27/22)<a class="headerlink" href="#version-4-3-0-released-10-27-22" title="Permalink to this headline"></a></h3>
 <p><strong>New features</strong></p>
 <ul class="simple">
 <li><p>new management commands <a class="reference internal" href="utilities/management_commands.html#cmd-chiron-backup-dataset"><span class="std std-ref">chiron_backup_dataset</span></a> and <a class="reference internal" href="utilities/management_commands.html#cmd-chiron-restore-dataset"><span class="std std-ref">chiron_restore_dataset</span></a></p></li>
@@ -178,8 +239,8 @@ that will need to be updated:</p></li>
 <li><p>The setting <code class="docutils literal notranslate"><span class="pre">CHIRON_PRINT_QUERY_INFO</span></code> was renamed to <code class="docutils literal notranslate"><span class="pre">CHIRON_GET_QUERY_PERFORMANCE</span></code></p></li>
 </ul>
 </section>
-<section id="version-4-2-0-released-8-29-2022">
-<h2>Version 4.2.0 (released 8/29/2022)<a class="headerlink" href="#version-4-2-0-released-8-29-2022" title="Permalink to this headline"></a></h2>
+<section id="version-4-2-0-released-8-29-22">
+<h3>Version 4.2.0 (released 8/29/22)<a class="headerlink" href="#version-4-2-0-released-8-29-22" title="Permalink to this headline"></a></h3>
 <p><strong>New features</strong></p>
 <ol class="arabic simple">
 <li><p>Added data issue tracking for during the ETL. Problems with data (ex. str input for a date
@@ -207,7 +268,7 @@ UI to browse data issues.</p></li>
 </ul>
 </section>
 <section id="version-4-1-0-released-8-3-22">
-<h2>Version 4.1.0 (released 8/3/22)<a class="headerlink" href="#version-4-1-0-released-8-3-22" title="Permalink to this headline"></a></h2>
+<h3>Version 4.1.0 (released 8/3/22)<a class="headerlink" href="#version-4-1-0-released-8-3-22" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Deprecated code and model fields related to the old processor registry were removed.</p></li>
 <li><p><a class="reference internal" href="utilities/admin_views.html#admin-views"><span class="std std-ref">Admin Views</span></a> in the built-in UI were cleaned up and added to documentation.</p></li>
@@ -227,13 +288,13 @@ UI to browse data issues.</p></li>
 </ul>
 </section>
 <section id="version-4-0-1-released-7-18-22">
-<h2>Version 4.0.1 (released 7/18/22)<a class="headerlink" href="#version-4-0-1-released-7-18-22" title="Permalink to this headline"></a></h2>
+<h3>Version 4.0.1 (released 7/18/22)<a class="headerlink" href="#version-4-0-1-released-7-18-22" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Patch for major bug causing all analysis view queries to fail.</p></li>
 </ol>
 </section>
 <section id="version-4-0-0-released-6-30-22">
-<h2>Version 4.0.0 (released 6/30/22)<a class="headerlink" href="#version-4-0-0-released-6-30-22" title="Permalink to this headline"></a></h2>
+<h3>Version 4.0.0 (released 6/30/22)<a class="headerlink" href="#version-4-0-0-released-6-30-22" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p><em>(beta feature)</em> A single Chiron instance can now have multiple datasets. This is achieved using a Dataset
 model - each collection belongs to a Dataset.</p></li>
@@ -252,8 +313,11 @@ source list is a Python list with each entry defining a source to create.</p>
 </li>
 </ol>
 </section>
+</section>
+<section id="version-3">
+<h2>Version 3<a class="headerlink" href="#version-3" title="Permalink to this headline"></a></h2>
 <section id="version-3-1-0-released-4-1-22">
-<h2>Version 3.1.0 (released 4/1/22)<a class="headerlink" href="#version-3-1-0-released-4-1-22" title="Permalink to this headline"></a></h2>
+<h3>Version 3.1.0 (released 4/1/22)<a class="headerlink" href="#version-3-1-0-released-4-1-22" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>New <code class="docutils literal notranslate"><span class="pre">CollectionRelationship</span></code> table in the data dictionary allows you to define 1:many and many:many relationships between subcollections.</p>
 <ul class="simple">
@@ -265,7 +329,7 @@ source list is a Python list with each entry defining a source to create.</p>
 </ol>
 </section>
 <section id="version-3-0-0-released-2-11-22">
-<h2>Version 3.0.0 (released 2/11/22)<a class="headerlink" href="#version-3-0-0-released-2-11-22" title="Permalink to this headline"></a></h2>
+<h3>Version 3.0.0 (released 2/11/22)<a class="headerlink" href="#version-3-0-0-released-2-11-22" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Added Analysis view</p>
 <ul class="simple">
@@ -290,8 +354,11 @@ source list is a Python list with each entry defining a source to create.</p>
 </li>
 </ol>
 </section>
+</section>
+<section id="version-2">
+<h2>Version 2<a class="headerlink" href="#version-2" title="Permalink to this headline"></a></h2>
 <section id="version-2-1-3-released-12-13-21">
-<h2>Version 2.1.3 (released 12/13/21)<a class="headerlink" href="#version-2-1-3-released-12-13-21" title="Permalink to this headline"></a></h2>
+<h3>Version 2.1.3 (released 12/13/21)<a class="headerlink" href="#version-2-1-3-released-12-13-21" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Updated to work with Pymongo v4</p></li>
 <li><p>Some endpoints didn't allow you to pass a cohort_def/table_def, instead automatically using
@@ -300,7 +367,7 @@ latest snapshot will be assumed.</p></li>
 </ol>
 </section>
 <section id="version-2-1-0-released-11-15-21">
-<h2>Version 2.1.0 (released 11/15/21)<a class="headerlink" href="#version-2-1-0-released-11-15-21" title="Permalink to this headline"></a></h2>
+<h3>Version 2.1.0 (released 11/15/21)<a class="headerlink" href="#version-2-1-0-released-11-15-21" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Some minor changes to the database schema. Django migrations will need to be run.</p></li>
 <li><p>Minor changes to cohort def:</p>
@@ -322,14 +389,17 @@ latest snapshot will be assumed.</p></li>
 </ol>
 </section>
 <section id="version-2-0-0-released-10-21-21">
-<h2>Version 2.0.0 (released 10/21/21)<a class="headerlink" href="#version-2-0-0-released-10-21-21" title="Permalink to this headline"></a></h2>
+<h3>Version 2.0.0 (released 10/21/21)<a class="headerlink" href="#version-2-0-0-released-10-21-21" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Major overhaul of the query engine. Instead of generating the full report in MongoDB, pulls the
 data it needs from MongoDB and does most of the report generation in Python.</p></li>
 </ol>
 </section>
+</section>
+<section id="version-1">
+<h2>Version 1<a class="headerlink" href="#version-1" title="Permalink to this headline"></a></h2>
 <section id="version-1-3-0-released-6-18-21">
-<h2>Version 1.3.0 (released 6/18/21)<a class="headerlink" href="#version-1-3-0-released-6-18-21" title="Permalink to this headline"></a></h2>
+<h3>Version 1.3.0 (released 6/18/21)<a class="headerlink" href="#version-1-3-0-released-6-18-21" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>There is a new model Project, and Reports can have a project associated with them. Projects
 at this point are only used to help group reports.</p></li>
@@ -348,7 +418,7 @@ in. There is a new API endpoint for flagging reports.</p>
 </ol>
 </section>
 <section id="version-1-2-0-released-4-29-21">
-<h2>Version 1.2.0 (released 4/29/21)<a class="headerlink" href="#version-1-2-0-released-4-29-21" title="Permalink to this headline"></a></h2>
+<h3>Version 1.2.0 (released 4/29/21)<a class="headerlink" href="#version-1-2-0-released-4-29-21" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>In table definition entries, &quot;aggregation_style&quot; and &quot;aggregation_method&quot; are now &quot;aggregate&quot;
 (boolean) and &quot;aggregation_method&quot;.</p>
@@ -382,12 +452,13 @@ any custom ones, you'll want to review the abstract methods and check everything
 </ol>
 </section>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="examples/example4.html" class="btn btn-neutral float-left" title="calculated concept - multiple sources, subcollection data, longitudinal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples/example10.html" class="btn btn-neutral float-left" title="create detailed age field from birth date and event date" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

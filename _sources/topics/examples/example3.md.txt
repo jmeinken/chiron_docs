@@ -56,7 +56,7 @@ class EtlAgeAtVisit(EtlDjangoField):
         return visit_date.year - dob.year - ((visit_date.month, visit_date.day) < (dob.month, dob.day))
 
 
-class AgeAtVisitHandler(processors.DjangoIntegerHandler):
+class AgeAtVisitHandler(processors.IntegerHandler):
     def set_etl_processor(self, concept):
         self.etl_processor = EtlAgeAtVisit(concept)
 ```
@@ -88,6 +88,11 @@ ProcessorRegistry.register(processors.SourceSelfSubdoc, AgeAtVisitHandler)
 
 :collection:
    select the collection the calculated field will go in, i.e. the visit collection
+   
+:Concept-concept dependencies:
+    include `dob_xilvrwgfyn` and `visit_date_aqfqqblpvq` (if Chiron knows this concept
+    depends on those concepts, it will help protect you from doing something stupid like loading
+    them in the wrong order)
 ```
 
 The remaining fields can be filled in as you wish, and there are no ConceptHandlerArgs for

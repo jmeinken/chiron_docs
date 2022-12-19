@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chiron Global Settings &mdash; Chiron 4.3.0 documentation</title>
+  <title>Chiron Global Settings &mdash; Chiron 4.3.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -58,8 +58,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="users.html">Users and User Permissions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_dict_models.html">Data Dictionary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="built_in_concept_handlers.html">Built-In Concept Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_processors.html">Built-In Source Processors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_handlers.html">Built-In Concept Handlers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="making_custom_processor.html">Custom Processors and Concept Handlers</a></li>
 </ul>
 </li>
@@ -166,11 +166,13 @@ by color:</p>
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_EVENT_CONCEPT_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'date'</span></em></dt>
 <dd><p>The event query system allows date concepts to be associated with specific collections (using
 collection.event_date_field and collection.event_end_date_field) indicating when an event occurred.
-Then users can do temporal queries at the collection level.
-In addition to date concepts, you can also substitute age in years (float) or age in days (int).
-However, since comparisons between collections are possible, all event concepts must use the same
-type of value. Set that type here.</p>
-<p>OPTIONS: &quot;date&quot;, &quot;age_in_days&quot;, &quot;age_in_years&quot;</p>
+Then users can do temporal queries at the collection level.</p>
+<p>You can either use date concepts for events, or you can use detailed age concepts - which
+internally store an integer value for age in days. The advantage of using ages instead of dates
+is that dates are generally considered PHI.</p>
+<p>Ages and dates can't be compared against each other. You must choose one or the other to 
+specify here and then use globally across your application.</p>
+<p>OPTIONS: &quot;date&quot;, &quot;detailed_age&quot;</p>
 </dd></dl>
 
 </section>
@@ -222,10 +224,11 @@ json files be stored.</p>
 <dl class="py data">
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_PROCESSOR_MODULES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['chiron.processors',</span> <span class="pre">'chiron_config.processors']</span></em></dt>
-<dd><p>Processor classes must be registered with Chiron. List any modules that load processors
-here to ensure that they are loaded during registry updates.</p>
-<p>The recommended location for registering custom processors is in
-<cite>[your_project]/chiron_config/processors/__init__.py</cite>. Then this setting would need to be:</p>
+<dd><p>Processor classes must be registered with Chiron. List any packages/modules that load processors
+here to ensure that they are loaded during registry updates. Checks recursively, so all
+submodules of specified package/module will also be checked.</p>
+<p>The recommended location for registering custom processors is anywhere in
+<cite>[your_project]/chiron_config/processors/</cite>. Then this setting would need to be:</p>
 <p>CHIRON_PROCESSOR_MODULES = [&quot;chiron.processors&quot;, &quot;chiron_config.processors&quot;]</p>
 </dd></dl>
 

@@ -24,14 +24,24 @@ python manage.py command_name --help
 .. djcommand:: chiron.management.commands.chiron_autocreate_dd
 ```
 
-### chiron_rename_processor
+### chiron_merge_processors
 
 ```{eval-rst}
-.. autoclass:: chiron.management.commands.chiron_rename_processor.Command
+.. autoclass:: chiron.management.commands.chiron_merge_processors.Command
 ```
 
 ```{eval-rst}
-.. djcommand:: chiron.management.commands.chiron_rename_processor
+.. djcommand:: chiron.management.commands.chiron_merge_processors
+```
+
+### chiron_merge_handlers
+
+```{eval-rst}
+.. autoclass:: chiron.management.commands.chiron_merge_handlers.Command
+```
+
+```{eval-rst}
+.. djcommand:: chiron.management.commands.chiron_merge_handlers
 ```
 
 ### chiron_drop_dataset

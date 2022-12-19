@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>calculated concept - multiple sources, subcollection data &mdash; Chiron 4.3.0 documentation</title>
+  <title>calculated concept - multiple sources, subcollection data &mdash; Chiron 4.3.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -53,6 +53,12 @@
 <li class="toctree-l2"><a class="reference internal" href="example2.html">calculated concept - multiple sources, subject data</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">calculated concept - multiple sources, subcollection data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example4.html">calculated concept - multiple sources, subcollection data, longitudinal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example5.html">deidentified subject ID from PHI subject ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example6.html">subject ID when your source data doesn't have one</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example7.html">subject ID concept from Chiron subject ID field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example8.html">create a subcollection ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example9.html">create current age field from birth/death dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example10.html">create detailed age field from birth date and event date</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
@@ -137,7 +143,7 @@ input concepts for our calculated field into Chiron.</p></li>
         <span class="k">return</span> <span class="n">visit_date</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="n">dob</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="p">((</span><span class="n">visit_date</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">visit_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">dob</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">dob</span><span class="o">.</span><span class="n">day</span><span class="p">))</span>
 
 
-<span class="k">class</span> <span class="nc">AgeAtVisitHandler</span><span class="p">(</span><span class="n">processors</span><span class="o">.</span><span class="n">DjangoIntegerHandler</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AgeAtVisitHandler</span><span class="p">(</span><span class="n">processors</span><span class="o">.</span><span class="n">IntegerHandler</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">set_etl_processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concept</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">etl_processor</span> <span class="o">=</span> <span class="n">EtlAgeAtVisit</span><span class="p">(</span><span class="n">concept</span><span class="p">)</span>
 </pre></div>
@@ -170,6 +176,11 @@ input concepts for our calculated field into Chiron.</p></li>
 </dd>
 <dt class="field-odd">collection</dt>
 <dd class="field-odd"><p>select the collection the calculated field will go in, i.e. the visit collection</p>
+</dd>
+<dt class="field-even">Concept-concept dependencies</dt>
+<dd class="field-even"><p>include <cite>dob_xilvrwgfyn</cite> and <cite>visit_date_aqfqqblpvq</cite> (if Chiron knows this concept
+depends on those concepts, it will help protect you from doing something stupid like loading
+them in the wrong order)</p>
 </dd>
 </dl>
 <p>The remaining fields can be filled in as you wish, and there are no ConceptHandlerArgs for

@@ -1,40 +1,17 @@
 
 .. _built-in-processors:
 
-Built-In Processors
-===================
+Built-In Source Processors
+==========================
 
-The **processor classes** control how data is loaded into MongoDB from data sources and how it is
-displayed and queried. There are four types of processor classes.
+You can change many behaviors in Chiron with just the data dictionary. Sources in the data dictionary
+will define the source processor used to read data from a source during the ETL. Concepts in the data dictionary will define
+the concept handler used to import, query, and display concept values.
 
-:Source Processor:
-   *(associated with a source)* During the ETL, the source
-   collection processor class provides a standardized interface for retrieving records from the
-   source.
+Source Processors for Importing
+-------------------------------
 
-:ETL Processor:
-   *(associated with a concept)* During the ETL, the ETL processor will take a whole record provided
-   by the source processor and return a specific value to store in MongoDB for that
-   concept.
-
-:CohortDef Processor:
-   *(associated with a concept)* The cohort def processor controls how a concept gets applied to
-   queries. It also helps with getting summary statistics for the concept.
-
-:Display Processor:
-   *(associated with a concept)* The display processor controls how stored values for a concept
-   are aggregated, displayed and sorted in reports.
-
-
-
-how data is imported into MongoDB, how data is presented in the UI,
-how data is filtered in queries, and how data is displayed in data exports. There are a variety
-of built-in processors that are ready to use. They can typically be customized in various ways
-by passing arguments when instantiating. These arguments can be defined in the data dictionary.
-
-
-Source Processors
----------------------------
+Use the Source and SourceProcessorArg models to set and customize the source processor for each source.
 
 
 SourceDjangoModel
@@ -48,6 +25,9 @@ SourceCsv
 
 .. autoclass:: chiron.processors.SourceCsv
    :show-inheritance:
+
+Source Processors for Calculated Fields
+---------------------------------------
    
 SourceSelf
 ^^^^^^^^^^
@@ -61,178 +41,3 @@ SourceSelfSubdoc
 
 .. autoclass:: chiron.processors.SourceSelfSubdoc
    :show-inheritance:
-   
-   
-ETL Processors
---------------
-
-
-EtlDjangoField
-^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.EtlDjangoField
-   :show-inheritance:
-
-EtlDjangoMultifieldMerge
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.EtlDjangoMultifieldMerge
-   :show-inheritance:
-   
-EtlPythonDictItem
-^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.EtlPythonDictItem
-   :show-inheritance:
-   
-EtlPythonDictItemCounter
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.EtlPythonDictItemCounter
-   :show-inheritance:
-   
-   
-
-CohortDef Processors
-------------------------------
-
-CohortDef processors manage how a concept is applied to queries.
-
-CohortDefCategory
-^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.CohortDefCategory
-   :show-inheritance:
-
-CohortDefDate
-^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.CohortDefDate
-   :show-inheritance:
-   
-CohortDefDateDeid
-^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.CohortDefDateDeid
-   :show-inheritance:
-   
-CohortDefNumber
-^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.CohortDefNumber
-   :show-inheritance:
-
-CohortDefNumberWithCategories
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.CohortDefNumberWithCategories
-   :show-inheritance:
-   
-CohortDefText
-^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.CohortDefText
-   :show-inheritance:
-   
-CohortDefTextCustomSort
-^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.CohortDefTextCustomSort
-   :show-inheritance:
-   
-CohortDefBoolean
-^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.CohortDefBoolean
-   :show-inheritance:
-   
-
-Display Processors
-------------------
-
-Display Processors manage how a concept is applied to results output.
-
-DisplayCategory
-^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DisplayCategory
-   :show-inheritance:
-
-DisplayDate
-^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DisplayDate
-   :show-inheritance:
-   
-DisplayDateDeid
-^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DisplayDateDeid
-   :show-inheritance:
-   
-DisplayNumber
-^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DisplayNumber
-   :show-inheritance:
-
-DisplayNumberWithCategories
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DisplayNumberWithCategories
-   :show-inheritance:
-   
-DisplayText
-^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DisplayText
-   :show-inheritance:
-   
-DisplayTextCustomSort
-^^^^^^^^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DisplayTextCustomSort
-   :show-inheritance:
-   
-DisplayBoolean
-^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DisplayBoolean
-   :show-inheritance:
-   
-DisplayGeneric
-^^^^^^^^^^^^^^
-
-.. autoclass:: chiron.processors.DisplayGeneric
-   :show-inheritance:
-
-
-
-
-
-
-   
-   
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Dictionary &mdash; Chiron 4.3.0 documentation</title>
+  <title>Data Dictionary &mdash; Chiron 4.3.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -21,7 +21,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Built-In Processors" href="built_in_processors.html" />
+    <link rel="next" title="Built-In Source Processors" href="built_in_processors.html" />
     <link rel="prev" title="Users and User Permissions" href="users.html" /> 
 </head>
 
@@ -64,8 +64,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#autocreatedfield-model">AutocreatedField Model</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="built_in_processors.html">Built-In Processors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="built_in_concept_handlers.html">Built-In Concept Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_processors.html">Built-In Source Processors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_handlers.html">Built-In Concept Handlers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="making_custom_processor.html">Custom Processors and Concept Handlers</a></li>
 </ul>
 </li>
@@ -428,6 +428,19 @@ corresponding subject using a subject ID. Some projects may have multiple subjec
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">count_concepts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>How many concepts are associated with this source?</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">check_source_format</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Wrapper for SourceProcessor.check_source_format()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_dependencies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>What sources need to be loaded before this source? Based on SourceSource/ConceptSource/
+ConceptConceptDependency models</p>
 </dd></dl>
 
 </dd></dl>
@@ -866,7 +879,7 @@ deleted.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="users.html" class="btn btn-neutral float-left" title="Users and User Permissions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="built_in_processors.html" class="btn btn-neutral float-right" title="Built-In Processors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="built_in_processors.html" class="btn btn-neutral float-right" title="Built-In Source Processors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

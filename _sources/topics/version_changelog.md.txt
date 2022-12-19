@@ -1,11 +1,13 @@
 
 # Version Changelog
 
-## develop-5 branch (will become version 5.0.0)
+## Version 5 (beta)
+
+### develop-5 branch (will become version 5.0.0)
 
 **Upgrade from 4.3.X**
 - Need to run database migrations
-	- Some source processor arg names will be automatically changed in this database migration. This is unlikely to cause problems, but just FYI:
+	- Some source processor arg names will be changed in this database migration. This should work automatically, but just FYI:
 		- `root_collection_id_field` -> `subject_matching_source_id_field`
 		- `subject_id_delimiter` -> `subject_matching_source_id_delimiter`
 - If you keep a JSON backup of your data dictionary:
@@ -19,12 +21,43 @@
 	- there are two new optional methods to help with tracking subject matching:
 		- `get_subject_id_fields_used_for_matching()`
 		- `get_subject_id_fields_added()`
+- New type of field detailed_age, recommend to use on any age fields that are more specific
+  than just the year.
+    - For source data that's already an age, change concept handler to DetailedAgeHandler 
+      and specify in ConceptHandlerArgs source_format = "age in days"
+      (default) or source_format = "year float".
+    - If you want to calculate a detailed age using DOB and an event date, use the concept handler
+      DetailedAgeFromDatesHandler.
+    - Chiron setting CHIRON_EVENT_CONCEPT_TYPE should be changed to either "dates" or
+      "detailed_age".
+      
+## Version 4
 
-## develop branch
+### develop branch
 
-*no breaking changes since version 4.3*
+*no breaking changes since version 4.3.2*
 
-## Version 4.3.0 (released 10/27/2022)
+## Version 4.3.2 (released 12/19/2022)
+
+**bug fixes**
+- MongoDB subcollections were not getting populated fully when there were no permission groups,
+  resulting in a KeyError during queries.
+
+### Version 4.3.1 (released 12/13/22)
+
+**New features**
+- beta support for M2M subcollections now ready for production (allows M2M relationship between
+  a subcollection and subject)
+- `chiron_restore_dataset` management command preserves existing user created content (reports)
+  when updating an existing dataset
+
+**bug fixes**
+- fixed several incorrect references to Django user instead of chironuser (affected report API endpoints)
+- fixed outdated broken references in number_with_categories cohort def processor
+- fixed error on name clashes between different datasets (same name should be allowed on all entities
+  except concept.permanent_id)
+
+### Version 4.3.0 (released 10/27/22)
 
 **New features**
 - new management commands {ref}`cmd-chiron-backup-dataset` and {ref}`cmd-chiron-restore-dataset`
@@ -61,7 +94,7 @@ from chiron.data_dictionary.django_autocreate import DjangoOrmAutocreate
 
   
     
-## Version 4.2.0 (released 8/29/2022)
+### Version 4.2.0 (released 8/29/22)
 
 **New features**
 1. Added data issue tracking for during the ETL. Problems with data (ex. str input for a date
@@ -80,7 +113,7 @@ from chiron.data_dictionary.django_autocreate import DjangoOrmAutocreate
 - new setting `chiron_settings.CHIRON_AGG_DELIMITER`
     - no action required but you can set this if you want something besides the default `; `
 
-## Version 4.1.0 (released 8/3/22)
+### Version 4.1.0 (released 8/3/22)
 
 1. Deprecated code and model fields related to the old processor registry were removed.
 2. {ref}`admin-views` in the built-in UI were cleaned up and added to documentation.
@@ -96,11 +129,11 @@ from chiron.data_dictionary.django_autocreate import DjangoOrmAutocreate
 
 
 
-## Version 4.0.1 (released 7/18/22)
+### Version 4.0.1 (released 7/18/22)
 
 1. Patch for major bug causing all analysis view queries to fail.
 
-## Version 4.0.0 (released 6/30/22)
+### Version 4.0.0 (released 6/30/22)
 
 1. *(beta feature)* A single Chiron instance can now have multiple datasets. This is achieved using a Dataset
     model - each collection belongs to a Dataset.
@@ -111,15 +144,17 @@ from chiron.data_dictionary.django_autocreate import DjangoOrmAutocreate
 3. Autocreating the data dictionary now uses source lists instead of modeltree text files. A
     source list is a Python list with each entry defining a source to create.
     - See {ref}`autocreate-the-data-dictionary`
+    
+## Version 3
    
-## Version 3.1.0 (released 4/1/22)
+### Version 3.1.0 (released 4/1/22)
 
 1. New `CollectionRelationship` table in the data dictionary allows you to define 1:many and many:many relationships between subcollections.
    - See {ref}`data-model-explainer` for explanation of subcollection relationships and see the new data dictionary model {ref}`collection-relationship-model`.
 2. The collections API flags collections with dates defined using new "has_event" property. 
 3. New API endpoint to get the Chiron version number.
 
-## Version 3.0.0 (released 2/11/22)
+### Version 3.0.0 (released 2/11/22)
 
 1. Added Analysis view 
    - This is a new tool that allows for the generation of pivot-table style datasets.
@@ -135,8 +170,10 @@ from chiron.data_dictionary.django_autocreate import DjangoOrmAutocreate
 3. Added caching for performance improvement
    - Caching can be turned on/off in settings. 
    - It is recommended to keep it off in development environments and on in production environments.
+    
+## Version 2
 
-## Version 2.1.3 (released 12/13/21)
+### Version 2.1.3 (released 12/13/21)
 
 1. Updated to work with Pymongo v4
 
@@ -145,7 +182,7 @@ the latest snapshot. Now all should work the same - you can either pass the defi
 latest snapshot will be assumed.
 
 
-## Version 2.1.0 (released 11/15/21)
+### Version 2.1.0 (released 11/15/21)
 
 1. Some minor changes to the database schema. Django migrations will need to be run.
 
@@ -164,12 +201,14 @@ latest snapshot will be assumed.
    - For cohort def with multiple criteria sets for the same collection, typically data matching any of them will be included when calculating aggregation value. With new option "aggregation_criteria_set" can specify a specific criteria set to limit results.
 
 
-## Version 2.0.0 (released 10/21/21)
+### Version 2.0.0 (released 10/21/21)
 
 1. Major overhaul of the query engine. Instead of generating the full report in MongoDB, pulls the
 data it needs from MongoDB and does most of the report generation in Python.
+   
+## Version 1
 
-## Version 1.3.0 (released 6/18/21)
+### Version 1.3.0 (released 6/18/21)
 
 1. There is a new model Project, and Reports can have a project associated with them. Projects
 at this point are only used to help group reports.
@@ -188,7 +227,7 @@ in. There is a new API endpoint for flagging reports.
 
 
 
-## Version 1.2.0 (released 4/29/21)
+### Version 1.2.0 (released 4/29/21)
 
 1. In table definition entries, "aggregation_style" and "aggregation_method" are now "aggregate"
 (boolean) and "aggregation_method".
