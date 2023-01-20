@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Users and Permissions &mdash; Chiron 4.3.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Deploy to Production" href="deploy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processors.html">Understanding Processors and Handlers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install Django and Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dd_configure.html">Configure the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_code.html">Create Processors and Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etl.html">Run the ETL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">Deploy to Production</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Manage Users and Permissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#access-levels">Access Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#permission-groups">Permission Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-access-levels-work-with-permission-groups">How do access levels work with permission groups?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#default-permissions-for-autocreated-users">Default Permissions for AutoCreated Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-permissions-with-multiple-datasets">User Permissions With Multiple Datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_models.html">User &amp; Permission Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dict_models.html">Data Dictionary Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processor_classes.html">Processor and Handler Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Chiron API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Manage Users and Permissions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/topics/manage_users.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="manage-users-and-permissions">
+<span id="how-to-manage-users"></span><h1>Manage Users and Permissions<a class="headerlink" href="#manage-users-and-permissions" title="Permalink to this headline"></a></h1>
+<p>There are two systems for managing a user's access to data: access levels and permission groups.</p>
+<section id="access-levels">
+<h2>Access Levels<a class="headerlink" href="#access-levels" title="Permalink to this headline"></a></h2>
+<p>Access levels control the type of data a user is allowed to see. Each <a class="reference internal" href="user_models.html#chiron-user-model"><span class="std std-ref">Chiron user</span></a> has one of three access levels:</p>
+<ul class="simple">
+<li><p><strong>phi</strong> - Users will be able to see patient-level data, including concepts that are flagged as PHI.</p></li>
+<li><p><strong>deid</strong> - Users will be able to see patient-level data, but will not have access to PHI.</p></li>
+<li><p><strong>agg</strong> - Users can only see aggregated data. They do not have access to PHI and do not have access to patient-level values.</p></li>
+</ul>
+<p><strong>Settings relevant to PHI access</strong></p>
+<ul class="simple">
+<li><p>Concepts containing PHI should have the has_phi flag set to True.</p></li>
+<li><p>Additionally, flagged concepts can set values for cohort_def_processor_deid_alt and display_processor_deid_alt. These can be set to special processor classes that allow the user to interact with the concept without seeing PHI. If these flags aren't set, the concept will be hidden from the user.</p></li>
+</ul>
+<p><strong>Settings relevant to aggregated access</strong></p>
+<ul class="simple">
+<li><p>Concepts that shouldn't be shown in aggregated view should have the exclude_from_aggregated flag set to True. For example, you might want to hide a text field containing detailed comments specific to a patient.</p></li>
+<li><p>django setting CHIRON_AGG_SUBJECT_COUNT_MIN_LIMIT gives the minimum patient count that should be given. For example, if set to the default of 5, any patient counts less than 5 will show as &quot;&lt;5&quot; rather than the actual number.</p></li>
+</ul>
+</section>
+<section id="permission-groups">
+<h2>Permission Groups<a class="headerlink" href="#permission-groups" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="user_models.html#permission-group-model"><span class="std std-ref">Permission groups</span></a> limit users' access to specific groups of subjects or specific groups of concepts. This is useful, for example, if you have data coming from multiple different studies and want to limit some users' access to only data from specific studies.</p>
+<p>If you don't need permission groups on your project, simply leave the PermissionGroups table empty.</p>
+<p>Once you have any <a class="reference internal" href="user_models.html#permission-group-model"><span class="std std-ref">permission group</span></a> records defined, every user must belong to at least one permission group or they won't be able to see any data. If a user belongs to multiple permission groups, their access level will be the union of all the groups. In other words, they will be able to see a subject or concept if at least one of their permission groups grants them access.</p>
+</section>
+<section id="how-do-access-levels-work-with-permission-groups">
+<h2>How do access levels work with permission groups?<a class="headerlink" href="#how-do-access-levels-work-with-permission-groups" title="Permalink to this headline"></a></h2>
+<p>Both access levels and permission groups restrict access to concepts. If a concept is blocked by either system, the user will not be able to see it.</p>
+</section>
+<section id="default-permissions-for-autocreated-users">
+<h2>Default Permissions for AutoCreated Users<a class="headerlink" href="#default-permissions-for-autocreated-users" title="Permalink to this headline"></a></h2>
+<p>A <a class="reference internal" href="user_models.html#chiron-user-model"><span class="std std-ref">Chiron user</span></a> will be autocreated if <code class="docutils literal notranslate"><span class="pre">Dataset.autocreate_chiron_user=True</span></code> (see <a class="reference internal" href="data_dict_models.html#dataset-model"><span class="std std-ref">the Dataset model</span></a>). The permission levels for autocreated users will be controlled by these fields:</p>
+<ul class="simple">
+<li><p>Dataset.auto_access_level</p></li>
+<li><p>Dataset.auto_can_view_workspace</p></li>
+<li><p>Dataset.auto_can_view_subject_details</p></li>
+<li><p>In the <a class="reference internal" href="user_models.html#default-permission-group-model"><span class="std std-ref">DefaultPermissionGroup model</span></a>, any permission groups associated with this Dataset.</p></li>
+</ul>
+</section>
+<section id="user-permissions-with-multiple-datasets">
+<h2>User Permissions With Multiple Datasets<a class="headerlink" href="#user-permissions-with-multiple-datasets" title="Permalink to this headline"></a></h2>
+<p>A Django User will have a separate <a class="reference internal" href="user_models.html#chiron-user-model"><span class="std std-ref">ChironUser</span></a> entry for each dataset they need to access. So their permissions can be different for each dataset.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="deploy.html" class="btn btn-neutral float-left" title="Deploy to Production" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

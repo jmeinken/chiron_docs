@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Manually Edit the Data Dictionary &mdash; Chiron 4.3.2 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Create Processors and Handlers" href="../custom_code.html" />
+    <link rel="prev" title="2. Autocreate the Data Dictionary" href="autocreate_data_dictionary.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processors.html">Understanding Processors and Handlers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install Django and Chiron</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../dd_configure.html">Configure the Data Dictionary</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data_schema.html">1. Plan your Data Schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autocreate_data_dictionary.html">2. Autocreate the Data Dictionary</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Manually Edit the Data Dictionary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#define-concept-relationships">Define Concept Relationships</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#special-id-concept">Special ID Concept</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subject-ids">Subject IDs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subcollection-ids">Subcollection IDs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-age-date-concepts">Custom Age/Date Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#turning-collections-into-events">Turning Collections into Events</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_code.html">Create Processors and Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etl.html">Run the ETL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy.html">Deploy to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage_users.html">Manage Users and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chiron_settings.html">Chiron Global Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_models.html">User &amp; Permission Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict_models.html">Data Dictionary Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processor_classes.html">Processor and Handler Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../dd_configure.html">Configure the Data Dictionary</a> &raquo;</li>
+      <li>3. Manually Edit the Data Dictionary</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/dd_configure/edit_data_dictionary.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="manually-edit-the-data-dictionary">
+<h1>3. Manually Edit the Data Dictionary<a class="headerlink" href="#manually-edit-the-data-dictionary" title="Permalink to this headline"></a></h1>
+<p>Here are some more things you might want to do after autocreating your dataset.</p>
+<hr>
+<section id="define-concept-relationships">
+<h2>Define Concept Relationships<a class="headerlink" href="#define-concept-relationships" title="Permalink to this headline"></a></h2>
+<p>By default, every subcollection you create in your dataset will have a many:1 or many:many relationship to
+the subject collection.</p>
+<p>But there can also be relationships between subcollections. For example, you might have a <code class="docutils literal notranslate"><span class="pre">visit</span></code>
+collection and a <code class="docutils literal notranslate"><span class="pre">procedure</span></code> collection where every procedure is associated with one visit. Use the
+<code class="docutils literal notranslate"><span class="pre">ConceptRelationship</span></code> model to define these relationships. They must be set manually, they do not get autocreated.</p>
+<p>See <a class="reference internal" href="data_schema.html#data-schema-6"><span class="std std-ref">Plan your Data Schema sections 6 &amp; 7</span></a> for how to determine subcollection relationships.</p>
+<hr>
+</section>
+<section id="special-id-concept">
+<h2>Special ID Concept<a class="headerlink" href="#special-id-concept" title="Permalink to this headline"></a></h2>
+<p>Because of the way stacking/aggregation works in reports, it's usually good to have unique IDs for
+your various collections. For example, if a user wants to guarantee one row per procedure event,
+the easiest way to do this is by stacking results on a procedure event ID.</p>
+<p>You might not have appropriate IDs available in your source data, or you might not have IDs
+you want to expose because of PHI restrictions. You might be tempted to create a random ID,
+but this would change every time the data is refreshed and cause problems with saved queries.
+Instead, use one of Chiron's specialized processors for generating auto IDs. These can be set up so
+that they don't change when the ETL is rerun.</p>
+<section id="subject-ids">
+<h3>Subject IDs<a class="headerlink" href="#subject-ids" title="Permalink to this headline"></a></h3>
+<p><strong>SITUATION: I have a PHI subject ID field in my source data, but I want users to see a deidentified ID.</strong></p>
+<p>Using <a class="reference internal" href="../processor_classes/built_in_handlers.html#auto-subject-id-handler"><span class="std std-ref">AutoSubjectIdHandler</span></a>, you can provide your private subject ID as input and it will generate a
+new deidentified subject ID.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example5.html#example5"><span class="std std-ref">deidentified subject ID from PHI subject ID</span></a></p>
+<p><strong>SITUATION: I don't have a unique subject ID but I want one.</strong></p>
+<p>Again you can use . But since you don't have an ID to use as input, you
+need to provide a group of fields that together uniquely identify a subject (name, demographic details, etc.).</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example6.html#example6"><span class="std std-ref">subject ID when your source data doesn't have one</span></a></p>
+<p><strong>SITUATION: I used a subject ID field for subject matching and now want to expose it to users as a concept.</strong></p>
+<p>ID fields used for subject matching between different sources are stored in your Mongo subject collection (in <code class="docutils literal notranslate"><span class="pre">_ids</span></code>)
+but don't get exposed to users. One advantage of these fields is that they can be populated
+from multiple sources - something that isn't possible with concepts.</p>
+<p>You can expose these IDs to users by copying the data into a regular Chiron concept using the
+<a class="reference internal" href="../processor_classes/built_in_handlers.html#subject-matching-to-text-handler"><span class="std std-ref">SubjectMatchingToTextHandler</span></a>.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example7.html#example7"><span class="std std-ref">subject ID concept from Chiron subject ID field</span></a></p>
+</section>
+<section id="subcollection-ids">
+<h3>Subcollection IDs<a class="headerlink" href="#subcollection-ids" title="Permalink to this headline"></a></h3>
+<p><strong>SITUATION: I want to create a unique, deidentified ID for every record in my subcollection.</strong></p>
+<p>Using <a class="reference internal" href="../processor_classes/built_in_handlers.html#auto-subcollection-id-handler"><span class="std std-ref">AutoSubcollectionIdHandler</span></a>, you can generate a deidentified subcollection ID using
+other concepts(s) as input.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example8.html#example8"><span class="std std-ref">create a subcollection ID</span></a></p>
+</section>
+</section>
+<section id="custom-age-date-concepts">
+<h2>Custom Age/Date Concepts<a class="headerlink" href="#custom-age-date-concepts" title="Permalink to this headline"></a></h2>
+<p>For identifying when events happened, Chiron works down to the level of 1 day (times are not currently supported).
+There are three types of input data you might have coming from your sources:</p>
+<ul class="simple">
+<li><p><strong>absolute date(s)</strong> - includes DOB, DOD or start/end date of an event</p></li>
+<li><p><strong>age in years as float</strong> - age at event in years as a float value (decimal indicates fraction of a year)</p></li>
+<li><p><strong>age in days as integer</strong> - age at event as number of days old</p></li>
+</ul>
+<p>And then Chiron has three types of date/age concepts available:</p>
+<ul class="simple">
+<li><p><strong>date</strong></p>
+<ul>
+<li><p>use when you want to show absolute dates when things happen</p></li>
+<li><p>applying PHI restrictions will round all dates to years in the UI</p></li>
+</ul>
+</li>
+<li><p><strong>detailed age</strong></p>
+<ul>
+<li><p>internally stores age as days old</p></li>
+<li><p>gives a high level of detail without exposing dates, which are often PHI</p></li>
+</ul>
+</li>
+<li><p><strong>current age</strong></p>
+<ul>
+<li><p>always stores/shows a deidentified value</p></li>
+<li><p>gives the patient's current age in years, or &quot;90 and above&quot;</p></li>
+</ul>
+</li>
+</ul>
+<p>Use this table to lookup your situation, based on what type of input data you have and what type of concept you want to create:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Input format</p></th>
+<th class="head"><p>Desired Chiron format</p></th>
+<th class="head"><p>Approach</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>absolute date(s)</p></td>
+<td><p>date</p></td>
+<td><p>use <a class="reference internal" href="../processor_classes/built_in_handlers.html#date-handler"><span class="std std-ref">DateHandler</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>absolute date(s)</p></td>
+<td><p>current age</p></td>
+<td><p><a class="reference internal" href="../examples/example9.html#example9"><span class="std std-ref">create current age field from birth/death dates</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>absolute date(s)</p></td>
+<td><p>detailed age</p></td>
+<td><p><a class="reference internal" href="../examples/example10.html#example10"><span class="std std-ref">create detailed age field from birth date and event date</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>age in years as float</p></td>
+<td><p>date</p></td>
+<td><p>(not supported)</p></td>
+</tr>
+<tr class="row-even"><td><p>age in years as float</p></td>
+<td><p>current age</p></td>
+<td><p>use <a class="reference internal" href="../processor_classes/built_in_handlers.html#current-age-handler"><span class="std std-ref">CurrentAgeHandler</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>age in years as float</p></td>
+<td><p>detailed age</p></td>
+<td><p>use <a class="reference internal" href="../processor_classes/built_in_handlers.html#detailed-age-handler"><span class="std std-ref">DetailedAgeHandler</span></a> with source_format=&quot;year float&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>age in days as integer</p></td>
+<td><p>date</p></td>
+<td><p>(not supported)</p></td>
+</tr>
+<tr class="row-odd"><td><p>age in days as integer</p></td>
+<td><p>current age</p></td>
+<td><p>(not supported)</p></td>
+</tr>
+<tr class="row-even"><td><p>age in days as integer</p></td>
+<td><p>detailed age</p></td>
+<td><p>use <a class="reference internal" href="../processor_classes/built_in_handlers.html#detailed-age-handler"><span class="std std-ref">DetailedAgeHandler</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="turning-collections-into-events">
+<h2>Turning Collections into Events<a class="headerlink" href="#turning-collections-into-events" title="Permalink to this headline"></a></h2>
+<p>(coming soon)</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="autocreate_data_dictionary.html" class="btn btn-neutral float-left" title="2. Autocreate the Data Dictionary" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../custom_code.html" class="btn btn-neutral float-right" title="Create Processors and Handlers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

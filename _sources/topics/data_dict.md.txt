@@ -1,5 +1,5 @@
 
-
+(understanding-dd)=
 # Understanding the Data Dictionary
 
 The Chiron data dictionary contains all the metadata about your research data. Chiron will use the data dictionary to build the MongoDB database and import the data automatically.
@@ -18,6 +18,10 @@ Your MongoDB database has a simple data model with a single subject (root) colle
         Subject ||--o{ Procedure : ""
 ```
 
+<hr>
+
+## Datasets
+
 Starting in Chiron Version 4.0, you can have multiple unrelated datasets loaded into a single chiron instance. This is useful if you have a lot of datasets and don't want to maintain a separate chiron instance for each one. User permissions for each dataset are distinct, and a user can only interact with one dataset at a time. There's no way to do queries across multiple datasets.
 
 ```{mermaid}
@@ -29,6 +33,10 @@ Starting in Chiron Version 4.0, you can have multiple unrelated datasets loaded 
         Dataset2_Subject ||--o{ Survey : ""
         Dataset2_Subject ||--o{ Sample : ""
 ```
+
+<hr>
+
+## Subcollection Relationships
 
 Starting in Chiron version 3.1, you can also associate subcollection records with each other using the CollectionRelationship model. This will help when Chiron is generating a dataset from multiple subcollections and should be used when it makes sense.
 
@@ -47,24 +55,28 @@ Here is the above example again with Procedures and Biospecimen linked to their 
 
 ## Data Dictionary Components
 
+(dataset-def)=
 **Datasets**
 
 Datasets are a top-level way of separating unrelated data into separate buckets. Each dataset will have its own MongoDB database, and will not have any relationships to the other datasets. In the user interface, users access a single dataset at a time, and a user can have different permissions on different datasets.
 
 For chiron instances with only 1 dataset, most of the dataset functionality will be hidden.
 
+(collection-def)=
 **Collections**
 
 Collections in the data dictionary represent literal MongoDB collections. If you're not familiar with MongoDB, you can think of a collection as a table.
 
-Every dataset will have one subject collection (flagged with `is_root_collection=True`) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for a dataset that is 1:many with the subject.
+Every dataset will have one subject collection (specified in `Dataset.root_collection`) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for a dataset that are 1:many or many:many with the subject.
 
 There is always a 1:many relationship between your subject collection and each sub-collection.
 
+(concept-def)=
 **Concepts**
 
 Each collection can have any number of concepts. The subject collection could have concepts like birthdate and gender. A biospecimen collection could have concepts like collection date and sample amount.
 
+(source-def)=
 **Sources**
 
 A Source is a dataset to load into Chiron. It can be any Python iterable that returns records that correspond to the collection it's being loaded into.
@@ -73,65 +85,8 @@ For example, a SubjectDemographics table in a database could be a Source for the
 
 Chiron manages the ETL process from your Sources into MongoDB. There's built-in support for data coming from a database through the Django ORM or from CSV files. If you have data coming from other types of sources, you can write your own Source processor class to enable Chiron to consume it.
 
+(category-def)=
 **Categories**
 
 Categories define a hierarchical structure for users to browse concepts. They have no effect on queries or how the data is stored in MongoDB.
 
-## Processor Classes
-
-Various behavior in Chiron is controlled by processor classes. Processor classes are a powerful way to get custom behavior without modifying Chiron code directly. There are built-in processor classes for common needs, or you can write your own.
-
-The processors to use are specified in the data dictionary. There are 3 types of processors for Concepts and 1 type of processor for Sources.
-
-```{eval-rst}
-:Source Processor:
-   *(associated with a source)* During the ETL, the source
-   collection processor class provides a standardized interface for retrieving records from a data source.
-
-:ETL Processor:
-   *(associated with a concept)* During the ETL, the ETL processor will take a whole record provided
-   by the source processor and return a specific value to store in MongoDB for that
-   concept.
-
-:CohortDef Processor:
-   *(associated with a concept)* The cohort def processor controls how a concept gets applied to
-   queries. It also helps with getting summary statistics for the concept.
-
-:Display Processor:
-   *(associated with a concept)* The display processor controls how stored values for a concept
-   are aggregated, displayed and sorted in reports.
-```
-
-## Concept Handler Classes
-
-There are three types of processors associated with a concept - ELT, CohortDef, and Display. There can
-also be alternative CohortDef and Display processors for a concept that provide deidentifed access
-to the data. And processors take various arguments to allow customization as well. 
-
-Because of all the complexity around processors for concepts, we create logical bundles of processors in a 
-single class called a ConceptHandler. The Concept handler is a light wrapper around the different
-processors for a concept. It provides an abstraction layer that makes it simpler to change the
-behavior or data type of a concept in the data dictionary.
-
-## The ETL Process
-
-The ETL process is managed by Chiron and will be based on your data dictionary. The work of fetching source records is carried out by the Source processor, and the work of fetching individual concept values out of a source record is carried out by the ETL Processors.
-
-Here is a simplified overview of the ETL process showing what Source processors and ETL processors do:
-
-```{mermaid}
-    sequenceDiagram
-        participant Chiron
-        participant Med Source
-        participant Med Name ETLProcessor
-        participant Med Type ETLProcessor
-        participant MongoDB Med Collection
-        Chiron->>Med Source: Request first medication record
-        Med Source->>Chiron: Return medication record
-        Chiron->>Med Name ETLProcessor: Pass first medication record
-        Med Name ETLProcessor->>Chiron: Return medication name
-        Chiron->>Med Type ETLProcessor: Pass first medication record
-        Med Type ETLProcessor->>Chiron: Return medication type
-        Chiron->>MongoDB Med Collection: Write first medication doc {name: "Tylenol", type: "fever reducer"}
-        Chiron->>Med Source: Request second medication record
-```

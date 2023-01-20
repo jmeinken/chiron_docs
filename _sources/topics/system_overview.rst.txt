@@ -14,7 +14,7 @@ Chiron is a Django app. It can be embedded in a larger Django project or set up 
 
 There are a variety of ways to customize your Chiron instance:
 
-- Global chiron settings can be customized in your django settings file.
+- Global Chiron settings can be customized in your Django settings file.
 - The Chiron data dictionary is stored in the database, and many basic modifications can be made here.
 - Chiron uses Processor classes to perform many of its data-related tasks. For more advanced customization, you can write your own processor classes for specific datasets or fields.
 

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Version 2 &mdash; Chiron 4.3.2 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Version 1" href="version1.html" />
+    <link rel="prev" title="Version 3" href="version3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../version_changelog.html">Version Changelog</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="version5.html">Version 5 (beta)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version4.html">Version 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version3.html">Version 3</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Version 2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-2-1-3-released-12-13-21">Version 2.1.3 (released 12/13/21)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-2-1-0-released-11-15-21">Version 2.1.0 (released 11/15/21)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-2-0-0-released-10-21-21">Version 2.0.0 (released 10/21/21)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="version1.html">Version 1</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processors.html">Understanding Processors and Handlers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install Django and Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dd_configure.html">Configure the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_code.html">Create Processors and Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etl.html">Run the ETL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy.html">Deploy to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage_users.html">Manage Users and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chiron_settings.html">Chiron Global Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_models.html">User &amp; Permission Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict_models.html">Data Dictionary Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processor_classes.html">Processor and Handler Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../version_changelog.html">Version Changelog</a> &raquo;</li>
+      <li>Version 2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/changelog/version2.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="version-2">
+<h1>Version 2<a class="headerlink" href="#version-2" title="Permalink to this headline"></a></h1>
+<section id="version-2-1-3-released-12-13-21">
+<h2>Version 2.1.3 (released 12/13/21)<a class="headerlink" href="#version-2-1-3-released-12-13-21" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Updated to work with Pymongo v4</p></li>
+<li><p>Some endpoints didn't allow you to pass a cohort_def/table_def, instead automatically using
+the latest snapshot. Now all should work the same - you can either pass the definition or the
+latest snapshot will be assumed.</p></li>
+</ol>
+</section>
+<section id="version-2-1-0-released-11-15-21">
+<h2>Version 2.1.0 (released 11/15/21)<a class="headerlink" href="#version-2-1-0-released-11-15-21" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Some minor changes to the database schema. Django migrations will need to be run.</p></li>
+<li><p>Minor changes to cohort def:</p>
+<ul class="simple">
+<li><p>All criteria sets in an extended cohort def now have a criteria_set_name that uniquely identifies the criteria set.</p></li>
+<li><p>The criteria_set_name is either auto-generated or comes from the criteria set alias (also new)</p></li>
+<li><p>The criteria set alias can be set using the new cohort def transformation option set_criteria_set_alias. This is an optional feature.</p></li>
+<li><p>Criteria set with a date rule used to have an event_id with a unique name like &quot;EVENT 1&quot;. That has been removed, use the criteria_set_name instead.</p></li>
+</ul>
+</li>
+<li><p>Major changes to table def:</p>
+<ul class="simple">
+<li><p>most changes affect the table def options for the concept endpoint: /api/concepts/lab_event_name/?include_table_def_options=true</p></li>
+<li><p>Some options for aggregation now have additional inputs for customization of that option.</p></li>
+<li><p>During an add_entry transformation to the table def, can provide &quot;entry_alias&quot; to give user a way to create their own column headers.</p></li>
+<li><p>For cohort def with multiple criteria sets for the same collection, typically data matching any of them will be included when calculating aggregation value. With new option &quot;aggregation_criteria_set&quot; can specify a specific criteria set to limit results.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="version-2-0-0-released-10-21-21">
+<h2>Version 2.0.0 (released 10/21/21)<a class="headerlink" href="#version-2-0-0-released-10-21-21" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Major overhaul of the query engine. Instead of generating the full report in MongoDB, pulls the
+data it needs from MongoDB and does most of the report generation in Python.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="version3.html" class="btn btn-neutral float-left" title="Version 3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="version1.html" class="btn btn-neutral float-right" title="Version 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

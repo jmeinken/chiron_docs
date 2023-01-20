@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Version 5 (beta) &mdash; Chiron 4.3.2 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Version 4" href="version4.html" />
+    <link rel="prev" title="Version Changelog" href="../version_changelog.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../version_changelog.html">Version Changelog</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Version 5 (beta)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#develop-5-branch-will-become-version-5-0-0">develop-5 branch (will become version 5.0.0)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#upgrade-from-4-3-x">Upgrade from 4.3.X</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="version4.html">Version 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version3.html">Version 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version2.html">Version 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version1.html">Version 1</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processors.html">Understanding Processors and Handlers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install Django and Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dd_configure.html">Configure the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_code.html">Create Processors and Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etl.html">Run the ETL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy.html">Deploy to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage_users.html">Manage Users and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chiron_settings.html">Chiron Global Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_models.html">User &amp; Permission Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict_models.html">Data Dictionary Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processor_classes.html">Processor and Handler Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../version_changelog.html">Version Changelog</a> &raquo;</li>
+      <li>Version 5 (beta)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/changelog/version5.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="version-5-beta">
+<h1>Version 5 (beta)<a class="headerlink" href="#version-5-beta" title="Permalink to this headline"></a></h1>
+<section id="develop-5-branch-will-become-version-5-0-0">
+<h2>develop-5 branch (will become version 5.0.0)<a class="headerlink" href="#develop-5-branch-will-become-version-5-0-0" title="Permalink to this headline"></a></h2>
+<section id="upgrade-from-4-3-x">
+<h3>Upgrade from 4.3.X<a class="headerlink" href="#upgrade-from-4-3-x" title="Permalink to this headline"></a></h3>
+<p><strong>Update your custom processors and concept handlers</strong></p>
+<p>There have been a lot of changes to source processor classes and concept handler classes. If you have custom processors, you will have to go through and fix them:</p>
+<ol class="arabic simple">
+<li><p>Globally, any reference to &quot;SourceCollection&quot; has been changed to &quot;Source&quot;. You may have to update broken references in your custom processors. For example:</p></li>
+</ol>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">chiron.processors.abstract.SourceCollectionProcessor</span></code> was moved to <code class="docutils literal notranslate"><span class="pre">chiron.processors.abstract.SourceProcessor</span></code>.</p></li>
+<li><p>method <code class="docutils literal notranslate"><span class="pre">get_source_collection()</span></code> was renamed to <code class="docutils literal notranslate"><span class="pre">get_source()</span></code></p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Remove references to <code class="docutils literal notranslate"><span class="pre">ETL._cast()</span></code> method</p></li>
+</ol>
+<p>The abstract ETL processor used to have a <code class="docutils literal notranslate"><span class="pre">_cast()</span></code> method. That has been replaced with new CleanValue classes.</p>
+<ol class="arabic simple" start="3">
+<li><p>Most of the concept handler classes have been renamed. You may have to update references in your code.</p></li>
+</ol>
+<ul class="simple">
+<li><p>any references to <code class="docutils literal notranslate"><span class="pre">get_built_in_dict_concept_handlers()</span></code> and <code class="docutils literal notranslate"><span class="pre">get_built_in_django_concept_handlers()</span></code> should be changed to <code class="docutils literal notranslate"><span class="pre">get_built_in_standard_concept_handlers()</span></code></p></li>
+<li><p>any references to concept handlers that start with &quot;Dict&quot; or &quot;Django&quot; have probably been merged. For example, &quot;DictIntegerHandler&quot; and &quot;DjangoIntegerHandler&quot; are now just &quot;IntegerHandler&quot;</p></li>
+</ul>
+<p>This should cover the majority of changes, but you may run into other errors depending on your setup. If <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span></code> can run without printing any error messages, you're probably good (and warnings about unregistered concept handlers will be dealt with in a later step).</p>
+<p><strong>data dictionary updates</strong></p>
+<ol class="arabic simple" start="4">
+<li><p>Run database migrations.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>FYI, Some source processor arg names will be automatically updated:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">root_collection_id_field</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">subject_matching_source_id_field</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subject_id_delimiter</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">subject_matching_source_id_delimiter</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Names of most concept_handler classes have changed</strong></p>
+<p>Instead of having separate concept handlers for lists of dicts vs querysets, most of the built-in concept handlers have been modified to support both.</p>
+<ol class="arabic simple" start="5">
+<li><p>Run this custom script to update all your concept handler names in the registry.</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># rename django handlers</span>
+python manage.py chiron_merge_handlers DjangoCategoryHandler CategoryHandler
+python manage.py chiron_merge_handlers DjangoTextHandler TextHandler
+python manage.py chiron_merge_handlers DjangoDateHandler DateHandler
+python manage.py chiron_merge_handlers DjangoBooleanHandler BooleanHandler
+python manage.py chiron_merge_handlers DjangoIntegerHandler IntegerHandler
+python manage.py chiron_merge_handlers DjangoFloatHandler FloatHandler
+python manage.py chiron_merge_handlers DjangoIntegerWithCategoriesHandler IntegerWithCategoriesHandler
+python manage.py chiron_merge_handlers DjangoFloatWithCategoriesHandler FloatWithCategoriesHandler
+python manage.py chiron_merge_handlers DjangoSubjectHyperlinkHandler SubjectHyperlinkHandler
+
+<span class="c1"># rename dict handlers</span>
+python manage.py chiron_merge_handlers DictCategoryHandler CategoryHandler
+python manage.py chiron_merge_handlers DictTextHandler TextHandler
+python manage.py chiron_merge_handlers DictDateHandler DateHandler
+python manage.py chiron_merge_handlers DictBooleanHandler BooleanHandler
+python manage.py chiron_merge_handlers DictIntegerHandler IntegerHandler
+python manage.py chiron_merge_handlers DictFloatHandler FloatHandler
+python manage.py chiron_merge_handlers DictIntegerWithCategoriesHandler IntegerWithCategoriesHandler
+python manage.py chiron_merge_handlers DictFloatWithCategoriesHandler FloatWithCategoriesHandler
+python manage.py chiron_merge_handlers DictSubjectHyperlinkHandler SubjectHyperlinkHandler
+
+<span class="c1"># rename age handlers</span>
+python manage.py chiron_merge_handlers DjangoDetailedAgeHandler DetailedAgeHandler
+python manage.py chiron_merge_handlers DictDetailedAgeHandler DetailedAgeHandler
+
+<span class="c1"># rename other custom handlers</span>
+python manage.py chiron_merge_handlers SubjectIdTextHandler SubjectMatchingToTextHandler
+python manage.py chiron_merge_handlers SubjectIdSubjectHyperlinkHandler SubjectMatchingToSubjectHyperlinkHandler
+python manage.py chiron_merge_handlers GeneratedSubjectIdHandler AutoSubjectIdHandler
+python manage.py chiron_merge_handlers GeneratedSubcollectionIDHandler AutoSubcollectionIdHandler
+python manage.py chiron_merge_handlers DictCurrentAgeFromDobHandler CurrentAgeFromDobHandler
+python manage.py chiron_merge_handlers CalculateDetailedAgeFromDatesHandler DetailedAgeFromDatesHandler
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span></code> should now give you zero errors and zero warnings.</p></li>
+<li><p>(optional) There are two new optional methods in SourceProcessor to help with tracking subject matching. If you have complex needs for subject matching, check them out.</p></li>
+</ol>
+<ul class="simple">
+<li><p>get_subject_id_fields_used_for_matching()</p></li>
+<li><p>get_subject_id_fields_added()</p></li>
+</ul>
+<ol class="arabic simple" start="8">
+<li><p>If you keep a JSON backup of your data dictionary, rerun management commands to create backups on your latest data schema.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_backup_dd</span>
+<span class="c1"># or</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_backup_dataset</span>
+</pre></div>
+</div>
+<p><strong>new age/date handling for event system</strong></p>
+<p>If you use absolute dates for subcollection events, you can skip this section. But if you use detailed ages (i.e. age in days or age in years as float), there is a new concept data type <code class="docutils literal notranslate"><span class="pre">detailed_age</span></code> that you must start using</p>
+<p>You can import <code class="docutils literal notranslate"><span class="pre">detailed</span> <span class="pre">age</span></code> from a variety of formats. It will store values as age in days internally.</p>
+<ol class="arabic simple" start="9">
+<li><p>For source data that's already storing detailed age info, change the concept handler to DetailedAgeHandler and specify in ConceptHandlerArgs <code class="docutils literal notranslate"><span class="pre">source_format=&quot;age</span> <span class="pre">in</span> <span class="pre">days&quot;</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">source_format=</span> <span class="pre">year</span> <span class="pre">float&quot;</span></code>.</p></li>
+<li><p>If you want to calculate a detailed age using DOB and an event date, use the concept handler DetailedAgeFromDatesHandler.</p></li>
+<li><p>Chiron setting CHIRON_EVENT_CONCEPT_TYPE should be changed to either &quot;dates&quot; or &quot;detailed_age&quot;. If you were previously using &quot;age_in_days&quot; or &quot;age_in_years&quot;, you <strong>MUST</strong> change the value to &quot;detailed_age&quot; and you <strong>MUST</strong> change all subcollection date concepts (defined in Collection.event_date_field and Collection.event_end_date_field) to use a handler that implements detailed_age (either DetailedAgeHandler or DetailedAgeFromDatesHandler).</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../version_changelog.html" class="btn btn-neutral float-left" title="Version Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="version4.html" class="btn btn-neutral float-right" title="Version 4" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

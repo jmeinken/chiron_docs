@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Version 4 &mdash; Chiron 4.3.2 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Version 3" href="version3.html" />
+    <link rel="prev" title="Version 5 (beta)" href="version5.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../version_changelog.html">Version Changelog</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="version5.html">Version 5 (beta)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Version 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#develop-branch">develop branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-3-2-released-12-19-2022">Version 4.3.2 (released 12/19/2022)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-3-1-released-12-13-22">Version 4.3.1 (released 12/13/22)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-3-0-released-10-27-22">Version 4.3.0 (released 10/27/22)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-2-0-released-8-29-22">Version 4.2.0 (released 8/29/22)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-1-0-released-8-3-22">Version 4.1.0 (released 8/3/22)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-0-1-released-7-18-22">Version 4.0.1 (released 7/18/22)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#version-4-0-0-released-6-30-22">Version 4.0.0 (released 6/30/22)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="version3.html">Version 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version2.html">Version 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version1.html">Version 1</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processors.html">Understanding Processors and Handlers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install Django and Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dd_configure.html">Configure the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_code.html">Create Processors and Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etl.html">Run the ETL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy.html">Deploy to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage_users.html">Manage Users and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chiron_settings.html">Chiron Global Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_models.html">User &amp; Permission Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict_models.html">Data Dictionary Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processor_classes.html">Processor and Handler Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../version_changelog.html">Version Changelog</a> &raquo;</li>
+      <li>Version 4</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/changelog/version4.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="version-4">
+<h1>Version 4<a class="headerlink" href="#version-4" title="Permalink to this headline"></a></h1>
+<section id="develop-branch">
+<h2>develop branch<a class="headerlink" href="#develop-branch" title="Permalink to this headline"></a></h2>
+<p><em>no breaking changes since version 4.3.2</em></p>
+</section>
+<section id="version-4-3-2-released-12-19-2022">
+<h2>Version 4.3.2 (released 12/19/2022)<a class="headerlink" href="#version-4-3-2-released-12-19-2022" title="Permalink to this headline"></a></h2>
+<p><strong>bug fixes</strong></p>
+<ul class="simple">
+<li><p>MongoDB subcollections were not getting populated fully when there were no permission groups,
+resulting in a KeyError during queries.</p></li>
+</ul>
+</section>
+<section id="version-4-3-1-released-12-13-22">
+<h2>Version 4.3.1 (released 12/13/22)<a class="headerlink" href="#version-4-3-1-released-12-13-22" title="Permalink to this headline"></a></h2>
+<p><strong>New features</strong></p>
+<ul class="simple">
+<li><p>beta support for M2M subcollections now ready for production (allows M2M relationship between
+a subcollection and subject)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chiron_restore_dataset</span></code> management command preserves existing user created content (reports)
+when updating an existing dataset</p></li>
+</ul>
+<p><strong>bug fixes</strong></p>
+<ul class="simple">
+<li><p>fixed several incorrect references to Django user instead of chironuser (affected report API endpoints)</p></li>
+<li><p>fixed outdated broken references in number_with_categories cohort def processor</p></li>
+<li><p>fixed error on name clashes between different datasets (same name should be allowed on all entities
+except concept.permanent_id)</p></li>
+</ul>
+</section>
+<section id="version-4-3-0-released-10-27-22">
+<h2>Version 4.3.0 (released 10/27/22)<a class="headerlink" href="#version-4-3-0-released-10-27-22" title="Permalink to this headline"></a></h2>
+<p><strong>New features</strong></p>
+<ul class="simple">
+<li><p>new management commands <a class="reference internal" href="../utilities/management_commands.html#cmd-chiron-backup-dataset"><span class="std std-ref">chiron_backup_dataset</span></a> and <a class="reference internal" href="../utilities/management_commands.html#cmd-chiron-restore-dataset"><span class="std std-ref">chiron_restore_dataset</span></a></p></li>
+<li><p>better stability and performance for DocumentDB</p></li>
+<li><p>important security updates for multi-dataset systems</p></li>
+<li><p>stable release of performance_project - can be used to compare query performance between two
+Chiron environments</p></li>
+</ul>
+<p><strong>Upgrade from 4.2.0</strong></p>
+<ul class="simple">
+<li><p>There were changes to the static files. You should rerun <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">collectstatic</span></code> in
+your production environment.</p></li>
+<li><p>The setting CHIRON_RUNNING_ETL has been removed. Management commands involved with the ETL
+process will use a singleton for the MongoDB client (to avoid 30 minute inactivity timeout
+error), and any other commands will start a new client each time.</p></li>
+<li><p>The setting CHIRON_DATA_DICT_FIXTURE_PATH has been removed. Please use CHIRON_DATA_DICT_BACKUP_DIR
+instead. All backups from chiron_backup_dd and chiron_backup_dataset will go in this directory. The
+default path is <code class="docutils literal notranslate"><span class="pre">chiron_config/backups/</span></code>.</p>
+<ul>
+<li><p>If you have your old fixture file at <code class="docutils literal notranslate"><span class="pre">chiron_config/fixtures.json</span></code>, you can move it to
+<code class="docutils literal notranslate"><span class="pre">chiron_config/backups/full_dd.json</span></code>.</p></li>
+</ul>
+</li>
+<li><p>The package <code class="docutils literal notranslate"><span class="pre">chiron.autocreate</span></code> was renamed to <code class="docutils literal notranslate"><span class="pre">chiron.data_dictionary</span></code>. If you use the
+<code class="docutils literal notranslate"><span class="pre">chiron_autocreate_dd</span></code> feature, you probably have references to this in your <code class="docutils literal notranslate"><span class="pre">chiron_config</span></code>
+that will need to be updated:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># old broken references</span>
+<span class="kn">from</span> <span class="nn">chiron.autocreate.csv_autocreate</span> <span class="kn">import</span> <span class="n">CsvFileAutocreate</span>
+<span class="kn">from</span> <span class="nn">chiron.autocreate.django_autocreate</span> <span class="kn">import</span> <span class="n">DjangoOrmAutocreate</span>
+
+<span class="c1"># update to</span>
+<span class="kn">from</span> <span class="nn">chiron.data_dictionary.csv_autocreate</span> <span class="kn">import</span> <span class="n">CsvFileAutocreate</span>
+<span class="kn">from</span> <span class="nn">chiron.data_dictionary.django_autocreate</span> <span class="kn">import</span> <span class="n">DjangoOrmAutocreate</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The setting <code class="docutils literal notranslate"><span class="pre">CHIRON_PRINT_QUERY_INFO</span></code> was renamed to <code class="docutils literal notranslate"><span class="pre">CHIRON_GET_QUERY_PERFORMANCE</span></code></p></li>
+</ul>
+</section>
+<section id="version-4-2-0-released-8-29-22">
+<h2>Version 4.2.0 (released 8/29/22)<a class="headerlink" href="#version-4-2-0-released-8-29-22" title="Permalink to this headline"></a></h2>
+<p><strong>New features</strong></p>
+<ol class="arabic simple">
+<li><p>Added data issue tracking for during the ETL. Problems with data (ex. str input for a date
+concept can't be parsed to a date) will generally be added to the log info instead of raising
+an error and stopping the whole ETL process. Go to the &quot;ETL Logs&quot; backend view in the built-in
+UI to browse data issues.</p></li>
+<li><p>Can customize the delimiter for aggregated field in reports.</p></li>
+</ol>
+<p><strong>Upgrade from 4.1.x</strong></p>
+<ul class="simple">
+<li><p>Need to run database migrations.</p></li>
+<li><p>Changes to abstract ETL processor class will have to be applied to any custom ETL processors</p>
+<ul>
+<li><p>method <code class="docutils literal notranslate"><span class="pre">pull_record_data_from_source()</span></code> was renamed to <code class="docutils literal notranslate"><span class="pre">pull_concept_value_from_record()</span></code></p></li>
+<li><p>method <code class="docutils literal notranslate"><span class="pre">cast()</span></code> was renamed to <code class="docutils literal notranslate"><span class="pre">_cast()</span></code></p></li>
+<li><p>method <code class="docutils literal notranslate"><span class="pre">convert_data_list_to_set()</span></code> was renamed to <code class="docutils literal notranslate"><span class="pre">_convert_data_list_to_set()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__()</span></code> method should initialize warnings <code class="docutils literal notranslate"><span class="pre">self.warnings=[]</span></code></p></li>
+</ul>
+</li>
+<li><p>new setting <code class="docutils literal notranslate"><span class="pre">chiron_settings.CHIRON_AGG_DELIMITER</span></code></p>
+<ul>
+<li><p>no action required but you can set this if you want something besides the default <code class="docutils literal notranslate"><span class="pre">;</span> </code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="version-4-1-0-released-8-3-22">
+<h2>Version 4.1.0 (released 8/3/22)<a class="headerlink" href="#version-4-1-0-released-8-3-22" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Deprecated code and model fields related to the old processor registry were removed.</p></li>
+<li><p><a class="reference internal" href="../utilities/admin_views.html#admin-views"><span class="std std-ref">Admin Views</span></a> in the built-in UI were cleaned up and added to documentation.</p></li>
+<li><p>Support for datasets (previously in beta) is now stable and ready for production use.</p>
+<ul class="simple">
+<li><p>Home Page shows active dataset and lets you change the active dataset.</p></li>
+<li><p>Each dataset allows you to define whether new users can access automatically and what their default permissions should be.</p></li>
+<li><p>In admin, validation to make sure FK relationships are only between objects belonging to the same dataset.</p></li>
+<li><p>New fields in dataset to override global settings such as CHIRON_SITE_TITLE and CHIRON_FOOTER_TEMPLATE - gives better ability to customize how the site looks for each dataset</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Upgrade from 4.0.x</strong></p>
+<ul class="simple">
+<li><p>Run django migrations <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">migrate</span></code></p></li>
+<li><p>If you have custom processors, remove all references to ProcessorRegistryOld.</p></li>
+</ul>
+</section>
+<section id="version-4-0-1-released-7-18-22">
+<h2>Version 4.0.1 (released 7/18/22)<a class="headerlink" href="#version-4-0-1-released-7-18-22" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Patch for major bug causing all analysis view queries to fail.</p></li>
+</ol>
+<section id="version-4-0-0-released-6-30-22">
+<h3>Version 4.0.0 (released 6/30/22)<a class="headerlink" href="#version-4-0-0-released-6-30-22" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p><em>(beta feature)</em> A single Chiron instance can now have multiple datasets. This is achieved using a Dataset
+model - each collection belongs to a Dataset.</p></li>
+<li><p>Processors and processor arguments for concepts are no longer defined in the Concept model
+directly. Instead, they are bundled into a ConceptHandler class, and the concept model
+defines the concept handler to use.</p>
+<ul class="simple">
+<li><p>If you have custom processors, you have to upgrade to the new way to register them. See new notes on <a class="reference internal" href="../custom_code/registering.html#registering-custom-processors"><span class="std std-ref">Registering Custom Code</span></a>.</p></li>
+</ul>
+</li>
+<li><p>Autocreating the data dictionary now uses source lists instead of modeltree text files. A
+source list is a Python list with each entry defining a source to create.</p>
+<ul class="simple">
+<li><p>See <a class="reference internal" href="../dd_configure/autocreate_data_dictionary.html#autocreate-the-data-dictionary"><span class="std std-ref">2. Autocreate the Data Dictionary</span></a></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="version5.html" class="btn btn-neutral float-left" title="Version 5 (beta)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="version3.html" class="btn btn-neutral float-right" title="Version 3" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

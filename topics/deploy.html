@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deploy to Production &mdash; Chiron 4.3.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Manage Users and Permissions" href="manage_users.html" />
+    <link rel="prev" title="Run the ETL" href="etl.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processors.html">Understanding Processors and Handlers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install Django and Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dd_configure.html">Configure the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_code.html">Create Processors and Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etl.html">Run the ETL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deploy to Production</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#copying-the-data-dictionary">Copying the data dictionary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customize-settings-for-the-production-site">Customize settings for the production site</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-mongodb-indexes">Setting up MongoDB Indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-staging-collections-in-the-database">Using staging collections in the database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#users-and-user-permissions">Users and user permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manage_users.html">Manage Users and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chiron_settings.html">Chiron Global Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_models.html">User &amp; Permission Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_dict_models.html">Data Dictionary Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processor_classes.html">Processor and Handler Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Chiron API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Deploy to Production</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/topics/deploy.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deploy-to-production">
+<h1>Deploy to Production<a class="headerlink" href="#deploy-to-production" title="Permalink to this headline"></a></h1>
+<section id="copying-the-data-dictionary">
+<h2>Copying the data dictionary<a class="headerlink" href="#copying-the-data-dictionary" title="Permalink to this headline"></a></h2>
+<p>The data dictionary can be copied into a JSON file (a Django fixture) in your development environment and restored in your production environment.</p>
+<p>Use the setting <a class="reference internal" href="chiron_settings.html#chiron-settings-file-location"><span class="std std-ref">CHIRON_DATA_DICT_BACKUP_DIR</span></a> to specify a backup directory, default is <code class="docutils literal notranslate"><span class="pre">chiron_config/backups</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># save database data dictionary to a django fixture</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_backup_dd</span>
+
+<span class="c1"># restore database data dictionary from a django fixture</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_restore_dd</span>
+</pre></div>
+</div>
+</section>
+<section id="customize-settings-for-the-production-site">
+<h2>Customize settings for the production site<a class="headerlink" href="#customize-settings-for-the-production-site" title="Permalink to this headline"></a></h2>
+<p>A lot of custom behavior for your production site can be configured in <a class="reference internal" href="chiron_settings.html#chiron-settings"><span class="std std-ref">Chiron Global Settings</span></a>.</p>
+</section>
+<section id="setting-up-mongodb-indexes">
+<h2>Setting up MongoDB Indexes<a class="headerlink" href="#setting-up-mongodb-indexes" title="Permalink to this headline"></a></h2>
+<p>The Chiron ETL process automatically creates indexes on certain ID fields because they help speed up the ETL process. But most of your concept fields are not indexed automatically. Use the following commands to manage indexes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># view current indexes</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_view_indexes</span>
+
+<span class="c1"># create indexes on all concept fields</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_create_indexes</span>
+
+<span class="c1"># drop all indexes on all collections</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_drop_indexes</span>
+</pre></div>
+</div>
+<p><strong>NOTE</strong>:</p>
+<ul class="simple">
+<li><p>MongoDB only allows 64 indexes per collection. If that limit is hit, the chiron_view_indexes command will print a warning and leave the remaining concepts unindexed.</p></li>
+</ul>
+</section>
+<section id="using-staging-collections-in-the-database">
+<h2>Using staging collections in the database<a class="headerlink" href="#using-staging-collections-in-the-database" title="Permalink to this headline"></a></h2>
+<p>In your <a class="reference internal" href="chiron_settings.html#chiron-settings-mongo"><span class="std std-ref">Chiron settings</span></a>, if you set <code class="docutils literal notranslate"><span class="pre">CHIRON_USE_STAGING_DURING_ETL=True</span></code>the chiron_run_etl command will leave the production MongoDB collections in place while it runs and load everything into separate staging collections. Once the ETL is complete, the production collections are deleted and the staging collections will be renamed to take their place.</p>
+<p>There are a few advantages to this:</p>
+<ul class="simple">
+<li><p>The website can continue to be used while the ETL is running.</p></li>
+<li><p>The original data will only be replaced if the ETL process completes successfully. If there's any error during the ETL, you won't be left with a half-finished database.</p></li>
+</ul>
+<p><strong>NOTE:</strong>
+The staging system only works with unsharded databases. Currently MongoDB doesn't allow sharded collections to be renamed.</p>
+</section>
+<section id="users-and-user-permissions">
+<h2>Users and user permissions<a class="headerlink" href="#users-and-user-permissions" title="Permalink to this headline"></a></h2>
+<p>Each user needs a Django user account. There is also a <a class="reference internal" href="user_models.html#chiron-user-model"><span class="std std-ref">ChironUser model</span></a> that is 1:1 with the Django user model. Chiron users are automatically created the first time Django users try to access Chiron (unless you've changed that behavior in your chiron settings).</p>
+<p>There are <strong>a lot</strong> of options for customizing user access to Chiron and to specific concepts and patients.
+See <a class="reference internal" href="manage_users.html#how-to-manage-users"><span class="std std-ref">Manage Users and Permissions</span></a> for details.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="etl.html" class="btn btn-neutral float-left" title="Run the ETL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manage_users.html" class="btn btn-neutral float-right" title="Manage Users and Permissions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

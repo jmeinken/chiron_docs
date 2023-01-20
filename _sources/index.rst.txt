@@ -31,20 +31,44 @@ See Chiron in action:
 View the `Chiron demo <https://chi.uc.edu/chiron_demo/>`_, which uses the Synthea artificial
 EHR dataset.
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Versions:
+
+   topics/version_changelog.rst
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
-   
+   :caption: Explanation:
+
    topics/system_overview.rst
    topics/data_dict.md
-   topics/workflow.rst
+   topics/processors.md
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: How To:
+
+   topics/install.md
+   topics/dd_configure.rst
+   topics/custom_code.rst
+   topics/etl.md
+   topics/deploy.md
+   topics/manage_users.md
+   topics/examples
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Reference:
+
    topics/utilities.rst
-   topics/configuration.rst
+   topics/chiron_settings.rst
+   topics/user_models.rst
+   topics/data_dict_models.rst
+   topics/processor_classes.rst
    topics/api.rst
-   topics/examples.md
-   topics/version_changelog.md
-   
+
    
 
    

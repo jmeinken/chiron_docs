@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Write Code for Calculated Concepts &mdash; Chiron 4.3.2 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Run the ETL" href="../etl.html" />
+    <link rel="prev" title="Write Code for Custom Sources" href="custom_sources.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processors.html">Understanding Processors and Handlers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install Django and Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dd_configure.html">Configure the Data Dictionary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../custom_code.html">Create Processors and Handlers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="registering.html">Registering Custom Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_sources.html">Write Code for Custom Sources</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Write Code for Calculated Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#single-source">1. Single source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mutiple-sources">2. Mutiple sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../etl.html">Run the ETL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy.html">Deploy to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage_users.html">Manage Users and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chiron_settings.html">Chiron Global Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_models.html">User &amp; Permission Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict_models.html">Data Dictionary Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processor_classes.html">Processor and Handler Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../custom_code.html">Create Processors and Handlers</a> &raquo;</li>
+      <li>Write Code for Calculated Concepts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/custom_code/calculated_concepts.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="write-code-for-calculated-concepts">
+<h1>Write Code for Calculated Concepts<a class="headerlink" href="#write-code-for-calculated-concepts" title="Permalink to this headline"></a></h1>
+<p>Follow this guideline to choose how to implement a calculated concept.</p>
+<section id="single-source">
+<h2>1. Single source<a class="headerlink" href="#single-source" title="Permalink to this headline"></a></h2>
+<p><strong>Is all of the input data you need for your calculated concept coming from the same source in the same record?</strong></p>
+<p>Use a custom <a class="reference internal" href="../processor_classes/abstract_processors.html#ref-etl-processor"><span class="std std-ref">ETL processor</span></a> associated with the same source collection as your input data.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example1.html#example1"><span class="std std-ref">calculated concept - single source</span></a></p>
+</section>
+<section id="mutiple-sources">
+<h2>2. Mutiple sources<a class="headerlink" href="#mutiple-sources" title="Permalink to this headline"></a></h2>
+<p>If the input data for your calculated concept is coming from multiple sources, the approach in
+step 1 won't work because no source will have all the data you need.</p>
+<p>Instead, we load all the sources containing our input data first, then we will create a new source
+that iterates a Chiron collection itself and loads the calculated value back into the collection.
+This new source has to run after our input data sources so that the data is already loaded.</p>
+<p><strong>Are all of the input concepts in the subject collection?</strong></p>
+<p>After the sources for the input concepts are loaded, we can use the <a class="reference internal" href="../processor_classes/built_in_processors.html#source-self-processor"><span class="std std-ref">SourceSelf</span></a> processor to iterate the subject
+colection.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example2.html#example2"><span class="std std-ref">calculated concept - multiple sources, subject data</span></a></p>
+<p><strong>Are all of the input concepts going into a subcollection (and associated subject)?</strong></p>
+<p>We can use the <a class="reference internal" href="../processor_classes/built_in_processors.html#source-self-subdoc-processor"><span class="std std-ref">SourceSelfSubdoc</span></a> processor to iterate the subcollection. For each subcollection
+record, it will also grab the related subject document from the subject collection.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example3.html#example3"><span class="std std-ref">calculated concept - multiple sources, subcollection data</span></a></p>
+<p>In some situations, the calculated concept might actually be comparing data longitudinally. For example,
+you might want to calculate whether a patient's condition has improved or worsened by comparing each
+visit to the previous visit. Again we can use the <a class="reference internal" href="../processor_classes/built_in_processors.html#source-self-subdoc-processor"><span class="std std-ref">SourceSelfSubdoc</span></a> processor, but we need to
+provide the additional argument <code class="docutils literal notranslate"><span class="pre">include_related_subdocs=True</span></code>.</p>
+<p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example4.html#example4"><span class="std std-ref">calculated concept - multiple sources, subcollection data, longitudinal</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="custom_sources.html" class="btn btn-neutral float-left" title="Write Code for Custom Sources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../etl.html" class="btn btn-neutral float-right" title="Run the ETL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

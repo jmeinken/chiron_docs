@@ -1,5 +1,8 @@
-How-To Examples
-===============
+Examples
+========
+
+These custom code and data dictionary config examples are all references from other sections
+in the How-To documentation.
 
 .. toctree::
    :maxdepth: 1

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Built-In Source Processors &mdash; Chiron 4.3.2 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Built-In Concept Handlers" href="built_in_handlers.html" />
+    <link rel="prev" title="Processor and Handler Classes" href="../processor_classes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processors.html">Understanding Processors and Handlers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install Django and Chiron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dd_configure.html">Configure the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_code.html">Create Processors and Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etl.html">Run the ETL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy.html">Deploy to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage_users.html">Manage Users and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chiron_settings.html">Chiron Global Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_models.html">User &amp; Permission Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict_models.html">Data Dictionary Models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../processor_classes.html">Processor and Handler Classes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Built-In Source Processors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#source-processors-for-importing">Source Processors for Importing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sourcedjangomodel">SourceDjangoModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sourcecsv">SourceCsv</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#source-processors-for-calculated-fields">Source Processors for Calculated Fields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sourceself">SourceSelf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sourceselfsubdoc">SourceSelfSubdoc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="built_in_handlers.html">Built-In Concept Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abstract_processors.html">Abstract Processors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../processor_classes.html">Processor and Handler Classes</a> &raquo;</li>
+      <li>Built-In Source Processors</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/processor_classes/built_in_processors.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="built-in-source-processors">
+<span id="built-in-processors"></span><h1>Built-In Source Processors<a class="headerlink" href="#built-in-source-processors" title="Permalink to this headline"></a></h1>
+<p>You can change many behaviors in Chiron with just the data dictionary. Sources in the data dictionary
+will define the source processor used to read data from a source during the ETL. Concepts in the data dictionary will define
+the concept handler used to import, query, and display concept values.</p>
+<section id="source-processors-for-importing">
+<h2>Source Processors for Importing<a class="headerlink" href="#source-processors-for-importing" title="Permalink to this headline"></a></h2>
+<p>Use the Source and SourceProcessorArg models to set and customize the source processor for each source.</p>
+<section id="sourcedjangomodel">
+<h3>SourceDjangoModel<a class="headerlink" href="#sourcedjangomodel" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.processors.SourceDjangoModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">SourceDjangoModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_matching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_matching_source_id_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_matching_destination_id_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_matching_if_no_match</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'create'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_subject_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select_related</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefetch_related</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_rules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'{}'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceDjangoModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="abstract_processors.html#chiron.processors.abstract.StandardLoadMixin" title="chiron.processors.abstract.source_processor.StandardLoadMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_processor.StandardLoadMixin</span></code></a>, <a class="reference internal" href="abstract_processors.html#chiron.processors.abstract.SourceProcessor" title="chiron.processors.abstract.source_processor.SourceProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_processor.SourceProcessor</span></code></a></p>
+<p>A source processor that reads from a Django model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> (<em>str</em>) -- the Django app name where the model is located</p></li>
+<li><p><strong>model</strong> (<em>str</em>) -- the Django model name</p></li>
+<li><p><strong>collection_id_field</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default is primary key for model</em><em>)</em>) -- The name of the field where the collection_id is located</p></li>
+<li><p><strong>subject_matching_source_id_field</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default is the collection_id_field parameter
+value</em><em>)</em>) -- The name of the field where the root_collection_id is located</p></li>
+<li><p><strong>max_batch_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=10</em><em>,</em><em>000</em><em>)</em>) -- The maximum number of model records that will be loaded at once</p></li>
+<li><p><strong>select_related</strong> (<em>str</em><em>, </em><em>optional</em>) -- A comma separated list of models to pre-select</p></li>
+<li><p><strong>prefetch_related</strong> (<em>str</em><em>, </em><em>optional</em>) -- A comma separated list of models to pre-fetch</p></li>
+<li><p><strong>filter_rules</strong> (<em>JSON str</em><em>, </em><em>optional</em><em> (</em><em>default is all records are returned</em><em>)</em>) -- A JSON string of Django filter rules to limit model records returned</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="sourcecsv">
+<h3>SourceCsv<a class="headerlink" href="#sourcecsv" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.processors.SourceCsv">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">SourceCsv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_matching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_matching_source_id_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_matching_source_id_delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_matching_destination_id_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject_matching_if_no_match</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'create'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_subject_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceCsv" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="abstract_processors.html#chiron.processors.abstract.StandardLoadMixin" title="chiron.processors.abstract.source_processor.StandardLoadMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_processor.StandardLoadMixin</span></code></a>, <a class="reference internal" href="abstract_processors.html#chiron.processors.abstract.SourceProcessor" title="chiron.processors.abstract.source_processor.SourceProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_processor.SourceProcessor</span></code></a></p>
+<p>Source for CSV. The CSV file needs a header row. The records returned will
+be Python dicts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) -- the file location</p></li>
+<li><p><strong>collection_id_field</strong> (<em>str</em>) -- the header value for the collection id</p></li>
+<li><p><strong>subject_matching_source_id_field</strong> (<em>str</em>) -- the header value for the subject collection id</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="source-processors-for-calculated-fields">
+<h2>Source Processors for Calculated Fields<a class="headerlink" href="#source-processors-for-calculated-fields" title="Permalink to this headline"></a></h2>
+<section id="sourceself">
+<span id="source-self-processor"></span><h3>SourceSelf<a class="headerlink" href="#sourceself" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.processors.SourceSelf">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">SourceSelf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSource</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceSelf" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="abstract_processors.html#chiron.processors.abstract.StandardLoadMixin" title="chiron.processors.abstract.source_processor.StandardLoadMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_processor.StandardLoadMixin</span></code></a>, <a class="reference internal" href="abstract_processors.html#chiron.processors.abstract.SourceProcessor" title="chiron.processors.abstract.source_processor.SourceProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_processor.SourceProcessor</span></code></a></p>
+<p>Pulls all records from the Chiron Mongo database itself.
+Useful for generating calculated fields on existing Mongo records.
+Needs to be run later in execution order, when all the input fields
+it depends on have already been loaded.</p>
+</dd></dl>
+
+</section>
+<section id="sourceselfsubdoc">
+<span id="source-self-subdoc-processor"></span><h3>SourceSelfSubdoc<a class="headerlink" href="#sourceselfsubdoc" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="chiron.processors.SourceSelfSubdoc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chiron.processors.</span></span><span class="sig-name descname"><span class="pre">SourceSelfSubdoc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oSource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_related_subdocs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chiron.processors.SourceSelfSubdoc" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="abstract_processors.html#chiron.processors.abstract.StandardLoadMixin" title="chiron.processors.abstract.source_processor.StandardLoadMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_processor.StandardLoadMixin</span></code></a>, <a class="reference internal" href="abstract_processors.html#chiron.processors.abstract.SourceProcessor" title="chiron.processors.abstract.source_processor.SourceProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">chiron.processors.abstract.source_processor.SourceProcessor</span></code></a></p>
+<p>Pulls all records from the Chiron Mongo database itself.
+Useful for generating calculated fields on existing Mongo records.
+Needs to be run later in execution order, when all the input fields
+it depends on have already been loaded.</p>
+<p>The subdocument is based on whichever Collection associated with this Source.
+In the source data collection, each record will be a dictionary with &quot;subdoc&quot; for this
+specific sudocument record and &quot;doc&quot; for the entire document that the subdoc is in.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../processor_classes.html" class="btn btn-neutral float-left" title="Processor and Handler Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="built_in_handlers.html" class="btn btn-neutral float-right" title="Built-In Concept Handlers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

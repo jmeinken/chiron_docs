@@ -14,6 +14,7 @@ python manage.py command_name --help
 
 ## Modify the data dictionary
 
+(management-chiron-autocreate-dd)=
 ### chiron_autocreate_dd
 
 ```{eval-rst}

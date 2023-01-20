@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Autocreate the Data Dictionary &mdash; Chiron 4.3.2 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Manually Edit the Data Dictionary" href="edit_data_dictionary.html" />
+    <link rel="prev" title="1. Plan your Data Schema" href="data_schema.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Chiron
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../version_changelog.html">Version Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processors.html">Understanding Processors and Handlers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How To:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install Django and Chiron</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../dd_configure.html">Configure the Data Dictionary</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data_schema.html">1. Plan your Data Schema</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Autocreate the Data Dictionary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#source-list-overview">Source List Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#source-list-args-for-csv-files">Source List Args for CSV Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#source-list-args-for-django-models">Source List Args for Django Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-run-the-autocreate-script">How to run the autocreate script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rerunning-autocreate-after-changes">Rerunning Autocreate After Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="edit_data_dictionary.html">3. Manually Edit the Data Dictionary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_code.html">Create Processors and Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etl.html">Run the ETL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy.html">Deploy to Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage_users.html">Manage Users and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Site Admin Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chiron_settings.html">Chiron Global Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_models.html">User &amp; Permission Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict_models.html">Data Dictionary Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processor_classes.html">Processor and Handler Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Chiron API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chiron</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../dd_configure.html">Configure the Data Dictionary</a> &raquo;</li>
+      <li>2. Autocreate the Data Dictionary</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/topics/dd_configure/autocreate_data_dictionary.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="autocreate-the-data-dictionary">
+<span id="id1"></span><h1>2. Autocreate the Data Dictionary<a class="headerlink" href="#autocreate-the-data-dictionary" title="Permalink to this headline"></a></h1>
+<p>Creating a data dictionary by hand when you have a lot of fields is tedious. So we have a script that
+can autocreate a data dictionary for you. You will define a list of <a class="reference internal" href="../data_dict.html#source-def"><span class="std std-ref">sources</span></a> you want to import, then
+the script will inspect the fields in those sources and create a full data dictionary turning each
+field into a <a class="reference internal" href="../data_dict.html#concept-def"><span class="std std-ref">concept</span></a>.</p>
+<p>The autocreation tool is intentionally limited in how much it can be customized. The goal isn't to
+give a perfect, complete data dictionary. The goal is to quickly get to a starting point that can then
+be further customized as needed. You will only run this script once to get started. Then you will not
+need to run it again unless you have new sources/fields that you want to import.</p>
+<p>Currently the autocomplete script supports data coming from the Django ORM or from CSV files.</p>
+<section id="source-list-overview">
+<h2>Source List Overview<a class="headerlink" href="#source-list-overview" title="Permalink to this headline"></a></h2>
+<p>Your source list will have one entry for each <a class="reference internal" href="../data_dict.html#source-def"><span class="std std-ref">source</span></a> you want to create. A source
+can be any Python iterable, but for autocreate it will either be a Django model or a CSV file.</p>
+<p>You can make a single source list for your chiron instance, or separate into multiple lists to
+keep things logically separated.</p>
+<p>A source list has the following structure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">chiron.data_dictionary.csv_autocreate</span> <span class="kn">import</span> <span class="n">CsvFileAutocreate</span>
+<span class="kn">from</span> <span class="nn">chiron.data_dictionary.django_autocreate</span> <span class="kn">import</span> <span class="n">DjangoOrmAutocreate</span>
+
+<span class="n">my_source_list</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="c1"># Specify the autocreate class to use, either CsvFileAutocreate or DjangoOrmAutocreate</span>
+    <span class="s2">&quot;autocreate_tool&quot;</span><span class="p">:</span> <span class="n">CsvFileAutocreate</span><span class="p">,</span>
+
+    <span class="c1"># optionally set default values for this list, they will automatically be added to </span>
+    <span class="c1"># each item in the list unless that item specfies a different value</span>
+    <span class="s2">&quot;defaults&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># any arguments you want to use for all list entries</span>
+    <span class="p">},</span>
+
+    <span class="c1"># create one entry for each Django Model or CSV file you want to import</span>
+    <span class="s2">&quot;list&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;unique_source_id&quot;</span><span class="p">:</span> <span class="s2">&quot;demographics&quot;</span><span class="p">,</span>
+            <span class="c1"># additional optional and required arguments</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;unique_source_id&quot;</span><span class="p">:</span> <span class="s2">&quot;encounters&quot;</span><span class="p">,</span>
+            <span class="c1"># additional optional and required arguments</span>
+        <span class="p">},</span>
+        <span class="o">...</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+
+</pre></div>
+</div>
+</section>
+<section id="source-list-args-for-csv-files">
+<h2>Source List Args for CSV Files<a class="headerlink" href="#source-list-args-for-csv-files" title="Permalink to this headline"></a></h2>
+<p>NOTE: Your CSV files must have a header row with the name of each field.</p>
+<ul class="simple">
+<li><p><strong>unique_source_id</strong> <em>(str, required)</em></p>
+<ul>
+<li><p>This ID will be used in the <a class="reference internal" href="../data_dict_models.html#autocreated-field-model"><span class="std std-ref">AutocreatedField table</span></a> to track whether this source has already been loaded. As long as this name doesn't change, fields will not be reloaded multiple times even if the filename changes.</p></li>
+</ul>
+</li>
+<li><p><strong>filename</strong> <em>(str, required)</em></p>
+<ul>
+<li><p>If <a class="reference internal" href="../chiron_settings.html#chiron-settings-file-location"><span class="std std-ref">CHIRON_SOURCE_DATA_DIRECTORY</span></a> is defined in Django settings, the relative filepath from that. Otherwise, the full filepath.</p></li>
+</ul>
+</li>
+<li><p><strong>dataset</strong> <em>(str, required if your system has &gt;1 dataset)</em></p>
+<ul>
+<li><p>The dataset as specified in <a class="reference internal" href="../data_dict_models.html#dataset-model"><span class="std std-ref">Dataset.unique_id</span></a></p></li>
+</ul>
+</li>
+<li><p><strong>load_to_root</strong> <em>(bool, default=False)</em></p>
+<ul>
+<li><p>Each dataset has only one root (subject) collection. Set to True to load data to this collection (i.e. if this data is 1:1 with a subject).</p></li>
+</ul>
+</li>
+<li><p><strong>collection</strong> <em>(str, optional)</em></p>
+<ul>
+<li><p>The permanent ID of the <a class="reference internal" href="../data_dict_models.html#collection-model"><span class="std std-ref">collection</span></a> you want to load into. If <code class="docutils literal notranslate"><span class="pre">load_to_root=True</span></code>, this value will be ignored. If this value is not set, the <code class="docutils literal notranslate"><span class="pre">unique_source_id</span></code> will be used.</p></li>
+</ul>
+</li>
+<li><p><strong>category</strong> <em>(str, optional)</em></p>
+<ul>
+<li><p>The name of the <a class="reference internal" href="../data_dict_models.html#category-model"><span class="std std-ref">category</span></a> to associate these fields with. If this value is not set, the <code class="docutils literal notranslate"><span class="pre">unique_source_id</span></code> will be used.</p></li>
+</ul>
+</li>
+<li><p><strong>collection_id_field</strong> (str, optional)</p>
+<ul>
+<li><p>The header name of the field that identifies a unique record in this collection. If this is a subject collection (i.e. <code class="docutils literal notranslate"><span class="pre">load_to_root=True</span></code>), this value is ignored. If not set, a collection ID will be autogenerated.</p></li>
+</ul>
+</li>
+<li><p><strong>subject_id_field</strong> <em>(str, required if <code class="docutils literal notranslate"><span class="pre">subject_matching</span></code> is not set)</em></p>
+<ul>
+<li><p>The header name of the field that identifies the subject.</p></li>
+<li><p>For more complex situations, use <code class="docutils literal notranslate"><span class="pre">subject_matching</span></code> instead.</p></li>
+</ul>
+</li>
+<li><p><strong>subject_matching</strong> <em>(dict, required if <code class="docutils literal notranslate"><span class="pre">subject_id_field</span></code> is not set)</em></p>
+<ul>
+<li><p>Use to define more complex subject matching rules than simply specifying a <code class="docutils literal notranslate"><span class="pre">subject_id_field</span></code></p></li>
+<li><p>The subject_matching dict can contain the following values:</p>
+<ul>
+<li><p><strong>source_id_field</strong> <em>(str, required)</em></p>
+<ul>
+<li><p>The header name of the field that identifies the subject.</p></li>
+</ul>
+</li>
+<li><p><strong>source_id_delimiter</strong> <em>(str, optional)</em></p>
+<ul>
+<li><p>If the source_id_field can contain multiple subject_ids, what is the delimiter</p></li>
+<li><p>default is None for no delimiter</p></li>
+</ul>
+</li>
+<li><p><strong>destination_id_field</strong> <em>(str, default=&quot;id&quot;)</em></p>
+<ul>
+<li><p>The name of the subject ID field that gets stored in MongoDB.</p></li>
+<li><p>If you only use one subject ID across all sources for your project, you can leave blank to use &quot;id&quot;
+for everything. But if you have multiple (ex. study_id and mrn) use this to specify
+which to match on.</p></li>
+</ul>
+</li>
+<li><p><strong>if_no_match</strong> <em>(str, default=&quot;create&quot;)</em></p>
+<ul>
+<li><p>What do you want to do if the specified subject doesn't exist in the database yet?</p></li>
+<li><p>Options are &quot;create&quot; to make a new subject and &quot;skip&quot; to ignore this subject.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>add_subject_ids</strong> <em>(list, optional)</em></p>
+<ul>
+<li><p>Use to add subject ID fields from this source without actually matching on them. You would want
+to do this in a situation where a later source will match on the added ID(s).</p></li>
+<li><p>The add_subject_ids is a list of dicts each containing the following values:</p>
+<ul>
+<li><p><strong>source_id_field</strong> <em>(str, required)</em></p>
+<ul>
+<li><p>The header name of the field that identifies the subject.</p></li>
+</ul>
+</li>
+<li><p><strong>source_id_delimiter</strong> <em>(str, optional)</em></p>
+<ul>
+<li><p>If the source_id_field can contain multiple subject_ids, what is the delimiter</p></li>
+<li><p>default is None for no delimiter</p></li>
+</ul>
+</li>
+<li><p><strong>destination_id_field</strong> <em>(str, default=&quot;id&quot;)</em></p>
+<ul>
+<li><p>The name of the subject ID field that will get stored in MongoDB.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="source-list-args-for-django-models">
+<h2>Source List Args for Django Models<a class="headerlink" href="#source-list-args-for-django-models" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>app</strong> <em>(str, required)</em></p>
+<ul>
+<li><p>The name of the Django app for the model you want to load.</p></li>
+</ul>
+</li>
+<li><p><strong>model</strong> <em>(str, required)</em></p>
+<ul>
+<li><p>The name of the Django model class you want to load.</p></li>
+</ul>
+</li>
+<li><p><strong>source_name</strong> <em>(str, optional)</em></p>
+<ul>
+<li><p>Provide a name to call the <a class="reference internal" href="../data_dict_models.html#source-model"><span class="std std-ref">source</span></a>. Default value is the model name.</p></li>
+</ul>
+</li>
+<li><p><strong>dataset</strong> <em>(str, required if your system has &gt;1 dataset)</em></p>
+<ul>
+<li><p>The dataset as specified in <a class="reference internal" href="../data_dict_models.html#dataset-model"><span class="std std-ref">Dataset.unique_id</span></a></p></li>
+</ul>
+</li>
+<li><p><strong>load_to_root</strong> <em>(bool, default=False)</em></p>
+<ul>
+<li><p>Each dataset has only one root (subject) collection. Set to True to load data to this collection (i.e. if this data is 1:1 with a subject).</p></li>
+</ul>
+</li>
+<li><p><strong>collection</strong> <em>(str, optional)</em></p>
+<ul>
+<li><p>The permanent ID of the <a class="reference internal" href="../data_dict_models.html#collection-model"><span class="std std-ref">collection</span></a> you want to load into. If <code class="docutils literal notranslate"><span class="pre">load_to_root=True</span></code>, this value will be ignored. If this value is not set, the <code class="docutils literal notranslate"><span class="pre">source_name</span></code> will be used.</p></li>
+</ul>
+</li>
+<li><p><strong>category</strong> <em>(str, optional)</em></p>
+<ul>
+<li><p>The name of the <a class="reference internal" href="../data_dict_models.html#category-model"><span class="std std-ref">category</span></a> to associate these fields with. If this value is not set, the <code class="docutils literal notranslate"><span class="pre">source_name</span></code> will be used.</p></li>
+</ul>
+</li>
+<li><p><strong>collection_id_field</strong> (str, optional)</p>
+<ul>
+<li><p>The model field that identifies a unique record in this collection. Foreign keys can be followed into other models using Django's double-underscore notation (ex &quot;patient__patient_id&quot;). If this is a subject collection (i.e. <code class="docutils literal notranslate"><span class="pre">load_to_root=True</span></code>), this value is ignored. The default value is the primary key for the model. If you want to autogenerate a random collection ID instead, you should explicitly set this value to None.</p></li>
+</ul>
+</li>
+<li><p><strong>subject_id_field</strong> <em>(str, required if <code class="docutils literal notranslate"><span class="pre">subject_matching</span></code> is not set)</em></p>
+<ul>
+<li><p>The model field for the subject ID. Foreign keys can be followed into other models using Django's double-underscore notation (ex &quot;patient__patient_id&quot;).</p></li>
+<li><p>For more complex situations, use <code class="docutils literal notranslate"><span class="pre">subject_matching</span></code> instead.</p></li>
+</ul>
+</li>
+<li><p><strong>subject_matching</strong> <em>(dict, required if <code class="docutils literal notranslate"><span class="pre">subject_id_field</span></code> is not set)</em></p>
+<ul>
+<li><p>Use to define more complex subject matching rules than simply specifying a <code class="docutils literal notranslate"><span class="pre">subject_id_field</span></code></p></li>
+<li><p>The subject_matching dict can contain the following values:</p>
+<ul>
+<li><p><strong>source_id_field</strong> <em>(str, required)</em></p>
+<ul>
+<li><p>The model field for the subject ID. Foreign keys can be followed into other models using Django's double-underscore notation (ex &quot;patient__patient_id&quot;).</p></li>
+</ul>
+</li>
+<li><p><strong>destination_id_field</strong> <em>(str, default=&quot;id&quot;)</em></p>
+<ul>
+<li><p>The name of the subject ID field that gets stored in MongoDB.</p></li>
+<li><p>If you only use one subject ID across all sources for your project, you can leave blank to use &quot;id&quot;
+for everything. But if you have multiple (ex. study_id and mrn) use this to specify
+which to match on.</p></li>
+</ul>
+</li>
+<li><p><strong>if_no_match</strong> <em>(str, default=&quot;create&quot;)</em></p>
+<ul>
+<li><p>What do you want to do if the specified subject doesn't exist in the database yet?</p></li>
+<li><p>Options are &quot;create&quot; to make a new subject and &quot;skip&quot; to ignore this subject.</p></li>
+</ul>
+</li>
+<li><p><strong>workflow</strong> <em>(list of strings, optional)</em></p>
+<ul>
+<li><p>There are a limited number of options for manipulating the source_id value string.</p>
+<ul>
+<li><p>current options are &quot;upper&quot;, &quot;lower&quot;, &quot;remove_leading_zeros&quot;</p></li>
+</ul>
+</li>
+<li><p>Manipulation steps will be applied in order.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>add_subject_ids</strong> <em>(list, optional)</em></p>
+<ul>
+<li><p>Use to add subject ID fields from this source without actually matching on them. You would want
+to do this in a situation where a later source will match on the added ID(s).</p></li>
+<li><p>The add_subject_ids is a list of dicts each containing the following values:</p>
+<ul>
+<li><p><strong>source_id_field</strong> <em>(str, required)</em></p>
+<ul>
+<li><p>The model field for the subject ID. Foreign keys can be followed into other models using Django's double-underscore notation (ex &quot;patient__patient_id&quot;).</p></li>
+</ul>
+</li>
+<li><p><strong>destination_id_field</strong> <em>(str, default=&quot;id&quot;)</em></p>
+<ul>
+<li><p>The name of the subject ID field that will get stored in MongoDB.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>join_models</strong> (list of dicts, optional)</p>
+<ul>
+<li><p>You can take advantage of Django model relationships to join multiple models that will load together into a single collection.</p></li>
+<li><p>In general, anything you add here through joins should be something you expect to be 1:1 with the main source model.</p></li>
+<li><p>For example, if you're loading a model Visit into a Chiron visit collection, you could join in another model like VisitQuestionnaire assuming that there's only one questionnaire per visit.</p></li>
+<li><p>You wouldn't want to join in something 1:many with visit like VisitDiagnosis - that should instead be set up as a separate source with its own dedicated diagnosis collection.</p></li>
+<li><p>Each dict entry will have 3 values:</p>
+<ul>
+<li><p><strong>app</strong> (str, optional) - The Django app name where this model is. Default value is same as the main source model.</p></li>
+<li><p><strong>model</strong> (str, required) - The name of the model class you want to join.</p></li>
+<li><p><strong>join_path</strong> - The lookup path from the main source model to this model. This should use <a class="reference external" href="https://docs.djangoproject.com/en/4.0/topics/db/queries/#lookups-that-span-relationships-1">Django's lookup notation</a>. You can traverse any type of relationship (1:1, many:1, 1:many, many:many) and cross multiple relationships using a double underscore.</p>
+<ul>
+<li><p><em>example 1</em>: You have a Patient model and a Demographics model. The Demographics model has a ForeignKey field <code class="docutils literal notranslate"><span class="pre">patient</span></code> pointing to the Patient model. If your main source model is the Patient model, you could join in the demographics model using the join path <code class="docutils literal notranslate"><span class="pre">demographics_set</span></code>. If you don't understand where the &quot;_set&quot; suffix is coming from, see Django's documentation on <a class="reference external" href="https://docs.djangoproject.com/en/4.0/ref/models/relations/">related names</a>.</p></li>
+<li><p><em>example 2</em>: Continuing with the setup from example 1, if Demographics has a field <code class="docutils literal notranslate"><span class="pre">race</span></code> that has a many:many relationship to model RaceLookup, you could also join RaceLookup into Patient using the join path <code class="docutils literal notranslate"><span class="pre">deographics_set__race</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-to-run-the-autocreate-script">
+<h2>How to run the autocreate script<a class="headerlink" href="#how-to-run-the-autocreate-script" title="Permalink to this headline"></a></h2>
+<p>Once your source list(s) are set up, you are ready to run the autocreate script. First collect
+all your source lists together into one Python dictionary. The key values can be anything you want:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">autocreate_source_lists</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;system1&quot;</span><span class="p">:</span> <span class="n">system1_source_list</span><span class="p">,</span>
+  <span class="s2">&quot;system2&quot;</span><span class="p">:</span> <span class="n">system2_source_list</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then you can use the Django setting <a class="reference internal" href="../chiron_settings.html#chiron-settings-file-location"><span class="std std-ref">CHIRON_AUTOCREATE_SOURCE_LISTS</span></a> to tell Chiron the Python path where your
+variable is stored. The default value is <code class="docutils literal notranslate"><span class="pre">chiron_config.autocreate.autocreate_source_lists</span></code>.</p>
+<p>Then run the script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># check to see if your source lists are configured correctly without modifying anything</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_autocreate_dd</span> <span class="o">--</span><span class="n">test</span><span class="o">-</span><span class="n">run</span>
+
+<span class="c1"># run the script</span>
+<span class="c1"># If you have multiple source lists in your autocreate_source_lists dict, you will be prompted to </span>
+<span class="c1"># select a source source list or run all source lists.</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">chiron_autocreate_dd</span>
+</pre></div>
+</div>
+</section>
+<section id="rerunning-autocreate-after-changes">
+<h2>Rerunning Autocreate After Changes<a class="headerlink" href="#rerunning-autocreate-after-changes" title="Permalink to this headline"></a></h2>
+<p>There is a dedicated model <a class="reference internal" href="../data_dict_models.html#autocreated-field-model"><span class="std std-ref">AutocreatedField</span></a> to keep track of all fields that have been loaded through autocreate. Any fields that have been imported are tracked in this model and will not be imported again, even if the associated Concepts have been modified or deleted. So it is safe to rerun <a class="reference internal" href="../utilities/management_commands.html#management-chiron-autocreate-dd"><span class="std std-ref">chiron_autocreate_dd</span></a> to autocreate concepts from new models, CSV files, or fields. It will not re-create any fields that have already been created.</p>
+<p>If you actually want to reload previously loaded concepts (for example, if you deleted something by accident), you can remove the fields you wish to re-import from <a class="reference internal" href="../data_dict_models.html#autocreated-field-model"><span class="std std-ref">AutocreatedField</span></a>, then run <a class="reference internal" href="../utilities/management_commands.html#management-chiron-autocreate-dd"><span class="std std-ref">chiron_autocreate_dd</span></a> again.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_schema.html" class="btn btn-neutral float-left" title="1. Plan your Data Schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="edit_data_dictionary.html" class="btn btn-neutral float-right" title="3. Manually Edit the Data Dictionary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, UC Center for Health Informatics, Cincinnati Children&#39;s Biomedical Informatics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
