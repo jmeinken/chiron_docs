@@ -43,6 +43,8 @@ EHR dataset.
 
    topics/system_overview.rst
    topics/data_dict.md
+   topics/data_schema.md
+   topics/event_collections.md
    topics/processors.md
 
 

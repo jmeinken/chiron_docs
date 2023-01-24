@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configure the Data Dictionary &mdash; Chiron 5.0.1 documentation</title>
+  <title>Understanding Event Collections &mdash; Chiron 5.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Plan your Data Schema" href="dd_configure/data_schema.html" />
-    <link rel="prev" title="Install Django and Chiron" href="install.html" /> 
+    <link rel="next" title="Understanding Processors and Handlers" href="processors.html" />
+    <link rel="prev" title="Understanding the Data Schema" href="data_schema.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,22 +45,23 @@
 <li class="toctree-l1"><a class="reference internal" href="version_changelog.html">Version Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_dict.html">Data Dictionary Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_schema.html">Understanding the Data Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="event_collections.html">Understanding Event Collections</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Understanding Event Collections</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dates-vs-ages">Dates vs Ages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#point-events-vs-interval-events">Point Events vs Interval Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#missing-dates">Missing Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started-with-event-collections">Getting Started with Event Collections</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="processors.html">Understanding Processors and Handlers</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How To:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install Django and Chiron</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Configure the Data Dictionary</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dd_configure/data_schema.html">1. Plan your Data Schema</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dd_configure/autocreate_data_dictionary.html">2. Autocreate the Data Dictionary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dd_configure/edit_data_dictionary.html">3. Manually Edit the Data Dictionary</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="dd_configure.html">Configure the Data Dictionary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_code.html">Create Processors and Handlers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="etl.html">Run the ETL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deploy.html">Deploy to Production</a></li>
@@ -91,9 +92,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Configure the Data Dictionary</li>
+      <li>Understanding Event Collections</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/topics/dd_configure.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/topics/event_collections.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -101,25 +102,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="configure-the-data-dictionary">
-<h1>Configure the Data Dictionary<a class="headerlink" href="#configure-the-data-dictionary" title="Permalink to this headline"></a></h1>
-<p>This section will walk you through how to set up a Chiron data dictionary customized to your
-data. If you haven't already, please first read <a class="reference internal" href="data_dict.html#understanding-dd"><span class="std std-ref">Data Dictionary Components</span></a> and <a class="reference internal" href="processors.html#understanding-processors"><span class="std std-ref">Understanding Processors and Handlers</span></a>.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dd_configure/data_schema.html">1. Plan your Data Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dd_configure/autocreate_data_dictionary.html">2. Autocreate the Data Dictionary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dd_configure/edit_data_dictionary.html">3. Manually Edit the Data Dictionary</a></li>
-</ul>
-</div>
+  <section id="understanding-event-collections">
+<span id="id1"></span><h1>Understanding Event Collections<a class="headerlink" href="#understanding-event-collections" title="Permalink to this headline"></a></h1>
+<p>Any <a class="reference internal" href="data_dict.html#collection-def"><span class="std std-ref">subcollection</span></a> can be turned into an event collection by specifying the date or age concept(s) that define when that event happened. For example, if you have a visit collection, you can specify the visit date as the event date.</p>
+<p><strong>Event collections allow special types of temporal queries that aren't available for normal subcollections.</strong> For example, a user can get all subjects who started taking warfarin within 2 months after a heart procedure. Or they can get all samples that were collected during an illness event. These queries are special because they are looking at relative dates/ages instead of absolutes dates/ages. We don't care what absolute date the subject started taking warfarin, just that it was within 2 months after a heart procedure.</p>
+<section id="dates-vs-ages">
+<h2>Dates vs Ages<a class="headerlink" href="#dates-vs-ages" title="Permalink to this headline"></a></h2>
+<p>Event collections can either be defined using absolute dates or detailed ages.</p>
+<p>By &quot;detailed age&quot;, we mean that the age is more specific than just the year. The source for a detailed age can be a float value (where the fraction represents fraction of a year), age in days, or age calculated from a birthdate and event date.</p>
+<p>Importantly, it's not possible to compare an age with a date. <strong>Your entire Chiron system needs to either use all dates or all ages for defining event collections.</strong> And you will specify which you want to use in your Chiron settings.</p>
+</section>
+<section id="point-events-vs-interval-events">
+<h2>Point Events vs Interval Events<a class="headerlink" href="#point-events-vs-interval-events" title="Permalink to this headline"></a></h2>
+<p>Point events are events that occur on a single day, like an office visit. Interval events are events that can extend over multiple days, like a medical condition. Currently, the finest level of granularity in Chiron is one day. So an event that extends over multiple hours would still be considered a point event.</p>
+<p>If a subcollection only defines a concept for the start date, it will be treated as a point event. If it also defines a concept for the end date, it will be treated like an interval event. This will affect the types of queries that can be performed on this event.</p>
+</section>
+<section id="missing-dates">
+<h2>Missing Dates<a class="headerlink" href="#missing-dates" title="Permalink to this headline"></a></h2>
+<p>If an entry in an event collection is missing a start date (or end date for interval events), it will be excluded from any temporal queries.</p>
+</section>
+<section id="getting-started-with-event-collections">
+<h2>Getting Started with Event Collections<a class="headerlink" href="#getting-started-with-event-collections" title="Permalink to this headline"></a></h2>
+<p>For a how-to guide, see <a class="reference internal" href="dd_configure/edit_data_dictionary.html#how-to-event-collections"><span class="std std-ref">Turning Collections into Events</span></a>.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="install.html" class="btn btn-neutral float-left" title="Install Django and Chiron" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dd_configure/data_schema.html" class="btn btn-neutral float-right" title="1. Plan your Data Schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="data_schema.html" class="btn btn-neutral float-left" title="Understanding the Data Schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="processors.html" class="btn btn-neutral float-right" title="Understanding Processors and Handlers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

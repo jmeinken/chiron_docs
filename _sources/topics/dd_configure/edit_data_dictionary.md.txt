@@ -29,6 +29,8 @@ but this would change every time the data is refreshed and cause problems with s
 Instead, use one of Chiron's specialized processors for generating auto IDs. These can be set up so 
 that they don't change when the ETL is rerun.
 
+<hr>
+
 ### Subject IDs
 
 **SITUATION: I have a PHI subject ID field in my source data, but I want users to see a deidentified ID.**
@@ -65,6 +67,9 @@ other concepts(s) as input.
 
 *EXAMPLE:* {ref}`example8`
 
+<hr>
+
+(custom_age_date_concepts)=
 ## Custom Age/Date Concepts
 
 For identifying when events happened, Chiron works down to the level of 1 day (times are not currently supported).
@@ -100,7 +105,32 @@ Use this table to lookup your situation, based on what type of input data you ha
 |age in days as integer|current age|(not supported)|
 |age in days as integer|detailed age|use {ref}`detailed-age-handler`|
 
+<hr>
+
+(how-to-event-collections)=
 ## Turning Collections into Events
 
-(coming soon)
+Event collections allow users to perform special types of temporal queries. For an explanation of
+event collections, see {ref}`understanding-event-collections`.
+
+### Choose Dates or Ages
+
+Your entire chiron instance can either use absolute dates or detailed ages to define events.
+Set this in your chiron setting {ref}`CHIRON_EVENT_CONCEPT_TYPE<chiron-settings-dd>`.
+
+### Select Appropriate Event Concept(s)
+
+The {ref}`Collection model<collection-model>` has fields `event_date_field` and `event_end_date_field`. For a point event, specify
+the date or age concept in `event_date_field`. For an interval event, also specify `event_end_date_field`.
+Note that the concept data type (date or detailed age) must match with what you specified in 
+`chiron_settings.CHIRON_EVENT_CONCEPT_TYPE`.
+
+If you want to turn a collection into an event collection but don't have an appropriate concept in place, 
+see {ref}`custom_age_date_concepts` for tips on how to create these type of concepts.
+
+### Check That It's Working
+
+In the UI in a query definition, criteria sets defined on event collections will show a date option
+indicated with a calendar button (you may need to scroll over the criteria set for buttons to appear).
+This button will open up a menu for defining a temporal query.
 

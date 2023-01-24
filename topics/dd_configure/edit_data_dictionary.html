@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Manually Edit the Data Dictionary &mdash; Chiron 5.0.0 documentation</title>
+  <title>3. Manually Edit the Data Dictionary &mdash; Chiron 5.0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -47,7 +47,9 @@
 <p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../system_overview.html">System Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Understanding the Data Dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_dict.html">Data Dictionary Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_schema.html">Understanding the Data Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../event_collections.html">Understanding Event Collections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processors.html">Understanding Processors and Handlers</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How To:</span></p>
@@ -64,7 +66,12 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#custom-age-date-concepts">Custom Age/Date Concepts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#turning-collections-into-events">Turning Collections into Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#turning-collections-into-events">Turning Collections into Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#choose-dates-or-ages">Choose Dates or Ages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#select-appropriate-event-concept-s">Select Appropriate Event Concept(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-that-it-s-working">Check That It's Working</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -134,6 +141,7 @@ you want to expose because of PHI restrictions. You might be tempted to create a
 but this would change every time the data is refreshed and cause problems with saved queries.
 Instead, use one of Chiron's specialized processors for generating auto IDs. These can be set up so
 that they don't change when the ETL is rerun.</p>
+<hr>
 <section id="subject-ids">
 <h3>Subject IDs<a class="headerlink" href="#subject-ids" title="Permalink to this headline"></a></h3>
 <p><strong>SITUATION: I have a PHI subject ID field in my source data, but I want users to see a deidentified ID.</strong></p>
@@ -158,10 +166,11 @@ from multiple sources - something that isn't possible with concepts.</p>
 <p>Using <a class="reference internal" href="../processor_classes/built_in_handlers.html#auto-subcollection-id-handler"><span class="std std-ref">AutoSubcollectionIdHandler</span></a>, you can generate a deidentified subcollection ID using
 other concepts(s) as input.</p>
 <p><em>EXAMPLE:</em> <a class="reference internal" href="../examples/example8.html#example8"><span class="std std-ref">create a subcollection ID</span></a></p>
+<hr>
 </section>
 </section>
 <section id="custom-age-date-concepts">
-<h2>Custom Age/Date Concepts<a class="headerlink" href="#custom-age-date-concepts" title="Permalink to this headline"></a></h2>
+<span id="id1"></span><h2>Custom Age/Date Concepts<a class="headerlink" href="#custom-age-date-concepts" title="Permalink to this headline"></a></h2>
 <p>For identifying when events happened, Chiron works down to the level of 1 day (times are not currently supported).
 There are three types of input data you might have coming from your sources:</p>
 <ul class="simple">
@@ -237,10 +246,32 @@ There are three types of input data you might have coming from your sources:</p>
 </tr>
 </tbody>
 </table>
+<hr>
 </section>
 <section id="turning-collections-into-events">
-<h2>Turning Collections into Events<a class="headerlink" href="#turning-collections-into-events" title="Permalink to this headline"></a></h2>
-<p>(coming soon)</p>
+<span id="how-to-event-collections"></span><h2>Turning Collections into Events<a class="headerlink" href="#turning-collections-into-events" title="Permalink to this headline"></a></h2>
+<p>Event collections allow users to perform special types of temporal queries. For an explanation of
+event collections, see <a class="reference internal" href="../event_collections.html#understanding-event-collections"><span class="std std-ref">Understanding Event Collections</span></a>.</p>
+<section id="choose-dates-or-ages">
+<h3>Choose Dates or Ages<a class="headerlink" href="#choose-dates-or-ages" title="Permalink to this headline"></a></h3>
+<p>Your entire chiron instance can either use absolute dates or detailed ages to define events.
+Set this in your chiron setting <a class="reference internal" href="../chiron_settings.html#chiron-settings-dd"><span class="std std-ref">CHIRON_EVENT_CONCEPT_TYPE</span></a>.</p>
+</section>
+<section id="select-appropriate-event-concept-s">
+<h3>Select Appropriate Event Concept(s)<a class="headerlink" href="#select-appropriate-event-concept-s" title="Permalink to this headline"></a></h3>
+<p>The <a class="reference internal" href="../data_dict_models.html#collection-model"><span class="std std-ref">Collection model</span></a> has fields <code class="docutils literal notranslate"><span class="pre">event_date_field</span></code> and <code class="docutils literal notranslate"><span class="pre">event_end_date_field</span></code>. For a point event, specify
+the date or age concept in <code class="docutils literal notranslate"><span class="pre">event_date_field</span></code>. For an interval event, also specify <code class="docutils literal notranslate"><span class="pre">event_end_date_field</span></code>.
+Note that the concept data type (date or detailed age) must match with what you specified in
+<code class="docutils literal notranslate"><span class="pre">chiron_settings.CHIRON_EVENT_CONCEPT_TYPE</span></code>.</p>
+<p>If you want to turn a collection into an event collection but don't have an appropriate concept in place,
+see <a class="reference internal" href="#custom-age-date-concepts"><span class="std std-ref">Custom Age/Date Concepts</span></a> for tips on how to create these type of concepts.</p>
+</section>
+<section id="check-that-it-s-working">
+<h3>Check That It's Working<a class="headerlink" href="#check-that-it-s-working" title="Permalink to this headline"></a></h3>
+<p>In the UI in a query definition, criteria sets defined on event collections will show a date option
+indicated with a calendar button (you may need to scroll over the criteria set for buttons to appear).
+This button will open up a menu for defining a temporal query.</p>
+</section>
 </section>
 </section>
 

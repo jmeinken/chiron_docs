@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Understanding the Data Dictionary &mdash; Chiron 5.0.0 documentation</title>
+  <title>Data Dictionary Components &mdash; Chiron 5.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Understanding Processors and Handlers" href="processors.html" />
+    <link rel="next" title="Understanding the Data Schema" href="data_schema.html" />
     <link rel="prev" title="System Overview" href="system_overview.html" /> 
 </head>
 
@@ -47,13 +47,9 @@
 <p class="caption" role="heading"><span class="caption-text">Explanation:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="system_overview.html">System Overview</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Understanding the Data Dictionary</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-mongodb-data-model">The MongoDB Data Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#datasets">Datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#subcollection-relationships">Subcollection Relationships</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-dictionary-components">Data Dictionary Components</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Dictionary Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_schema.html">Understanding the Data Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="event_collections.html">Understanding Event Collections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processors.html">Understanding Processors and Handlers</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How To:</span></p>
@@ -90,7 +86,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Understanding the Data Dictionary</li>
+      <li>Data Dictionary Components</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/topics/data_dict.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,54 +96,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="understanding-the-data-dictionary">
-<span id="understanding-dd"></span><h1>Understanding the Data Dictionary<a class="headerlink" href="#understanding-the-data-dictionary" title="Permalink to this headline"></a></h1>
+  <section id="data-dictionary-components">
+<span id="understanding-dd"></span><h1>Data Dictionary Components<a class="headerlink" href="#data-dictionary-components" title="Permalink to this headline"></a></h1>
 <p>The Chiron data dictionary contains all the metadata about your research data. Chiron will use the data dictionary to build the MongoDB database and import the data automatically.</p>
-<section id="the-mongodb-data-model">
-<span id="data-model-explainer"></span><h2>The MongoDB Data Model<a class="headerlink" href="#the-mongodb-data-model" title="Permalink to this headline"></a></h2>
-<p>Your MongoDB database has a simple data model with a single subject (root) collection at the core and any number of 0:many subcollections linked to it:</p>
-<div class="mermaid">
-                erDiagram
-        Subject ||--o{ Medication : &quot;&quot;
-        Subject ||--o{ Biospecimen : &quot;&quot;
-        Subject ||--o{ Encounter : &quot;&quot;
-        Subject ||--o{ Procedure : &quot;&quot;
-        </div><hr>
-</section>
-<section id="datasets">
-<h2>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline"></a></h2>
-<p>Starting in Chiron Version 4.0, you can have multiple unrelated datasets loaded into a single chiron instance. This is useful if you have a lot of datasets and don't want to maintain a separate chiron instance for each one. User permissions for each dataset are distinct, and a user can only interact with one dataset at a time. There's no way to do queries across multiple datasets.</p>
-<div class="mermaid">
-                erDiagram
-        Dataset1_Subject ||--o{ Medication : &quot;&quot;
-        Dataset1_Subject ||--o{ Biospecimen : &quot;&quot;
-        Dataset1_Subject ||--o{ Encounter : &quot;&quot;
-        Dataset2_Subject ||--o{ Survey : &quot;&quot;
-        Dataset2_Subject ||--o{ Sample : &quot;&quot;
-        </div><hr>
-</section>
-<section id="subcollection-relationships">
-<h2>Subcollection Relationships<a class="headerlink" href="#subcollection-relationships" title="Permalink to this headline"></a></h2>
-<p>Starting in Chiron version 3.1, you can also associate subcollection records with each other using the CollectionRelationship model. This will help when Chiron is generating a dataset from multiple subcollections and should be used when it makes sense.</p>
-<p>Here is the above example again with Procedures and Biospecimen linked to their associated encounters.</p>
-<div class="mermaid">
-                erDiagram
-        Subject ||--o{ Medication : &quot;&quot;
-        Subject ||--o{ Biospecimen : &quot;&quot;
-        Subject ||--o{ Encounter : &quot;&quot;
-        Subject ||--o{ Procedure : &quot;&quot;
-        Encounter ||--o{ Biospecimen : &quot;collected during&quot;
-        Encounter ||--o{ Procedure : &quot;performed during&quot;
-        </div></section>
-<section id="data-dictionary-components">
-<h2>Data Dictionary Components<a class="headerlink" href="#data-dictionary-components" title="Permalink to this headline"></a></h2>
 <p id="dataset-def"><strong>Datasets</strong></p>
 <p>Datasets are a top-level way of separating unrelated data into separate buckets. Each dataset will have its own MongoDB database, and will not have any relationships to the other datasets. In the user interface, users access a single dataset at a time, and a user can have different permissions on different datasets.</p>
 <p>For chiron instances with only 1 dataset, most of the dataset functionality will be hidden.</p>
 <p id="collection-def"><strong>Collections</strong></p>
 <p>Collections in the data dictionary represent literal MongoDB collections. If you're not familiar with MongoDB, you can think of a collection as a table.</p>
-<p>Every dataset will have one subject collection (specified in <code class="docutils literal notranslate"><span class="pre">Dataset.root_collection</span></code>) to store data that is 1:1 with the subject. Then you can have any number of sub-collections for a dataset that are 1:many or many:many with the subject.</p>
-<p>There is always a 1:many relationship between your subject collection and each sub-collection.</p>
+<p>Every dataset will have one subject collection (specified in <code class="docutils literal notranslate"><span class="pre">Dataset.root_collection</span></code>) to store data that is 1:1 with the subject. Then you can have any number of subcollections for a dataset that are 1:many or many:many with the subject.</p>
+<p>There is always a 1:many relationship between your subject collection and each subcollection.</p>
 <p id="concept-def"><strong>Concepts</strong></p>
 <p>Each collection can have any number of concepts. The subject collection could have concepts like birthdate and gender. A biospecimen collection could have concepts like collection date and sample amount.</p>
 <p id="source-def"><strong>Sources</strong></p>
@@ -157,14 +115,13 @@
 <p id="category-def"><strong>Categories</strong></p>
 <p>Categories define a hierarchical structure for users to browse concepts. They have no effect on queries or how the data is stored in MongoDB.</p>
 </section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="system_overview.html" class="btn btn-neutral float-left" title="System Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="processors.html" class="btn btn-neutral float-right" title="Understanding Processors and Handlers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="data_schema.html" class="btn btn-neutral float-right" title="Understanding the Data Schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

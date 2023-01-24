@@ -1,8 +1,12 @@
 # Version 5
 
-## Version 5.0.x (develop-5 branch)
+## version 5.0.2 (develop branch)
 
-*no breaking changes since version 5.0.0*
+*no breaking changes since last release*
+
+## Version 5.0.1 (released 1/24/2023)
+
+- fixed bugs related to using detailed_age for event concepts
 
 ## Version 5.0.0 (released 1/20/2023)
 
