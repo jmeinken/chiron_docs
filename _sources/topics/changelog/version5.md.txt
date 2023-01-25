@@ -1,12 +1,16 @@
 # Version 5
 
-## version 5.0.2 (develop branch)
+## version 5.0.3 (develop branch)
 
-*no breaking changes since last release*
+*no breaking changes since version 5.0.1*
+
+## version 5.0.2 (released 1/25/2023)
+
+- fixed bug related to installing chiron using pip
 
 ## Version 5.0.1 (released 1/24/2023)
 
-- fixed bugs related to using detailed_age for event concepts
+- fixed bugs related to using ages for event collections
 
 ## Version 5.0.0 (released 1/20/2023)
 

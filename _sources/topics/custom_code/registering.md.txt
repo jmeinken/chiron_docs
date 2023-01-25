@@ -40,7 +40,7 @@ CHIRON_PROCESSOR_MODULES = ["chiron.processors", "chiron_config.processors"]
 ```
 
 Note: If you include a module path, that module will be checked. If you include a package path,
-the entire package will be checked recursively, including subpackages.
+looks in the `__init__.py` file for the package.
 
 ## Using Registered Classes in Your Data Dictionary
 

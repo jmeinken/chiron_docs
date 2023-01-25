@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chiron Global Settings &mdash; Chiron 5.0.1 documentation</title>
+  <title>Chiron Global Settings &mdash; Chiron 5.0.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -236,8 +236,9 @@ json files be stored.</p>
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_PROCESSOR_MODULES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['chiron.processors',</span> <span class="pre">'chiron_config.processors']</span></em></dt>
 <dd><p>Processor classes must be registered with Chiron. List any packages/modules that load processors
-here to ensure that they are loaded during registry updates. Checks recursively, so all
-submodules of specified package/module will also be checked.</p>
+here to ensure that they are loaded during registry updates. If you include a module path, 
+that module will be checked. If you include a package path,
+looks in the <cite>__init__.py</cite> file for the package.</p>
 <p>The recommended location for registering custom processors is anywhere in
 <cite>[your_project]/chiron_config/processors/</cite>. Then this setting would need to be:</p>
 <p>CHIRON_PROCESSOR_MODULES = [&quot;chiron.processors&quot;, &quot;chiron_config.processors&quot;]</p>
