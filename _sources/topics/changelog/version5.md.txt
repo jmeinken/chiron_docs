@@ -1,5 +1,9 @@
 # Version 5
 
+## version 5.0.4 (develop branch)
+
+*no breaking changes since version 5.0.3*
+
 ## version 5.0.3 (released 2/17/2023)
 
 - concept search now supports partial word matching from the start of the word
