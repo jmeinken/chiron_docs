@@ -1,8 +1,10 @@
 # Version 5
 
-## version 5.0.3 (develop branch)
+## version 5.0.3 (released 2/17/2023)
 
-*no breaking changes since version 5.0.1*
+- concept search now supports partial word matching from the start of the word
+  - ex. `pass` will match `passport number` (but `port` will not)
+- fixed bug in built-in UI that was using a hard-coded API URL
 
 ## version 5.0.2 (released 1/25/2023)
 

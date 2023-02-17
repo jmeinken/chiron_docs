@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Django Management Commands &mdash; Chiron 5.0.2 documentation</title>
+  <title>Django Management Commands &mdash; Chiron 5.0.3 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -166,7 +166,9 @@ rerun, it will update with new fields but ignore previously autocreated fields.<
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_autocreate_dd [-h] [--all] [--test-run] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [source_list ...]
+usage: manage.py chiron_autocreate_dd [-h] [--all] [--test-run] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]
+                                      [--skip-checks]
+                                      [source_list ...]
 
 Autocreates the data dictionary using autocreate lists
 
@@ -216,7 +218,8 @@ references to the old processor, it should be automatically deleted.</p></li>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_merge_processors [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] old_processor_name new_processor_name
+usage: manage.py chiron_merge_processors [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+                                         old_processor_name new_processor_name
 
 Globally move all references from one processor to another.
 
@@ -265,7 +268,8 @@ references to the old concept handler, it should be automatically deleted.</p></
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_merge_handlers [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] old_handler_name new_handler_name
+usage: manage.py chiron_merge_handlers [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+                                       old_handler_name new_handler_name
 
 Globally move all references from one concept handler to another.
 
@@ -298,7 +302,8 @@ is to run with no arguments and select the dataset when prompted.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_drop_dataset [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+usage: manage.py chiron_drop_dataset [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+                                     [dataset_id]
 
 Drops a single dataset and all related data from the data dictionary.
 
@@ -335,7 +340,8 @@ settings) models are not. Log and cache models are also not backed up.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_backup_dd [-h] [--backup-dir BACKUP_DIR] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_backup_dd [-h] [--backup-dir BACKUP_DIR] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]
+                                  [--skip-checks]
 
 Backs up the chiron data dictionary.
 
@@ -369,7 +375,8 @@ dictionary contains a permission group with the same name.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_restore_dd [-h] [--backup-dir BACKUP_DIR] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_restore_dd [-h] [--backup-dir BACKUP_DIR] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color]
+                                   [--force-color] [--skip-checks]
 
 Reloads the data dictionary from a Django fixture
 
@@ -401,8 +408,8 @@ settings) models are not. Log and cache models are also not backed up.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_backup_dataset [-h] [--filename FILENAME] [--backup-dir BACKUP_DIR] [--overwrite] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]
-                                       [--skip-checks]
+usage: manage.py chiron_backup_dataset [-h] [--filename FILENAME] [--backup-dir BACKUP_DIR] [--overwrite] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH]
+                                       [--traceback] [--no-color] [--force-color] [--skip-checks]
                                        [dataset_id]
 
 Backs up the chiron data dictionary for a dataset to a JSON file.
@@ -452,8 +459,8 @@ python manage.py chiron_restore_dataset foo.json --unique-id<span class="o">=</s
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_restore_dataset [-h] [--unique-id UNIQUE_ID] [--backup-dir BACKUP_DIR] [--handle-name-conflicts] [--overwrite] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback]
-                                        [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_restore_dataset [-h] [--unique-id UNIQUE_ID] [--backup-dir BACKUP_DIR] [--handle-name-conflicts] [--overwrite] [--version] [-v {0,1,2,3}]
+                                        [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
                                         filename
 
 Reloads the data dictionary for a dataset from a JSON file
@@ -517,8 +524,8 @@ matched for each record.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_run_etl [-h] [-s SOURCE] [--no-log] [--enable-sharding] [--track-subject-matching] [--abbreviated] [--ignore-validation-errors] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH]
-                                [--traceback] [--no-color] [--force-color] [--skip-checks]
+usage: manage.py chiron_run_etl [-h] [-s SOURCE] [--no-log] [--enable-sharding] [--track-subject-matching] [--abbreviated] [--ignore-validation-errors] [--version] [-v {0,1,2,3}]
+                                [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
                                 [dataset_id]
 
 Uses the Chiron data dictionary to populate a MongoDB database.
@@ -595,7 +602,9 @@ datasets, will prompt you to select a dataset.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_copy_permission_groups [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+usage: manage.py chiron_copy_permission_groups [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]
+                                               [--skip-checks]
+                                               [dataset_id]
 
 Copies permission groups to subcollections
 
@@ -628,7 +637,9 @@ multiple datasets, will prompt you to select a dataset.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_create_concept_search [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+usage: manage.py chiron_create_concept_search [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]
+                                              [--skip-checks]
+                                              [dataset_id]
 
 Creates the collection used to search for concepts by keywords.
 
@@ -667,7 +678,9 @@ indexes per collection.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_create_indexes [-h] [--only-text] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+usage: manage.py chiron_create_indexes [-h] [--only-text] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]
+                                       [--skip-checks]
+                                       [dataset_id]
 
 Creates MongoDB indexes on all collections
 
@@ -700,7 +713,8 @@ select a dataset.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_view_indexes [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+usage: manage.py chiron_view_indexes [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+                                     [dataset_id]
 
 Prints MongoDB indexes on all collections
 
@@ -734,7 +748,8 @@ before starting.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_drop_indexes [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+usage: manage.py chiron_drop_indexes [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+                                     [dataset_id]
 
 Drops MongoDB indexes on all collections
 
@@ -773,7 +788,8 @@ cache entries where n = count of permission groups)</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_cache_concepts [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+usage: manage.py chiron_cache_concepts [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+                                       [dataset_id]
 
 Primes the cache for all of the published concepts.
 
@@ -808,7 +824,8 @@ those users as well.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_cache_reports [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+usage: manage.py chiron_cache_reports [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+                                      [dataset_id]
 
 Updates caches using existing data.
 
@@ -841,7 +858,8 @@ a dataset or select &quot;all&quot; to clear caches for all datasets.</p>
 
 <div class="admonition">
 <pre>
-usage: manage.py chiron_clear_caches [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks] [dataset_id]
+usage: manage.py chiron_clear_caches [-h] [--version] [-v {0,1,2,3}] [--settings SETTINGS] [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color] [--skip-checks]
+                                     [dataset_id]
 
 Clears all caches of calculated patient data.
 

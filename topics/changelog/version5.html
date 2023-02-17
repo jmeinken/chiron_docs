@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version 5 &mdash; Chiron 5.0.2 documentation</title>
+  <title>Version 5 &mdash; Chiron 5.0.3 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -44,7 +44,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../version_changelog.html">Version Changelog</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Version 5</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#version-5-0-3-develop-branch">version 5.0.3 (develop branch)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-5-0-3-released-2-17-2023">version 5.0.3 (released 2/17/2023)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#version-5-0-2-released-1-25-2023">version 5.0.2 (released 1/25/2023)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#version-5-0-1-released-1-24-2023">Version 5.0.1 (released 1/24/2023)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#version-5-0-0-released-1-20-2023">Version 5.0.0 (released 1/20/2023)</a><ul>
@@ -115,9 +115,16 @@
              
   <section id="version-5">
 <h1>Version 5<a class="headerlink" href="#version-5" title="Permalink to this headline"></a></h1>
-<section id="version-5-0-3-develop-branch">
-<h2>version 5.0.3 (develop branch)<a class="headerlink" href="#version-5-0-3-develop-branch" title="Permalink to this headline"></a></h2>
-<p><em>no breaking changes since version 5.0.1</em></p>
+<section id="version-5-0-3-released-2-17-2023">
+<h2>version 5.0.3 (released 2/17/2023)<a class="headerlink" href="#version-5-0-3-released-2-17-2023" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>concept search now supports partial word matching from the start of the word</p>
+<ul>
+<li><p>ex. <code class="docutils literal notranslate"><span class="pre">pass</span></code> will match <code class="docutils literal notranslate"><span class="pre">passport</span> <span class="pre">number</span></code> (but <code class="docutils literal notranslate"><span class="pre">port</span></code> will not)</p></li>
+</ul>
+</li>
+<li><p>fixed bug in built-in UI that was using a hard-coded API URL</p></li>
+</ul>
 </section>
 <section id="version-5-0-2-released-1-25-2023">
 <h2>version 5.0.2 (released 1/25/2023)<a class="headerlink" href="#version-5-0-2-released-1-25-2023" title="Permalink to this headline"></a></h2>
