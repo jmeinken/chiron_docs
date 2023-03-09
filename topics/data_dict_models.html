@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Dictionary Models &mdash; Chiron 5.0.4 documentation</title>
+  <title>Data Dictionary Models &mdash; Chiron 5.0.6 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -174,7 +174,7 @@ used to create indexes to speed up the ETL.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">autocreate_chiron_user</span></span></dt>
-<dd><p>If a new Django user tries to access this dataset, should they be allowed to with 
+<dd><p>If a new Django user tries to access this dataset, should they be allowed to with
 default permissions?</p>
 </dd></dl>
 
@@ -324,7 +324,7 @@ for the root (subject) collection and optional for other collections.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">event_end_date_field</span></span></dt>
-<dd><p>Optionally specify an end date for a record; allows for longitudinal queries. Use for 
+<dd><p>Optionally specify an end date for a record; allows for longitudinal queries. Use for
 events that can take place over multiple days. Leave empty for events that always take place
 within a single day.</p>
 </dd></dl>
@@ -357,7 +357,7 @@ a diagnosis that's associated with an encounter.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">pk_concept</span></span></dt>
-<dd><p>The concept that will play the primary key role. This should be a unique ID to 
+<dd><p>The concept that will play the primary key role. This should be a unique ID to
 represent a record in the associated collection.</p>
 </dd></dl>
 
@@ -876,7 +876,7 @@ absolutely no effect on anything besides autocreate.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">associated_concept</span></span></dt>
-<dd><p>The existing concept related to this field. Can be null if the concept has been 
+<dd><p>The existing concept related to this field. Can be null if the concept has been
 deleted.</p>
 </dd></dl>
 

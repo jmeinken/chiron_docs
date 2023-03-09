@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chiron Global Settings &mdash; Chiron 5.0.4 documentation</title>
+  <title>Chiron Global Settings &mdash; Chiron 5.0.6 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -181,7 +181,7 @@ Then users can do temporal queries at the collection level.</p>
 <p>You can either use date concepts for events, or you can use detailed age concepts - which
 internally store an integer value for age in days. The advantage of using ages instead of dates
 is that dates are generally considered PHI.</p>
-<p>Ages and dates can't be compared against each other. You must choose one or the other to 
+<p>Ages and dates can't be compared against each other. You must choose one or the other to
 specify here and then use globally across your application.</p>
 <p>OPTIONS: &quot;date&quot;, &quot;detailed_age&quot;</p>
 </dd></dl>
@@ -236,7 +236,7 @@ json files be stored.</p>
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">chiron.chiron_settings.</span></span><span class="sig-name descname"><span class="pre">CHIRON_PROCESSOR_MODULES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['chiron.processors',</span> <span class="pre">'chiron_config.processors']</span></em></dt>
 <dd><p>Processor classes must be registered with Chiron. List any packages/modules that load processors
-here to ensure that they are loaded during registry updates. If you include a module path, 
+here to ensure that they are loaded during registry updates. If you include a module path,
 that module will be checked. If you include a package path,
 looks in the <cite>__init__.py</cite> file for the package.</p>
 <p>The recommended location for registering custom processors is anywhere in

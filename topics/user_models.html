@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User &amp; Permission Models &mdash; Chiron 5.0.4 documentation</title>
+  <title>User &amp; Permission Models &mdash; Chiron 5.0.6 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -118,7 +118,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">dataset</span></span></dt>
-<dd><p>The associated dataset. Each ChironUser defines permissions for one Django user on one 
+<dd><p>The associated dataset. Each ChironUser defines permissions for one Django user on one
 dataset.</p>
 </dd></dl>
 
@@ -183,7 +183,8 @@ activated based on their permission groups.</p>
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">concept_for_allowed_subjects</span></span></dt>
 <dd><p>This permission group grants access to a subject if the subject's value in this concept is
-true or truthy (uses MongoDB $toBool operator)</p>
+true or truthy. If not boolean, uses MongoDB $toBool operator. If your database doesn't support
+$toBool, make sure this is already a boolean concept.</p>
 </dd></dl>
 
 <dl class="py attribute">

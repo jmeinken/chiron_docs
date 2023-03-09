@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Built-In Source Processors &mdash; Chiron 5.0.4 documentation</title>
+  <title>Built-In Source Processors &mdash; Chiron 5.0.6 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -135,8 +135,9 @@ the concept handler used to import, query, and display concept values.</p>
 <li><p><strong>app</strong> (<em>str</em>) -- the Django app name where the model is located</p></li>
 <li><p><strong>model</strong> (<em>str</em>) -- the Django model name</p></li>
 <li><p><strong>collection_id_field</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default is primary key for model</em><em>)</em>) -- The name of the field where the collection_id is located</p></li>
-<li><p><strong>subject_matching_source_id_field</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default is the collection_id_field parameter
-value</em><em>)</em>) -- The name of the field where the root_collection_id is located</p></li>
+<li><p><strong>subject_matching_source_id_field</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default is the collection_id_field
+parameter value</em><em>)</em>) -- The name of the field where the root_collection_id
+is located</p></li>
 <li><p><strong>max_batch_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=10</em><em>,</em><em>000</em><em>)</em>) -- The maximum number of model records that will be loaded at once</p></li>
 <li><p><strong>select_related</strong> (<em>str</em><em>, </em><em>optional</em>) -- A comma separated list of models to pre-select</p></li>
 <li><p><strong>prefetch_related</strong> (<em>str</em><em>, </em><em>optional</em>) -- A comma separated list of models to pre-fetch</p></li>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version 5 &mdash; Chiron 5.0.4 documentation</title>
+  <title>Version 5 &mdash; Chiron 5.0.6 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -44,7 +44,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../version_changelog.html">Version Changelog</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Version 5</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#version-5-0-4-develop-branch">version 5.0.4 (develop branch)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-5-0-6-released-3-9-2023">version 5.0.6 (released 3/9/2023)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-5-0-5-released-3-7-2023">version 5.0.5 (released 3/7/2023)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-5-0-4-released-3-3-2023">version 5.0.4 (released 3/3/2023)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#version-5-0-3-released-2-17-2023">version 5.0.3 (released 2/17/2023)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#version-5-0-2-released-1-25-2023">version 5.0.2 (released 1/25/2023)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#version-5-0-1-released-1-24-2023">Version 5.0.1 (released 1/24/2023)</a></li>
@@ -116,9 +118,27 @@
              
   <section id="version-5">
 <h1>Version 5<a class="headerlink" href="#version-5" title="Permalink to this headline"></a></h1>
-<section id="version-5-0-4-develop-branch">
-<h2>version 5.0.4 (develop branch)<a class="headerlink" href="#version-5-0-4-develop-branch" title="Permalink to this headline"></a></h2>
-<p><em>no breaking changes since version 5.0.3</em></p>
+<section id="version-5-0-6-released-3-9-2023">
+<h2>version 5.0.6 (released 3/9/2023)<a class="headerlink" href="#version-5-0-6-released-3-9-2023" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Switched from CircleCI to GitHub Actions for testing. New setup also does black formatting and
+flake8 linting.</p></li>
+</ul>
+</section>
+<section id="version-5-0-5-released-3-7-2023">
+<h2>version 5.0.5 (released 3/7/2023)<a class="headerlink" href="#version-5-0-5-released-3-7-2023" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Fixed a bug in the detailed age processor <code class="docutils literal notranslate"><span class="pre">EtlDictAgeInYearsToDays</span></code></p></li>
+</ul>
+</section>
+<section id="version-5-0-4-released-3-3-2023">
+<h2>version 5.0.4 (released 3/3/2023)<a class="headerlink" href="#version-5-0-4-released-3-3-2023" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The concept_for_allowed_subjects in a permission group should only be cast to a boolean value
+if it's not already a boolean value. Not all MongoDB and DocumentDB versions support the <code class="docutils literal notranslate"><span class="pre">toBool</span></code>
+method.</p></li>
+<li><p>Only pre-cache concepts that are flagged as include_in_cohort_def.</p></li>
+</ul>
 </section>
 <section id="version-5-0-3-released-2-17-2023">
 <h2>version 5.0.3 (released 2/17/2023)<a class="headerlink" href="#version-5-0-3-released-2-17-2023" title="Permalink to this headline"></a></h2>

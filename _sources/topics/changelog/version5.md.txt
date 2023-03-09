@@ -1,8 +1,20 @@
 # Version 5
 
-## version 5.0.4 (develop branch)
+## version 5.0.6 (released 3/9/2023)
 
-*no breaking changes since version 5.0.3*
+- Switched from CircleCI to GitHub Actions for testing. New setup also does black formatting and
+  flake8 linting.
+
+## version 5.0.5 (released 3/7/2023)
+
+- Fixed a bug in the detailed age processor `EtlDictAgeInYearsToDays`
+
+## version 5.0.4 (released 3/3/2023)
+
+- The concept_for_allowed_subjects in a permission group should only be cast to a boolean value
+  if it's not already a boolean value. Not all MongoDB and DocumentDB versions support the `toBool`
+  method.
+- Only pre-cache concepts that are flagged as include_in_cohort_def.
 
 ## version 5.0.3 (released 2/17/2023)
 
